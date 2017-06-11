@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="theme-color" content="#263238">
+
+<meta name="generator" content="Hugo 0.21" />
+
+<link rel="apple-touch-icon" href="../../../../images/logo.png">
+
+
+<link rel="canonical" href="../../../../2017/05/19/web-scraping-do-site-da-secretaria-de-seguran%C3%A7a-p%C3%BAblica-de-s%C3%A3o-paulo/">
+
+
+    
+    <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+    
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Web scraping do site da Secretaria de Segurança Pública de São Paulo - A Hugo website</title>
+    
+
+<meta name="description" content="Quando eu trabalhei no Núcleo de Estudos da Violência da USP, obter informações da Secretaria de Segurança Pública de São Paulo (SSP) era uma tarefa meio esotérica. Coletávamos os dados de todos os DP’s de São Paulo, que são aproximadamente 100, e, como fazer isso manualmente era demorado, aplicávamos uma solução automática em dois passos. Primeiro raspávamos o site da SSP em Python e depois rodávamos uma macro em VBA chamada “Mestre Dos Magos”, que era responsável por consolidar as séries históricas em excel.">
+
+<meta property="og:title" content="Web scraping do site da Secretaria de Segurança Pública de São Paulo - A Hugo website">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/2017/05/19/web-scraping-do-site-da-secretaria-de-seguran%C3%A7a-p%C3%BAblica-de-s%C3%A3o-paulo/">
+<meta property="og:image" content="/images/default.png">
+<meta property="og:site_name" content="A Hugo website">
+<meta property="og:description" content="Quando eu trabalhei no Núcleo de Estudos da Violência da USP, obter informações da Secretaria de Segurança Pública de São Paulo (SSP) era uma tarefa meio esotérica. Coletávamos os dados de todos os DP’s de São Paulo, que são aproximadamente 100, e, como fazer isso manualmente era demorado, aplicávamos uma solução automática em dois passos. Primeiro raspávamos o site da SSP em Python e depois rodávamos uma macro em VBA chamada “Mestre Dos Magos”, que era responsável por consolidar as séries históricas em excel.">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="A Hugo website">
+<meta name="twitter:url" content="/2017/05/19/web-scraping-do-site-da-secretaria-de-seguran%C3%A7a-p%C3%BAblica-de-s%C3%A3o-paulo/">
+<meta name="twitter:title" content="Web scraping do site da Secretaria de Segurança Pública de São Paulo - A Hugo website">
+<meta name="twitter:description" content="Quando eu trabalhei no Núcleo de Estudos da Violência da USP, obter informações da Secretaria de Segurança Pública de São Paulo (SSP) era uma tarefa meio esotérica. Coletávamos os dados de todos os DP’s de São Paulo, que são aproximadamente 100, e, como fazer isso manualmente era demorado, aplicávamos uma solução automática em dois passos. Primeiro raspávamos o site da SSP em Python e depois rodávamos uma macro em VBA chamada “Mestre Dos Magos”, que era responsável por consolidar as séries históricas em excel.">
+<meta name="twitter:image" content="/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"/"
+    },
+    "headline": "Web scraping do site da Secretaria de Segurança Pública de São Paulo - A Hugo website",
+    "image": {
+      "@type": "ImageObject",
+      "url": "/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2017-05-19T20:26:00JST",
+    "dateModified": "2017-05-19T20:26:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "A Hugo website"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "A Hugo website",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "Quando eu trabalhei no Núcleo de Estudos da Violência da USP, obter informações da Secretaria de Segurança Pública de São Paulo (SSP) era uma tarefa meio esotérica. Coletávamos os dados de todos os DP’s de São Paulo, que são aproximadamente 100, e, como fazer isso manualmente era demorado, aplicávamos uma solução automática em dois passos. Primeiro raspávamos o site da SSP em Python e depois rodávamos uma macro em VBA chamada “Mestre Dos Magos”, que era responsável por consolidar as séries históricas em excel."
+  }
+</script>
+
+
+    <style>
+      html { font-size: 18px; background-color: rgba(236,239,241,.5);}@media (max-width: 768px) { html { font-size: 15px; }}body { color: #333; font-family: 'Roboto Slab','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',メイリオ,Meiryo,sans-serif; font-feature-settings : "palt"; font-size: inherit; line-height: 1rem; margin: 0; padding: 0;}h1, h2, h3, h4, h5 ,h6 { font-size: 1rem; font-weight: 700; line-height: 1rem; margin: 0;}hr { border: 0; border-top: 1px dashed #cfd8dc; margin: 1rem 0;}p { margin: 0; line-height: 1rem;}a { color: #2196f3; text-decoration: none; transition-duration: .3s;}ul, ol { margin: 0; padding: 0;}table { border-collapse: collapse;}th, td { font-size: .8rem; padding: .5rem;}tr { border-bottom: 1px dashed #ddd;}/* Layouts */main,aside { display: block;}main { padding: 1rem 0 3rem 0; }aside.h { padding: 3rem 0; }main.f,aside.f { background-color: #333; border-top: 2px dashed #fff; border-bottom: 2px dashed #fff;}.l-container { position: relative; max-width: 68rem; margin: 0 auto; padding: 0 1rem;}.l-container.thin { max-width: 44rem;}.l-header { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); padding: 1rem 0; text-align: center;}.l-footer { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); font-size: .6rem; font-weight: 700; padding: 1rem 0;}@media (max-width: 768px) { .l-sidebar { margin-top: 4rem; }}.mrow { margin: 0 -1rem; overflow: hidden;}.mcol { box-sizing: border-box; float: left; padding: 0 1rem;}.c6 { width: 50%; }.c4 { width: 33.26323833%; }.c8 { width: 66.66666%; }@media (max-width: 768px) { .mcol { width: 100%; float: none; }}.logo a { font-size: 1.4rem; line-height: 1.5rem; font-weight: 700; color: #333;}.articles { margin: -1rem 0; margin-bottom: 1rem;}.articles.sm { margin: -.5rem 0; margin-bottom: 0;}article { border-radius: 4px; overflow: hidden;}article.li { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); height: 20rem; overflow: hidden; margin: 1rem 0;}article.li > a { display: block; color: #333;}article.li .inner { padding: 1rem;}article.li .thumb { height: 8rem;}article.li .title { color: #333; font-size: 1.2rem; line-height: 1.5rem; margin-bottom: .5rem;}article.li .summary { font-size: .8rem; height: 6rem; overflow: hidden; margin-top: 1rem;}article.lism { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); margin: .5rem 0;}article.lism::after { content: ''; display: block; clear: both;}article.lism > a { display: block; color: #333;}article.lism .inner { display: table-cell; vertical-align: middle; height: 5rem; padding-left: .5rem;}article.lism .thumb { width: 5rem; height: 5rem; float: left;}article.lism .title { font-weight: 700; line-height: 1.25rem; margin-bottom: .25rem;}article.sn { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); margin-bottom: 1rem;}article.sn .thumb { height: 20rem;}@media (max-width: 768px) { article.sn .thumb { height: 10rem; }}article.sn > .article-header,article.sn > .article-body,article.sn .article-footer { padding: 2rem;}article.sn > .article-body { padding: 0 2rem;}@media (max-width: 768px) { article.sn > .article-header, article.sn > .article-body, article.sn .article-footer { padding: 1rem; } article.sn > .article-body { padding: 0 1rem; }}article.sn > .article-header .title { font-size: 1.8rem; line-height: 2rem; margin-bottom: .5rem;}@media (max-width: 768px) { article.sn > .article-header .title { font-size: 1.4rem; line-height: 1.5rem; }}article.sn > .article-header .facts { margin-bottom: 1rem;}article.sn > .article-body { margin-bottom: 1.5rem;}article.sn > .article-body h2 { border-bottom: .25rem solid #333; font-size: 1.2rem; line-height: 1.5rem; margin: 1.5rem 0; padding: .5rem 0;}article.sn > .article-body h3 { border-left: .5rem solid #333; line-height: 1.5rem; margin: 1.5rem 0; padding: .125rem .5rem;}article.sn > .article-body ul,article.sn > .article-body ol { margin: 1.5rem 0; padding-left: 1.5rem;}article.sn > .article-body li { padding-bottom: .5rem; line-height: 1.5rem;}article.sn > .article-body li:last-child { padding-bottom: 0;}article.sn > .article-body p { margin: 1rem 0; line-height: 1.5rem;}article.sn > .article-body strong,article.sn > .article-body em { font-style: normal; font-weight: 700;}article.sn > .article-body strong { box-shadow: 0 -.5rem 0 0 #ffc107 inset;}article.sn > .article-body em { color: #8bc34a;}article.sn > .article-body code,article.sn > .article-body pre { font-family: Menlo, Consolas, monospace; font-size: .7rem;}article.sn > .article-body pre { background-color: #333; color: #fff; line-height: 1rem; margin: 1.5rem -2rem; overflow: auto;}@media (max-width: 768px) { article.sn > .article-body pre { margin: 1.5rem -1rem; }}article.sn > .article-body pre > code { display: block; padding: 1rem 2rem;}@media (max-width: 768px) { article.sn > .article-body pre > code { padding: 1rem; }}article.sn > .article-body p code { background-color: #eceff1; color: #333; border-radius: 4px; margin: 0 .25rem; padding: .375rem; white-space: nowrap;}article.sn > .article-body blockquote { position: relative; border-left: .25rem solid #333; font-size: .8rem; padding: .125rem 1rem; margin: 1.5rem 0;}@media (max-width: 768px) { article.sn > .article-body blockquote { font-size: 1rem; }}article.sn > .article-body blockquote p { margin: .5rem 0; line-height: 1rem;}article.sn > .article-body figure { margin: 1.5rem 0;}article.sn > .article-body figure img,article.sn > .article-body figure amp-img { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); max-width: 100%;}article.sn > .article-body figcaption { color: #cfd8dc; font-size: .8rem; font-weight: 700; margin-top: .5rem;}.facts li { display: inline; font-size: .8rem; margin-right: 1rem;}.facts i { color: #cfd8dc; margin-right: .5em;}.facts.sm li { font-size: .7rem;}.sections.sidebar { margin: -1rem 0;}.sections.footer { margin: -1rem 0;}section.sidebar { margin: 2rem 0;}section.sidebar > header { font-size: .8rem; font-weight: 700; letter-spacing: 4px; text-align: center; margin: 1.5rem 0;}section.footer { margin: 1rem 0;}section.footer > header { font-size: .8rem; margin: .5rem 0;}section.footer > header::before { content: "- ";}section.footer > header a { font-weight: 700; color: #333; text-decoration: underline;}.terms { margin: -.25rem;}.terms li { display: inline-block;}.terms a { display: block; float: left; background-color: #333; border-radius: 4px; color: #fff; font-size: .7rem; margin: .25rem; padding: 0 .75rem; line-height: 1.75rem;}.paging { text-align: center; padding: 1rem 0;}.paging a { display: inline-block; background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); border-radius: 4px; color: #333; padding: 0 1rem; line-height: 3rem;}.page-title { text-align: center; margin: 1rem 0;}.page-title::after { content: ''; display: block; border-bottom: .25rem solid #333; width: 3rem; margin: 1.5rem auto;}.page-title > .title { font-size: 1.2rem; line-height: 1.5rem;}/* Parts:breadcrumb */.crumb ol { text-overflow: ellipsis; color: #cfd8dc; white-space: nowrap; overflow: hidden;}.crumb li { display: inline; font-size: .8rem;}.crumb li::after { content: '›'; margin: 0 .25rem 0 .5rem;}.crumb li:last-child::after { content: '';}.crumb a { color: #cfd8dc;}.crumb i { margin-right: .5em;}.share { padding: 0;}.share a { display: inline-block; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); min-width: 1rem; height: 2rem; border-radius: 4px; color: #333; font-size: .8rem; font-weight: 700; line-height: 2rem; text-align: center; padding: 0 .5rem;}.adj article.lism { margin-bottom: 1rem;}.adj header { font-weight: 700; font-size: .8rem;}.toc { padding: 0 2rem;}@media (max-width: 768px) { .toc { padding: 0 1rem; }}.toc { margin: 1rem 0;}.toc nav>ul { background-color: #eceff1; border-radius: 4px; display: inline-block; font-size: .8rem; padding: .5rem 1rem; word-break: break-all; list-style: none;}.toc ul { padding: 0;}.toc ul ul { padding-left: 1rem;}.toc ul ul ul { padding-left: 1rem;}.toc li { color: #90a4ae;}.toc ul ul>li { font-weight: 700; margin: .5rem 0; list-style-type: decimal;}.toc ul ul ul>li { list-style-type: disc; font-weight: 500;}.thumb { background-image: url(/images/default.jpg); background-size: cover;}
+      
+      
+    </style>
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <div class="l-container">
+        <div class="logo">
+          <a href="../../../../">A Hugo website</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="l-container">
+        
+<div class="mrow">
+  <div class="mcol c8">
+
+    <article class="sn">
+
+  <div class="thumb thumb-3da60970259d2fd391b3fb0a4ff77692"></div>
+
+  <header class="article-header">
+    <h1 class="title">Web scraping do site da Secretaria de Segurança Pública de São Paulo</h1>
+
+    <ul class="facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-19T20:26:00JST">May 19, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="../../../../post/">POST</a></li>
+      
+    </ul>
+
+    <aside class="share">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=%2f2017%2f05%2f19%2fweb-scraping-do-site-da-secretaria-de-seguran%25C3%25A7a-p%25C3%25BAblica-de-s%25C3%25A3o-paulo%2f&title=Web%20scraping%20do%20site%20da%20Secretaria%20de%20Seguran%c3%a7a%20P%c3%bablica%20de%20S%c3%a3o%20Paulo" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=%2f2017%2f05%2f19%2fweb-scraping-do-site-da-secretaria-de-seguran%25C3%25A7a-p%25C3%25BAblica-de-s%25C3%25A3o-paulo%2f&text=Web%20scraping%20do%20site%20da%20Secretaria%20de%20Seguran%c3%a7a%20P%c3%bablica%20de%20S%c3%a3o%20Paulo&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=%2f2017%2f05%2f19%2fweb-scraping-do-site-da-secretaria-de-seguran%25C3%25A7a-p%25C3%25BAblica-de-s%25C3%25A3o-paulo%2f&t=Web%20scraping%20do%20site%20da%20Secretaria%20de%20Seguran%c3%a7a%20P%c3%bablica%20de%20S%c3%a3o%20Paulo" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=%2f2017%2f05%2f19%2fweb-scraping-do-site-da-secretaria-de-seguran%25C3%25A7a-p%25C3%25BAblica-de-s%25C3%25A3o-paulo%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=%2f2017%2f05%2f19%2fweb-scraping-do-site-da-secretaria-de-seguran%25C3%25A7a-p%25C3%25BAblica-de-s%25C3%25A3o-paulo%2f&title=Web%20scraping%20do%20site%20da%20Secretaria%20de%20Seguran%c3%a7a%20P%c3%bablica%20de%20S%c3%a3o%20Paulo" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?Web%20scraping%20do%20site%20da%20Secretaria%20de%20Seguran%c3%a7a%20P%c3%bablica%20de%20S%c3%a3o%20Paulo %2f2017%2f05%2f19%2fweb-scraping-do-site-da-secretaria-de-seguran%25C3%25A7a-p%25C3%25BAblica-de-s%25C3%25A3o-paulo%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+</aside>
+
+  </header>
+
+  
+
+  <div class="article-body"><div id="post-content">
+<p>
+Quando eu trabalhei no Núcleo de Estudos da Violência da USP, obter
+informações da Secretaria de Segurança Pública de São Paulo (SSP) era
+uma tarefa meio esotérica. Coletávamos os dados de todos os DP’s de São
+Paulo, que são aproximadamente 100, e, como fazer isso manualmente era
+demorado, aplicávamos uma solução automática em dois passos. Primeiro
+<em>raspávamos</em> o site da SSP em Python e depois rodávamos uma macro
+em VBA chamada “Mestre Dos Magos”, que era responsável por consolidar as
+séries históricas em excel. Eu achava o procedimento um pouco hermético
+porque nenhum deles tinha sido feito por mim ou pela minha equipe, era
+uma herança que a gente não sabia como consertar se desse algum
+problema. Para dar um exemplo, no final da minha breve estadia no NEV o
+script não funcionava mais, então era necessário baixar tudo
+manualmente.
+</p>
+<p>
+Depois dessa época eu nunca mais mexi com esses dados. Eu sempre tive
+vontade de implementar uma solução em R, mas sempre faltou motivação.
+Felizmente, na ultima semana minha namorada precisou dos dados da SSP
+para um trabalho que está fazendo, só que dessa vez o interesse era em
+todos os 645 municípios do estado de São Paulo nos anos entre 2013 a
+2016. Como não há como baixar todas essas informações de uma vez e
+downloads individuais tomam muito tempo, eu me senti motivado o
+suficiente para atacar o problema.
+</p>
+<p>
+Pra ser sincero, foi bem mais fácil do que eu achei que seria. A
+construção do programa foi tão simples que cabe até mesmo neste post de
+blog, mas não é só por isso que ela está aqui. Esse é um exemplo minimal
+de todas as fases de construção de um <em>scraper</em>.
+</p>
+<p>
+Em um esquema aproximado, eu acredito que raspar (ou <em>scrappear</em>)
+um site pode ser feito em 4 passos:
+</p>
+<ol>
+<li>
+Defina a página que você quer raspar;
+</li>
+<li>
+Identifique <em>exatamente</em> as requisições que produzem o que você
+quer;
+</li>
+<li>
+Construa um programa que <em>imite</em> as requisições que você faria
+manualmente;
+</li>
+<li>
+Repita o passo 3. quantas vezes quiser.
+</li>
+</ol>
+<p>
+Mesmo que existam <em>scrapers</em> mais complicados, é verdade que
+seguir esses passos pelo menos te ajuda a chegar mais perto do que você
+realmente precisará fazer depois.
+</p>
+
+<p>
+Tanto o NEV quanto a minha namorada tinham interesse nas tabelas que
+apareciam numa URL específica do site:
+<a href="http://www.ssp.sp.gov.br/Estatistica/Pesquisa.aspx" class="uri">http://www.ssp.sp.gov.br/Estatistica/Pesquisa.aspx</a>.
+A lógica por trás da divulgação dessas informações é a seguinte: você
+escolhe um ano, uma localidade geográfica/administrativa e um tipo de
+informação e ele te devolve uma tabela. Os anos disponíveis são os anos
+de 2001 a 2017, as localidades são os cruzamentos entre Municípios,
+Regiões e Delegacias (notando que você sempre pode escolher “Todos”) e
+os tipos de informação são taxas de delito, ocorrências registradas por
+ano, ocorrências registradas por mês e produtividade policial. Nesta
+aplicação vamos procurar contagens de ocorrências registradas por mês.
+</p>
+
+<div id="identifique-o-que-o-site-faz-por-tras" class="section level2">
+<p>
+Identificar o que o site faz por trás provavelmente é a fase mais
+complicada da construção de um <em>scraper</em>. A dificuldade é que não
+existe um algoritmo que faça isso pra você. Normalmente eu sigo alguns
+passos, mas eles exigem uma dose de <em>insight</em> para funcionar, o
+que implica que talvez não seja possível seguir todos os passos em
+sequência.
+</p>
+<ol>
+<li>
+Entre na página imediatamente anterior à página que você quer acessar.
+</li>
+<li>
+Abra as ferramentas de desenvolvedor dos seu navegador (isso normalmente
+é equivalente à “aperte F12”).
+</li>
+<li>
+Selecione a aba “Network” (ou “Rede”) na caixa de ferramentas do
+desenvolvedor.
+</li>
+<li>
+Vá para a página que você quer.
+</li>
+<li>
+Na lista de requisições que o site fez ao servidor, identifique
+aquela(s) que é(são) relevante(s) a sua pesquisa.
+</li>
+</ol>
+<p>
+Parece muito louco né? No geral, é muito louco sim, mas quando você dá
+sorte é fácil. Vou mostrar o que acontece no nosso exemplo:
+</p>
+<p>
+Em qualquer navegador, as ferramentas do desenvolvedor mostram o
+<em>background</em> do que aparece na tela. Se estiver nessa aba, quando
+você entrar em
+<a href="http://www.ssp.sp.gov.br/Estatistica/Pesquisa.aspx" class="uri">http://www.ssp.sp.gov.br/Estatistica/Pesquisa.aspx</a>
+e apertar F5, vai encontrar uma tela mais ou menos parecida com a tela
+abaixo:
+</p>
+<p>
+<img src="http://curso-r.com/blog/2017-05-19-scrapper-ssp_files/figure-html/unnamed-chunk-1-1.png" width="768">
+</p>
+<p>
+Cada linha representa uma requisição, que é essencialmente o envio de um
+arquivo .html ao servidor. O conteúdo que visualizamos na tela é o
+resultado de todas essas requisições e, se destrincharmos cada uma
+delas, podemos identificar aquelas que são relevantes para o nosso
+problema.
+</p>
+
+<div id="a-requisicao" class="section level3">
+<p>
+O próximo passo é identificar o que é que o navegador pede ao servidor
+quando te devolve o que você quer. Se você escolher o ano de 2017 na
+caixa de seleção de anos, por exemplo, vai encontrar uma tela parecida
+com essa aqui.
+</p>
+<p>
+<img src="http://curso-r.com/blog/2017-05-19-scrapper-ssp_files/figure-html/unnamed-chunk-2-1.png" width="768">
+</p>
+<p>
+Antes de prosseguir, é necessário fazer uma inspeção meticulosa de todas
+as requisições que aparecem, mas vou encurtar a discussão afirmando que
+a primeira delas é a mais importante. Existem muitas maneiras de deduzir
+que ela é uma boa candidata, como por exemplo olhando que ela é a única
+requisição <em>relevante</em> que recebe html, mas vou pular essa parte.
+</p>
+<p>
+Segundo o nosso dedo duro, a requisição utiliza o método “POST” e,
+quando clicamos nela, temos informações sobre ela no painel ao lado.
+Como eu falei acima, uma requisição é um arquivo .html que “pede” alguma
+ao servidor com base no seu conteúdo. No geral, um bom lugar para
+procurar o que a requisição está pedindo é o seu conjunto de parâmetros,
+na aba “Params” do painel de detalhamento da requisição.
+</p>
+<p>
+<img src="http://curso-r.com/blog/2017-05-19-scrapper-ssp_files/figure-html/unnamed-chunk-3-1.png" width="768">
+</p>
+<p>
+Quando inspecionamos essa requisição “POST”, identificamos que as coisas
+que são relevantes para o conteúdo da página estão nesses parâmetros. De
+fato, pensando ingenuamente, clicar apenas em “2017” deve mexer nos
+parâmetros que tem a ver com isso mas deve deixar os demais parâmetros
+fixos. Por sorte, os parâmetros observados batem com essa expectativa:
+“\_\_EVENTTARGET" é
+<code>ctl00*c**o**n**t**e**u**d**o*$ddlAnos&lt;/code&gt; &\#xE9; um &lt;em&gt;placeholder&lt;/em&gt; que tem a ver com a caixa de sele&\#xE7;&\#xE3;o em que mexemos, os dois pr&\#xF3;ximos par&\#xE2;metros est&\#xE3;o zerados, &\#x201C;\_\_VIEWSTATE&quot; e &\#x201C;\_\_EVENTVALIDATION&quot; s&\#xE3;o par&\#xE2;metros da sess&\#xE3;o, e, por fim, temos os par&\#xE2;metros da consulta, que est&\#xE3;o todos zerados com exce&\#xE7;&\#xE3;o de &lt;code&gt;ctl00$conteudo
+$$ddlAnos&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Parece que os par&\#xE2;metros tem tudo a ver com a sa&\#xED;da. Ser&\#xE1; que mexer apenas neles basta para copiar a requisi&\#xE7;&\#xE3;o do navegador?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="crie-um-robo-que-imita-o-que-um-humano-faria" class="section level2"&gt; &lt;p&gt;Agora que sabemos um pouco mais sobre como as requisi&\#xE7;&\#xF5;es funcionam, vamos tentar fazer o POST mais simples de todos: ele s&\#xF3; tem os par&\#xE2;metros da &\#xFA;ltima imagem. Em R, o jeito mais f&\#xE1;cil de fazer requisi&\#xE7;&\#xF5;es &\#xE9; usando o pacote &lt;code&gt;httr&lt;/code&gt;. Ele &\#xE9; bem intuitivo e flex&\#xED;vel, de tal forma que fazer um POST &\#xE9; feito simplesmente chamando a fun&\#xE7;&\#xE3;o &lt;code&gt;httr::POST&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;url &lt;- &apos;http://www.ssp.sp.gov.br/Estatistica/Pesquisa.aspx&apos;
+\#c&\#xF3;digo para dar um POST vazio no site
+httr::POST(url)
+\#o resultado &\#xE9; simplesmente o resultado original da p&\#xE1;gina&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Para colocar par&\#xE2;metros num POST, basta usar o par&\#xE2;metro &lt;code&gt;body&lt;/code&gt;. Antes de complicar, vamos tentar o conjunto de par&\#xE2;metros mais simples de todos: vamos ignorar tudo que a gente n&\#xE3;o sabe exatamente o que &\#xE9; e preencher s&\#xF3; o que sabemos:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;params &lt;- list(\`\_\_EVENTTARGET\` = &quot;ctl00$conteudo$$
+ddlAnos", `__EVENTARGUMENT` = "", `__LASTFOCUS` = "", `__VIEWSTATE` =
+"", `__EVENTVALIDATION` = "", `ctl00$conteudo$ddlAnos` = "2015",
+`ctl00$conteudo$ddlRegioes` = "0", `ctl00$conteudo$ddlMunicipios` = "0",
+`ctl00$conteudo$ddlDelegacias` = "0")</code>
+</pre>
+<p>
+Agora vamos fazer a requisição. O passo seguinte é apenas pra traduzir o
+resultado pra um formato mais fácil de mexer.
+</p>
+<pre class="r"><code>resposta &lt;- httr::POST(url, body = params, encode = &apos;form&apos;) %&gt;% xml2::read_html() # traduz o resultado</code></pre>
+<p>
+Como vamos saber se deu certo? Existem vários jeitos, mas, por
+simplicidade, aqui vamos apenas checar se alguma tabela contida em
+<code>resposta</code> é igual à tabela que extraímos manualmente do
+site. Vamos fazer isso usando a função
+<code>rvest::html\_table()</code>.
+</p>
+<pre class="r"><code>resposta %&gt;% rvest::html_table()
+# extrai todas as tabelas de um c&#xF3;digo em html.</code></pre>
+<p>
+Como se vê acima, nada que <em>se parece</em> com uma tabela na resposta
+da nossa requisição é a tabelinha que identificamos no site. Muita coisa
+pode ter dado errado, mas vamos começar pelo que é mais evidente: nós
+ignoramos os parâmetros <code>\_\_VIEWSTATE</code> e
+<code>\_\_EVENTVALIDATION</code>. Em última instância, nos vamos
+precisar <em>entender</em> o que esses parâmetros significam, mas
+primeiro vamos tentar simplesmente obter uma cópia desses valores
+diretamente do site. Dando um ctrl+f no painel de ferramentas de
+desenvolvedor identificamos que o valores dessa variáveis sai de umas
+tags <code>input</code> nomeadas de acordo com o parâmetro que
+representam.
+</p>
+<pre class="r"><code>view_state &lt;- httr::POST(url) %&gt;% xml2::read_html() %&gt;% rvest::html_nodes(&quot;input[name=&apos;__VIEWSTATE&apos;]&quot;) %&gt;% rvest::html_attr(&quot;value&quot;) event_validation &lt;- httr::POST(url) %&gt;% xml2::read_html() %&gt;% rvest::html_nodes(&quot;input[name=&apos;__EVENTVALIDATION&apos;]&quot;) %&gt;% rvest::html_attr(&quot;value&quot;)</code></pre>
+<p>
+Com os nossos embustes em mãos, basta pular para a próxima etapa: tentar
+simular um clique no site. Nosso novo conjunto de parâmetros fica:
+</p>
+<pre class="r"><code>params &lt;- list(`__EVENTTARGET` = &quot;ctl00$conteudo$$ddlAnos&quot;, `__EVENTARGUMENT` = &quot;&quot;, `__LASTFOCUS` = &quot;&quot;, `__VIEWSTATE` = view_state, `__EVENTVALIDATION` = event_validation, `ctl00$conteudo$ddlAnos` = &quot;2015&quot;, `ctl00$conteudo$ddlRegioes` = &quot;0&quot;, `ctl00$conteudo$ddlMunicipios` = &quot;0&quot;, `ctl00$conteudo$ddlDelegacias` = &quot;0&quot;)</code></pre>
+<p>
+E o código da requisição fica:
+</p>
+<pre class="r"><code>resposta &lt;- httr::POST(url, body = params, encode = &apos;form&apos;) %&gt;% xml2::read_html() %&gt;% rvest::html_table()</code></pre>
+<p>
+Exatamente a tabelinha que queríamos! Entretanto, nem tudo são flores.
+Como eu mencionei ali em cima, tanto a minha namorada quanto o NEV
+tinham interesse no número de BO’s, que não é o que obtivemos fazendo a
+requisição via R. Fuçando um pouco, é fácil ver que o que obtivemos são
+os números de produtividade policial. Será que é fácil mexer nos
+parâmetros pra obter os números de BO’s?
+</p>
+<p>
+Felizmente, a resposta é sim, mas não é tão simples quanto parece. Se de
+outra tela qualquer você clicar em “Ocorrências Registradas por Mês”
+você vai perceber que o “\_\_EVENTTARGET" mudou para
+<code>ctl00*c**o**n**t**e**u**d**o*$btnMes&lt;/code&gt;, mas, a despeito do que se poderia imaginar, os outros par&\#xE2;metros permaneceram com os nomes intactos.&lt;/p&gt; &lt;p&gt;&lt;img src="http://curso-r.com/blog/2017-05-19-scrapper-ssp\_files/figure-html/unnamed-chunk-11-1.png" width="768"&gt;&lt;/p&gt; &lt;p&gt;Como essa requisi&\#xE7;&\#xE3;o sugere, voc&\#xEA; consegue variar os tipos de informa&\#xE7;&\#xE3;o simplesmente variando o &\#x201C;\_\_EVENTTARGET&\#x201C;. Com isso, uma requisi&\#xE7;&\#xE3;o para obter as&\#x201D;Ocorr&\#xEA;ncias Registradas por M&\#xEA;s&quot; ficaria:&lt;/p&gt; &lt;pre class="r"&gt;&lt;code&gt;params &lt;- list(\`\_\_EVENTTARGET\` = &quot;ctl00$conteudo
+$$ddlAnos&quot;, \`\_\_EVENTARGUMENT\` = &quot;&quot;, \`\_\_LASTFOCUS\` = &quot;&quot;, \`\_\_VIEWSTATE\` = view\_state, \`\_\_EVENTVALIDATION\` = event\_validation, \`ctl00$conteudo$ddlAnos\` = &quot;2015&quot;, \`ctl00$conteudo$ddlRegioes\` = &quot;0&quot;, \`ctl00$conteudo$ddlMunicipios\` = &quot;0&quot;, \`ctl00$conteudo$ddlDelegacias\` = &quot;0&quot;) resposta &lt;- httr::POST(url, body = params, encode = &apos;form&apos;) %&gt;% xml2::read\_html()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&\#xC9; importante notar que cada vez que vamos um POST desse, &\#xE9; como se estivessemos entrando na p&\#xE1;gina novamente, de tal forma que as informa&\#xE7;&\#xF5;es que a p&\#xE1;gina tem quando damos v&\#xE1;rios cliques seguidos s&\#xE3;o diferentes das informa&\#xE7;&\#xF5;es de quando acessamos a p&\#xE1;gina pelo R. Por exemplo, quando estamos navegando pela p&\#xE1;gina pelos links, o &\#x201C;\_\_EVENTTARGET&quot; volta para &lt;code&gt;ctl00$conteudo$$
+ddlAnos</code> se você trocar de página <em>saindo</em> de uma página de
+“Ocorrências Registradas por Mês”, mas o tipo de informação vêm
+corretamente. Isso acontece porque, se você acessar várias páginas em
+sequência, a página sabe de onde você veio.
+</p>
+</div>
+<p>
+Agora vem a repetição, o passo final da raspagem. Antes de qualquer
+coisa precisamos de duas pequenas generalizações: queremos baixar vários
+anos e vários municípios. Isso é fácil de fazer pois os índices dos
+municípios são as suas posições em ordem alfabética. Dessa forma, é
+possível fazer uma função que baixa as “Ocorrências Registradas por Mês”
+de um município em um determinado ano:
+</p>
+<pre class="r"><code>baixa_bo_municipio_ano &lt;- function(ano, municipio){
+pivot &lt;- httr::GET(url)
+#serve apenas para pegarmos um view_state e um event_validation valido view_state &lt;- pivot %&gt;% xml2::read_html() %&gt;% rvest::html_nodes(&quot;input[name=&apos;__VIEWSTATE&apos;]&quot;) %&gt;% rvest::html_attr(&quot;value&quot;) event_validation &lt;- pivot %&gt;% xml2::read_html() %&gt;% rvest::html_nodes(&quot;input[name=&apos;__EVENTVALIDATION&apos;]&quot;) %&gt;% rvest::html_attr(&quot;value&quot;) params &lt;- list(`__EVENTTARGET` = &quot;ctl00$conteudo$$btnMes&quot;, `__EVENTARGUMENT` = &quot;&quot;, `__LASTFOCUS` = &quot;&quot;, `__VIEWSTATE` = view_state, `__EVENTVALIDATION` = event_validation, `ctl00$conteudo$ddlAnos` = &quot;2015&quot;, `ctl00$conteudo$ddlRegioes` = &quot;0&quot;, `ctl00$conteudo$ddlMunicipios` = municipio, `ctl00$conteudo$ddlDelegacias` = &quot;0&quot;) httr::POST(url, body = params, encode = &apos;form&apos;) %&gt;% xml2::read_html() %&gt;% rvest::html_table() %&gt;% dplyr::first() %&gt;% #&apos; serve pra pegar apenas a primeira tabela da p&#xE1;gina, #&apos; se houver mais do que uma. Estou assumindo que a #&apos; tabela que eu quero &#xE9; sempre a primeira. dplyr::mutate(municipio = municipio, ano = ano) }</code></pre>
+<p>
+Pra ilustar um grande loop, vamos baixar os BO’s de todos os municípios,
+no ano de 2016. A função demora um pouco pra rodar, então quem quiser
+ver como fica o resultado final pode clicar
+<a href="https://github.com/curso-r/site/blob/master/content/blog/2017-05-19-scrapper-ssp/dados_ssp.rds">neste
+link</a>.
+</p>
+<pre class="r"><code>GRID &lt;- expand.grid(municipio = 1:645, ano = &apos;2016&apos;, stringsAsFactors = F) D &lt;- purrr::by_row(GRID, baixa_bo_municipio_ano, .to = &quot;ocorrencias&quot;) %&gt;% tidyr::unnest(ocorrencias)</code></pre>
+
+<p>
+Com esses dados dá pra fazer muitas coisas legais. É possível, por
+exemplo, fazer mapas como esse, que representa o número de homicídios em
+2016, por município. Ele foi feito em R, mas como fazê-lo é assunto pra
+outro post!
+</p>
+<p>
+<img src="http://curso-r.com/blog/2017-05-19-scrapper-ssp_files/figure-html/unnamed-chunk-15-1.png" width="672">
+</p>
+
+</div>
+</div>
+
+  <footer class="article-footer">
+
+    <aside class="share">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=%2f2017%2f05%2f19%2fweb-scraping-do-site-da-secretaria-de-seguran%25C3%25A7a-p%25C3%25BAblica-de-s%25C3%25A3o-paulo%2f&title=Web%20scraping%20do%20site%20da%20Secretaria%20de%20Seguran%c3%a7a%20P%c3%bablica%20de%20S%c3%a3o%20Paulo" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=%2f2017%2f05%2f19%2fweb-scraping-do-site-da-secretaria-de-seguran%25C3%25A7a-p%25C3%25BAblica-de-s%25C3%25A3o-paulo%2f&text=Web%20scraping%20do%20site%20da%20Secretaria%20de%20Seguran%c3%a7a%20P%c3%bablica%20de%20S%c3%a3o%20Paulo&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=%2f2017%2f05%2f19%2fweb-scraping-do-site-da-secretaria-de-seguran%25C3%25A7a-p%25C3%25BAblica-de-s%25C3%25A3o-paulo%2f&t=Web%20scraping%20do%20site%20da%20Secretaria%20de%20Seguran%c3%a7a%20P%c3%bablica%20de%20S%c3%a3o%20Paulo" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=%2f2017%2f05%2f19%2fweb-scraping-do-site-da-secretaria-de-seguran%25C3%25A7a-p%25C3%25BAblica-de-s%25C3%25A3o-paulo%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=%2f2017%2f05%2f19%2fweb-scraping-do-site-da-secretaria-de-seguran%25C3%25A7a-p%25C3%25BAblica-de-s%25C3%25A3o-paulo%2f&title=Web%20scraping%20do%20site%20da%20Secretaria%20de%20Seguran%c3%a7a%20P%c3%bablica%20de%20S%c3%a3o%20Paulo" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?Web%20scraping%20do%20site%20da%20Secretaria%20de%20Seguran%c3%a7a%20P%c3%bablica%20de%20S%c3%a3o%20Paulo %2f2017%2f05%2f19%2fweb-scraping-do-site-da-secretaria-de-seguran%25C3%25A7a-p%25C3%25BAblica-de-s%25C3%25A3o-paulo%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+</aside>
+
+
+    <section class="footer">
+      <div>
+        <nav class="crumb">
+          <ol>
+            <li><a href="../../../../"><i class="fa fa-home" aria-hidden="true"></i>TOP</a></li>
+            
+            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="../../../../post/" itemprop="url"><span itemprop="title">POST</span></a></li>
+            
+            <li class="active">Web scraping do site da Secretaria de Segurança Pública de São Paulo</li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    
+    
+    
+    <section class="footer">
+      <header>
+        <a href="../../../../categories/">CATEGORIES</a>
+      </header>
+      <div>
+        <ul class="terms">
+          
+          <li><a href="../../../../categories/curso-r/">curso-r</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+    
+    
+  </footer>
+
+</article>
+
+
+    <div class="adj">
+      <div class="mrow">
+        
+        <div class="mcol c6">
+          <header>Previous Article</header>
+          <article class="lism">
+  <a href="../../../../2017/05/16/blog-paix%C3%A3o-por-dados-estar%C3%A1-no-meetup-1%C2%BA-#analyticsemtudo---dados-abertos/">
+    <div class="thumb thumb-5b8f5e73458a26798a261512427240c8"></div>
+
+    <div class="inner">
+      <div class="title">Blog Paixão por Dados estará no meetup 1º #AnalyticsEmTudo - Dados Abertos</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-16T03:00:00JST">May 16, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+        </div>
+        
+        
+        <div class="mcol c6">
+          <header>Next Article</header>
+          <article class="lism">
+  <a href="../../../../2017/05/23/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/">
+    <div class="thumb thumb-ee8e80ec72747e392813c983fcdbc25b"></div>
+
+    <div class="inner">
+      <div class="title">Slides da minha apresentação no SER 2017</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-23T03:00:00JST">May 23, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+        </div>
+        
+      </div>
+    </div>
+
+    
+  </div>
+  <div class="mcol c4">
+    <aside class="l-sidebar">
+
+  <div class="sections sidebar">
+    <section class="sidebar">
+      <header>LATESTS</header>
+      <div>
+        <div class="articles sm">
+          
+          <article class="lism">
+  <a href="../../../../2017/06/08/instalando-anaconda---tensorflow---keras-para-r-no-ubuntu-16.04-server/">
+    <div class="thumb thumb-4ca7aebf68b206ff8ebd3d339880cdbe"></div>
+
+    <div class="inner">
+      <div class="title">Instalando Anaconda &#43; TensorFlow &#43; Keras para R no Ubuntu 16.04 Server</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-08T18:12:00JST">Jun 8, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/06/05/keras-colocando-deep-learning-no-pipeline/">
+    <div class="thumb thumb-ea657ec9d261bce8d42f524cfa192f24"></div>
+
+    <div class="inner">
+      <div class="title">Keras: colocando deep learning no pipeline</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-05T11:07:31JST">Jun 5, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/06/01/a-kind-of-magick/">
+    <div class="thumb thumb-7a7e4e54f6ba40cf59b708a1b1438641"></div>
+
+    <div class="inner">
+      <div class="title">A kind of magick</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-01T20:26:00JST">Jun 1, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/28/pdf-e-ocr/">
+    <div class="thumb thumb-d477bfffbde22e4c5cc9e81c9ff3b556"></div>
+
+    <div class="inner">
+      <div class="title">PDF e OCR</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-28T11:07:31JST">May 28, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/23/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/">
+    <div class="thumb thumb-ee8e80ec72747e392813c983fcdbc25b"></div>
+
+    <div class="inner">
+      <div class="title">Slides da minha apresentação no SER 2017</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-23T03:00:00JST">May 23, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/19/web-scraping-do-site-da-secretaria-de-seguran%C3%A7a-p%C3%BAblica-de-s%C3%A3o-paulo/">
+    <div class="thumb thumb-3da60970259d2fd391b3fb0a4ff77692"></div>
+
+    <div class="inner">
+      <div class="title">Web scraping do site da Secretaria de Segurança Pública de São Paulo</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-19T20:26:00JST">May 19, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/16/blog-paix%C3%A3o-por-dados-estar%C3%A1-no-meetup-1%C2%BA-#analyticsemtudo---dados-abertos/">
+    <div class="thumb thumb-5b8f5e73458a26798a261512427240c8"></div>
+
+    <div class="inner">
+      <div class="title">Blog Paixão por Dados estará no meetup 1º #AnalyticsEmTudo - Dados Abertos</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-16T03:00:00JST">May 16, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/04/gr%C3%A1ficos-miojo-mapas-tem%C3%A1ticos-do-brasil-em-3-minutos-ou-menos/">
+    <div class="thumb thumb-d0bebe978f4bf6a447682918aea12509"></div>
+
+    <div class="inner">
+      <div class="title">Gráficos miojo: Mapas temáticos do Brasil em 3 minutos ou menos</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-04T20:26:00JST">May 4, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/01/as-cores-da-marvel-vs-dc/">
+    <div class="thumb thumb-adbafb32d64272a6d88e49a78a8c536a"></div>
+
+    <div class="inner">
+      <div class="title">As cores da Marvel vs DC</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-01T20:26:00JST">May 1, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/04/29/diagramas-de-venn-em-r/">
+    <div class="thumb thumb-88b3c0abd2dfcce2dd7b25a3500eae82"></div>
+
+    <div class="inner">
+      <div class="title">Diagramas de Venn em R</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-29T20:26:00JST">Apr 29, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="sidebar">
+      <header>CATEGORIES</header>
+      <div>
+        <ul class="terms">
+          <li><a href="../../../../categories/curso-r">curso-r</a></li><li><a href="../../../../categories/paixao-por-dados">paixao-por-dados</a></li>
+        </ul>
+      </div>
+    </section>
+    
+    <section class="sidebar">
+      <header>TAGS</header>
+      <div>
+        <ul class="terms">
+          
+        </ul>
+      </div>
+    </section>
+    
+  </div>
+
+</aside>
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="l-container">
+        <p><span class="h-logo">&copy; A Hugo website</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_robust">Robust</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

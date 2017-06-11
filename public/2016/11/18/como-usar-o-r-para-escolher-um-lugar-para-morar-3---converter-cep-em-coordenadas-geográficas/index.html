@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="theme-color" content="#263238">
+
+<meta name="generator" content="Hugo 0.21" />
+
+<link rel="apple-touch-icon" href="../../../../images/logo.png">
+
+
+<link rel="canonical" href="../../../../2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%C3%A1ficas/">
+
+
+    
+    <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+    
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas - A Hugo website</title>
+    
+
+<meta name="description" content="No primeiro e segundo post desta série, mostrei como obter dados de apartamentos para alugar a partir do site da OLX e analisá-los, mas ainda não temos a resposta definita para a pergunta que motivou esta série: Como o R pode ajudar a escolher um lugar para morar?  Uma boa ideia seria plotar os imóveis em um mapa, não? No terceiro post da série, mostrarei como fazer isso, além de como extrair os CEPs dos imóveis (novamente por web scraping) e converter os CEPs para endereços, que serão usados para obter as coordenadas geográficas dos apartamentos.">
+
+<meta property="og:title" content="Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas - A Hugo website">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%C3%A1ficas/">
+<meta property="og:image" content="/images/default.png">
+<meta property="og:site_name" content="A Hugo website">
+<meta property="og:description" content="No primeiro e segundo post desta série, mostrei como obter dados de apartamentos para alugar a partir do site da OLX e analisá-los, mas ainda não temos a resposta definita para a pergunta que motivou esta série: Como o R pode ajudar a escolher um lugar para morar?  Uma boa ideia seria plotar os imóveis em um mapa, não? No terceiro post da série, mostrarei como fazer isso, além de como extrair os CEPs dos imóveis (novamente por web scraping) e converter os CEPs para endereços, que serão usados para obter as coordenadas geográficas dos apartamentos.">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="A Hugo website">
+<meta name="twitter:url" content="/2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%C3%A1ficas/">
+<meta name="twitter:title" content="Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas - A Hugo website">
+<meta name="twitter:description" content="No primeiro e segundo post desta série, mostrei como obter dados de apartamentos para alugar a partir do site da OLX e analisá-los, mas ainda não temos a resposta definita para a pergunta que motivou esta série: Como o R pode ajudar a escolher um lugar para morar?  Uma boa ideia seria plotar os imóveis em um mapa, não? No terceiro post da série, mostrarei como fazer isso, além de como extrair os CEPs dos imóveis (novamente por web scraping) e converter os CEPs para endereços, que serão usados para obter as coordenadas geográficas dos apartamentos.">
+<meta name="twitter:image" content="/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"/"
+    },
+    "headline": "Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas - A Hugo website",
+    "image": {
+      "@type": "ImageObject",
+      "url": "/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2016-11-18T03:00:00JST",
+    "dateModified": "2016-11-18T03:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "A Hugo website"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "A Hugo website",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "No primeiro e segundo post desta série, mostrei como obter dados de apartamentos para alugar a partir do site da OLX e analisá-los, mas ainda não temos a resposta definita para a pergunta que motivou esta série: Como o R pode ajudar a escolher um lugar para morar?  Uma boa ideia seria plotar os imóveis em um mapa, não? No terceiro post da série, mostrarei como fazer isso, além de como extrair os CEPs dos imóveis (novamente por web scraping) e converter os CEPs para endereços, que serão usados para obter as coordenadas geográficas dos apartamentos."
+  }
+</script>
+
+
+    <style>
+      html { font-size: 18px; background-color: rgba(236,239,241,.5);}@media (max-width: 768px) { html { font-size: 15px; }}body { color: #333; font-family: 'Roboto Slab','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',メイリオ,Meiryo,sans-serif; font-feature-settings : "palt"; font-size: inherit; line-height: 1rem; margin: 0; padding: 0;}h1, h2, h3, h4, h5 ,h6 { font-size: 1rem; font-weight: 700; line-height: 1rem; margin: 0;}hr { border: 0; border-top: 1px dashed #cfd8dc; margin: 1rem 0;}p { margin: 0; line-height: 1rem;}a { color: #2196f3; text-decoration: none; transition-duration: .3s;}ul, ol { margin: 0; padding: 0;}table { border-collapse: collapse;}th, td { font-size: .8rem; padding: .5rem;}tr { border-bottom: 1px dashed #ddd;}/* Layouts */main,aside { display: block;}main { padding: 1rem 0 3rem 0; }aside.h { padding: 3rem 0; }main.f,aside.f { background-color: #333; border-top: 2px dashed #fff; border-bottom: 2px dashed #fff;}.l-container { position: relative; max-width: 68rem; margin: 0 auto; padding: 0 1rem;}.l-container.thin { max-width: 44rem;}.l-header { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); padding: 1rem 0; text-align: center;}.l-footer { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); font-size: .6rem; font-weight: 700; padding: 1rem 0;}@media (max-width: 768px) { .l-sidebar { margin-top: 4rem; }}.mrow { margin: 0 -1rem; overflow: hidden;}.mcol { box-sizing: border-box; float: left; padding: 0 1rem;}.c6 { width: 50%; }.c4 { width: 33.26323833%; }.c8 { width: 66.66666%; }@media (max-width: 768px) { .mcol { width: 100%; float: none; }}.logo a { font-size: 1.4rem; line-height: 1.5rem; font-weight: 700; color: #333;}.articles { margin: -1rem 0; margin-bottom: 1rem;}.articles.sm { margin: -.5rem 0; margin-bottom: 0;}article { border-radius: 4px; overflow: hidden;}article.li { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); height: 20rem; overflow: hidden; margin: 1rem 0;}article.li > a { display: block; color: #333;}article.li .inner { padding: 1rem;}article.li .thumb { height: 8rem;}article.li .title { color: #333; font-size: 1.2rem; line-height: 1.5rem; margin-bottom: .5rem;}article.li .summary { font-size: .8rem; height: 6rem; overflow: hidden; margin-top: 1rem;}article.lism { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); margin: .5rem 0;}article.lism::after { content: ''; display: block; clear: both;}article.lism > a { display: block; color: #333;}article.lism .inner { display: table-cell; vertical-align: middle; height: 5rem; padding-left: .5rem;}article.lism .thumb { width: 5rem; height: 5rem; float: left;}article.lism .title { font-weight: 700; line-height: 1.25rem; margin-bottom: .25rem;}article.sn { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); margin-bottom: 1rem;}article.sn .thumb { height: 20rem;}@media (max-width: 768px) { article.sn .thumb { height: 10rem; }}article.sn > .article-header,article.sn > .article-body,article.sn .article-footer { padding: 2rem;}article.sn > .article-body { padding: 0 2rem;}@media (max-width: 768px) { article.sn > .article-header, article.sn > .article-body, article.sn .article-footer { padding: 1rem; } article.sn > .article-body { padding: 0 1rem; }}article.sn > .article-header .title { font-size: 1.8rem; line-height: 2rem; margin-bottom: .5rem;}@media (max-width: 768px) { article.sn > .article-header .title { font-size: 1.4rem; line-height: 1.5rem; }}article.sn > .article-header .facts { margin-bottom: 1rem;}article.sn > .article-body { margin-bottom: 1.5rem;}article.sn > .article-body h2 { border-bottom: .25rem solid #333; font-size: 1.2rem; line-height: 1.5rem; margin: 1.5rem 0; padding: .5rem 0;}article.sn > .article-body h3 { border-left: .5rem solid #333; line-height: 1.5rem; margin: 1.5rem 0; padding: .125rem .5rem;}article.sn > .article-body ul,article.sn > .article-body ol { margin: 1.5rem 0; padding-left: 1.5rem;}article.sn > .article-body li { padding-bottom: .5rem; line-height: 1.5rem;}article.sn > .article-body li:last-child { padding-bottom: 0;}article.sn > .article-body p { margin: 1rem 0; line-height: 1.5rem;}article.sn > .article-body strong,article.sn > .article-body em { font-style: normal; font-weight: 700;}article.sn > .article-body strong { box-shadow: 0 -.5rem 0 0 #ffc107 inset;}article.sn > .article-body em { color: #8bc34a;}article.sn > .article-body code,article.sn > .article-body pre { font-family: Menlo, Consolas, monospace; font-size: .7rem;}article.sn > .article-body pre { background-color: #333; color: #fff; line-height: 1rem; margin: 1.5rem -2rem; overflow: auto;}@media (max-width: 768px) { article.sn > .article-body pre { margin: 1.5rem -1rem; }}article.sn > .article-body pre > code { display: block; padding: 1rem 2rem;}@media (max-width: 768px) { article.sn > .article-body pre > code { padding: 1rem; }}article.sn > .article-body p code { background-color: #eceff1; color: #333; border-radius: 4px; margin: 0 .25rem; padding: .375rem; white-space: nowrap;}article.sn > .article-body blockquote { position: relative; border-left: .25rem solid #333; font-size: .8rem; padding: .125rem 1rem; margin: 1.5rem 0;}@media (max-width: 768px) { article.sn > .article-body blockquote { font-size: 1rem; }}article.sn > .article-body blockquote p { margin: .5rem 0; line-height: 1rem;}article.sn > .article-body figure { margin: 1.5rem 0;}article.sn > .article-body figure img,article.sn > .article-body figure amp-img { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); max-width: 100%;}article.sn > .article-body figcaption { color: #cfd8dc; font-size: .8rem; font-weight: 700; margin-top: .5rem;}.facts li { display: inline; font-size: .8rem; margin-right: 1rem;}.facts i { color: #cfd8dc; margin-right: .5em;}.facts.sm li { font-size: .7rem;}.sections.sidebar { margin: -1rem 0;}.sections.footer { margin: -1rem 0;}section.sidebar { margin: 2rem 0;}section.sidebar > header { font-size: .8rem; font-weight: 700; letter-spacing: 4px; text-align: center; margin: 1.5rem 0;}section.footer { margin: 1rem 0;}section.footer > header { font-size: .8rem; margin: .5rem 0;}section.footer > header::before { content: "- ";}section.footer > header a { font-weight: 700; color: #333; text-decoration: underline;}.terms { margin: -.25rem;}.terms li { display: inline-block;}.terms a { display: block; float: left; background-color: #333; border-radius: 4px; color: #fff; font-size: .7rem; margin: .25rem; padding: 0 .75rem; line-height: 1.75rem;}.paging { text-align: center; padding: 1rem 0;}.paging a { display: inline-block; background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); border-radius: 4px; color: #333; padding: 0 1rem; line-height: 3rem;}.page-title { text-align: center; margin: 1rem 0;}.page-title::after { content: ''; display: block; border-bottom: .25rem solid #333; width: 3rem; margin: 1.5rem auto;}.page-title > .title { font-size: 1.2rem; line-height: 1.5rem;}/* Parts:breadcrumb */.crumb ol { text-overflow: ellipsis; color: #cfd8dc; white-space: nowrap; overflow: hidden;}.crumb li { display: inline; font-size: .8rem;}.crumb li::after { content: '›'; margin: 0 .25rem 0 .5rem;}.crumb li:last-child::after { content: '';}.crumb a { color: #cfd8dc;}.crumb i { margin-right: .5em;}.share { padding: 0;}.share a { display: inline-block; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); min-width: 1rem; height: 2rem; border-radius: 4px; color: #333; font-size: .8rem; font-weight: 700; line-height: 2rem; text-align: center; padding: 0 .5rem;}.adj article.lism { margin-bottom: 1rem;}.adj header { font-weight: 700; font-size: .8rem;}.toc { padding: 0 2rem;}@media (max-width: 768px) { .toc { padding: 0 1rem; }}.toc { margin: 1rem 0;}.toc nav>ul { background-color: #eceff1; border-radius: 4px; display: inline-block; font-size: .8rem; padding: .5rem 1rem; word-break: break-all; list-style: none;}.toc ul { padding: 0;}.toc ul ul { padding-left: 1rem;}.toc ul ul ul { padding-left: 1rem;}.toc li { color: #90a4ae;}.toc ul ul>li { font-weight: 700; margin: .5rem 0; list-style-type: decimal;}.toc ul ul ul>li { list-style-type: disc; font-weight: 500;}.thumb { background-image: url(/images/default.jpg); background-size: cover;}
+      
+      
+    </style>
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <div class="l-container">
+        <div class="logo">
+          <a href="../../../../">A Hugo website</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="l-container">
+        
+<div class="mrow">
+  <div class="mcol c8">
+
+    <article class="sn">
+
+  <div class="thumb thumb-6761634f6e1e16702597774ae807f968"></div>
+
+  <header class="article-header">
+    <h1 class="title">Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas</h1>
+
+    <ul class="facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2016-11-18T03:00:00JST">Nov 18, 2016</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="../../../../post/">POST</a></li>
+      
+    </ul>
+
+    <aside class="share">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=%2f2016%2f11%2f18%2fcomo-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%25C3%25A1ficas%2f&title=Como%20usar%20o%20R%20para%20escolher%20um%20lugar%20para%20morar%20%283%29%20-%20Converter%20CEP%20em%20coordenadas%20geogr%c3%a1ficas" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=%2f2016%2f11%2f18%2fcomo-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%25C3%25A1ficas%2f&text=Como%20usar%20o%20R%20para%20escolher%20um%20lugar%20para%20morar%20%283%29%20-%20Converter%20CEP%20em%20coordenadas%20geogr%c3%a1ficas&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=%2f2016%2f11%2f18%2fcomo-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%25C3%25A1ficas%2f&t=Como%20usar%20o%20R%20para%20escolher%20um%20lugar%20para%20morar%20%283%29%20-%20Converter%20CEP%20em%20coordenadas%20geogr%c3%a1ficas" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=%2f2016%2f11%2f18%2fcomo-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%25C3%25A1ficas%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=%2f2016%2f11%2f18%2fcomo-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%25C3%25A1ficas%2f&title=Como%20usar%20o%20R%20para%20escolher%20um%20lugar%20para%20morar%20%283%29%20-%20Converter%20CEP%20em%20coordenadas%20geogr%c3%a1ficas" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?Como%20usar%20o%20R%20para%20escolher%20um%20lugar%20para%20morar%20%283%29%20-%20Converter%20CEP%20em%20coordenadas%20geogr%c3%a1ficas %2f2016%2f11%2f18%2fcomo-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%25C3%25A1ficas%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+</aside>
+
+  </header>
+
+  
+
+  <div class="article-body"><article class="blog-post">
+<p>
+No primeiro e segundo post desta série, mostrei como obter dados de
+apartamentos para alugar a partir do site da OLX e analisá-los, mas
+ainda não temos a resposta definita para a pergunta que motivou esta
+série: Como o R pode ajudar a escolher um lugar para morar?
+</p>
+<p>
+Uma boa ideia seria plotar os imóveis em um mapa, não? No terceiro post
+da série, mostrarei como fazer isso, além de como extrair os CEPs dos
+imóveis (novamente por web scraping) e converter os CEPs para endereços,
+que serão usados para obter as coordenadas geográficas dos apartamentos.
+É mostrado no final um simples gráfico feito com o pacote
+<code class="highlighter-rouge">ggmap</code>.
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">rvest</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">curl</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggmap</span><span class="p">)</span></code></pre>
+</figure>
+<p>
+Para plotar os imóveis em um mapa, precisamos de suas coordenadas
+geográficas. Tais dados podem ser obtidos com a função
+<code class="highlighter-rouge">geocode</code> do pacote
+<code class="highlighter-rouge">ggmap</code>. Essa função aceita um
+endereço (ou parte de um) como input e retorna a latitude e a longitude.
+Por exemplo, para o CEP do estádio Maracanã, no Rio de Janeiro:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">geocode</span><span class="p">(</span><span class="s2">&quot;20271110&quot;</span><span class="p">)</span></code></pre>
+</figure>
+<p>
+Contudo, você deve se lembrar que não possuímos até o momento nenhum
+dado sobre o endereço dos imóveis. Vamos dar uma olhada novamente nos
+dados gerados no primeiro post:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv2</span><span class="p">(</span><span class="s2">&quot;/home/sillas/R/Projetos/olx/data/post1-df-olx.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## link
+## 1 http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/excelente-quarto-e-sala-mobiliado-267207757
+## 2 http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/assuncao-450-313-238033660
+## 3 http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/excelente-apartamento-no-pechincha-269066615
+## 4 http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/apartamento-em-botafogo-257852884
+## 5 http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/apto-2-quadras-da-praia-primeira-locacao-265081945
+## 6 http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/excelente-apartamento-pe-na-areia-196737787
+## titulo preco cidade
+## 1 Excelente quarto e sala mobiliado 1600 Rio de Janeiro
+## 2 Assun&#xE7;&#xE3;o, 450/313 2300 Rio de Janeiro
+## 3 Excelente apartamento no pechincha 1100 Rio de Janeiro
+## 4 Apartamento em Botafogo 4900 Rio de Janeiro
+## 5 Apto 2 quadras da praia. Primeira loca&#xE7;&#xE3;o 800 Rio de Janeiro
+## 6 Excelente apartamento p&#xE9; na areia 2600 Rio de Janeiro
+## bairro
+## 1 Centro
+## 2 Botafogo
+## 3 Pechincha
+## 4 Botafogo
+## 5 Recreio Dos Bandeirantes
+## 6 Copacabana
+## adicional tem_quarto tem_area
+## 1 1 quarto | 40 m&#xB2; | Condom&#xED;nio: RS 370 TRUE TRUE
+## 2 1 quarto | 45 m&#xB2; | Condom&#xED;nio: RS 375 | 1 vaga TRUE TRUE
+## 3 1 quarto | 40 m&#xB2; | Condom&#xED;nio: RS 480 | 1 vaga TRUE TRUE
+## 4 4 quarto | 120 m&#xB2; | Condom&#xED;nio: RS 1200 | 2 vagas TRUE TRUE
+## 5 1 quarto | 35 m&#xB2; | Condom&#xED;nio: RS 50 TRUE TRUE
+## 6 2 quarto | 62 m&#xB2; | Condom&#xED;nio: RS 950 TRUE TRUE
+## tem_taxa tem_garagem qtd_quarto taxa_condominio area_condominio garagem
+## 1 TRUE FALSE 1 370 40 NA
+## 2 TRUE TRUE 1 375 45 1
+## 3 TRUE TRUE 1 480 40 1
+## 4 TRUE TRUE 4 1200 120 2
+## 5 TRUE FALSE 1 50 35 NA
+## 6 TRUE FALSE 2 950 62 NA</code></pre>
+</figure>
+<p>
+Como eu disse, não temos nenhum dado sobre a localização do imóvel -
+além do bairro, o que é muito pouco. Isso acontece porque a página que
+lista os apartamentos não informa esses dados, como se vê na imagem
+abaixo:
+</p>
+<p>
+<img src="http://i.imgur.com/4mXiS3M.png" alt="">
+</p>
+<p>
+Dentro da página do imóvel, já conseguimos ter pelo menos seu CEP:
+</p>
+<p>
+<img src="http://i.imgur.com/3XF4XS9.png" alt="">
+</p>
+<p>
+Ou seja: para extrair o CEP do imóvel, é necessário entrar em sua
+página! Isso aumenta a complexidade do código em n vezes porque agora
+teremos de fazer o scraping não de 245 páginas mas sim de mais de 10000.
+</p>
+<p>
+Para extrair o CEP, a lógica é a mesma da mostrada no primeiro post
+desta série. Como vamos extrair apenas este único dado da página, vou
+mostrar o passo-a-passo do scraping mais detalhadamente.
+</p>
+<p>
+Primeiramente, nós precisamos saber qual é o elemento HTML (chamado de
+tag) que identifica o CEP no código fonte da página. Não precisa ser
+expert em HTML para saber isso (eu mesmo não sei nada), basta utilizar
+as ferramentas do Firefox ou do Chrome para inspecionar a página e
+descobrir a tag do elemento desejado.
+</p>
+<p>
+Abra
+<a href="http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/excelente-quarto-e-sala-mobiliado-267207757">esta
+página</a>, clique com o botão direito no CEP e clique em Inspecionar
+elemento (ou algo semelhante). Será aberto um menu na parte inferior do
+browser com o código fonte da página. Passe o mouse nas diferentes
+linhas e veja os elementos que correspondem às tags do código.
+</p>
+<p>
+<img src="http://i.imgur.com/IuhcpEJ.png" alt="">
+</p>
+<p>
+Na imagem acima, veja que o CEP está dentro do bloco (não sei se é assim
+mesmo que isso é chamado) da localização do apartamento, cuja tag é
+indicada pelo string <code class="highlighter-rouge">OLXad-location-map
+mb20px</code>. Na verdade, após fazer alguns testes, descobri que usamos
+o string <code class="highlighter-rouge">.OLXad-location-map</code> para
+localizar a tag da localização do imóvel. Como não conheço HTML, não sei
+explicar o porquê disso acontecer. Web scraping tem muito de tentar
+diversos inputs até conseguir o resultado desejado.
+</p>
+<p>
+Vamos usar essa informação em nosso código:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">&quot;http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/excelente-quarto-e-sala-mobiliado-267207757&quot;</span><span class="w">
+</span><span class="n">mycurl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">curl</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl</span><span class="o">::</span><span class="n">new_handle</span><span class="p">(</span><span class="s2">&quot;useragent&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Mozilla/5.0&quot;</span><span class="p">))</span><span class="w">
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_html</span><span class="p">(</span><span class="n">mycurl</span><span class="p">,</span><span class="w"> </span><span class="n">encoding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ISO8859-1&quot;</span><span class="p">)</span><span class="w">
+</span><span class="c1"># Localizando a tag de localiza&#xE7;&#xE3;o do im&#xF3;vel
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">html_nodes</span><span class="p">(</span><span class="s2">&quot;.OLXad-location-map&quot;</span><span class="p">)</span><span class="w">
+</span><span class="c1"># Imprimir o elemento x em formato de texto:
+</span><span class="n">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## {xml_nodeset (1)}
+## [1] &lt;div class=&quot;OLXad-location-map mb20px&quot;&gt;\n\t\t\t\t&lt;div class=&quot;atribut ...</code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">html_text</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## [1] &quot;\n\t\t\t\t\n\t\t\t\t\tLocaliza&#xE7;&#xE3;o\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\n\n\n\n\n\n\t\n\n\t\n\t\t\t\t\t\n\t\t\t\t\t\tMunic&#xED;pio:\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tRio de Janeiro\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\n\n\t\t\n\n\t\t\t\n\t\t\t\t\n\t\t\t\t\tCEP do im&#xF3;vel:\n\t\t\t\t\t\n\t\t\t\t\t\t20230-010\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\n\n\t\t\n\n\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\t\tBairro:\n\t\t\t\t\t\n\t\t\t\t\t\tCentro\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\n\n\t\n\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\n\t\n\t\t\n\t\t\tVer localiza&#xE7;&#xE3;o no mapa\n\t\t\n\t\t\n\t\n\n\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t&quot;</code></pre>
+</figure>
+<p>
+Podemos ver que, conforme o esperado, o CEP está dentro do bloco de
+localização. Só isso já seria necessário para extrair o CEP, mas nós
+conseguimos melhorar isso para facilitar o processo de data cleaning
+posteriormente.
+</p>
+<p>
+Perceba que dentro da tag
+<code class="highlighter-rouge">OLXad-location-map mb20px</code>, existe
+uma subtag <code class="highlighter-rouge">p</code> que identifica
+apenas o CEP do imóvel.
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">url</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">html_nodes</span><span class="p">(</span><span class="s2">&quot;.OLXad-location-map&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">html_nodes</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## {xml_nodeset (3)}
+## [1] &lt;p class=&quot;text&quot;&gt;\n\t\t\t\t\t\t&lt;span class=&quot;term&quot;&gt;Munic&#xED;pio:&lt;/span&gt;\n ...
+## [2] &lt;p class=&quot;text&quot;&gt;\n\t\t\t\t\t&lt;span class=&quot;term&quot;&gt;CEP do im&#xF3;vel:&lt;/span&gt; ...
+## [3] &lt;p class=&quot;text&quot;&gt;\n\t\t\t\t\t&lt;span class=&quot;term&quot;&gt;Bairro:&lt;/span&gt;\n\t\t\ ...</code></pre>
+</figure>
+<p>
+O output gerado é da classe
+<code class="highlighter-rouge">xml\_nodeset</code> e tem três
+elementos: o município, o CEP e o bairro. Estamos interessados apenas no
+CEP, portanto:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="c1">#html_text serve para converter um objeto xml_nodeset em texto
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">html_nodes</span><span class="p">(</span><span class="s2">&quot;.OLXad-location-map&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">html_nodes</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">.</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">html_text</span><span class="p">()</span><span class="w">
+</span><span class="n">x</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## [1] &quot;\n\t\t\t\t\tCEP do im&#xF3;vel:\n\t\t\t\t\t\n\t\t\t\t\t\t20230-010\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t&quot;</code></pre>
+</figure>
+<p>
+Agora precisamos fazer um pouco de data cleaning. É necessário apenas
+remover o caractere <code class="highlighter-rouge">-</code> e extrair
+os algarismos do string. Fazer isso é muito fácil graças ao pacote
+<code class="highlighter-rouge">stringr</code>.
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">x</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">str_replace_all</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">x</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## [1] &quot;\n\t\t\t\t\tCEP do im&#xF3;vel:\n\t\t\t\t\t\n\t\t\t\t\t\t20230010\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t&quot;</code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">x</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">parse_number</span><span class="p">()</span><span class="w">
+</span><span class="n">x</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## [1] 20230010</code></pre>
+</figure>
+<p>
+Finalmente, conseguimos extrair o CEP do imóvel. Vamos então aplicar
+esse mesmo procedimento para os outros apartamentos do data frame. Para
+automatizar esse processo, criei a função
+<code class="highlighter-rouge">extrairCEP()</code>, que usa uma outra
+função chamada <code class="highlighter-rouge">limparString()</code>. Os
+códigos de ambas são mostrados abaixo.
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="c1"># definir fun&#xE7;&#xE3;o para limpar strings coletadas
+</span><span class="n">limparString</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1"># x = string coletado do olx
+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">str_replace_all</span><span class="p">(</span><span class="s2">&quot;[\t]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">str_replace_all</span><span class="p">(</span><span class="s2">&quot;[\n]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">str_replace_all</span><span class="p">(</span><span class="s2">&quot;Apartamentos&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">str_replace_all</span><span class="p">(</span><span class="s2">&quot;An&#xFA;ncio Profissional&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">str_replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">str_replace_all</span><span class="p">(</span><span class="s2">&quot;[R$]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">str_replace_all</span><span class="p">(</span><span class="s2">&quot;[.]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">str_trim</span><span class="p">()</span><span class="w"> </span><span class="nf">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="n">extrairCEP</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1"># url = url de um quarto
+</span><span class="w"> </span><span class="n">mycurl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">curl</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curl</span><span class="o">::</span><span class="n">new_handle</span><span class="p">(</span><span class="s2">&quot;useragent&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Mozilla/5.0&quot;</span><span class="p">))</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_html</span><span class="p">(</span><span class="n">mycurl</span><span class="p">,</span><span class="w"> </span><span class="n">encoding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ISO8859-1&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">#url &lt;- read_html(url, encoding = &quot;ISO8859-1&quot;)
+</span><span class="w"> </span><span class="c1">#url &lt;- html_nodes(url, &quot;.OLXad-location-map&quot;) deprecated
+</span><span class="w"> </span><span class="c1"># if clause para pegar casos em que o node id &#xE9; diferente
+</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">html_nodes</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.OLXad-location-map&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">html_nodes</span><span class="p">(</span><span class="s2">&quot;.OLXad-location-map&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">html_nodes</span><span class="p">(</span><span class="s2">&quot;.OLXad-location&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">html_nodes</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">url</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">html_text</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w"> </span><span class="n">cep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">limparString</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w"> </span><span class="n">cep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readr</span><span class="o">::</span><span class="n">parse_number</span><span class="p">(</span><span class="n">cep</span><span class="p">)</span><span class="w"> </span><span class="nf">return</span><span class="p">(</span><span class="n">cep</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</figure>
+<p>
+Para algumas páginas, a tag de identificação do bloco da localização do
+apartamento não é
+<code class="highlighter-rouge">.OLXad-location-map</code> mas sim
+<code class="highlighter-rouge">.OLXad-location</code>, por isso a
+necessidade da if clause na função
+<code class="highlighter-rouge">extrairCEP()</code>.
+</p>
+<p>
+Outro problema é que, em alguns casos, o CEP do imóvel não é informado,
+fazendo necessário usar a função
+<code class="highlighter-rouge">tryCatch()</code> para retornar
+<code class="highlighter-rouge">NA</code> em caso de erro:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">system.time</span><span class="p">(</span><span class="n">ceps</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unname</span><span class="p">(</span><span class="n">sapply</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">link</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="n">tryCatch</span><span class="p">({</span><span class="n">extrairCEP</span><span class="p">(</span><span class="n">i</span><span class="p">)},</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">e</span><span class="p">){</span><span class="kc">NA</span><span class="p">}))))</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## user system elapsed ## 10.204 2.376 12.559</code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">ceps</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## [1] 20230010 NA 22740360 22251040 NA 22060040 20231091
+## [8] 22040002 NA 24350200 23071040 22783020 24130223 23580250
+## [15] 22763152 22010011 20540140 NA 22471120 22793329 22231180
+## [22] 22471120 22220000 20770000 22753005 23515127 22630010 22041011
+## [29] 20521050 22020001 22775033 24240182 NA 20251031 20251031
+## [36] 24342079 24342079 22260110 22290040 NA 21320190 20550052
+## [43] 22071110 24070000 20745300 22740010 22631030</code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-r"><span class="c1"># incorporar ao data frame
+</span><span class="n">df</span><span class="o">$</span><span class="n">cep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ceps</span></code></pre>
+</figure>
+<p>
+Como eu mostrei no início do post, seria possível conseguir as
+coordenadas do imóvel (ou pelo menos da rua dele) a partir do CEP.
+Entretanto, em alguns testes que eu fiz, percebi que em alguns casos a
+acurácia não era muito grande. Sabemos que quanto mais dados de endereço
+o Google tiver, mais precisas serão as coordenadas. Por isso, é
+importante ter não somente o CEP mas também o nome da rua, bairro,
+cidade e estado.
+</p>
+<p>
+Para conseguir esses dados a partir do CEP, usei uma função criada e
+postada no grupo
+<a href="https://www.facebook.com/groups/1410023525939155/">R Brasil -
+Programadores</a> pelo membro José de Jesus Filho. Segue seu código:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">postal</span><span class="o">&lt;-</span><span class="k">function</span><span class="p">(</span><span class="n">cep</span><span class="p">){</span><span class="w"> </span><span class="c1"># converter cep em endere&#xE7;o
+</span><span class="w"> </span><span class="n">library</span><span class="p">(</span><span class="n">httr</span><span class="p">)</span><span class="w"> </span><span class="n">l</span><span class="o">&lt;-</span><span class="nf">list</span><span class="p">()</span><span class="w"> </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nf">seq_along</span><span class="p">(</span><span class="n">cep</span><span class="p">)){</span><span class="w"> </span><span class="n">cep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stringr</span><span class="o">::</span><span class="n">str_replace</span><span class="p">(</span><span class="n">cep</span><span class="p">,</span><span class="s2">&quot;\\D&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">cep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stringr</span><span class="o">::</span><span class="n">str_pad</span><span class="p">(</span><span class="n">cep</span><span class="p">,</span><span class="m">8</span><span class="p">,</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="n">pad</span><span class="o">=</span><span class="s2">&quot;0&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">cep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">cep</span><span class="p">)</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">&quot;http://correiosapi.apphb.com/cep/&quot;</span><span class="p">,</span><span class="n">cep</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GET</span><span class="p">(</span><span class="n">url</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">content</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">as</span><span class="o">=</span><span class="s2">&quot;parsed&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">l</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">do.call</span><span class="p">(</span><span class="s2">&quot;rbind&quot;</span><span class="p">,</span><span class="n">l</span><span class="p">))</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">ncol</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="n">x</span><span class="p">[,</span><span class="w"> </span><span class="n">col</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">x</span><span class="p">[,</span><span class="w"> </span><span class="n">col</span><span class="p">])}</span><span class="w"> </span><span class="nf">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</figure>
+<p>
+Por exemplo, continuando com o CEP do Maracanã, a função
+<code class="highlighter-rouge">postal()</code> retorna:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">postal</span><span class="p">(</span><span class="m">20271110</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## cep tipoDeLogradouro logradouro bairro cidade estado
+## 1 20271110 Avenida Maracan&#xE3; Maracan&#xE3; Rio de Janeiro RJ</code></pre>
+</figure>
+<p>
+Como se vê, a função funciona muito bem, então podemos a aplicar para os
+outros imóveis:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">system.time</span><span class="p">(</span><span class="n">df.endereco</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">postal</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">cep</span><span class="p">))</span><span class="w">
+</span><span class="c1"># &#xE9; criado um data frame. </span><span class="n">head</span><span class="p">(</span><span class="n">df.endereco</span><span class="p">)</span><span class="w">
+</span><span class="c1"># vamos juntar as colunas do data frame de endere&#xE7;os em uma s&#xF3;
+</span><span class="err">#</span><span class="w"> </span><span class="n">primeiro</span><span class="w"> </span></code></pre>
+</figure>
+<p>
+É necessário juntar todas as colunas do data frame de endereços em uma
+só. Para juntar diferentes strings com um separador em comum (vírgula,
+por exemplo), é recomendável usar a função
+<code class="highlighter-rouge">str\_c()</code> do pacote
+<code class="highlighter-rouge">stringr</code>.
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">df.endereco</span><span class="o">$</span><span class="n">endereco_completo</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df.endereco</span><span class="w"> </span><span class="o">%$%</span><span class="w"> </span><span class="n">str_c</span><span class="p">(</span><span class="n">logradouro</span><span class="p">,</span><span class="w"> </span><span class="n">cep</span><span class="p">,</span><span class="w"> </span><span class="n">bairro</span><span class="p">,</span><span class="w"> </span><span class="n">cidade</span><span class="p">,</span><span class="w"> </span><span class="n">estado</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;, &quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">df.endereco</span><span class="o">$</span><span class="n">endereco_completo</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df.endereco</span><span class="w"> </span><span class="o">%$%</span><span class="w"> </span><span class="n">str_c</span><span class="p">(</span><span class="n">tipoDeLogradouro</span><span class="p">,</span><span class="w"> </span><span class="n">endereco_completo</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="w">
+</span><span class="c1"># exemplo de como ficou:
+</span><span class="n">df.endereco</span><span class="o">$</span><span class="n">endereco_completo</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## [1] &quot;Rua Riachuelo, 20230010, Centro, Rio de Janeiro, RJ&quot; ## [2] &quot;Rua Assun&#xE7;&#xE3;o, 22251030, Botafogo, Rio de Janeiro, RJ&quot; ## [3] &quot;Estrada do Tindiba, 22740360, Pechincha, Rio de Janeiro, RJ&quot; ## [4] &quot;Rua Marqu&#xEA;s de Olinda, 22251040, Botafogo, Rio de Janeiro, RJ&quot; ## [5] &quot;Rua Risoleta Neves, 22795105, Recreio dos Bandeirantes, Rio de Janeiro, RJ&quot;</code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-r"><span class="c1"># incorporando a coluna de endere&#xE7;o completo no data frame principal
+</span><span class="n">df</span><span class="o">$</span><span class="n">endereco_completo</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df.endereco</span><span class="o">$</span><span class="n">endereco_completo</span></code></pre>
+</figure>
+<p>
+Finalmente, podemos extrair do Google as coordenadas do endereço do
+imóvel com a função <code class="highlighter-rouge">geocode()</code>.
+Antes de usar a função, porém, é importante lembrar que a API do Google
+tem um limite de consultas por dia. Você pode checar seu limite com a
+função <code class="highlighter-rouge">geocodeQueryCheck()</code>.
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">geocodeQueryCheck</span><span class="p">()</span></code></pre>
+</figure>
+<p>
+Assim, já podemos obter as coordenadas geográficas dos imóveis:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">geocode</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">endereco_completo</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-r"><span class="c1"># incorporando ao data frame
+</span><span class="w">
+</span><span class="n">df</span><span class="o">$</span><span class="n">lat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="o">$</span><span class="n">lat</span><span class="w">
+</span><span class="n">df</span><span class="o">$</span><span class="n">lon</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="o">$</span><span class="n">lon</span></code></pre>
+</figure>
+<p>
+Uma opção para plotar os imóveis em um mapa seria com o próprio pacote
+<code class="highlighter-rouge">ggmap</code>:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">qmplot</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">preco</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">labs</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Aluguel&quot;</span><span class="p">)</span></code></pre>
+</figure>
+<p>
+<img src="http://sillasgonzaga.github.io/figs/olx3/grafico%20ggmap-1.png" alt="center">
+</p>
+<p>
+Mesmo o gráfico acima sendo uma ótima visualização, é possível fazer
+melhor. No próximo post, mostrarei como plotar os pontos em um mapa
+interativo usando o pacote
+<code class="highlighter-rouge">leaflet</code>.
+</p>
+</article>
+</div>
+
+  <footer class="article-footer">
+
+    <aside class="share">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=%2f2016%2f11%2f18%2fcomo-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%25C3%25A1ficas%2f&title=Como%20usar%20o%20R%20para%20escolher%20um%20lugar%20para%20morar%20%283%29%20-%20Converter%20CEP%20em%20coordenadas%20geogr%c3%a1ficas" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=%2f2016%2f11%2f18%2fcomo-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%25C3%25A1ficas%2f&text=Como%20usar%20o%20R%20para%20escolher%20um%20lugar%20para%20morar%20%283%29%20-%20Converter%20CEP%20em%20coordenadas%20geogr%c3%a1ficas&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=%2f2016%2f11%2f18%2fcomo-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%25C3%25A1ficas%2f&t=Como%20usar%20o%20R%20para%20escolher%20um%20lugar%20para%20morar%20%283%29%20-%20Converter%20CEP%20em%20coordenadas%20geogr%c3%a1ficas" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=%2f2016%2f11%2f18%2fcomo-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%25C3%25A1ficas%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=%2f2016%2f11%2f18%2fcomo-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%25C3%25A1ficas%2f&title=Como%20usar%20o%20R%20para%20escolher%20um%20lugar%20para%20morar%20%283%29%20-%20Converter%20CEP%20em%20coordenadas%20geogr%c3%a1ficas" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?Como%20usar%20o%20R%20para%20escolher%20um%20lugar%20para%20morar%20%283%29%20-%20Converter%20CEP%20em%20coordenadas%20geogr%c3%a1ficas %2f2016%2f11%2f18%2fcomo-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%25C3%25A1ficas%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+</aside>
+
+
+    <section class="footer">
+      <div>
+        <nav class="crumb">
+          <ol>
+            <li><a href="../../../../"><i class="fa fa-home" aria-hidden="true"></i>TOP</a></li>
+            
+            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="../../../../post/" itemprop="url"><span itemprop="title">POST</span></a></li>
+            
+            <li class="active">Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas</li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    
+    
+    
+    <section class="footer">
+      <header>
+        <a href="../../../../categories/">CATEGORIES</a>
+      </header>
+      <div>
+        <ul class="terms">
+          
+          <li><a href="../../../../categories/paixao-por-dados/">paixao-por-dados</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+    
+    
+  </footer>
+
+</article>
+
+
+    <div class="adj">
+      <div class="mrow">
+        
+        <div class="mcol c6">
+          <header>Previous Article</header>
+          <article class="lism">
+  <a href="../../../../2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar-4---mapa-interativo/">
+    <div class="thumb thumb-f2ff127e7bf6ef3df4083c0121f6ea18"></div>
+
+    <div class="inner">
+      <div class="title">Como usar o R para escolher um lugar para morar (4) - Mapa interativo</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2016-11-18T03:00:00JST">Nov 18, 2016</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+        </div>
+        
+        
+        <div class="mcol c6">
+          <header>Next Article</header>
+          <article class="lism">
+  <a href="../../../../2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar-2---an%C3%A1lise-dos-dados/">
+    <div class="thumb thumb-c43389400114830acad45373f98da804"></div>
+
+    <div class="inner">
+      <div class="title">Como usar o R para escolher um lugar para morar (2) - Análise dos dados</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2016-11-18T03:00:00JST">Nov 18, 2016</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+        </div>
+        
+      </div>
+    </div>
+
+    
+  </div>
+  <div class="mcol c4">
+    <aside class="l-sidebar">
+
+  <div class="sections sidebar">
+    <section class="sidebar">
+      <header>LATESTS</header>
+      <div>
+        <div class="articles sm">
+          
+          <article class="lism">
+  <a href="../../../../2017/06/08/instalando-anaconda---tensorflow---keras-para-r-no-ubuntu-16.04-server/">
+    <div class="thumb thumb-4ca7aebf68b206ff8ebd3d339880cdbe"></div>
+
+    <div class="inner">
+      <div class="title">Instalando Anaconda &#43; TensorFlow &#43; Keras para R no Ubuntu 16.04 Server</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-08T18:12:00JST">Jun 8, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/06/05/keras-colocando-deep-learning-no-pipeline/">
+    <div class="thumb thumb-ea657ec9d261bce8d42f524cfa192f24"></div>
+
+    <div class="inner">
+      <div class="title">Keras: colocando deep learning no pipeline</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-05T11:07:31JST">Jun 5, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/06/01/a-kind-of-magick/">
+    <div class="thumb thumb-7a7e4e54f6ba40cf59b708a1b1438641"></div>
+
+    <div class="inner">
+      <div class="title">A kind of magick</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-01T20:26:00JST">Jun 1, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/28/pdf-e-ocr/">
+    <div class="thumb thumb-d477bfffbde22e4c5cc9e81c9ff3b556"></div>
+
+    <div class="inner">
+      <div class="title">PDF e OCR</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-28T11:07:31JST">May 28, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/23/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/">
+    <div class="thumb thumb-ee8e80ec72747e392813c983fcdbc25b"></div>
+
+    <div class="inner">
+      <div class="title">Slides da minha apresentação no SER 2017</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-23T03:00:00JST">May 23, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/19/web-scraping-do-site-da-secretaria-de-seguran%C3%A7a-p%C3%BAblica-de-s%C3%A3o-paulo/">
+    <div class="thumb thumb-3da60970259d2fd391b3fb0a4ff77692"></div>
+
+    <div class="inner">
+      <div class="title">Web scraping do site da Secretaria de Segurança Pública de São Paulo</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-19T20:26:00JST">May 19, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/16/blog-paix%C3%A3o-por-dados-estar%C3%A1-no-meetup-1%C2%BA-#analyticsemtudo---dados-abertos/">
+    <div class="thumb thumb-5b8f5e73458a26798a261512427240c8"></div>
+
+    <div class="inner">
+      <div class="title">Blog Paixão por Dados estará no meetup 1º #AnalyticsEmTudo - Dados Abertos</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-16T03:00:00JST">May 16, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/04/gr%C3%A1ficos-miojo-mapas-tem%C3%A1ticos-do-brasil-em-3-minutos-ou-menos/">
+    <div class="thumb thumb-d0bebe978f4bf6a447682918aea12509"></div>
+
+    <div class="inner">
+      <div class="title">Gráficos miojo: Mapas temáticos do Brasil em 3 minutos ou menos</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-04T20:26:00JST">May 4, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/01/as-cores-da-marvel-vs-dc/">
+    <div class="thumb thumb-adbafb32d64272a6d88e49a78a8c536a"></div>
+
+    <div class="inner">
+      <div class="title">As cores da Marvel vs DC</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-01T20:26:00JST">May 1, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/04/29/diagramas-de-venn-em-r/">
+    <div class="thumb thumb-88b3c0abd2dfcce2dd7b25a3500eae82"></div>
+
+    <div class="inner">
+      <div class="title">Diagramas de Venn em R</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-29T20:26:00JST">Apr 29, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="sidebar">
+      <header>CATEGORIES</header>
+      <div>
+        <ul class="terms">
+          <li><a href="../../../../categories/curso-r">curso-r</a></li><li><a href="../../../../categories/paixao-por-dados">paixao-por-dados</a></li>
+        </ul>
+      </div>
+    </section>
+    
+    <section class="sidebar">
+      <header>TAGS</header>
+      <div>
+        <ul class="terms">
+          
+        </ul>
+      </div>
+    </section>
+    
+  </div>
+
+</aside>
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="l-container">
+        <p><span class="h-logo">&copy; A Hugo website</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_robust">Robust</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

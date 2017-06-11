@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="theme-color" content="#263238">
+
+<meta name="generator" content="Hugo 0.21" />
+
+<link rel="apple-touch-icon" href="../../../../images/logo.png">
+
+
+<link rel="canonical" href="../../../../2016/05/25/meta-an%C3%A1lise-r-1-quais-s%C3%A3o-os-pacotes-mais-baixados/">
+
+
+    
+    <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+    
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Meta-análise R (1): Quais são os pacotes mais baixados? - A Hugo website</title>
+    
+
+<meta name="description" content="Este é o primeiro post de uma nova série sobre meta-análises de pacotes R. Com o pacote miniCRAN é possível baixar logs de downloads de pacotes de R por meio do espelho (mirror) do RStudio do CRAN. Cada linha nesses logs representa um download de um pacote por um usuário.  O objetivo desta série é analisar os dados gerados por esses logs.  Para este primeiro post, é mostrado:   Como baixar os logs de downloads de pacotes do CRAN do RStudio de forma automatizada com o pacote miniCRAN;   Como selecionar os pacotes R mais populares pelo Princípio de Pareto;   Os 20 pacotes mais populares;   Um grafo de redes criado a partir dos pacotes mais populares filtrados e suas dependências.">
+
+<meta property="og:title" content="Meta-análise R (1): Quais são os pacotes mais baixados? - A Hugo website">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/2016/05/25/meta-an%C3%A1lise-r-1-quais-s%C3%A3o-os-pacotes-mais-baixados/">
+<meta property="og:image" content="/images/default.png">
+<meta property="og:site_name" content="A Hugo website">
+<meta property="og:description" content="Este é o primeiro post de uma nova série sobre meta-análises de pacotes R. Com o pacote miniCRAN é possível baixar logs de downloads de pacotes de R por meio do espelho (mirror) do RStudio do CRAN. Cada linha nesses logs representa um download de um pacote por um usuário.  O objetivo desta série é analisar os dados gerados por esses logs.  Para este primeiro post, é mostrado:   Como baixar os logs de downloads de pacotes do CRAN do RStudio de forma automatizada com o pacote miniCRAN;   Como selecionar os pacotes R mais populares pelo Princípio de Pareto;   Os 20 pacotes mais populares;   Um grafo de redes criado a partir dos pacotes mais populares filtrados e suas dependências.">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="A Hugo website">
+<meta name="twitter:url" content="/2016/05/25/meta-an%C3%A1lise-r-1-quais-s%C3%A3o-os-pacotes-mais-baixados/">
+<meta name="twitter:title" content="Meta-análise R (1): Quais são os pacotes mais baixados? - A Hugo website">
+<meta name="twitter:description" content="Este é o primeiro post de uma nova série sobre meta-análises de pacotes R. Com o pacote miniCRAN é possível baixar logs de downloads de pacotes de R por meio do espelho (mirror) do RStudio do CRAN. Cada linha nesses logs representa um download de um pacote por um usuário.  O objetivo desta série é analisar os dados gerados por esses logs.  Para este primeiro post, é mostrado:   Como baixar os logs de downloads de pacotes do CRAN do RStudio de forma automatizada com o pacote miniCRAN;   Como selecionar os pacotes R mais populares pelo Princípio de Pareto;   Os 20 pacotes mais populares;   Um grafo de redes criado a partir dos pacotes mais populares filtrados e suas dependências.">
+<meta name="twitter:image" content="/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"/"
+    },
+    "headline": "Meta-análise R (1): Quais são os pacotes mais baixados? - A Hugo website",
+    "image": {
+      "@type": "ImageObject",
+      "url": "/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2016-05-25T03:00:00JST",
+    "dateModified": "2016-05-25T03:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "A Hugo website"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "A Hugo website",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "Este é o primeiro post de uma nova série sobre meta-análises de pacotes R. Com o pacote miniCRAN é possível baixar logs de downloads de pacotes de R por meio do espelho (mirror) do RStudio do CRAN. Cada linha nesses logs representa um download de um pacote por um usuário.  O objetivo desta série é analisar os dados gerados por esses logs.  Para este primeiro post, é mostrado:   Como baixar os logs de downloads de pacotes do CRAN do RStudio de forma automatizada com o pacote miniCRAN;   Como selecionar os pacotes R mais populares pelo Princípio de Pareto;   Os 20 pacotes mais populares;   Um grafo de redes criado a partir dos pacotes mais populares filtrados e suas dependências."
+  }
+</script>
+
+
+    <style>
+      html { font-size: 18px; background-color: rgba(236,239,241,.5);}@media (max-width: 768px) { html { font-size: 15px; }}body { color: #333; font-family: 'Roboto Slab','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',メイリオ,Meiryo,sans-serif; font-feature-settings : "palt"; font-size: inherit; line-height: 1rem; margin: 0; padding: 0;}h1, h2, h3, h4, h5 ,h6 { font-size: 1rem; font-weight: 700; line-height: 1rem; margin: 0;}hr { border: 0; border-top: 1px dashed #cfd8dc; margin: 1rem 0;}p { margin: 0; line-height: 1rem;}a { color: #2196f3; text-decoration: none; transition-duration: .3s;}ul, ol { margin: 0; padding: 0;}table { border-collapse: collapse;}th, td { font-size: .8rem; padding: .5rem;}tr { border-bottom: 1px dashed #ddd;}/* Layouts */main,aside { display: block;}main { padding: 1rem 0 3rem 0; }aside.h { padding: 3rem 0; }main.f,aside.f { background-color: #333; border-top: 2px dashed #fff; border-bottom: 2px dashed #fff;}.l-container { position: relative; max-width: 68rem; margin: 0 auto; padding: 0 1rem;}.l-container.thin { max-width: 44rem;}.l-header { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); padding: 1rem 0; text-align: center;}.l-footer { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); font-size: .6rem; font-weight: 700; padding: 1rem 0;}@media (max-width: 768px) { .l-sidebar { margin-top: 4rem; }}.mrow { margin: 0 -1rem; overflow: hidden;}.mcol { box-sizing: border-box; float: left; padding: 0 1rem;}.c6 { width: 50%; }.c4 { width: 33.26323833%; }.c8 { width: 66.66666%; }@media (max-width: 768px) { .mcol { width: 100%; float: none; }}.logo a { font-size: 1.4rem; line-height: 1.5rem; font-weight: 700; color: #333;}.articles { margin: -1rem 0; margin-bottom: 1rem;}.articles.sm { margin: -.5rem 0; margin-bottom: 0;}article { border-radius: 4px; overflow: hidden;}article.li { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); height: 20rem; overflow: hidden; margin: 1rem 0;}article.li > a { display: block; color: #333;}article.li .inner { padding: 1rem;}article.li .thumb { height: 8rem;}article.li .title { color: #333; font-size: 1.2rem; line-height: 1.5rem; margin-bottom: .5rem;}article.li .summary { font-size: .8rem; height: 6rem; overflow: hidden; margin-top: 1rem;}article.lism { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); margin: .5rem 0;}article.lism::after { content: ''; display: block; clear: both;}article.lism > a { display: block; color: #333;}article.lism .inner { display: table-cell; vertical-align: middle; height: 5rem; padding-left: .5rem;}article.lism .thumb { width: 5rem; height: 5rem; float: left;}article.lism .title { font-weight: 700; line-height: 1.25rem; margin-bottom: .25rem;}article.sn { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); margin-bottom: 1rem;}article.sn .thumb { height: 20rem;}@media (max-width: 768px) { article.sn .thumb { height: 10rem; }}article.sn > .article-header,article.sn > .article-body,article.sn .article-footer { padding: 2rem;}article.sn > .article-body { padding: 0 2rem;}@media (max-width: 768px) { article.sn > .article-header, article.sn > .article-body, article.sn .article-footer { padding: 1rem; } article.sn > .article-body { padding: 0 1rem; }}article.sn > .article-header .title { font-size: 1.8rem; line-height: 2rem; margin-bottom: .5rem;}@media (max-width: 768px) { article.sn > .article-header .title { font-size: 1.4rem; line-height: 1.5rem; }}article.sn > .article-header .facts { margin-bottom: 1rem;}article.sn > .article-body { margin-bottom: 1.5rem;}article.sn > .article-body h2 { border-bottom: .25rem solid #333; font-size: 1.2rem; line-height: 1.5rem; margin: 1.5rem 0; padding: .5rem 0;}article.sn > .article-body h3 { border-left: .5rem solid #333; line-height: 1.5rem; margin: 1.5rem 0; padding: .125rem .5rem;}article.sn > .article-body ul,article.sn > .article-body ol { margin: 1.5rem 0; padding-left: 1.5rem;}article.sn > .article-body li { padding-bottom: .5rem; line-height: 1.5rem;}article.sn > .article-body li:last-child { padding-bottom: 0;}article.sn > .article-body p { margin: 1rem 0; line-height: 1.5rem;}article.sn > .article-body strong,article.sn > .article-body em { font-style: normal; font-weight: 700;}article.sn > .article-body strong { box-shadow: 0 -.5rem 0 0 #ffc107 inset;}article.sn > .article-body em { color: #8bc34a;}article.sn > .article-body code,article.sn > .article-body pre { font-family: Menlo, Consolas, monospace; font-size: .7rem;}article.sn > .article-body pre { background-color: #333; color: #fff; line-height: 1rem; margin: 1.5rem -2rem; overflow: auto;}@media (max-width: 768px) { article.sn > .article-body pre { margin: 1.5rem -1rem; }}article.sn > .article-body pre > code { display: block; padding: 1rem 2rem;}@media (max-width: 768px) { article.sn > .article-body pre > code { padding: 1rem; }}article.sn > .article-body p code { background-color: #eceff1; color: #333; border-radius: 4px; margin: 0 .25rem; padding: .375rem; white-space: nowrap;}article.sn > .article-body blockquote { position: relative; border-left: .25rem solid #333; font-size: .8rem; padding: .125rem 1rem; margin: 1.5rem 0;}@media (max-width: 768px) { article.sn > .article-body blockquote { font-size: 1rem; }}article.sn > .article-body blockquote p { margin: .5rem 0; line-height: 1rem;}article.sn > .article-body figure { margin: 1.5rem 0;}article.sn > .article-body figure img,article.sn > .article-body figure amp-img { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); max-width: 100%;}article.sn > .article-body figcaption { color: #cfd8dc; font-size: .8rem; font-weight: 700; margin-top: .5rem;}.facts li { display: inline; font-size: .8rem; margin-right: 1rem;}.facts i { color: #cfd8dc; margin-right: .5em;}.facts.sm li { font-size: .7rem;}.sections.sidebar { margin: -1rem 0;}.sections.footer { margin: -1rem 0;}section.sidebar { margin: 2rem 0;}section.sidebar > header { font-size: .8rem; font-weight: 700; letter-spacing: 4px; text-align: center; margin: 1.5rem 0;}section.footer { margin: 1rem 0;}section.footer > header { font-size: .8rem; margin: .5rem 0;}section.footer > header::before { content: "- ";}section.footer > header a { font-weight: 700; color: #333; text-decoration: underline;}.terms { margin: -.25rem;}.terms li { display: inline-block;}.terms a { display: block; float: left; background-color: #333; border-radius: 4px; color: #fff; font-size: .7rem; margin: .25rem; padding: 0 .75rem; line-height: 1.75rem;}.paging { text-align: center; padding: 1rem 0;}.paging a { display: inline-block; background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); border-radius: 4px; color: #333; padding: 0 1rem; line-height: 3rem;}.page-title { text-align: center; margin: 1rem 0;}.page-title::after { content: ''; display: block; border-bottom: .25rem solid #333; width: 3rem; margin: 1.5rem auto;}.page-title > .title { font-size: 1.2rem; line-height: 1.5rem;}/* Parts:breadcrumb */.crumb ol { text-overflow: ellipsis; color: #cfd8dc; white-space: nowrap; overflow: hidden;}.crumb li { display: inline; font-size: .8rem;}.crumb li::after { content: '›'; margin: 0 .25rem 0 .5rem;}.crumb li:last-child::after { content: '';}.crumb a { color: #cfd8dc;}.crumb i { margin-right: .5em;}.share { padding: 0;}.share a { display: inline-block; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); min-width: 1rem; height: 2rem; border-radius: 4px; color: #333; font-size: .8rem; font-weight: 700; line-height: 2rem; text-align: center; padding: 0 .5rem;}.adj article.lism { margin-bottom: 1rem;}.adj header { font-weight: 700; font-size: .8rem;}.toc { padding: 0 2rem;}@media (max-width: 768px) { .toc { padding: 0 1rem; }}.toc { margin: 1rem 0;}.toc nav>ul { background-color: #eceff1; border-radius: 4px; display: inline-block; font-size: .8rem; padding: .5rem 1rem; word-break: break-all; list-style: none;}.toc ul { padding: 0;}.toc ul ul { padding-left: 1rem;}.toc ul ul ul { padding-left: 1rem;}.toc li { color: #90a4ae;}.toc ul ul>li { font-weight: 700; margin: .5rem 0; list-style-type: decimal;}.toc ul ul ul>li { list-style-type: disc; font-weight: 500;}.thumb { background-image: url(/images/default.jpg); background-size: cover;}
+      
+      
+    </style>
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <div class="l-container">
+        <div class="logo">
+          <a href="../../../../">A Hugo website</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="l-container">
+        
+<div class="mrow">
+  <div class="mcol c8">
+
+    <article class="sn">
+
+  <div class="thumb thumb-59eab98b6ffeece6904ab2362fb945eb"></div>
+
+  <header class="article-header">
+    <h1 class="title">Meta-análise R (1): Quais são os pacotes mais baixados?</h1>
+
+    <ul class="facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2016-05-25T03:00:00JST">May 25, 2016</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="../../../../post/">POST</a></li>
+      
+    </ul>
+
+    <aside class="share">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=%2f2016%2f05%2f25%2fmeta-an%25C3%25A1lise-r-1-quais-s%25C3%25A3o-os-pacotes-mais-baixados%2f&title=Meta-an%c3%a1lise%20R%20%281%29%3a%20Quais%20s%c3%a3o%20os%20pacotes%20mais%20baixados%3f" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=%2f2016%2f05%2f25%2fmeta-an%25C3%25A1lise-r-1-quais-s%25C3%25A3o-os-pacotes-mais-baixados%2f&text=Meta-an%c3%a1lise%20R%20%281%29%3a%20Quais%20s%c3%a3o%20os%20pacotes%20mais%20baixados%3f&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=%2f2016%2f05%2f25%2fmeta-an%25C3%25A1lise-r-1-quais-s%25C3%25A3o-os-pacotes-mais-baixados%2f&t=Meta-an%c3%a1lise%20R%20%281%29%3a%20Quais%20s%c3%a3o%20os%20pacotes%20mais%20baixados%3f" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=%2f2016%2f05%2f25%2fmeta-an%25C3%25A1lise-r-1-quais-s%25C3%25A3o-os-pacotes-mais-baixados%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=%2f2016%2f05%2f25%2fmeta-an%25C3%25A1lise-r-1-quais-s%25C3%25A3o-os-pacotes-mais-baixados%2f&title=Meta-an%c3%a1lise%20R%20%281%29%3a%20Quais%20s%c3%a3o%20os%20pacotes%20mais%20baixados%3f" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?Meta-an%c3%a1lise%20R%20%281%29%3a%20Quais%20s%c3%a3o%20os%20pacotes%20mais%20baixados%3f %2f2016%2f05%2f25%2fmeta-an%25C3%25A1lise-r-1-quais-s%25C3%25A3o-os-pacotes-mais-baixados%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+</aside>
+
+  </header>
+
+  
+
+  <div class="article-body"><article class="blog-post">
+<p>
+Este é o primeiro post de uma nova série sobre meta-análises de pacotes
+R. Com o pacote <code class="highlighter-rouge">miniCRAN</code> é
+possível baixar logs de downloads de pacotes de R por meio do
+<a href="https://cran.rstudio.com/">espelho (mirror) do RStudio do
+CRAN</a>. Cada linha nesses logs representa um download de um pacote por
+um usuário.
+</p>
+<p>
+O objetivo desta série é analisar os dados gerados por esses logs.
+</p>
+<p>
+Para este primeiro post, é mostrado:
+</p>
+<ul>
+<li>
+Como baixar os logs de downloads de pacotes do CRAN do RStudio de forma
+automatizada com o pacote
+<code class="highlighter-rouge">miniCRAN</code>;
+</li>
+<li>
+Como selecionar os pacotes R mais populares pelo
+<a href="https://pt.wikipedia.org/wiki/Princ%C3%ADpio_de_Pareto">Princípio
+de Pareto</a>;
+</li>
+<li>
+Os 20 pacotes mais populares;
+</li>
+<li>
+Um grafo de redes criado a partir dos pacotes mais populares filtrados e
+suas dependências.
+</li>
+</ul>
+<p>
+Os pacotes usados neste post são:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="c1">#library(installr)
+</span><span class="n">suppressMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">))</span><span class="w"> </span><span class="c1"># Usado para agregar os dados em pacotes
+</span><span class="n">suppressMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">))</span><span class="w"> </span><span class="c1"># Usado para plotar o grafo criado pelo miniCRAN
+</span><span class="n">library</span><span class="p">(</span><span class="n">miniCRAN</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w"> </span><span class="n">library</span><span class="p">(</span><span class="n">ggthemes</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">feather</span><span class="p">)</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">Usado</span><span class="w"> </span><span class="n">para</span><span class="w"> </span><span class="n">carregar</span><span class="w"> </span><span class="n">arquivos</span></code></pre>
+</figure>
+<p>
+As linhas abaixo mostram como eu baixei os logs da mirror do RStudio do
+CRAN para o período entre 24 de Abril de 2016 a 24 de Maio a 2016. Os
+logs de cada dia desse período são salvos na pasta indicada no argumento
+<code class="highlighter-rouge">log\_folder</code>, totalizando cerca de
+250 MB. O dataframe gerado com o código gerado é enorme, por isso é
+recomendável removê-lo da memória após realizar os filtros desejados a
+partir dele.
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">temp_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">download_RStudio_CRAN_data</span><span class="p">(</span><span class="n">START</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&apos;2016-04-24&apos;</span><span class="p">,</span><span class="n">END</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&apos;2016-05-24&apos;</span><span class="p">,</span><span class="w"> </span><span class="n">log_folder</span><span class="o">=</span><span class="s2">&quot;/home/sillas/R/data&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">df_cran</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_RStudio_CRAN_data</span><span class="p">(</span><span class="s2">&quot;/home/sillas/R/data&quot;</span><span class="p">)</span><span class="w">
+</span><span class="c1">#save(df_cran, file = &quot;/home/sillas/R/data/df_cran.Rdata&quot;)
+#load(&quot;/home/sillas/R/data/df_cran.Rdata&quot;)
+</span><span class="w">
+</span><span class="c1"># Agregar logs por pacote:
+</span><span class="w">
+</span><span class="c1"># df_pkgs &lt;- df_cran %&gt;%
+# group_by(package) %&gt;%
+# summarise(downloads = n()) %&gt;%
+# arrange(desc(downloads)) %&gt;%
+# mutate(downloads_acum = cumsum(downloads))
+</span><span class="w">
+</span><span class="err">#</span><span class="n">rm</span><span class="p">(</span><span class="n">df_cran</span><span class="p">)</span></code></pre>
+</figure>
+<p>
+Para não ter de carregar o objeto
+<code class="highlighter-rouge">df\_cran</code> toda vez que eu
+renderizo o arquivo markdown deste post, salvei uma cópia em disco do
+dataframe <code class="highlighter-rouge">df\_pkgs</code>. Para isso,
+usei o pacote <code class="highlighter-rouge">feather</code>, que torna
+os processos de escrita e leitura de arquivos no R
+<a href="https://blog.rstudio.org/2016/03/29/feather/">muito
+rápidas</a>.
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="c1">#write_feather(df_pkgs, &quot;df_pkgs.feather&quot;)
+</span><span class="n">df_pkgs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_feather</span><span class="p">(</span><span class="s2">&quot;/home/sillas/R/Projetos/PaixaoPorDados/sillasgonzaga.github.io/data/df_pkgs.feather&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">print</span><span class="p">(</span><span class="n">df_pkgs</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## Source: local data frame [9,236 x 3]
+## ## package downloads downloads_acum
+## &lt;chr&gt; &lt;int&gt; &lt;int&gt;
+## 1 RcppArmadillo 425443 425443
+## 2 Rcpp 285869 711312
+## 3 ggplot2 246536 957848
+## 4 digest 210749 1168597
+## 5 stringr 207837 1376434
+## 6 plyr 203498 1579932
+## 7 stringi 202125 1782057
+## 8 magrittr 195198 1977255
+## 9 scales 194719 2171974
+## 10 reshape2 182363 2354337
+## .. ... ... ...</code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-r"><span class="nf">dim</span><span class="p">(</span><span class="n">df_pkgs</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## [1] 9236 3</code></pre>
+</figure>
+<p>
+Temos que 9236 diferentes pacotes foram baixados no período analisado.
+</p>
+<p>
+Para determinar a quantidade de pacotes a serem analisados como membros
+de uma rede, usei o Princípio de Pareto:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="p">(</span><span class="n">total_downloads</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">df_pkgs</span><span class="o">$</span><span class="n">downloads</span><span class="p">))</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## [1] 17491320</code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-r"><span class="p">(</span><span class="n">limite80</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">total_downloads</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.80</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## [1] 13993056</code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">df_pkgs_pareto</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">df_pkgs</span><span class="p">,</span><span class="w"> </span><span class="n">downloads_acum</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">limite80</span><span class="p">)</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">df_pkgs_pareto</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## [1] 335</code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-r"><span class="m">100</span><span class="o">*</span><span class="n">nrow</span><span class="p">(</span><span class="n">df_pkgs_pareto</span><span class="p">)</span><span class="o">/</span><span class="n">nrow</span><span class="p">(</span><span class="n">df_pkgs</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## [1] 3.627111</code></pre>
+</figure>
+<p>
+Temos que 335 pacotes, cerca de 3,6% do total, equivalem a 80% de todos
+os downloads de pacotes nos últimos 30 dias, o que mostra que a regra de
+Pareto é aplicável aqui e que, apesar de haver milhares de pacotes
+disponíveis no CRAN, a grande maioria deles não são baixados muitas
+vezes, como mostram as seguintes estatísticas:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">summary</span><span class="p">(</span><span class="n">df_pkgs</span><span class="o">$</span><span class="n">downloads</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## Min. 1st Qu. Median Mean 3rd Qu. Max. ## 1 137 182 1894 315 425400</code></pre>
+</figure>
+<p>
+O número mediano de downloads por usuário é de 182, muito distante dos
+10 mais populares mostrados acima.
+</p>
+<p>
+Os vinte pacotes mais baixados são:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">df_pkgs_pareto</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">top_n</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">wt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">downloads</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">package</span><span class="p">,</span><span class="w"> </span><span class="n">downloads</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">downloads</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;identity&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#014d64&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Quantidade de downloads\n entre Abril e Maio/2016&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comma</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theme_economist</span><span class="p">()</span><span class="w"> </span></code></pre>
+</figure>
+<p>
+<img src="http://sillasgonzaga.github.io/figs/metaanalise_1/unnamed-chunk-6-1.png" alt="center">
+</p>
+<p>
+Pessoalmente, não fiquei surpreso ao ver que, dos 6 pacotes mais
+baixados, 3 (ggplot2, stringr e plyr) fazem parte do Hadleyverse, ou
+seja, foram criados pelo gênio Hadley Wickham, que revolucionou o modo
+como o R é usado e é ídolo para muitos usuários da linguagem, como eu
+:).
+</p>
+<p>
+Após filtrar os pacotes que entrarão na análise, o pacote miniCRAN é
+usado para extrair as dependências de cada um e formar uma rede deles. A
+função <code class="highlighter-rouge">makeDepGraph</code> extrai as
+dependências dos pacotes indicados na função e cria um grafo. Por
+exemplo:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">pkgDep</span><span class="p">(</span><span class="s2">&quot;ggplot2&quot;</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## [1] &quot;ggplot2&quot; &quot;digest&quot; &quot;gtable&quot; &quot;MASS&quot; ## [5] &quot;plyr&quot; &quot;reshape2&quot; &quot;scales&quot; &quot;Rcpp&quot; ## [9] &quot;stringr&quot; &quot;RColorBrewer&quot; &quot;dichromat&quot; &quot;munsell&quot; ## [13] &quot;labeling&quot; &quot;colorspace&quot; &quot;stringi&quot; &quot;magrittr&quot; ## [17] &quot;jsonlite&quot; &quot;rex&quot; &quot;httr&quot; &quot;crayon&quot; ## [21] &quot;withr&quot; &quot;memoise&quot; &quot;mime&quot; &quot;curl&quot; ## [25] &quot;openssl&quot; &quot;R6&quot; &quot;lazyeval&quot; &quot;lattice&quot; ## [29] &quot;survival&quot; &quot;Formula&quot; &quot;latticeExtra&quot; &quot;cluster&quot; ## [33] &quot;rpart&quot; &quot;nnet&quot; &quot;acepack&quot; &quot;foreign&quot; ## [37] &quot;gridExtra&quot; &quot;data.table&quot; &quot;chron&quot; &quot;Matrix&quot; ## [41] &quot;maps&quot; &quot;sp&quot; &quot;nlme&quot; &quot;mvtnorm&quot; ## [45] &quot;TH.data&quot; &quot;sandwich&quot; &quot;codetools&quot; &quot;zoo&quot; ## [49] &quot;praise&quot; &quot;SparseM&quot; &quot;MatrixModels&quot; &quot;evaluate&quot; ## [53] &quot;formatR&quot; &quot;highr&quot; &quot;markdown&quot; &quot;yaml&quot; ## [57] &quot;knitr&quot; &quot;htmltools&quot; &quot;caTools&quot; &quot;bitops&quot; ## [61] &quot;gdtools&quot; &quot;BH&quot; &quot;covr&quot; &quot;ggplot2movies&quot;
+## [65] &quot;hexbin&quot; &quot;Hmisc&quot; &quot;mapproj&quot; &quot;maptools&quot; ## [69] &quot;mgcv&quot; &quot;multcomp&quot; &quot;testthat&quot; &quot;quantreg&quot; ## [73] &quot;rmarkdown&quot; &quot;svglite&quot;</code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">makeDepGraph</span><span class="p">(</span><span class="s2">&quot;ggplot2&quot;</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## IGRAPH DN-- 74 123 -- ## + attr: name (v/c), type (e/c)
+## + edges (vertex names):
+## [1] magrittr -&gt;rex lazyeval -&gt;rex ## [3] jsonlite -&gt;httr mime -&gt;httr ## [5] curl -&gt;httr openssl -&gt;httr ## [7] R6 -&gt;httr memoise -&gt;crayon ## [9] digest -&gt;memoise lattice -&gt;latticeExtra
+## [11] RColorBrewer-&gt;latticeExtra gtable -&gt;gridExtra ## [13] chron -&gt;data.table Matrix -&gt;survival ## [15] digest -&gt;ggplot2 gtable -&gt;ggplot2 ## + ... omitted several edges</code></pre>
+</figure>
+<p>
+Assim, dos 335 pacotes mais populares, são gerados dois grafos: o da
+esquerda, com o método <code class="highlighter-rouge">plot</code> com
+as modificações nativas realizadas pelo
+<code class="highlighter-rouge">miniCRAN</code> e o da direita, feita
+pelo pacote <code class="highlighter-rouge">igraph</code>.
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span><span class="w">
+</span><span class="n">list_pkgs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_pkgs_pareto</span><span class="o">$</span><span class="n">package</span><span class="w">
+</span><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeDepGraph</span><span class="p">(</span><span class="n">list_pkgs</span><span class="p">)</span><span class="w"> </span><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)))</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">vertex.size</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># m&#xE9;todo plot.pkgDepGraph
+</span><span class="w">
+</span><span class="n">plot.igraph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span></code></pre>
+</figure>
+<p>
+<img src="http://sillasgonzaga.github.io/figs/metaanalise_1/unnamed-chunk-8-1.png" alt="center">
+</p>
+<p>
+Como pode-se ver, ambos os gráficos acima são visualmente poluídos e não
+dá para aprender muita coisa a partir deles. Além disso, a fim de
+analisar a centralidade de um pacote em um grafo, é importante saber o
+que o argumento <code class="highlighter-rouge">suggests</code> da
+função <code class="highlighter-rouge">makeDepGraph</code> significa.
+Segundo <a href="http://r-pkgs.had.co.nz/description.html">Hadley
+Wickham</a>, quando o pacote A sugere um outro pacote B, significa que o
+A <em>pode</em> usar o pacote B, mas ele não é requerido. Este pode ser
+usado para rodar testes, montar vignettes (tutoriais de pacotes), etc.
+</p>
+<p>
+Vamos, então, como fica o grafo dos 20 pacotes mais populares, com e sem
+<code class="highlighter-rouge">suggests</code>, com o pacote
+<code class="highlighter-rouge">ggplot2</code> destacado:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">list_pkgs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_pkgs</span><span class="o">$</span><span class="n">package</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">]</span><span class="w"> </span><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)))</span><span class="w">
+</span><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeDepGraph</span><span class="p">(</span><span class="n">list_pkgs</span><span class="p">,</span><span class="w"> </span><span class="n">enhances</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">suggests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">pkgsToHighlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ggplot2&quot;</span><span class="p">,</span><span class="n">vertex.size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Argumento suggests = FALSE&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">legendPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">)</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeDepGraph</span><span class="p">(</span><span class="n">list_pkgs</span><span class="p">,</span><span class="w"> </span><span class="n">enhances</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">suggests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">pkgsToHighlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ggplot2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vertex.size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Argumento suggests = TRUE&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">legendPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">-1</span><span class="p">))</span></code></pre>
+</figure>
+<p>
+<img src="http://sillasgonzaga.github.io/figs/metaanalise_1/unnamed-chunk-9-1.png" alt="center">
+</p>
+<p>
+Agora sim já é possível aprender algumas coisas a partir do grafo. O
+sentido da linha vermelha indica que, por exemplo, o
+<code class="highlighter-rouge">ggplot2</code> importa vários
+pacotes(<code class="highlighter-rouge">digest</code>,
+<code class="highlighter-rouge">gtable</code>,
+<code class="highlighter-rouge">MASS</code>,
+<code class="highlighter-rouge">reshape2</code>,
+<code class="highlighter-rouge">plyr</code> e
+<code class="highlighter-rouge">scales</code>), mas não é importado por
+nenhum outro. Já o grafo da direita mostra que o
+<code class="highlighter-rouge">ggplot2</code> sugere muitos outros, o
+que aumenta sua centralidade na rede.
+</p>
+<p>
+Conclusão: para realizar análises de centralidade de pacotes R, é
+necessário deixar o argumento
+<code class="highlighter-rouge">suggests</code> como
+<code class="highlighter-rouge">FALSE</code>.
+</p>
+</article>
+</div>
+
+  <footer class="article-footer">
+
+    <aside class="share">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=%2f2016%2f05%2f25%2fmeta-an%25C3%25A1lise-r-1-quais-s%25C3%25A3o-os-pacotes-mais-baixados%2f&title=Meta-an%c3%a1lise%20R%20%281%29%3a%20Quais%20s%c3%a3o%20os%20pacotes%20mais%20baixados%3f" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=%2f2016%2f05%2f25%2fmeta-an%25C3%25A1lise-r-1-quais-s%25C3%25A3o-os-pacotes-mais-baixados%2f&text=Meta-an%c3%a1lise%20R%20%281%29%3a%20Quais%20s%c3%a3o%20os%20pacotes%20mais%20baixados%3f&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=%2f2016%2f05%2f25%2fmeta-an%25C3%25A1lise-r-1-quais-s%25C3%25A3o-os-pacotes-mais-baixados%2f&t=Meta-an%c3%a1lise%20R%20%281%29%3a%20Quais%20s%c3%a3o%20os%20pacotes%20mais%20baixados%3f" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=%2f2016%2f05%2f25%2fmeta-an%25C3%25A1lise-r-1-quais-s%25C3%25A3o-os-pacotes-mais-baixados%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=%2f2016%2f05%2f25%2fmeta-an%25C3%25A1lise-r-1-quais-s%25C3%25A3o-os-pacotes-mais-baixados%2f&title=Meta-an%c3%a1lise%20R%20%281%29%3a%20Quais%20s%c3%a3o%20os%20pacotes%20mais%20baixados%3f" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?Meta-an%c3%a1lise%20R%20%281%29%3a%20Quais%20s%c3%a3o%20os%20pacotes%20mais%20baixados%3f %2f2016%2f05%2f25%2fmeta-an%25C3%25A1lise-r-1-quais-s%25C3%25A3o-os-pacotes-mais-baixados%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+</aside>
+
+
+    <section class="footer">
+      <div>
+        <nav class="crumb">
+          <ol>
+            <li><a href="../../../../"><i class="fa fa-home" aria-hidden="true"></i>TOP</a></li>
+            
+            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="../../../../post/" itemprop="url"><span itemprop="title">POST</span></a></li>
+            
+            <li class="active">Meta-análise R (1): Quais são os pacotes mais baixados?</li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    
+    
+    
+    <section class="footer">
+      <header>
+        <a href="../../../../categories/">CATEGORIES</a>
+      </header>
+      <div>
+        <ul class="terms">
+          
+          <li><a href="../../../../categories/paixao-por-dados/">paixao-por-dados</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+    
+    
+  </footer>
+
+</article>
+
+
+    <div class="adj">
+      <div class="mrow">
+        
+        <div class="mcol c6">
+          <header>Previous Article</header>
+          <article class="lism">
+  <a href="../../../../2016/02/03/transpar%C3%AAncia-7-os-famosos-cargos-comissionados/">
+    <div class="thumb thumb-b1d1c261c2e445a7a030a58f10e4240e"></div>
+
+    <div class="inner">
+      <div class="title">Transparência (7): Os famosos Cargos Comissionados</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2016-02-03T03:00:00JST">Feb 3, 2016</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+        </div>
+        
+        
+        <div class="mcol c6">
+          <header>Next Article</header>
+          <article class="lism">
+  <a href="../../../../2016/05/30/meta-an%C3%A1lise-r-2-analisando-pacotes-r-como-indiv%C3%ADduos-em-uma-rede-social/">
+    <div class="thumb thumb-a04db5f2eff466e9c09f270acabcb19b"></div>
+
+    <div class="inner">
+      <div class="title">Meta Análise r (2): analisando pacotes r como indivíduos em uma rede social</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2016-05-30T03:00:00JST">May 30, 2016</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+        </div>
+        
+      </div>
+    </div>
+
+    
+  </div>
+  <div class="mcol c4">
+    <aside class="l-sidebar">
+
+  <div class="sections sidebar">
+    <section class="sidebar">
+      <header>LATESTS</header>
+      <div>
+        <div class="articles sm">
+          
+          <article class="lism">
+  <a href="../../../../2017/06/08/instalando-anaconda---tensorflow---keras-para-r-no-ubuntu-16.04-server/">
+    <div class="thumb thumb-4ca7aebf68b206ff8ebd3d339880cdbe"></div>
+
+    <div class="inner">
+      <div class="title">Instalando Anaconda &#43; TensorFlow &#43; Keras para R no Ubuntu 16.04 Server</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-08T18:12:00JST">Jun 8, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/06/05/keras-colocando-deep-learning-no-pipeline/">
+    <div class="thumb thumb-ea657ec9d261bce8d42f524cfa192f24"></div>
+
+    <div class="inner">
+      <div class="title">Keras: colocando deep learning no pipeline</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-05T11:07:31JST">Jun 5, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/06/01/a-kind-of-magick/">
+    <div class="thumb thumb-7a7e4e54f6ba40cf59b708a1b1438641"></div>
+
+    <div class="inner">
+      <div class="title">A kind of magick</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-01T20:26:00JST">Jun 1, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/28/pdf-e-ocr/">
+    <div class="thumb thumb-d477bfffbde22e4c5cc9e81c9ff3b556"></div>
+
+    <div class="inner">
+      <div class="title">PDF e OCR</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-28T11:07:31JST">May 28, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/23/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/">
+    <div class="thumb thumb-ee8e80ec72747e392813c983fcdbc25b"></div>
+
+    <div class="inner">
+      <div class="title">Slides da minha apresentação no SER 2017</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-23T03:00:00JST">May 23, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/19/web-scraping-do-site-da-secretaria-de-seguran%C3%A7a-p%C3%BAblica-de-s%C3%A3o-paulo/">
+    <div class="thumb thumb-3da60970259d2fd391b3fb0a4ff77692"></div>
+
+    <div class="inner">
+      <div class="title">Web scraping do site da Secretaria de Segurança Pública de São Paulo</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-19T20:26:00JST">May 19, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/16/blog-paix%C3%A3o-por-dados-estar%C3%A1-no-meetup-1%C2%BA-#analyticsemtudo---dados-abertos/">
+    <div class="thumb thumb-5b8f5e73458a26798a261512427240c8"></div>
+
+    <div class="inner">
+      <div class="title">Blog Paixão por Dados estará no meetup 1º #AnalyticsEmTudo - Dados Abertos</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-16T03:00:00JST">May 16, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/04/gr%C3%A1ficos-miojo-mapas-tem%C3%A1ticos-do-brasil-em-3-minutos-ou-menos/">
+    <div class="thumb thumb-d0bebe978f4bf6a447682918aea12509"></div>
+
+    <div class="inner">
+      <div class="title">Gráficos miojo: Mapas temáticos do Brasil em 3 minutos ou menos</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-04T20:26:00JST">May 4, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/01/as-cores-da-marvel-vs-dc/">
+    <div class="thumb thumb-adbafb32d64272a6d88e49a78a8c536a"></div>
+
+    <div class="inner">
+      <div class="title">As cores da Marvel vs DC</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-01T20:26:00JST">May 1, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/04/29/diagramas-de-venn-em-r/">
+    <div class="thumb thumb-88b3c0abd2dfcce2dd7b25a3500eae82"></div>
+
+    <div class="inner">
+      <div class="title">Diagramas de Venn em R</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-29T20:26:00JST">Apr 29, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="sidebar">
+      <header>CATEGORIES</header>
+      <div>
+        <ul class="terms">
+          <li><a href="../../../../categories/curso-r">curso-r</a></li><li><a href="../../../../categories/paixao-por-dados">paixao-por-dados</a></li>
+        </ul>
+      </div>
+    </section>
+    
+    <section class="sidebar">
+      <header>TAGS</header>
+      <div>
+        <ul class="terms">
+          
+        </ul>
+      </div>
+    </section>
+    
+  </div>
+
+</aside>
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="l-container">
+        <p><span class="h-logo">&copy; A Hugo website</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_robust">Robust</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

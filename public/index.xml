@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>A Hugo website</title>
+    <link>/</link>
+    <description>Recent content on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Jun 2017 18:12:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Instalando Anaconda &#43; TensorFlow &#43; Keras para R no Ubuntu 16.04 Server</title>
+      <link>/2017/06/08/instalando-anaconda---tensorflow---keras-para-r-no-ubuntu-16.04-server/</link>
+      <pubDate>Thu, 08 Jun 2017 18:12:00 +0000</pubDate>
+      
+      <guid>/2017/06/08/instalando-anaconda---tensorflow---keras-para-r-no-ubuntu-16.04-server/</guid>
+      <description>Por Athos 08/06/2017  Compilei um passo a passo mais simplificado dos posts que usei pra conseguir usar o Keras num servidor Ubuntu.  Esse tutorial ensinará como instalar o Anaconda com Python 3.5 em um servidor Ubuntu 16.04 + Keras para R. Então ao final desse post você terá o Keras direto do seu R pronto para abalar os profundos mares da aprendizagem de máquinas.  O tutorial supõe que você possui um servidor Ubuntu 16.</description>
+    </item>
+    
+    <item>
+      <title>Keras: colocando deep learning no pipeline</title>
+      <link>/2017/06/05/keras-colocando-deep-learning-no-pipeline/</link>
+      <pubDate>Mon, 05 Jun 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/06/05/keras-colocando-deep-learning-no-pipeline/</guid>
+      <description>Por Julio 05/06/2017  Esse é o Daniel Falbel, um dos sócios da Curso-R e autor de diversos posts no nosso blog. Boa pinta, não?   Mas esse não é só um rostinho bonito. Recente, o Dani fez uma contribuição PROFUNDA para a comunidade R: ele é um dos responsáveis pelo pacote keras, que faz uma interface com a biblioteca de mesmo nome utilizada para ajustar modelos de deep learning usando TensorFlow.</description>
+    </item>
+    
+    <item>
+      <title>A kind of magick</title>
+      <link>/2017/06/01/a-kind-of-magick/</link>
+      <pubDate>Thu, 01 Jun 2017 20:26:00 +0000</pubDate>
+      
+      <guid>/2017/06/01/a-kind-of-magick/</guid>
+      <description>Por William 01/06/2017  Já vimos como o Rstudio se torna uma ferramenta poderosa quando combinado com certos pacotes, como o knitr e shiny, ou outros recursos, como o markdown e o git. Hoje, veremos como transformar o Rstudio num elegante e interativo editor de imagens utilizando o pacote magick.  Este post é um breve resumo das funcionalidades do magick. Para uma apresentação completa, visite o vignette do pacote.  Já usamos o magick em outros posts do blog (às vezes por trás das cortinas) para tratar imagens.</description>
+    </item>
+    
+    <item>
+      <title>PDF e OCR</title>
+      <link>/2017/05/28/pdf-e-ocr/</link>
+      <pubDate>Sun, 28 May 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/05/28/pdf-e-ocr/</guid>
+      <description>Por Julio 28/05/2017  Já precisou extrair dados de arquivos pdf? Bom, eu já. Eu trabalho com jurimetria e preciso extrair dados de diários oficiais, petições, sentenças, então já viu né…  A primeira pergunta que você precisa fazer antes de ler um pdf é: o arquivo é digital ou digitalizado?   Se for digital, significa que ele pode ser transcrito diretamente para vários formatos: texto, html, xml e até mesmo data.</description>
+    </item>
+    
+    <item>
+      <title>Slides da minha apresentação no SER 2017</title>
+      <link>/2017/05/23/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/</link>
+      <pubDate>Tue, 23 May 2017 03:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/23/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/</guid>
+      <description>Hoje (23/05), o Paixão por Dados esteve presente no II Seminário Internacional de Estatística com R, realizado na UFF, em Niterói. Com muito orgulho, pude falar de parte dos projetos que realizei com R, conquistas pessoais e profissionais que obtive como resultado pela minha dedicação à linguagem e ainda dicas para quem quer se aprofundar no R.  Os slides da minha apresentação, entitulada Como o R pode despertar sua paixão por dados se encontram aqui.</description>
+    </item>
+    
+    <item>
+      <title>Web scraping do site da Secretaria de Segurança Pública de São Paulo</title>
+      <link>/2017/05/19/web-scraping-do-site-da-secretaria-de-seguran%C3%A7a-p%C3%BAblica-de-s%C3%A3o-paulo/</link>
+      <pubDate>Fri, 19 May 2017 20:26:00 +0000</pubDate>
+      
+      <guid>/2017/05/19/web-scraping-do-site-da-secretaria-de-seguran%C3%A7a-p%C3%BAblica-de-s%C3%A3o-paulo/</guid>
+      <description>Quando eu trabalhei no Núcleo de Estudos da Violência da USP, obter informações da Secretaria de Segurança Pública de São Paulo (SSP) era uma tarefa meio esotérica. Coletávamos os dados de todos os DP’s de São Paulo, que são aproximadamente 100, e, como fazer isso manualmente era demorado, aplicávamos uma solução automática em dois passos. Primeiro raspávamos o site da SSP em Python e depois rodávamos uma macro em VBA chamada “Mestre Dos Magos”, que era responsável por consolidar as séries históricas em excel.</description>
+    </item>
+    
+    <item>
+      <title>Blog Paixão por Dados estará no meetup 1º #AnalyticsEmTudo - Dados Abertos</title>
+      <link>/2017/05/16/blog-paix%C3%A3o-por-dados-estar%C3%A1-no-meetup-1%C2%BA-#analyticsemtudo---dados-abertos/</link>
+      <pubDate>Tue, 16 May 2017 03:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/16/blog-paix%C3%A3o-por-dados-estar%C3%A1-no-meetup-1%C2%BA-#analyticsemtudo---dados-abertos/</guid>
+      <description> Com muito orgulho, anuncio que o blog Paixão por Dados estará representado no primeiro meetup do grupo \#AnalyticsEmTudo, no Rio de Janeiro, onde moro atualmente. Serei um dos três palestrantes do encontro. Falarei um pouco sobre os principais projetos que realizei usando o R, dando maior ênfase aos relacionados a Dados Abertos, que é o tema dessa edição.  As inscrições podem ser feitas neste link.  </description>
+    </item>
+    
+    <item>
+      <title>Gráficos miojo: Mapas temáticos do Brasil em 3 minutos ou menos</title>
+      <link>/2017/05/04/gr%C3%A1ficos-miojo-mapas-tem%C3%A1ticos-do-brasil-em-3-minutos-ou-menos/</link>
+      <pubDate>Thu, 04 May 2017 20:26:00 +0000</pubDate>
+      
+      <guid>/2017/05/04/gr%C3%A1ficos-miojo-mapas-tem%C3%A1ticos-do-brasil-em-3-minutos-ou-menos/</guid>
+      <description>Por Fernando 04/05/2017  De todas as visualizações, mapas são aquelas que impressionam mais. É muito mais fácil alguém se maravilhar com o mapa mais simples do que com o ggplot2 mais complicado. Felizmente, considerando essa comparação, o R disponibiliza muitos recursos para construir mapas.  Dentro do tidyverse é possível construir mapas usando a função geom\_map, do pacote ggplot2, mas está fora do escopo deste post explicar como ela funciona.</description>
+    </item>
+    
+    <item>
+      <title>As cores da Marvel vs DC</title>
+      <link>/2017/05/01/as-cores-da-marvel-vs-dc/</link>
+      <pubDate>Mon, 01 May 2017 20:26:00 +0000</pubDate>
+      
+      <guid>/2017/05/01/as-cores-da-marvel-vs-dc/</guid>
+      <description>A cor é uma diferença notável entre os filmes da Marvel e da DC. Enquanto a Disney/Marvel Studios costuma lançar filmes com tons mais claros e alegres, a Warner tem optado por cenários escuros, com um aspecto mais sombrios. Essas escolhas são um reflexo do clima das histórias de cada universo: aventuras engraçaralhas com um drama superficial vs seja lá o que passa na cabeça do Zack Snyder.  Para estudar melhor a paleta de cores utilizadas nos filmes, vamos aplicar a análise introduzida pelo Dani neste post, com pequenas alterações.</description>
+    </item>
+    
+    <item>
+      <title>Diagramas de Venn em R</title>
+      <link>/2017/04/29/diagramas-de-venn-em-r/</link>
+      <pubDate>Sat, 29 Apr 2017 20:26:00 +0000</pubDate>
+      
+      <guid>/2017/04/29/diagramas-de-venn-em-r/</guid>
+      <description>Por Fernando 29/04/2017  Diagramas de Venn são como slides de PowerPoint. Se eles tem poucos elementos concisos em uma ordem inteligente, um leitor consegue conectar as ideias expostas e aprender alguma coisa. Em caso contrário, o excesso de informação se transforma em um obstáculo para a comunicação.  Bons diagramas de Venn são capazes de te fazer perceber cruzamentos que não estão no seu radar. No blog do Andrew Gelman tem um exemplo interessante.</description>
+    </item>
+    
+    <item>
+      <title>O Porta dos Fundos está em decadência? (REVISITED)</title>
+      <link>/2017/04/28/o-porta-dos-fundos-est%C3%A1-em-decad%C3%AAncia-revisited/</link>
+      <pubDate>Fri, 28 Apr 2017 20:26:00 +0000</pubDate>
+      
+      <guid>/2017/04/28/o-porta-dos-fundos-est%C3%A1-em-decad%C3%AAncia-revisited/</guid>
+      <description>Às vezes a venda de uma empresa é um sinal de que algo não vai bem. Até pode ser verdade que nada ruim estivesse acontecendo e, por qualquer motivo que seja, alguém achou melhor parar enquanto estava ganhando, mas eu custo a acreditar que o Porta Dos Fundos estava nessa situação. Principalmente considerando o futuro sombrio que pode esperá-los.  A última aquisição da Viacom no Brasil foi a finada MTV.</description>
+    </item>
+    
+    <item>
+      <title>R 3.4 disponível!</title>
+      <link>/2017/04/24/r-3.4-dispon%C3%ADvel/</link>
+      <pubDate>Mon, 24 Apr 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/04/24/r-3.4-dispon%C3%ADvel/</guid>
+      <description>Por Julio 24/04/2017  A versão 3.4 do R (You Stupid Darkness) foi lançada nesse final de semana! A atualização tem foco principal na performance. Principais mudanças:   Agora temos um compilador JIT (Just In Time) como padrão! Isso significa que você não precisará mais usar a função compiler::cmpfun() para acelerar suas funções na maioria dos casos. Mais sobre isso abaixo.   O for ficou mais eficiente. Agora a alocação dinâmica de vetores está mais rápida, diminuindo ainda mais a diferença entre utilizar for e funcionais como sapply(), que trabalham com um vetor pré alocado.</description>
+    </item>
+    
+    <item>
+      <title>K-means e paleta de cores</title>
+      <link>/2017/04/22/k-means-e-paleta-de-cores/</link>
+      <pubDate>Sat, 22 Apr 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/04/22/k-means-e-paleta-de-cores/</guid>
+      <description>Uma aplicação interessante de algoritmos de clusterização é a obtenção de paletas de cores a partir de imagens. Veja como isso pode ser feito usando o R.  Em primeiro lugar, vamos ler a imagem como uma matriz para o R. Existem diversas bibliotecas para carregar as imagens, vamos usar aqui a jpeg. Para esse caso ela é melhor porque já lê a imagem no formato que precisamos. library(jpeg) library(magrittr) img &amp;lt;- readJPEG(&amp;quot;img/david-bowie.</description>
+    </item>
+    
+    <item>
+      <title>Tratando erros: the tidy way</title>
+      <link>/2017/04/20/tratando-erros-the-tidy-way/</link>
+      <pubDate>Thu, 20 Apr 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/04/20/tratando-erros-the-tidy-way/</guid>
+      <description>Por Julio 20/04/2017  Tratar erros no R é importante para identificar problemas nos códigos e evitar retrabalho. Quem nunca rodou um algoritmo pesadíssimo que deu errado na última iteração? Nesse artigo, veremos como trabalhar com erros no R e a versão tidy dessas soluções.  A forma tradicional de tratar erros no R é com a função tryCatch(). Essa função tem como primeiro argumento uma expressão a ser avaliada e argumentos diversos para trabalhar com os erros.</description>
+    </item>
+    
+    <item>
+      <title>Colando textos</title>
+      <link>/2017/04/17/colando-textos/</link>
+      <pubDate>Mon, 17 Apr 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/04/17/colando-textos/</guid>
+      <description>Por Julio 17/04/2017  Uma tarefa muito comum no R é colar textos. As funções mais importantes para isso são paste() e sprintf(), que vêm com o pacote base. Nesse artigo, vamos falar dessas duas funções e de um novo pacote do tidyverse, o glue.  A função paste() recebe um conjunto indeterminado de objetos como argumento através do ... e vai colando os objetos passados elemento a elemento. Isso significa que se você passar dois vetores de tamanho n, a função paste() retornará um vetor de tamanho n sendo cada posição a colagem dos dois vetores nessa posição.</description>
+    </item>
+    
+    <item>
+      <title>Análise das emoções de Aécio Neves</title>
+      <link>/2017/04/15/an%C3%A1lise-das-emo%C3%A7%C3%B5es-de-a%C3%A9cio-neves/</link>
+      <pubDate>Sat, 15 Apr 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/04/15/an%C3%A1lise-das-emo%C3%A7%C3%B5es-de-a%C3%A9cio-neves/</guid>
+      <description>Por Julio 15/04/2017  Aécio Neves é um político importante no Brasil. Por muito pouco não foi eleito Presidente da República em 2014 e é certamente um nome bem influente na atualidade. Mas sério, toda vez que eu vejo esse cara falando, não dou a mínima para quem ele é. Eu apenas fico pensando: ‘Por que ele sempre faz tanta cara de dor?’  Pensando nisso, decidi pegar algumas fotos famosas dele e aplicar um algoritmo de Inteligência Artificial para reconhecimento de emoções.</description>
+    </item>
+    
+    <item>
+      <title>Você está a menos de 1 km de um Hambúrguer?</title>
+      <link>/2017/04/10/voc%C3%AA-est%C3%A1-a-menos-de-1-km-de-um-hamb%C3%BArguer/</link>
+      <pubDate>Mon, 10 Apr 2017 20:26:00 +0000</pubDate>
+      
+      <guid>/2017/04/10/voc%C3%AA-est%C3%A1-a-menos-de-1-km-de-um-hamb%C3%BArguer/</guid>
+      <description>Se você estiver no centro de São Paulo, quanto será que você precisa andar para achar uma hamburgueria? Será que a sua casa fica a menos de 1 km de hospitais, delagacias ou corpo de bombeiros? Neste post, veremos como utilizar uma das APIs do Google Maps para obter informações de geolocalização a partir de uma pesquisa simples. Em seguida, vamos gerar mapas com o pacote leaflet para visualizar os dados coletados e responder essas perguntas.</description>
+    </item>
+    
+    <item>
+      <title>As barras do progresso</title>
+      <link>/2017/04/10/as-barras-do-progresso/</link>
+      <pubDate>Mon, 10 Apr 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/04/10/as-barras-do-progresso/</guid>
+      <description>Por Julio 10/04/2017  Na jornada da ciência de dados, muitas vezes precisamos rodar um mesmo algoritmo em vários objetos distintos. Quando o algoritmo é pesado ou a lista de objetos é longa, é importante saber em que passo estamos e quanto vai demorar para terminar.  Uma forma de resolver esse problema é usando o pacote progress. O objeto progress\_bar desse pacote é do tipo R6 e tem um método new() para criar objetos do tipo “barra”.</description>
+    </item>
+    
+    <item>
+      <title>Top 10 dicas do Curso R de verão 2017</title>
+      <link>/2017/04/08/top-10-dicas-do-curso-r-de-ver%C3%A3o-2017/</link>
+      <pubDate>Sat, 08 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/04/08/top-10-dicas-do-curso-r-de-ver%C3%A3o-2017/</guid>
+      <description>Por Athos 08/04/2017  Em fevereiro desse ano ministramos o Curso de R de Verão 2017, parte do programa dos Cursos de Verão do IME-USP. Abaixo segue um compilado das 10 melhores dicas dadas durante este curso.  O conceito “tidy” deu o oriente do curso de verão e não foi à toa: o tidyverse, carinhosamente chamado de “universo arrumadinho”, está intimamente associado ao dia-a-dia de um analista de dados e sua implementação em R é tida como uma pequena revolução para os R-eiros.</description>
+    </item>
+    
+    <item>
+      <title>Multas em São Paulo</title>
+      <link>/2017/04/01/multas-em-s%C3%A3o-paulo/</link>
+      <pubDate>Sat, 01 Apr 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/04/01/multas-em-s%C3%A3o-paulo/</guid>
+      <description>Há bastante tempo tenho vontade de fazer análises usando dados de multas de São Paulo. O problema é: estes dados estão disponíveis? Na teoria, sim. Os dados de multas, como quantidade de multas por tipo de infração, dia e horário, e outros são divulgados no portal da Mobilidade Segura da Prefeitura de São Paulo. Na prática, é um pouco diferente. Apesar do site fornecer uma opção de exportação, a tabela exportada não é completa e muitas informações ficam faltando.</description>
+    </item>
+    
+    <item>
+      <title>Requisições seguras</title>
+      <link>/2017/03/31/requisi%C3%A7%C3%B5es-seguras/</link>
+      <pubDate>Fri, 31 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/03/31/requisi%C3%A7%C3%B5es-seguras/</guid>
+      <description>Por Julio 31/03/2017  No mundo do web scraping, muitas vezes precisamos acessar sites HTTPS, a versão Segura do HTTP (Hyper Text Transfer Protocol). Esse protocolo é utilizado para encriptar as mensagens trocadas por usuário e servidor.  O pacote httr utiliza um padrão SSL (Secure Sockets Layer) para lidar com HTTPS. O SSL nada mais é que uma forma de informar ao servidor que você é você, garantindo que suas mensagens só possam ser interpretadas por esse servidor, e vice-versa.</description>
+    </item>
+    
+    <item>
+      <title>Lollapalooza segundo Spotify - Web Scraping, API do Spotify e tidyverse</title>
+      <link>/2017/03/27/lollapalooza-segundo-spotify---web-scraping-api-do-spotify-e-tidyverse/</link>
+      <pubDate>Mon, 27 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/03/27/lollapalooza-segundo-spotify---web-scraping-api-do-spotify-e-tidyverse/</guid>
+      <description>Por Athos 27/03/2017  No dia em que fui ao Lollapalooza eu descobri o Rspotify, um wraper da API do Spotify e daí me veio a ideia de juntar infos dos dois assuntos.  A brincadeira aqui vai envolver   Web Scraping - para baixar e estruturar as tabelas de programação do Lolapalooza SP 2017   API do Spotify - por meio do pacote Rspotify   todos os pacotes do tidyverse    Lollapalooza deste ano em São Paulo contou com 47 bandas distribuídas em quatro palcos.</description>
+    </item>
+    
+    <item>
+      <title>Knitr: mudando o diretório de trabalho</title>
+      <link>/2017/03/25/knitr-mudando-o-diret%C3%B3rio-de-trabalho/</link>
+      <pubDate>Sat, 25 Mar 2017 20:26:00 +0000</pubDate>
+      
+      <guid>/2017/03/25/knitr-mudando-o-diret%C3%B3rio-de-trabalho/</guid>
+      <description>Por William 25/03/2017  O pacote knitr é um mecanismo rápido, elegante e flexível para gerar relatórios dinâmicos no R. Ele trabalha lado a lado com o rmarkdown para transformar arquivos .Rmd em diversos formatos, como html, pdf e até mesmo word. Misturando chunks de código em R com texto puro, LaTeX e html, a tarefa de criar outputs para análises estatísticas no R ficou muito mais simples.  Quando estamos trabalhando com arquivos Rmarkdown no Rstudio, o diretório de trabalho é a própria pasta onde o Rmd está salvo.</description>
+    </item>
+    
+    <item>
+      <title>O Porta dos Fundos está em decadência?</title>
+      <link>/2017/03/20/o-porta-dos-fundos-est%C3%A1-em-decad%C3%AAncia/</link>
+      <pubDate>Mon, 20 Mar 2017 20:26:00 +0000</pubDate>
+      
+      <guid>/2017/03/20/o-porta-dos-fundos-est%C3%A1-em-decad%C3%AAncia/</guid>
+      <description>Há alguns anos eu acompanho o canal Porta dos fundos no YouTube, assistindo os vídeos quase sempre no dia de lançamento. Mesmo dividido entre esquetes boas e ruins, me considero um fã da trupe de humoristas (e do Totoro também), principalmente pelo humor sarcástico e pela satirização de diversos tabus da nossa sociedade.  Nos últimos meses, no entanto, meu entusiasmo com o canal vem diminuindo. A necessidade de postar três vídeos por semana para se manter relevante no sistema de recomendações do YouTube, o que mantém o canal rentável, me faz perdoar um ou outro conteúdo sem graça ou rasteiro, mas sinto que o que era exceção começou a virar regra.</description>
+    </item>
+    
+    <item>
+      <title>Paralelização no R</title>
+      <link>/2017/03/19/paraleliza%C3%A7%C3%A3o-no-r/</link>
+      <pubDate>Sun, 19 Mar 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/03/19/paraleliza%C3%A7%C3%A3o-no-r/</guid>
+      <description>Por Julio 19/03/2017  Programadores eficientes não precisam escrever algoritmos que rodam rápido. Recomendo fortemente a leitura do livro Efficient R, que discute eficiência com o R de forma exaustiva. Também gosto muito da primeira parte dessa palestra do Hadley, onde ele defende que o cientista de dados deve usar seu tempo pensando no problema e não na forma que vai escrever seu código.  Com isso em mente, vamos investigar o tema paralelização.</description>
+    </item>
+    
+    <item>
+      <title>rstudio::conf: Sessão Final</title>
+      <link>/2017/03/16/rstudioconf-sess%C3%A3o-final/</link>
+      <pubDate>Thu, 16 Mar 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/03/16/rstudioconf-sess%C3%A3o-final/</guid>
+      <description>No início de Janeiro desse ano ocorreu a primeira rstudio::conf, uma conferência sobre R promovida pela Rstudio. A conferência parece ter sido bem animada! Teve até um passeio para o parque do Harry Potter na Florida, e surgiram memes como a imagem abaixo.   Em termos de conteúdo, parece que foi sensacional. Para quem não teve oportunidade de ir, os videos da conferência foram divulgados aqui como bem lembrado pelo blog Análise Real.</description>
+    </item>
+    
+    <item>
+      <title>Medidas-resumo no tidyverse</title>
+      <link>/2017/03/11/medidas-resumo-no-tidyverse/</link>
+      <pubDate>Sat, 11 Mar 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/03/11/medidas-resumo-no-tidyverse/</guid>
+      <description>Por Julio 11/03/2017  Hoje estava fazendo uma análise exploratória e precisava estudar os quartis de uma variável contínua. A solução usando o tidyverse é tão elegante que valeu um post no blog.  Usaremos os pacotes tibble, dplyr, tidyr e purrr: library(tibble) library(dplyr) library(tidyr) library(purrr)  Nesse exemplo, usamos a famosa base mtcars tab &amp;lt;- mtcars %&amp;gt;% group_by(am, vs) %&amp;gt;% nest() %&amp;gt;% mutate(quartis = map(data, ~enframe(quantile(.x$mpg, 1:3 / 4)))) %&amp;gt;% unnest(quartis) %&amp;gt;% spread(name, value) tab</description>
+    </item>
+    
+    <item>
+      <title>Modelando a variância da normal</title>
+      <link>/2017/03/09/modelando-a-vari%C3%A2ncia-da-normal/</link>
+      <pubDate>Thu, 09 Mar 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/03/09/modelando-a-vari%C3%A2ncia-da-normal/</guid>
+      <description>Verificar as suposições dos modelos é muito importante quando fazemos inferência estatística. Em particular, a suposição de homocedasticidade1 dos modelos de regressão linear é especialmente importante, pois modifica o cálculo de erros padrão, intervalos de confiança e valores-p.  Neste post, vou mostrar três pacotes do R que ajustam modelos da forma  $$ Y\_i = \\beta\_0 + \\sum\_{k=1}^p\\beta\_kx\_{ik} + \\epsilon\_i, \\ i = 1,\\ldots,n$$   *ϵ**i* ∼ N(0, *σ**i*), *i* = 1, …, *n* independentes, com *σ**i*2 = *α**x**i*2.</description>
+    </item>
+    
+    <item>
+      <title>leaflet com markerCluster</title>
+      <link>/2017/03/01/leaflet-com-markercluster/</link>
+      <pubDate>Wed, 01 Mar 2017 20:26:00 +0000</pubDate>
+      
+      <guid>/2017/03/01/leaflet-com-markercluster/</guid>
+      <description>Por Julio 01/03/2017  O leaflet é uma biblioteca javascript para criação de mapas interativos. O pacote leaflet do R é um htmlwidget que permite gerar esses mapas de forma direta no R, para usar em documentos RMarkdown e Shiny.  Uma das ferramentas que mais gosto do leaflet é a função markerClusterOptions(), que permite agrupar pontos no mapa em conjuntos de vários pontos.  Como exemplo, utilizaremos uma base de dados que contém a localização e informações das varas da Justiça Estadual no Brasil.</description>
+    </item>
+    
+    <item>
+      <title>Top 10 pacotes para data science</title>
+      <link>/2017/02/21/top-10-pacotes-para-data-science/</link>
+      <pubDate>Tue, 21 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/02/21/top-10-pacotes-para-data-science/</guid>
+      <description>Por Athos 21/02/2017  O R mudou muito nos últimos 5 anos graças a criações de novos pacotes focados nas questões mais práticas do dia a dia de um cientista de dados. Abaixo coloquei meu top 10 de pacotes que revolucionaram o jeito de programar em R e fizeram meu trabalho mais ágil e prazeroso:  Nosso décimo lugar colocou o for em perigo de extinção. Com ele, aplicar funções em vetores, listas ou combinações dos dois é uma tarefa de poucas linhas e sem a necessidade de índices i, j, k’s confusos.</description>
+    </item>
+    
+    <item>
+      <title>O que é um gráfico estatístico?</title>
+      <link>/2017/02/20/o-que-%C3%A9-um-gr%C3%A1fico-estat%C3%ADstico/</link>
+      <pubDate>Mon, 20 Feb 2017 20:26:00 +0000</pubDate>
+      
+      <guid>/2017/02/20/o-que-%C3%A9-um-gr%C3%A1fico-estat%C3%ADstico/</guid>
+      <description>Os gráficos são técnicas de visualização de dados amplamente utilizadas em todas as áreas da pesquisa. A sua popularidade se deve à maneira como elucidam informações que estavam escondidas nas colunas do banco de dados, sendo que muitos deles podem ser compreendidos até mesmo por leigos no assunto que está sendo discutido.  Mas será que podemos definir formalmente o que é um gráfico estatístico?   Graças ao estatístico norte-americano Leland Wilkinson, a resposta é sim.</description>
+    </item>
+    
+    <item>
+      <title>Pacote ggalt</title>
+      <link>/2017/02/18/pacote-ggalt/</link>
+      <pubDate>Sat, 18 Feb 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/02/18/pacote-ggalt/</guid>
+      <description>Por Julio 18/02/2017  O pacote ggalt é uma extensão ao ggplot2 que permite fazer algumas coisas muito úteis. Uma delas é a possibilidade de fazer faixas de confiança para gráficos do tipo escada. Isso permite adicionar intervalos de confiança para modelos Kaplan-Meier, muito utilizados em Análise de Sobrevivência.  É possível instalar o pacote ggalt usando a função install.packages(): install.packages(&amp;apos;ggalt&amp;apos;)  Para exemplificar a utilização do ggalt, vamos utilizar os pacotes abaixo.</description>
+    </item>
+    
+    <item>
+      <title>Manifesto tidy</title>
+      <link>/2017/02/15/manifesto-tidy/</link>
+      <pubDate>Wed, 15 Feb 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/02/15/manifesto-tidy/</guid>
+      <description>Por Daniel 15/02/2017  O manifesto das ferramentas tidy do Hadley Wickham é um dos documentos mais importantes sobre R dos últimos tempos. Esse documento formaliza uma série de princípios que norteiam o desenvolvimento do tidyverse.  O tidyverse, também chamado por muitos de hadleyverse, é um conjunto de pacotes que, por compartilharem esses princípios do manifesto tidy, podem ser utilizados naturalmente em conjunto. Pode-se dizer que existe o R antes do tidyverse e o R depois do tidyverse.</description>
+    </item>
+    
+    <item>
+      <title>O blog do Curso R</title>
+      <link>/2017/02/15/o-blog-do-curso-r/</link>
+      <pubDate>Wed, 15 Feb 2017 11:07:31 +0000</pubDate>
+      
+      <guid>/2017/02/15/o-blog-do-curso-r/</guid>
+      <description>Por Athos , Daniel , Fernando , Julio , William 15/02/2017  Esse é o blog do Curso-R. Nós somos o Athos, Daniel, Fernando, Julio e William e seremos os autores dos posts desse blog. Aqui, vamos divulgar pequenas análises, novidades sobre o R e pequenas descobertas sobre estatística e Data Science. Sinta-se a vontade para comentar no espaço abaixo. Adoramos comentários! Também fique a vontade para compartilhar os nossos posts.</description>
+    </item>
+    
+    <item>
+      <title>mafs: Analisando a eficácia dos modelos preditivos usados no pacote</title>
+      <link>/2017/01/29/mafs-analisando-a-efic%C3%A1cia-dos-modelos-preditivos-usados-no-pacote/</link>
+      <pubDate>Sun, 29 Jan 2017 03:00:00 +0000</pubDate>
+      
+      <guid>/2017/01/29/mafs-analisando-a-efic%C3%A1cia-dos-modelos-preditivos-usados-no-pacote/</guid>
+      <description>Lancei recentemente a versão 0.0.2 do pacote mafs tanto no CRAN como no Github. Adicionei dois novos recursos:   No data frame df\_models criado, foi acrescentada uma variável referente ao tempo de execução (runtime) do modelo para a série temporal de input. Isso foi uma necessidade devido ao fato de alguns modelos levarem muito tempo para rodar. Esse dado será importante para ser levado em consideração no segundo recurso adicionado:   A função select\_forecast() agora tem um argumento chamado dont\_apply, no qual o usuário poderá inserir os modelos (em forma de vetor de caracteres) que não deverão ser usados na função para criar modelos preditivos.</description>
+    </item>
+    
+    <item>
+      <title>TCC Finalizado: </title>
+      <link>/2017/01/10/tcc-finalizado/</link>
+      <pubDate>Tue, 10 Jan 2017 03:00:00 +0000</pubDate>
+      
+      <guid>/2017/01/10/tcc-finalizado/</guid>
+      <description> Conforme comentei neste post, eu desenvolvi o pacote mafs para o desenvolvimento do meu TCC em Engenharia de Produção na Universidade Federal de Sergipe. Você pode acessar e baixar a versão finalizada do trabalho aqui.  </description>
+    </item>
+    
+    <item>
+      <title>Anunciando a criação do rbloggers-BR: Seu novo feed de artigos sobre o R</title>
+      <link>/2016/12/24/anunciando-a-cria%C3%A7%C3%A3o-do-rbloggers-br-seu-novo-feed-de-artigos-sobre-o-r/</link>
+      <pubDate>Sat, 24 Dec 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/12/24/anunciando-a-cria%C3%A7%C3%A3o-do-rbloggers-br-seu-novo-feed-de-artigos-sobre-o-r/</guid>
+      <description>É com grande orgulho que eu anuncio a concretização de um antigo projeto meu: a criação de um agregador de blogs brasileiros sobre o R, no estilo do R-Bloggers: O rbloggers-BR, um bot do twitter que a cada período de tempo posta as mais recentes publicações de blogs relacionados a linguagem R.  Atualmente, o bot não consegue funcionar em tempo real e sim a cada x horas por meio de um agendador de tarefas (como o Task Scheduler do Windows).</description>
+    </item>
+    
+    <item>
+      <title>Como usar o R para escolher um lugar para morar (2) - Análise dos dados</title>
+      <link>/2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar-2---an%C3%A1lise-dos-dados/</link>
+      <pubDate>Fri, 18 Nov 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar-2---an%C3%A1lise-dos-dados/</guid>
+      <description>No post anterior, mostramos como obter os dados de apartamentos para aluguel no Rio de Janeiro do site do OLX. Neste post, vamos analisar esses dados e ver se descobrimos algo interessante. Algumas das perguntas que podemos responder com os dados que temos são:   Quais as principais diferenças entre os apartamentos nas cidades do Rio de Janeiro e Niterói?   Quantos quartos os apartamentos têm em média?</description>
+    </item>
+    
+    <item>
+      <title>Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas</title>
+      <link>/2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%C3%A1ficas/</link>
+      <pubDate>Fri, 18 Nov 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar-3---converter-cep-em-coordenadas-geogr%C3%A1ficas/</guid>
+      <description>No primeiro e segundo post desta série, mostrei como obter dados de apartamentos para alugar a partir do site da OLX e analisá-los, mas ainda não temos a resposta definita para a pergunta que motivou esta série: Como o R pode ajudar a escolher um lugar para morar?  Uma boa ideia seria plotar os imóveis em um mapa, não? No terceiro post da série, mostrarei como fazer isso, além de como extrair os CEPs dos imóveis (novamente por web scraping) e converter os CEPs para endereços, que serão usados para obter as coordenadas geográficas dos apartamentos.</description>
+    </item>
+    
+    <item>
+      <title>Como usar o R para escolher um lugar para morar (4) - Mapa interativo</title>
+      <link>/2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar-4---mapa-interativo/</link>
+      <pubDate>Fri, 18 Nov 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar-4---mapa-interativo/</guid>
+      <description>No post anterior da série, mostrei como fazer um gráfico em um mapa a partir das coordenadas geográficas dos imóveis. Neste post, a grande sacada da série: um mapa interativo em que é possível visualizar diversas dimensões de cada um dos apartamentos, como o preço do aluguel, a proximidade em relação a um ponto de interesse, etc.  Dessa vez, vou usar o data frame que contem todos os apartamentos listados no OLX que eu não mostrei (exatamente) como obter e nem posso compartilhar em respeito ao OLX.</description>
+    </item>
+    
+    <item>
+      <title>Como usar o R para escolher um lugar para morar(1) - Web Scraping e Data Cleaning</title>
+      <link>/2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar1---web-scraping-e-data-cleaning/</link>
+      <pubDate>Fri, 18 Nov 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/11/18/como-usar-o-r-para-escolher-um-lugar-para-morar1---web-scraping-e-data-cleaning/</guid>
+      <description>Imagine-se na seguinte situação: você foi convidado a se mudar para a cidade do Rio de Janeiro a trabalho e precisa procurar um lugar para morar. Pessoas normais resolveriam esse problema pesquisando preços de apartamentos ou quartos para alugar em sites como OLX ou AirBNB. Mas como alguém fascinado em programação e análise resolveria?  Nesta série de posts, mostro como o R pode ser usado tomar a decisão sobre escolher um apartamento ou quarto para alugar.</description>
+    </item>
+    
+    <item>
+      <title>Meu primeiro pacote R: aplicação para série temporal do varejo</title>
+      <link>/2016/10/27/meu-primeiro-pacote-r-aplica%C3%A7%C3%A3o-para-s%C3%A9rie-temporal-do-varejo/</link>
+      <pubDate>Thu, 27 Oct 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/10/27/meu-primeiro-pacote-r-aplica%C3%A7%C3%A3o-para-s%C3%A9rie-temporal-do-varejo/</guid>
+      <description>Depois de um longo hiato devido à falta de tempo, o blog está de volta à ativa.  Um dos (muitos) motivos de minha ausência tem sido a elaboração do meu TCC, que é sobre previsão de demanda. Eu desenvolvi um sistema que seleciona automaticamente o melhor modelo de previsão dentre os disponíveis no pacote forecast para uma dada série temporal de acordo com a métrica de erro escolhida pelo usuário.</description>
+    </item>
+    
+    <item>
+      <title>Clusterização no R: Como segmentar países de acordo com indicadores econômicos</title>
+      <link>/2016/06/28/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-econ%C3%B4micos/</link>
+      <pubDate>Tue, 28 Jun 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/06/28/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-econ%C3%B4micos/</guid>
+      <description>Neste post, eu mostro como:   Baixar dados de indicadores macroecômicos de todos os países usando a API do World Bank;   Clusterizar países de acordo com esses indicadores usando o algoritmo k-means;   O Brasil está mais próximo de Serra Leoa e Zimbábue que dos Estados Unidos e Noruega   library(WDI)# baixar os dados do World Bank library(magrittr)library(formattable)  Importação dos dados   Felizmente, o processo de importação dos dados do World Bank é feito de maneira automatizada pelo pacote WDI usando a função WDI().</description>
+    </item>
+    
+    <item>
+      <title>Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</title>
+      <link>/2016/06/08/censo-da-educa%C3%A7%C3%A3o-superior-2-como-plotar-o-movimento-migrat%C3%B3rio-universit%C3%A1rio-no-brasil-em-um-mapa/</link>
+      <pubDate>Wed, 08 Jun 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/06/08/censo-da-educa%C3%A7%C3%A3o-superior-2-como-plotar-o-movimento-migrat%C3%B3rio-universit%C3%A1rio-no-brasil-em-um-mapa/</guid>
+      <description>No primeiro post sobre os microdados do Censo da Educação Superior, falei sobre as cidades e estados que mais atraem universitários de fora. Neste segundo post, discutirei mais a fundo este movimento migratório universitário, incluindo a elaboração de um rebusco mapa de fluxo migratório. library(stringr)library(tidyr)library(magrittr)library(dplyr)library(feather)library(maptools)library(maps)library(geosphere)library(knitr)   Para plotar em um mapa os universitários que estudam em uma cidade diferente da que nasceram, precisamos de dois tipos de dados:   Dados espaciais dos municípios brasileiros;   Um shapefile dos estados brasileiros   Dados de universitários que estudam em uma cidade diferente da que nasceram;   Dados espaciais   Para poder localizar os municípios brasileiros em um mapa, precisamos de dados sobre suas latitudes e longitudes.</description>
+    </item>
+    
+    <item>
+      <title>Meta Análise r (2): analisando pacotes r como indivíduos em uma rede social</title>
+      <link>/2016/05/30/meta-an%C3%A1lise-r-2-analisando-pacotes-r-como-indiv%C3%ADduos-em-uma-rede-social/</link>
+      <pubDate>Mon, 30 May 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/05/30/meta-an%C3%A1lise-r-2-analisando-pacotes-r-como-indiv%C3%ADduos-em-uma-rede-social/</guid>
+      <description>O objetivo deste segundo post da série sobre meta-análise de pacotes R é testar a utilização de diferentes pacotes voltados para a análise de redes sociais (SNA). Existem dezenas de opções disponíveis para se fazer esta análise e os usados neste post são:  Da Wikipedia:   As Redes Sociais consistem em estruturas que representam pessoas ou organizações (atores) e as relações entre si. A Análise de Redes Sociais perceciona as relações sociais em termos da Teoria de Redes.</description>
+    </item>
+    
+    <item>
+      <title>Meta-análise R (1): Quais são os pacotes mais baixados?</title>
+      <link>/2016/05/25/meta-an%C3%A1lise-r-1-quais-s%C3%A3o-os-pacotes-mais-baixados/</link>
+      <pubDate>Wed, 25 May 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/05/25/meta-an%C3%A1lise-r-1-quais-s%C3%A3o-os-pacotes-mais-baixados/</guid>
+      <description>Este é o primeiro post de uma nova série sobre meta-análises de pacotes R. Com o pacote miniCRAN é possível baixar logs de downloads de pacotes de R por meio do espelho (mirror) do RStudio do CRAN. Cada linha nesses logs representa um download de um pacote por um usuário.  O objetivo desta série é analisar os dados gerados por esses logs.  Para este primeiro post, é mostrado:   Como baixar os logs de downloads de pacotes do CRAN do RStudio de forma automatizada com o pacote miniCRAN;   Como selecionar os pacotes R mais populares pelo Princípio de Pareto;   Os 20 pacotes mais populares;   Um grafo de redes criado a partir dos pacotes mais populares filtrados e suas dependências.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
+      
+      <guid>/about/</guid>
+      <description>This is a &amp;ldquo;hello world&amp;rdquo; example website for the blogdown package. The theme was forked from @jrutheiser/hugo-lithium-theme and modified by Yihui Xie.</description>
+    </item>
+    
+    <item>
+      <title>Transparência (7): Os famosos Cargos Comissionados</title>
+      <link>/2016/02/03/transpar%C3%AAncia-7-os-famosos-cargos-comissionados/</link>
+      <pubDate>Wed, 03 Feb 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/02/03/transpar%C3%AAncia-7-os-famosos-cargos-comissionados/</guid>
+      <description>No quarto post da minha série sobre dados do Portal da Transparência, eu introduzi um tema interessante a ser olhado a fundo: os servidores cujo vínculo com o Estado é descrito como cargo comissionado. Vimos que, no Ceará, o salário médio de um servidor é muito alto. E nos outros estados? library(ggplot2)library(dplyr)library(ggthemes)library(ggrepel)library(reshape2)df&amp;lt;-read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;,stringsAsFactors=FALSE,fileEncoding=&amp;quot;ISO-8859-15&amp;quot;)cor1&amp;lt;-&amp;quot;#C10534&amp;quot;#cordasbarras   Para começar, quais são os 10 tipos de vínculo mais comuns? df%&amp;gt;%group_by(SITUACAO_VINCULO)%&amp;gt;%summarise(servidores=n())%&amp;gt;%arrange(desc(servidores))%&amp;gt;%top_n(10)  ## Source: local data frame [10 x 2] ## ## SITUACAO_VINCULO servidores ## (chr) (int) ## 1 ATIVO PERMANENTE 461963 ## 2 CONTRATO TEMPORARIO 11946 ## 3 CONT.</description>
+    </item>
+    
+    <item>
+      <title>Transparência (6): Quem são os 1% do funcionalismo público?</title>
+      <link>/2016/01/24/transpar%C3%AAncia-6-quem-s%C3%A3o-os-1-do-funcionalismo-p%C3%BAblico/</link>
+      <pubDate>Sun, 24 Jan 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/01/24/transpar%C3%AAncia-6-quem-s%C3%A3o-os-1-do-funcionalismo-p%C3%BAblico/</guid>
+      <description>Para quem não entendeu a referência. library(ggplot2)library(dplyr)library(reshape2)library(lubridate)library(htmlTable)df&amp;lt;-read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;,stringsAsFactors=FALSE,fileEncoding=&amp;quot;ISO-8859-15&amp;quot;)   Você já teve curiosidade em saber quem são os funcionários públicos mais ricos do Brasil? O sexto post da série de artigos sobre dados do Portal da Transparência será dedicado a eles.  Primeiramente, quantos servidores compõem o 1%? paste0(&amp;quot;O n&amp;#xFA;mero total de servidores &amp;#xE9;: &amp;quot;,nrow(df))  ## [1] &amp;quot;O n&amp;#xFA;mero total de servidores &amp;#xE9;: 518270&amp;quot;  print(&amp;quot;\n&amp;quot;)  ## [1] &amp;quot;\n&amp;quot;  paste0(&amp;quot;A quantidade de servidores do 1% &amp;#xE9;: &amp;quot;,round(nrow(df)*0.</description>
+    </item>
+    
+    <item>
+      <title>Transparência (5): Trabalhando com datas</title>
+      <link>/2016/01/18/transpar%C3%AAncia-5-trabalhando-com-datas/</link>
+      <pubDate>Mon, 18 Jan 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/01/18/transpar%C3%AAncia-5-trabalhando-com-datas/</guid>
+      <description>O dataset do Portal da Transparência traz três colunas relacionadas com datas: DATA\_INGRESSO\_CARGOFUNCAO, DATA\_INGRESSO\_ORGAO e DATA\_DIPLOMA\_INGRESSO\_SERVICOPUBLICO, as quais geram umas análises curiosas, principalmente se relacionadas com a variável salário. library(treemap)library(dplyr)library(ggplot2)library(ggrepel)library(ggthemes)library(lubridate)df&amp;lt;-read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;,stringsAsFactors=FALSE,fileEncoding=&amp;quot;ISO-8859-15&amp;quot;)   Primeiro, as datas vêm neste formato: df%&amp;gt;%select(DATA_INGRESSO_CARGOFUNCAO,DATA_INGRESSO_ORGAO,DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO)%&amp;gt;%head()  ## DATA_INGRESSO_CARGOFUNCAO DATA_INGRESSO_ORGAO ## 1 01/07/2006 01/01/1984 ## 2 22/10/2014 20/10/2014 ## 3 &amp;lt;NA&amp;gt; 01/08/2015 ## 4 30/11/2014 03/09/2014 ## 5 19/05/2010 19/05/2010 ## 6 02/02/2009 30/12/2008 ## DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO ## 1 01/06/1984 ## 2 17/02/2010 ## 3 01/08/2015 ## 4 28/06/2006 ## 5 19/05/2010 ## 6 30/12/2008   O R, nativamente, não reconhece este formato como data e sim como texto.</description>
+    </item>
+    
+    <item>
+      <title>Transparência(4): Análise de salários usando Treemaps</title>
+      <link>/2016/01/17/transpar%C3%AAncia4-an%C3%A1lise-de-sal%C3%A1rios-usando-treemaps/</link>
+      <pubDate>Sun, 17 Jan 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/01/17/transpar%C3%AAncia4-an%C3%A1lise-de-sal%C3%A1rios-usando-treemaps/</guid>
+      <description>library(treemap)library(dplyr)library(ggplot2)library(ggrepel)library(ggthemes)df&amp;lt;-read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;,stringsAsFactors=FALSE,fileEncoding=&amp;quot;ISO-8859-15&amp;quot;)   Para este post, continuaremos analisando os salários dos servidores federais, mas agora usando uma visualização chamada Treemap ou Mapa de árvores.  Por exemplo, o gráfico abaixo compara diferentes órgãos públicos de acordo com a quantidade de servidores e o salário médio dos mesmos. aggSetor&amp;lt;-df%&amp;gt;%group_by(ORG_LOTACAO)%&amp;gt;%summarise(quantidade=n(),salarioMedio=median(SALARIO))aggSetor$escala&amp;lt;-scale(aggSetor$salarioMedio)#necess&amp;#xE1;rio para criar valores negativos para deixar as disparidades mais evidentes x&amp;lt;-treemap(aggSetor,index=&amp;quot;ORG_LOTACAO&amp;quot;,vSize=&amp;quot;quantidade&amp;quot;,vColor=&amp;quot;escala&amp;quot;,type=&amp;quot;value&amp;quot;,palette=&amp;quot;-RdGy&amp;quot;,lowerbound.cex.labels=0.3,title=&amp;quot;Treemap dos sal&amp;#xE1;rios dos &amp;#xF3;rg&amp;#xE3;os federais brasileiros&amp;quot;)    Interpretação: Com o gráfico acima, aprendemos que:   O Ministério da Saúde tem muitos servidores mas salários muito baixos.</description>
+    </item>
+    
+    <item>
+      <title>Transparência (3): Em quais estados os salários são mais mal distribuídos?</title>
+      <link>/2016/01/11/transpar%C3%AAncia-3-em-quais-estados-os-sal%C3%A1rios-s%C3%A3o-mais-mal-distribu%C3%ADdos/</link>
+      <pubDate>Mon, 11 Jan 2016 03:00:00 +0000</pubDate>
+      
+      <guid>/2016/01/11/transpar%C3%AAncia-3-em-quais-estados-os-sal%C3%A1rios-s%C3%A3o-mais-mal-distribu%C3%ADdos/</guid>
+      <description>library(ggplot)  ## Error in library(ggplot): there is no package called &amp;apos;ggplot&amp;apos;  library(ggrepel)library(ggthemes)library(dplyr)   Este post funciona como um adendo ao anterior, portanto recomendo o ler antes de prosseguir com a leitura.  Assim que eu publiquei o último post, percebi que perdi a oportunidade de analisar o quão diferente são as distribuições dos salários nos estados brasileiros e não só nas regiões. Voltando ao nosso dataset, que dessa vez carrego apenas as colunas de salários e UFs: df&amp;lt;-read.</description>
+    </item>
+    
+  </channel>
+</rss>

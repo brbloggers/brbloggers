@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="theme-color" content="#263238">
+
+<meta name="generator" content="Hugo 0.21" />
+
+<link rel="apple-touch-icon" href="../../../../images/logo.png">
+
+
+<link rel="canonical" href="../../../../2016/01/18/transpar%C3%AAncia-5-trabalhando-com-datas/">
+
+
+    
+    <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+    
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Transparência (5): Trabalhando com datas - A Hugo website</title>
+    
+
+<meta name="description" content="O dataset do Portal da Transparência traz três colunas relacionadas com datas: DATA\_INGRESSO\_CARGOFUNCAO, DATA\_INGRESSO\_ORGAO e DATA\_DIPLOMA\_INGRESSO\_SERVICOPUBLICO, as quais geram umas análises curiosas, principalmente se relacionadas com a variável salário. library(treemap)library(dplyr)library(ggplot2)library(ggrepel)library(ggthemes)library(lubridate)df&amp;lt;-read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;,stringsAsFactors=FALSE,fileEncoding=&amp;quot;ISO-8859-15&amp;quot;)   Primeiro, as datas vêm neste formato: df%&amp;gt;%select(DATA_INGRESSO_CARGOFUNCAO,DATA_INGRESSO_ORGAO,DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO)%&amp;gt;%head()  ## DATA_INGRESSO_CARGOFUNCAO DATA_INGRESSO_ORGAO ## 1 01/07/2006 01/01/1984 ## 2 22/10/2014 20/10/2014 ## 3 &amp;lt;NA&amp;gt; 01/08/2015 ## 4 30/11/2014 03/09/2014 ## 5 19/05/2010 19/05/2010 ## 6 02/02/2009 30/12/2008 ## DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO ## 1 01/06/1984 ## 2 17/02/2010 ## 3 01/08/2015 ## 4 28/06/2006 ## 5 19/05/2010 ## 6 30/12/2008   O R, nativamente, não reconhece este formato como data e sim como texto.">
+
+<meta property="og:title" content="Transparência (5): Trabalhando com datas - A Hugo website">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/2016/01/18/transpar%C3%AAncia-5-trabalhando-com-datas/">
+<meta property="og:image" content="/images/default.png">
+<meta property="og:site_name" content="A Hugo website">
+<meta property="og:description" content="O dataset do Portal da Transparência traz três colunas relacionadas com datas: DATA\_INGRESSO\_CARGOFUNCAO, DATA\_INGRESSO\_ORGAO e DATA\_DIPLOMA\_INGRESSO\_SERVICOPUBLICO, as quais geram umas análises curiosas, principalmente se relacionadas com a variável salário. library(treemap)library(dplyr)library(ggplot2)library(ggrepel)library(ggthemes)library(lubridate)df&amp;lt;-read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;,stringsAsFactors=FALSE,fileEncoding=&amp;quot;ISO-8859-15&amp;quot;)   Primeiro, as datas vêm neste formato: df%&amp;gt;%select(DATA_INGRESSO_CARGOFUNCAO,DATA_INGRESSO_ORGAO,DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO)%&amp;gt;%head()  ## DATA_INGRESSO_CARGOFUNCAO DATA_INGRESSO_ORGAO ## 1 01/07/2006 01/01/1984 ## 2 22/10/2014 20/10/2014 ## 3 &amp;lt;NA&amp;gt; 01/08/2015 ## 4 30/11/2014 03/09/2014 ## 5 19/05/2010 19/05/2010 ## 6 02/02/2009 30/12/2008 ## DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO ## 1 01/06/1984 ## 2 17/02/2010 ## 3 01/08/2015 ## 4 28/06/2006 ## 5 19/05/2010 ## 6 30/12/2008   O R, nativamente, não reconhece este formato como data e sim como texto.">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="A Hugo website">
+<meta name="twitter:url" content="/2016/01/18/transpar%C3%AAncia-5-trabalhando-com-datas/">
+<meta name="twitter:title" content="Transparência (5): Trabalhando com datas - A Hugo website">
+<meta name="twitter:description" content="O dataset do Portal da Transparência traz três colunas relacionadas com datas: DATA\_INGRESSO\_CARGOFUNCAO, DATA\_INGRESSO\_ORGAO e DATA\_DIPLOMA\_INGRESSO\_SERVICOPUBLICO, as quais geram umas análises curiosas, principalmente se relacionadas com a variável salário. library(treemap)library(dplyr)library(ggplot2)library(ggrepel)library(ggthemes)library(lubridate)df&amp;lt;-read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;,stringsAsFactors=FALSE,fileEncoding=&amp;quot;ISO-8859-15&amp;quot;)   Primeiro, as datas vêm neste formato: df%&amp;gt;%select(DATA_INGRESSO_CARGOFUNCAO,DATA_INGRESSO_ORGAO,DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO)%&amp;gt;%head()  ## DATA_INGRESSO_CARGOFUNCAO DATA_INGRESSO_ORGAO ## 1 01/07/2006 01/01/1984 ## 2 22/10/2014 20/10/2014 ## 3 &amp;lt;NA&amp;gt; 01/08/2015 ## 4 30/11/2014 03/09/2014 ## 5 19/05/2010 19/05/2010 ## 6 02/02/2009 30/12/2008 ## DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO ## 1 01/06/1984 ## 2 17/02/2010 ## 3 01/08/2015 ## 4 28/06/2006 ## 5 19/05/2010 ## 6 30/12/2008   O R, nativamente, não reconhece este formato como data e sim como texto.">
+<meta name="twitter:image" content="/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"/"
+    },
+    "headline": "Transparência (5): Trabalhando com datas - A Hugo website",
+    "image": {
+      "@type": "ImageObject",
+      "url": "/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2016-01-18T03:00:00JST",
+    "dateModified": "2016-01-18T03:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "A Hugo website"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "A Hugo website",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "O dataset do Portal da Transparência traz três colunas relacionadas com datas: DATA\_INGRESSO\_CARGOFUNCAO, DATA\_INGRESSO\_ORGAO e DATA\_DIPLOMA\_INGRESSO\_SERVICOPUBLICO, as quais geram umas análises curiosas, principalmente se relacionadas com a variável salário. library(treemap)library(dplyr)library(ggplot2)library(ggrepel)library(ggthemes)library(lubridate)df&lt;-read.csv2(&quot;/home/sillas/R/data/transparenciaComSalarios.csv&quot;,stringsAsFactors=FALSE,fileEncoding=&quot;ISO-8859-15&quot;)   Primeiro, as datas vêm neste formato: df%&gt;%select(DATA_INGRESSO_CARGOFUNCAO,DATA_INGRESSO_ORGAO,DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO)%&gt;%head()  ## DATA_INGRESSO_CARGOFUNCAO DATA_INGRESSO_ORGAO ## 1 01/07/2006 01/01/1984 ## 2 22/10/2014 20/10/2014 ## 3 &lt;NA&gt; 01/08/2015 ## 4 30/11/2014 03/09/2014 ## 5 19/05/2010 19/05/2010 ## 6 02/02/2009 30/12/2008 ## DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO ## 1 01/06/1984 ## 2 17/02/2010 ## 3 01/08/2015 ## 4 28/06/2006 ## 5 19/05/2010 ## 6 30/12/2008   O R, nativamente, não reconhece este formato como data e sim como texto."
+  }
+</script>
+
+
+    <style>
+      html { font-size: 18px; background-color: rgba(236,239,241,.5);}@media (max-width: 768px) { html { font-size: 15px; }}body { color: #333; font-family: 'Roboto Slab','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',メイリオ,Meiryo,sans-serif; font-feature-settings : "palt"; font-size: inherit; line-height: 1rem; margin: 0; padding: 0;}h1, h2, h3, h4, h5 ,h6 { font-size: 1rem; font-weight: 700; line-height: 1rem; margin: 0;}hr { border: 0; border-top: 1px dashed #cfd8dc; margin: 1rem 0;}p { margin: 0; line-height: 1rem;}a { color: #2196f3; text-decoration: none; transition-duration: .3s;}ul, ol { margin: 0; padding: 0;}table { border-collapse: collapse;}th, td { font-size: .8rem; padding: .5rem;}tr { border-bottom: 1px dashed #ddd;}/* Layouts */main,aside { display: block;}main { padding: 1rem 0 3rem 0; }aside.h { padding: 3rem 0; }main.f,aside.f { background-color: #333; border-top: 2px dashed #fff; border-bottom: 2px dashed #fff;}.l-container { position: relative; max-width: 68rem; margin: 0 auto; padding: 0 1rem;}.l-container.thin { max-width: 44rem;}.l-header { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); padding: 1rem 0; text-align: center;}.l-footer { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); font-size: .6rem; font-weight: 700; padding: 1rem 0;}@media (max-width: 768px) { .l-sidebar { margin-top: 4rem; }}.mrow { margin: 0 -1rem; overflow: hidden;}.mcol { box-sizing: border-box; float: left; padding: 0 1rem;}.c6 { width: 50%; }.c4 { width: 33.26323833%; }.c8 { width: 66.66666%; }@media (max-width: 768px) { .mcol { width: 100%; float: none; }}.logo a { font-size: 1.4rem; line-height: 1.5rem; font-weight: 700; color: #333;}.articles { margin: -1rem 0; margin-bottom: 1rem;}.articles.sm { margin: -.5rem 0; margin-bottom: 0;}article { border-radius: 4px; overflow: hidden;}article.li { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); height: 20rem; overflow: hidden; margin: 1rem 0;}article.li > a { display: block; color: #333;}article.li .inner { padding: 1rem;}article.li .thumb { height: 8rem;}article.li .title { color: #333; font-size: 1.2rem; line-height: 1.5rem; margin-bottom: .5rem;}article.li .summary { font-size: .8rem; height: 6rem; overflow: hidden; margin-top: 1rem;}article.lism { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); margin: .5rem 0;}article.lism::after { content: ''; display: block; clear: both;}article.lism > a { display: block; color: #333;}article.lism .inner { display: table-cell; vertical-align: middle; height: 5rem; padding-left: .5rem;}article.lism .thumb { width: 5rem; height: 5rem; float: left;}article.lism .title { font-weight: 700; line-height: 1.25rem; margin-bottom: .25rem;}article.sn { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); margin-bottom: 1rem;}article.sn .thumb { height: 20rem;}@media (max-width: 768px) { article.sn .thumb { height: 10rem; }}article.sn > .article-header,article.sn > .article-body,article.sn .article-footer { padding: 2rem;}article.sn > .article-body { padding: 0 2rem;}@media (max-width: 768px) { article.sn > .article-header, article.sn > .article-body, article.sn .article-footer { padding: 1rem; } article.sn > .article-body { padding: 0 1rem; }}article.sn > .article-header .title { font-size: 1.8rem; line-height: 2rem; margin-bottom: .5rem;}@media (max-width: 768px) { article.sn > .article-header .title { font-size: 1.4rem; line-height: 1.5rem; }}article.sn > .article-header .facts { margin-bottom: 1rem;}article.sn > .article-body { margin-bottom: 1.5rem;}article.sn > .article-body h2 { border-bottom: .25rem solid #333; font-size: 1.2rem; line-height: 1.5rem; margin: 1.5rem 0; padding: .5rem 0;}article.sn > .article-body h3 { border-left: .5rem solid #333; line-height: 1.5rem; margin: 1.5rem 0; padding: .125rem .5rem;}article.sn > .article-body ul,article.sn > .article-body ol { margin: 1.5rem 0; padding-left: 1.5rem;}article.sn > .article-body li { padding-bottom: .5rem; line-height: 1.5rem;}article.sn > .article-body li:last-child { padding-bottom: 0;}article.sn > .article-body p { margin: 1rem 0; line-height: 1.5rem;}article.sn > .article-body strong,article.sn > .article-body em { font-style: normal; font-weight: 700;}article.sn > .article-body strong { box-shadow: 0 -.5rem 0 0 #ffc107 inset;}article.sn > .article-body em { color: #8bc34a;}article.sn > .article-body code,article.sn > .article-body pre { font-family: Menlo, Consolas, monospace; font-size: .7rem;}article.sn > .article-body pre { background-color: #333; color: #fff; line-height: 1rem; margin: 1.5rem -2rem; overflow: auto;}@media (max-width: 768px) { article.sn > .article-body pre { margin: 1.5rem -1rem; }}article.sn > .article-body pre > code { display: block; padding: 1rem 2rem;}@media (max-width: 768px) { article.sn > .article-body pre > code { padding: 1rem; }}article.sn > .article-body p code { background-color: #eceff1; color: #333; border-radius: 4px; margin: 0 .25rem; padding: .375rem; white-space: nowrap;}article.sn > .article-body blockquote { position: relative; border-left: .25rem solid #333; font-size: .8rem; padding: .125rem 1rem; margin: 1.5rem 0;}@media (max-width: 768px) { article.sn > .article-body blockquote { font-size: 1rem; }}article.sn > .article-body blockquote p { margin: .5rem 0; line-height: 1rem;}article.sn > .article-body figure { margin: 1.5rem 0;}article.sn > .article-body figure img,article.sn > .article-body figure amp-img { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); max-width: 100%;}article.sn > .article-body figcaption { color: #cfd8dc; font-size: .8rem; font-weight: 700; margin-top: .5rem;}.facts li { display: inline; font-size: .8rem; margin-right: 1rem;}.facts i { color: #cfd8dc; margin-right: .5em;}.facts.sm li { font-size: .7rem;}.sections.sidebar { margin: -1rem 0;}.sections.footer { margin: -1rem 0;}section.sidebar { margin: 2rem 0;}section.sidebar > header { font-size: .8rem; font-weight: 700; letter-spacing: 4px; text-align: center; margin: 1.5rem 0;}section.footer { margin: 1rem 0;}section.footer > header { font-size: .8rem; margin: .5rem 0;}section.footer > header::before { content: "- ";}section.footer > header a { font-weight: 700; color: #333; text-decoration: underline;}.terms { margin: -.25rem;}.terms li { display: inline-block;}.terms a { display: block; float: left; background-color: #333; border-radius: 4px; color: #fff; font-size: .7rem; margin: .25rem; padding: 0 .75rem; line-height: 1.75rem;}.paging { text-align: center; padding: 1rem 0;}.paging a { display: inline-block; background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); border-radius: 4px; color: #333; padding: 0 1rem; line-height: 3rem;}.page-title { text-align: center; margin: 1rem 0;}.page-title::after { content: ''; display: block; border-bottom: .25rem solid #333; width: 3rem; margin: 1.5rem auto;}.page-title > .title { font-size: 1.2rem; line-height: 1.5rem;}/* Parts:breadcrumb */.crumb ol { text-overflow: ellipsis; color: #cfd8dc; white-space: nowrap; overflow: hidden;}.crumb li { display: inline; font-size: .8rem;}.crumb li::after { content: '›'; margin: 0 .25rem 0 .5rem;}.crumb li:last-child::after { content: '';}.crumb a { color: #cfd8dc;}.crumb i { margin-right: .5em;}.share { padding: 0;}.share a { display: inline-block; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); min-width: 1rem; height: 2rem; border-radius: 4px; color: #333; font-size: .8rem; font-weight: 700; line-height: 2rem; text-align: center; padding: 0 .5rem;}.adj article.lism { margin-bottom: 1rem;}.adj header { font-weight: 700; font-size: .8rem;}.toc { padding: 0 2rem;}@media (max-width: 768px) { .toc { padding: 0 1rem; }}.toc { margin: 1rem 0;}.toc nav>ul { background-color: #eceff1; border-radius: 4px; display: inline-block; font-size: .8rem; padding: .5rem 1rem; word-break: break-all; list-style: none;}.toc ul { padding: 0;}.toc ul ul { padding-left: 1rem;}.toc ul ul ul { padding-left: 1rem;}.toc li { color: #90a4ae;}.toc ul ul>li { font-weight: 700; margin: .5rem 0; list-style-type: decimal;}.toc ul ul ul>li { list-style-type: disc; font-weight: 500;}.thumb { background-image: url(/images/default.jpg); background-size: cover;}
+      
+      
+    </style>
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <div class="l-container">
+        <div class="logo">
+          <a href="../../../../">A Hugo website</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="l-container">
+        
+<div class="mrow">
+  <div class="mcol c8">
+
+    <article class="sn">
+
+  <div class="thumb thumb-95e05ab3aab73e60decacadf6615d624"></div>
+
+  <header class="article-header">
+    <h1 class="title">Transparência (5): Trabalhando com datas</h1>
+
+    <ul class="facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2016-01-18T03:00:00JST">Jan 18, 2016</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="../../../../post/">POST</a></li>
+      
+    </ul>
+
+    <aside class="share">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=%2f2016%2f01%2f18%2ftranspar%25C3%25AAncia-5-trabalhando-com-datas%2f&title=Transpar%c3%aancia%20%285%29%3a%20Trabalhando%20com%20datas" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=%2f2016%2f01%2f18%2ftranspar%25C3%25AAncia-5-trabalhando-com-datas%2f&text=Transpar%c3%aancia%20%285%29%3a%20Trabalhando%20com%20datas&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=%2f2016%2f01%2f18%2ftranspar%25C3%25AAncia-5-trabalhando-com-datas%2f&t=Transpar%c3%aancia%20%285%29%3a%20Trabalhando%20com%20datas" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=%2f2016%2f01%2f18%2ftranspar%25C3%25AAncia-5-trabalhando-com-datas%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=%2f2016%2f01%2f18%2ftranspar%25C3%25AAncia-5-trabalhando-com-datas%2f&title=Transpar%c3%aancia%20%285%29%3a%20Trabalhando%20com%20datas" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?Transpar%c3%aancia%20%285%29%3a%20Trabalhando%20com%20datas %2f2016%2f01%2f18%2ftranspar%25C3%25AAncia-5-trabalhando-com-datas%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+</aside>
+
+  </header>
+
+  
+
+  <div class="article-body"><article class="blog-post">
+<p>
+O dataset do Portal da Transparência traz três colunas relacionadas com
+datas: <em>DATA\_INGRESSO\_CARGOFUNCAO</em>,
+<em>DATA\_INGRESSO\_ORGAO</em> e
+<em>DATA\_DIPLOMA\_INGRESSO\_SERVICOPUBLICO</em>, as quais geram umas
+análises curiosas, principalmente se relacionadas com a variável
+salário.
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">library</span><span class="p">(</span><span class="n">treemap</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggrepel</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggthemes</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">lubridate</span><span class="p">)</span><span class="w">
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv2</span><span class="p">(</span><span class="s2">&quot;/home/sillas/R/data/transparenciaComSalarios.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">fileEncoding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ISO-8859-15&quot;</span><span class="p">)</span></code></pre>
+</figure>
+<p>
+Primeiro, as datas vêm neste formato:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">DATA_INGRESSO_CARGOFUNCAO</span><span class="p">,</span><span class="w"> </span><span class="n">DATA_INGRESSO_ORGAO</span><span class="p">,</span><span class="w"> </span><span class="n">DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span><span class="p">()</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text">## DATA_INGRESSO_CARGOFUNCAO DATA_INGRESSO_ORGAO
+## 1 01/07/2006 01/01/1984
+## 2 22/10/2014 20/10/2014
+## 3 &lt;NA&gt; 01/08/2015
+## 4 30/11/2014 03/09/2014
+## 5 19/05/2010 19/05/2010
+## 6 02/02/2009 30/12/2008
+## DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO
+## 1 01/06/1984
+## 2 17/02/2010
+## 3 01/08/2015
+## 4 28/06/2006
+## 5 19/05/2010
+## 6 30/12/2008</code></pre>
+</figure>
+<p>
+O R, nativamente, não reconhece este formato como data e sim como texto.
+O formato de datas que o R aceita é o americano, YYYYMMDD. Felizmente, o
+package <em>lubridate</em> torna muito fácil converter as datas:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">dataCargo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dmy</span><span class="p">(</span><span class="n">DATA_INGRESSO_CARGOFUNCAO</span><span class="p">),</span><span class="w"> </span><span class="n">dataOrgao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dmy</span><span class="p">(</span><span class="n">DATA_INGRESSO_ORGAO</span><span class="p">),</span><span class="w"> </span><span class="n">dataServico</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dmy</span><span class="p">(</span><span class="n">DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO</span><span class="p">))</span></code></pre>
+</figure>
+<p>
+Essas três variáveis nos dão o dia em que os servidores começaram a
+trabalhar. Para termos a quantidade de tempo que se passou desde então,
+criei duas funções que fazem esse cálculo:
+</p>
+<figure class="highlight">
+<pre><code class="language-r"><span class="n">CalcMeses</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">t</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="o">=</span><span class="n">today</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">interval</span><span class="p">(</span><span class="n">t</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.period</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">year</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="m">12</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">month</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="n">CalcAnos</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">t</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="o">=</span><span class="n">today</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">interval</span><span class="p">(</span><span class="n">t</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.period</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ceiling</span><span class="p">(</span><span class="n">year</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">month</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="nf">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">meses.no.cargo</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">CalcMeses</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">dataCargo</span><span class="p">)</span><span class="w">
+</span><span class="n">df</span><span class="o">$</span><span class="n">meses.no.orgao</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">CalcMeses</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">dataOrgao</span><span class="p">)</span><span class="w">
+</span><span class="n">df</span><span class="o">$</span><span class="n">meses.como.servidor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">CalcMeses</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">dataServico</span><span class="p">)</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">anos.no.cargo</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">CalcAnos</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">dataCargo</span><span class="p">)</span><span class="w">
+</span><span class="n">df</span><span class="o">$</span><span class="n">anos.no.orgao</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">CalcAnos</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">dataOrgao</span><span class="p">)</span><span class="w">
+</span><span class="n">df</span><span class="o">$</span><span class="n">anos.como.servidor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">CalcAnos</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">dataServico</span><span class="p">)</span></code></pre>
+</figure>
+<p>
+Agora podemos começar a fazer algumas perguntas aos nossos dados:
+</p>
+<h3 id="1-qual-o-tempo-m&#xE9;dio-em-meses-dos-servidores-no-brasil">
+1.  Qual o tempo médio (em meses) dos servidores no Brasil?
+    </h3>
+    <figure class="highlight">
+    <pre><code class="language-r"><span class="n">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">anos.como.servidor</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">binwidth</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">anos.como.servidor</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="o">=</span><span class="nb">T</span><span class="p">)</span><span class="m">+1</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="o">=</span><span class="m">5</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Tempo em que os servidores federais est&#xE3;o trabalhando no Estado&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Tempo no servi&#xE7;o p&#xFA;blico em anos&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;N&#xFA;mero de servidores&quot;</span><span class="p">)</span></code></pre>
+    </figure>
+    <p>
+    <img src="http://sillasgonzaga.github.io/figs/transparenciaParte5/unnamed-chunk-4-1.png" alt="center">
+    </p>
+    <p>
+    <strong>Observações</strong>:
+    </p>
+    <ul>
+    <li>
+    A maioria dos servidores tomou posse há 3 anos.
+    </li>
+    <li>
+    Existe um número absurdamente grande de servidores com mais de 30
+    anos no serviço público. Na verdade, é mais comum encontrar um
+    servidor que tenha mais de 30 anos de serviço do que entre 15 a 25.
+    </li>
+    <li>
+    Existem alguns outliers que têm mais de 55 anos que causaram a
+    distorção do histograma.
+    </li>
+    </ul>
+    <p>
+    Separado por região e excluindo os outliers:
+    </p>
+    <figure class="highlight">
+    <pre><code class="language-r"><span class="n">escala</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">anos.como.servidor</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="o">=</span><span class="nb">T</span><span class="p">)</span><span class="m">+1</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="o">=</span><span class="m">5</span><span class="p">))</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">anos.como.servidor</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">50</span><span class="p">),</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">anos.como.servidor</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">binwidth</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">escala</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">facet_grid</span><span class="p">(</span><span class="n">REGIAO</span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="o">=</span><span class="s2">&quot;free&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Tempo em que os servidores federais est&#xE3;o trabalhando no Estado&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Tempo no servi&#xE7;o p&#xFA;blico em anos&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;N&#xFA;mero de servidores&quot;</span><span class="p">)</span></code></pre>
+    </figure>
+    <p>
+    <img src="http://sillasgonzaga.github.io/figs/transparenciaParte5/unnamed-chunk-5-1.png" alt="center">
+    </p>
+    <p>
+    Fica muito fácil detectar a anomalia nos dados: o número de
+    servidores que são funcionários do governo há mais de 35 anos na
+    região Norte é assustador. São mais de 6000, muito mais do que em
+    qualquer região. Na verdade, essa é a faixa de idade com mais
+    pessoas dessa região.
+    </p>
+    <p>
+    Separado por região, mas mostrado por boxplots:
+    </p>
+    <figure class="highlight">
+    <pre><code class="language-r"><span class="c1">#Boxplot
+    # Regi&#xF5;es
+    </span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">REGIAO</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">anos.como.servidor</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">REGIAO</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_boxplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set1&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">guides</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="n">escala</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Distribui&#xE7;&#xE3;o do tempo no servi&#xE7;o p&#xFA;blico de acordo com a regi&#xE3;o&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Regi&#xE3;o&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Anos como servidor&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theme_bw</span><span class="p">()</span></code></pre>
+    </figure>
+    <p>
+    <img src="http://sillasgonzaga.github.io/figs/transparenciaParte5/unnamed-chunk-6-1.png" alt="center">
+    </p>
+    <p>
+    Depois do gráfico acima, acredito que não restam mais dúvidas que o
+    Boxplot é uma ferramenta muito superior ao histograma quando o
+    objetivo é comparar a distribuição de uma mesma variável numérica de
+    acordo com outra variável categórica. Aqui, é muito mais fácil
+    detectar que existe algo muito estranho no Norte: Os servidores de
+    lá têm, em média, 25 anos de serviço público. A diferença para as
+    outras regiões é colossal.
+    </p>
+    <p>
+    As diferenças ficam ainda mais gritantes quando se faz a
+    estratificação por estado. A linha verde horizontal representa a
+    mediana geral do tempo em que as pessoas do dataset estão
+    trabalhando para o governo:
+    </p>
+    <figure class="highlight">
+    <pre><code class="language-r"><span class="c1">#: Agrupar estados por regi&#xE3;o
+    </span><span class="w"> </span><span class="c1">#Vetor de cores:
+    </span><span class="n">coresEstados</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="w"> </span><span class="c1">#Norte
+    </span><span class="w"> </span><span class="s2">&quot;AM&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#8dd3c7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;AP&quot;</span><span class="o">=</span><span class="s2">&quot;#ffffb3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;AC&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#bebada&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PA&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#fb8072&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;RO&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#80b1d3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;RR&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#fdb462&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">#Nordeste
+    </span><span class="w"> </span><span class="s2">&quot;AL&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#8dd3c7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;BA&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#ffffb3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;CE&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#bebada&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;MA&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#fb8072&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PB&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#80b1d3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PE&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#fdb462&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PI&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#b3de69&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;RN&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#fccde5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;SE&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#d9d9d9&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;TO&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#bc80bd&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">#CO
+    </span><span class="w"> </span><span class="s2">&quot;DF&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#8dd3c7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;GO&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#ffffb3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;MS&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#bebada&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;MT&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#fb8072&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">#SUDESTE
+    </span><span class="w"> </span><span class="s2">&quot;SP&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#8dd3c7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;RJ&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#ffffb3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ES&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#bebada&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;MG&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#fb8072&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">#SUL
+    </span><span class="w"> </span><span class="s2">&quot;PR&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#b3de69&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;SC&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#fccde5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;RS&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#d9d9d9&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">UF_EXERCICIO</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">anos.como.servidor</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">UF_EXERCICIO</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_boxplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">facet_grid</span><span class="p">(</span><span class="n">.</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">REGIAO</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="o">=</span><span class="s2">&quot;free&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="n">escala</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Tempo m&#xE9;dio dos servidores no\n funcionalismo p&#xFA;blico por estado&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Estado&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;Tempo como servidor em anos&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="w"> </span><span class="n">coresEstados</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">guides</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">median</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">anos.como.servidor</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;green&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">45</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theme_bw</span><span class="p">()</span></code></pre>
+    </figure>
+    <p>
+    <img src="http://sillasgonzaga.github.io/figs/transparenciaParte5/unnamed-chunk-7-1.png" alt="center">
+    </p>
+    <p>
+    <strong>Parem e percebam o quão absurda é a situação em
+    Amapá</strong>, que merece dois comentários a parte:
+    </p>
+    <ul>
+    <li>
+    A mediana é igual a cerca de 37 anos. Na verdade, a distribuição é
+    tão bagunçada que a mediana deixa de fazer sentido aqui
+    nesse contexto.
+    </li>
+    <li>
+    Os servidores com menos de 11 anos, que é a mediana geral, são
+    considerados anomalia no estado.
+    </li>
+    <li>
+    Em comparação, Tocantins parece ser uma situação oposta ao estado
+    do Norte.
+    </li>
+    </ul>
+    </article>
+</div>
+
+  <footer class="article-footer">
+
+    <aside class="share">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=%2f2016%2f01%2f18%2ftranspar%25C3%25AAncia-5-trabalhando-com-datas%2f&title=Transpar%c3%aancia%20%285%29%3a%20Trabalhando%20com%20datas" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=%2f2016%2f01%2f18%2ftranspar%25C3%25AAncia-5-trabalhando-com-datas%2f&text=Transpar%c3%aancia%20%285%29%3a%20Trabalhando%20com%20datas&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=%2f2016%2f01%2f18%2ftranspar%25C3%25AAncia-5-trabalhando-com-datas%2f&t=Transpar%c3%aancia%20%285%29%3a%20Trabalhando%20com%20datas" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=%2f2016%2f01%2f18%2ftranspar%25C3%25AAncia-5-trabalhando-com-datas%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=%2f2016%2f01%2f18%2ftranspar%25C3%25AAncia-5-trabalhando-com-datas%2f&title=Transpar%c3%aancia%20%285%29%3a%20Trabalhando%20com%20datas" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?Transpar%c3%aancia%20%285%29%3a%20Trabalhando%20com%20datas %2f2016%2f01%2f18%2ftranspar%25C3%25AAncia-5-trabalhando-com-datas%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+</aside>
+
+
+    <section class="footer">
+      <div>
+        <nav class="crumb">
+          <ol>
+            <li><a href="../../../../"><i class="fa fa-home" aria-hidden="true"></i>TOP</a></li>
+            
+            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="../../../../post/" itemprop="url"><span itemprop="title">POST</span></a></li>
+            
+            <li class="active">Transparência (5): Trabalhando com datas</li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    
+    
+    
+    <section class="footer">
+      <header>
+        <a href="../../../../categories/">CATEGORIES</a>
+      </header>
+      <div>
+        <ul class="terms">
+          
+          <li><a href="../../../../categories/paixao-por-dados/">paixao-por-dados</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+    
+    
+  </footer>
+
+</article>
+
+
+    <div class="adj">
+      <div class="mrow">
+        
+        <div class="mcol c6">
+          <header>Previous Article</header>
+          <article class="lism">
+  <a href="../../../../2016/01/17/transpar%C3%AAncia4-an%C3%A1lise-de-sal%C3%A1rios-usando-treemaps/">
+    <div class="thumb thumb-5a9f4765548d2e3f9efba8fb32cd7007"></div>
+
+    <div class="inner">
+      <div class="title">Transparência(4): Análise de salários usando Treemaps</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2016-01-17T03:00:00JST">Jan 17, 2016</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+        </div>
+        
+        
+        <div class="mcol c6">
+          <header>Next Article</header>
+          <article class="lism">
+  <a href="../../../../2016/01/24/transpar%C3%AAncia-6-quem-s%C3%A3o-os-1-do-funcionalismo-p%C3%BAblico/">
+    <div class="thumb thumb-66de7e87c212940e612c67fd12d4c025"></div>
+
+    <div class="inner">
+      <div class="title">Transparência (6): Quem são os 1% do funcionalismo público?</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2016-01-24T03:00:00JST">Jan 24, 2016</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+        </div>
+        
+      </div>
+    </div>
+
+    
+  </div>
+  <div class="mcol c4">
+    <aside class="l-sidebar">
+
+  <div class="sections sidebar">
+    <section class="sidebar">
+      <header>LATESTS</header>
+      <div>
+        <div class="articles sm">
+          
+          <article class="lism">
+  <a href="../../../../2017/06/08/instalando-anaconda---tensorflow---keras-para-r-no-ubuntu-16.04-server/">
+    <div class="thumb thumb-4ca7aebf68b206ff8ebd3d339880cdbe"></div>
+
+    <div class="inner">
+      <div class="title">Instalando Anaconda &#43; TensorFlow &#43; Keras para R no Ubuntu 16.04 Server</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-08T18:12:00JST">Jun 8, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/06/05/keras-colocando-deep-learning-no-pipeline/">
+    <div class="thumb thumb-ea657ec9d261bce8d42f524cfa192f24"></div>
+
+    <div class="inner">
+      <div class="title">Keras: colocando deep learning no pipeline</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-05T11:07:31JST">Jun 5, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/06/01/a-kind-of-magick/">
+    <div class="thumb thumb-7a7e4e54f6ba40cf59b708a1b1438641"></div>
+
+    <div class="inner">
+      <div class="title">A kind of magick</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-01T20:26:00JST">Jun 1, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/28/pdf-e-ocr/">
+    <div class="thumb thumb-d477bfffbde22e4c5cc9e81c9ff3b556"></div>
+
+    <div class="inner">
+      <div class="title">PDF e OCR</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-28T11:07:31JST">May 28, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/23/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/">
+    <div class="thumb thumb-ee8e80ec72747e392813c983fcdbc25b"></div>
+
+    <div class="inner">
+      <div class="title">Slides da minha apresentação no SER 2017</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-23T03:00:00JST">May 23, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/19/web-scraping-do-site-da-secretaria-de-seguran%C3%A7a-p%C3%BAblica-de-s%C3%A3o-paulo/">
+    <div class="thumb thumb-3da60970259d2fd391b3fb0a4ff77692"></div>
+
+    <div class="inner">
+      <div class="title">Web scraping do site da Secretaria de Segurança Pública de São Paulo</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-19T20:26:00JST">May 19, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/16/blog-paix%C3%A3o-por-dados-estar%C3%A1-no-meetup-1%C2%BA-#analyticsemtudo---dados-abertos/">
+    <div class="thumb thumb-5b8f5e73458a26798a261512427240c8"></div>
+
+    <div class="inner">
+      <div class="title">Blog Paixão por Dados estará no meetup 1º #AnalyticsEmTudo - Dados Abertos</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-16T03:00:00JST">May 16, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/04/gr%C3%A1ficos-miojo-mapas-tem%C3%A1ticos-do-brasil-em-3-minutos-ou-menos/">
+    <div class="thumb thumb-d0bebe978f4bf6a447682918aea12509"></div>
+
+    <div class="inner">
+      <div class="title">Gráficos miojo: Mapas temáticos do Brasil em 3 minutos ou menos</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-04T20:26:00JST">May 4, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/01/as-cores-da-marvel-vs-dc/">
+    <div class="thumb thumb-adbafb32d64272a6d88e49a78a8c536a"></div>
+
+    <div class="inner">
+      <div class="title">As cores da Marvel vs DC</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-01T20:26:00JST">May 1, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/04/29/diagramas-de-venn-em-r/">
+    <div class="thumb thumb-88b3c0abd2dfcce2dd7b25a3500eae82"></div>
+
+    <div class="inner">
+      <div class="title">Diagramas de Venn em R</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-29T20:26:00JST">Apr 29, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="sidebar">
+      <header>CATEGORIES</header>
+      <div>
+        <ul class="terms">
+          <li><a href="../../../../categories/curso-r">curso-r</a></li><li><a href="../../../../categories/paixao-por-dados">paixao-por-dados</a></li>
+        </ul>
+      </div>
+    </section>
+    
+    <section class="sidebar">
+      <header>TAGS</header>
+      <div>
+        <ul class="terms">
+          
+        </ul>
+      </div>
+    </section>
+    
+  </div>
+
+</aside>
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="l-container">
+        <p><span class="h-logo">&copy; A Hugo website</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_robust">Robust</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

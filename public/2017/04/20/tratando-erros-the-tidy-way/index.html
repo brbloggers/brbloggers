@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="theme-color" content="#263238">
+
+<meta name="generator" content="Hugo 0.21" />
+
+<link rel="apple-touch-icon" href="../../../../images/logo.png">
+
+
+<link rel="canonical" href="../../../../2017/04/20/tratando-erros-the-tidy-way/">
+
+
+    
+    <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+    
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Tratando erros: the tidy way - A Hugo website</title>
+    
+
+<meta name="description" content="Por Julio 20/04/2017  Tratar erros no R é importante para identificar problemas nos códigos e evitar retrabalho. Quem nunca rodou um algoritmo pesadíssimo que deu errado na última iteração? Nesse artigo, veremos como trabalhar com erros no R e a versão tidy dessas soluções.  A forma tradicional de tratar erros no R é com a função tryCatch(). Essa função tem como primeiro argumento uma expressão a ser avaliada e argumentos diversos para trabalhar com os erros.">
+
+<meta property="og:title" content="Tratando erros: the tidy way - A Hugo website">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/2017/04/20/tratando-erros-the-tidy-way/">
+<meta property="og:image" content="/images/default.png">
+<meta property="og:site_name" content="A Hugo website">
+<meta property="og:description" content="Por Julio 20/04/2017  Tratar erros no R é importante para identificar problemas nos códigos e evitar retrabalho. Quem nunca rodou um algoritmo pesadíssimo que deu errado na última iteração? Nesse artigo, veremos como trabalhar com erros no R e a versão tidy dessas soluções.  A forma tradicional de tratar erros no R é com a função tryCatch(). Essa função tem como primeiro argumento uma expressão a ser avaliada e argumentos diversos para trabalhar com os erros.">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="A Hugo website">
+<meta name="twitter:url" content="/2017/04/20/tratando-erros-the-tidy-way/">
+<meta name="twitter:title" content="Tratando erros: the tidy way - A Hugo website">
+<meta name="twitter:description" content="Por Julio 20/04/2017  Tratar erros no R é importante para identificar problemas nos códigos e evitar retrabalho. Quem nunca rodou um algoritmo pesadíssimo que deu errado na última iteração? Nesse artigo, veremos como trabalhar com erros no R e a versão tidy dessas soluções.  A forma tradicional de tratar erros no R é com a função tryCatch(). Essa função tem como primeiro argumento uma expressão a ser avaliada e argumentos diversos para trabalhar com os erros.">
+<meta name="twitter:image" content="/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"/"
+    },
+    "headline": "Tratando erros: the tidy way - A Hugo website",
+    "image": {
+      "@type": "ImageObject",
+      "url": "/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2017-04-20T11:07:31JST",
+    "dateModified": "2017-04-20T11:07:31JST",
+    "author": {
+      "@type": "Person",
+      "name": "A Hugo website"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "A Hugo website",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "Por Julio 20/04/2017  Tratar erros no R é importante para identificar problemas nos códigos e evitar retrabalho. Quem nunca rodou um algoritmo pesadíssimo que deu errado na última iteração? Nesse artigo, veremos como trabalhar com erros no R e a versão tidy dessas soluções.  A forma tradicional de tratar erros no R é com a função tryCatch(). Essa função tem como primeiro argumento uma expressão a ser avaliada e argumentos diversos para trabalhar com os erros."
+  }
+</script>
+
+
+    <style>
+      html { font-size: 18px; background-color: rgba(236,239,241,.5);}@media (max-width: 768px) { html { font-size: 15px; }}body { color: #333; font-family: 'Roboto Slab','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',メイリオ,Meiryo,sans-serif; font-feature-settings : "palt"; font-size: inherit; line-height: 1rem; margin: 0; padding: 0;}h1, h2, h3, h4, h5 ,h6 { font-size: 1rem; font-weight: 700; line-height: 1rem; margin: 0;}hr { border: 0; border-top: 1px dashed #cfd8dc; margin: 1rem 0;}p { margin: 0; line-height: 1rem;}a { color: #2196f3; text-decoration: none; transition-duration: .3s;}ul, ol { margin: 0; padding: 0;}table { border-collapse: collapse;}th, td { font-size: .8rem; padding: .5rem;}tr { border-bottom: 1px dashed #ddd;}/* Layouts */main,aside { display: block;}main { padding: 1rem 0 3rem 0; }aside.h { padding: 3rem 0; }main.f,aside.f { background-color: #333; border-top: 2px dashed #fff; border-bottom: 2px dashed #fff;}.l-container { position: relative; max-width: 68rem; margin: 0 auto; padding: 0 1rem;}.l-container.thin { max-width: 44rem;}.l-header { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); padding: 1rem 0; text-align: center;}.l-footer { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); font-size: .6rem; font-weight: 700; padding: 1rem 0;}@media (max-width: 768px) { .l-sidebar { margin-top: 4rem; }}.mrow { margin: 0 -1rem; overflow: hidden;}.mcol { box-sizing: border-box; float: left; padding: 0 1rem;}.c6 { width: 50%; }.c4 { width: 33.26323833%; }.c8 { width: 66.66666%; }@media (max-width: 768px) { .mcol { width: 100%; float: none; }}.logo a { font-size: 1.4rem; line-height: 1.5rem; font-weight: 700; color: #333;}.articles { margin: -1rem 0; margin-bottom: 1rem;}.articles.sm { margin: -.5rem 0; margin-bottom: 0;}article { border-radius: 4px; overflow: hidden;}article.li { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); height: 20rem; overflow: hidden; margin: 1rem 0;}article.li > a { display: block; color: #333;}article.li .inner { padding: 1rem;}article.li .thumb { height: 8rem;}article.li .title { color: #333; font-size: 1.2rem; line-height: 1.5rem; margin-bottom: .5rem;}article.li .summary { font-size: .8rem; height: 6rem; overflow: hidden; margin-top: 1rem;}article.lism { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); margin: .5rem 0;}article.lism::after { content: ''; display: block; clear: both;}article.lism > a { display: block; color: #333;}article.lism .inner { display: table-cell; vertical-align: middle; height: 5rem; padding-left: .5rem;}article.lism .thumb { width: 5rem; height: 5rem; float: left;}article.lism .title { font-weight: 700; line-height: 1.25rem; margin-bottom: .25rem;}article.sn { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); margin-bottom: 1rem;}article.sn .thumb { height: 20rem;}@media (max-width: 768px) { article.sn .thumb { height: 10rem; }}article.sn > .article-header,article.sn > .article-body,article.sn .article-footer { padding: 2rem;}article.sn > .article-body { padding: 0 2rem;}@media (max-width: 768px) { article.sn > .article-header, article.sn > .article-body, article.sn .article-footer { padding: 1rem; } article.sn > .article-body { padding: 0 1rem; }}article.sn > .article-header .title { font-size: 1.8rem; line-height: 2rem; margin-bottom: .5rem;}@media (max-width: 768px) { article.sn > .article-header .title { font-size: 1.4rem; line-height: 1.5rem; }}article.sn > .article-header .facts { margin-bottom: 1rem;}article.sn > .article-body { margin-bottom: 1.5rem;}article.sn > .article-body h2 { border-bottom: .25rem solid #333; font-size: 1.2rem; line-height: 1.5rem; margin: 1.5rem 0; padding: .5rem 0;}article.sn > .article-body h3 { border-left: .5rem solid #333; line-height: 1.5rem; margin: 1.5rem 0; padding: .125rem .5rem;}article.sn > .article-body ul,article.sn > .article-body ol { margin: 1.5rem 0; padding-left: 1.5rem;}article.sn > .article-body li { padding-bottom: .5rem; line-height: 1.5rem;}article.sn > .article-body li:last-child { padding-bottom: 0;}article.sn > .article-body p { margin: 1rem 0; line-height: 1.5rem;}article.sn > .article-body strong,article.sn > .article-body em { font-style: normal; font-weight: 700;}article.sn > .article-body strong { box-shadow: 0 -.5rem 0 0 #ffc107 inset;}article.sn > .article-body em { color: #8bc34a;}article.sn > .article-body code,article.sn > .article-body pre { font-family: Menlo, Consolas, monospace; font-size: .7rem;}article.sn > .article-body pre { background-color: #333; color: #fff; line-height: 1rem; margin: 1.5rem -2rem; overflow: auto;}@media (max-width: 768px) { article.sn > .article-body pre { margin: 1.5rem -1rem; }}article.sn > .article-body pre > code { display: block; padding: 1rem 2rem;}@media (max-width: 768px) { article.sn > .article-body pre > code { padding: 1rem; }}article.sn > .article-body p code { background-color: #eceff1; color: #333; border-radius: 4px; margin: 0 .25rem; padding: .375rem; white-space: nowrap;}article.sn > .article-body blockquote { position: relative; border-left: .25rem solid #333; font-size: .8rem; padding: .125rem 1rem; margin: 1.5rem 0;}@media (max-width: 768px) { article.sn > .article-body blockquote { font-size: 1rem; }}article.sn > .article-body blockquote p { margin: .5rem 0; line-height: 1rem;}article.sn > .article-body figure { margin: 1.5rem 0;}article.sn > .article-body figure img,article.sn > .article-body figure amp-img { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); max-width: 100%;}article.sn > .article-body figcaption { color: #cfd8dc; font-size: .8rem; font-weight: 700; margin-top: .5rem;}.facts li { display: inline; font-size: .8rem; margin-right: 1rem;}.facts i { color: #cfd8dc; margin-right: .5em;}.facts.sm li { font-size: .7rem;}.sections.sidebar { margin: -1rem 0;}.sections.footer { margin: -1rem 0;}section.sidebar { margin: 2rem 0;}section.sidebar > header { font-size: .8rem; font-weight: 700; letter-spacing: 4px; text-align: center; margin: 1.5rem 0;}section.footer { margin: 1rem 0;}section.footer > header { font-size: .8rem; margin: .5rem 0;}section.footer > header::before { content: "- ";}section.footer > header a { font-weight: 700; color: #333; text-decoration: underline;}.terms { margin: -.25rem;}.terms li { display: inline-block;}.terms a { display: block; float: left; background-color: #333; border-radius: 4px; color: #fff; font-size: .7rem; margin: .25rem; padding: 0 .75rem; line-height: 1.75rem;}.paging { text-align: center; padding: 1rem 0;}.paging a { display: inline-block; background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); border-radius: 4px; color: #333; padding: 0 1rem; line-height: 3rem;}.page-title { text-align: center; margin: 1rem 0;}.page-title::after { content: ''; display: block; border-bottom: .25rem solid #333; width: 3rem; margin: 1.5rem auto;}.page-title > .title { font-size: 1.2rem; line-height: 1.5rem;}/* Parts:breadcrumb */.crumb ol { text-overflow: ellipsis; color: #cfd8dc; white-space: nowrap; overflow: hidden;}.crumb li { display: inline; font-size: .8rem;}.crumb li::after { content: '›'; margin: 0 .25rem 0 .5rem;}.crumb li:last-child::after { content: '';}.crumb a { color: #cfd8dc;}.crumb i { margin-right: .5em;}.share { padding: 0;}.share a { display: inline-block; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); min-width: 1rem; height: 2rem; border-radius: 4px; color: #333; font-size: .8rem; font-weight: 700; line-height: 2rem; text-align: center; padding: 0 .5rem;}.adj article.lism { margin-bottom: 1rem;}.adj header { font-weight: 700; font-size: .8rem;}.toc { padding: 0 2rem;}@media (max-width: 768px) { .toc { padding: 0 1rem; }}.toc { margin: 1rem 0;}.toc nav>ul { background-color: #eceff1; border-radius: 4px; display: inline-block; font-size: .8rem; padding: .5rem 1rem; word-break: break-all; list-style: none;}.toc ul { padding: 0;}.toc ul ul { padding-left: 1rem;}.toc ul ul ul { padding-left: 1rem;}.toc li { color: #90a4ae;}.toc ul ul>li { font-weight: 700; margin: .5rem 0; list-style-type: decimal;}.toc ul ul ul>li { list-style-type: disc; font-weight: 500;}.thumb { background-image: url(/images/default.jpg); background-size: cover;}
+      
+      
+    </style>
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <div class="l-container">
+        <div class="logo">
+          <a href="../../../../">A Hugo website</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="l-container">
+        
+<div class="mrow">
+  <div class="mcol c8">
+
+    <article class="sn">
+
+  <div class="thumb thumb-5e7e31b7b5f898f81a8324477179c9b7"></div>
+
+  <header class="article-header">
+    <h1 class="title">Tratando erros: the tidy way</h1>
+
+    <ul class="facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-20T11:07:31JST">Apr 20, 2017</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="../../../../post/">POST</a></li>
+      
+    </ul>
+
+    <aside class="share">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=%2f2017%2f04%2f20%2ftratando-erros-the-tidy-way%2f&title=Tratando%20erros%3a%20the%20tidy%20way" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=%2f2017%2f04%2f20%2ftratando-erros-the-tidy-way%2f&text=Tratando%20erros%3a%20the%20tidy%20way&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=%2f2017%2f04%2f20%2ftratando-erros-the-tidy-way%2f&t=Tratando%20erros%3a%20the%20tidy%20way" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=%2f2017%2f04%2f20%2ftratando-erros-the-tidy-way%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=%2f2017%2f04%2f20%2ftratando-erros-the-tidy-way%2f&title=Tratando%20erros%3a%20the%20tidy%20way" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?Tratando%20erros%3a%20the%20tidy%20way %2f2017%2f04%2f20%2ftratando-erros-the-tidy-way%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+</aside>
+
+  </header>
+
+  
+
+  <div class="article-body"><p class="text-muted text-uppercase mb-small text-right">
+Por <a href="http://curso-r.com/author/julio">Julio</a> 20/04/2017
+</p>
+<p>
+Tratar erros no R é importante para identificar problemas nos códigos e
+evitar retrabalho. Quem nunca rodou um algoritmo pesadíssimo que deu
+errado na última iteração? Nesse artigo, veremos como trabalhar com
+erros no R e a versão <code>tidy</code> dessas soluções.
+</p>
+<p>
+A forma tradicional de tratar erros no R é com a função
+<code>tryCatch()</code>. Essa função tem como primeiro argumento uma
+expressão a ser avaliada e argumentos diversos para trabalhar com os
+erros. A versão mais compacta do <code>tryCatch()</code> é escrita
+assim:
+</p>
+<pre class="r"><code>tryCatch(sqrt(1), error = function(e) e)
+## [1] 1
+tryCatch(sqrt(&apos;a&apos;), error = function(e) e)
+## &lt;simpleError in sqrt(&quot;a&quot;): non-numeric argument to mathematical function&gt;</code></pre>
+<p>
+O <code>try()</code> é uma simplificação de <code>tryCatch()</code> que
+assume que não estamos interessados no erro, mas sim no resultado da
+função quando ela dá certo. O código abaixo não trava:
+</p>
+<pre class="r"><code>try(sqrt(1))
+## [1] 1
+try(sqrt(&apos;a&apos;))
+## Error in sqrt(&quot;a&quot;) : non-numeric argument to mathematical function</code></pre>
+<p>
+Existe até mesmo uma versão quieta do <code>try()</code>, usando o
+parâmetro <code>silent =</code>. Quando a expressão dá um erro, o
+<code>try()</code> retorna a mensagem de erro de forma invisível, ou
+seja, sem mostrar explicitamente para o usuário.
+</p>
+<pre class="r"><code>x &lt;- try(sqrt(&apos;a&apos;), silent = TRUE)
+x
+## [1] &quot;Error in sqrt(\&quot;a\&quot;) : non-numeric argument to mathematical function\n&quot;
+## attr(,&quot;class&quot;)
+## [1] &quot;try-error&quot;
+## attr(,&quot;condition&quot;)
+## &lt;simpleError in sqrt(&quot;a&quot;): non-numeric argument to mathematical function&gt;</code></pre>
+
+<p>
+Hoje em dia, o jeito mais arrumado de tratar erros é usando as funções
+<code>purrr::possibly()</code> e suas amigas, <code>quietly()</code> e
+<code>safely()</code>. Note que todas essas palavras são advérbios: o
+objetivo delas é alterar o comportamento de outros verbos (outras
+funções). Essa forma de pensar nos nomes das funções (funções são
+verbos, modificadores de funções são advérbios) faz parte do
+<a href="http://curso-r.com/blog/2017/02/15/2017-02-16-manifesto-tidy/">princípio
+tidy</a>.
+</p>
+<ul>
+<li>
+<code>safely()</code> retorna uma lista com elementos
+<code>result</code> e <code>error</code>. Quando a função não dá erro,
+<code>error</code> fica igual a <code>NULL</code>. Quando a função dá
+erro, <code>error</code> guarda a mensagem de erro e <code>result</code>
+guarda o valor do parâmetro <code>otherwise =</code>, que por padrão é
+<code>NULL</code>.
+</li>
+<li>
+<code>possibly()</code> é uma versão mais otimista do
+<code>safely()</code>, que exige a definição de <code>otherwise =</code>
+e não guarda as mensagens de erro.
+</li>
+<li>
+<code>quietly()</code> não trata erros (ou seja, ela trava quando dá
+erro), mas guarda informações sobre <em>warnings</em> e
+<em>messages</em>.
+</li>
+</ul>
+<span id="fig:unnamed-chunk-5"></span>
+<img src="http://curso-r.com/blog/2017-04-09-try_files/figure-html/unnamed-chunk-5-1.png" alt="Admita, voc&#xEA; n&#xE3;o imaginava que teria de pensar em gram&#xE1;tica para programar em R." width="768">
+<p class="caption">
+Figure 1: Admita, você não imaginava que teria de pensar em gramática
+para programar em R.
+</p>
+
+<p>
+Vamos ver as três funções colocadas em prática. Como exemplo usaremos a
+função <code>log</code>, que i) retorna um número quando a entrada é um
+número positivo, ii) dá um warning quando a entrada é um número menor ou
+igual a zero, e iii) dá um erro se a entrada não é um número.
+</p>
+<pre class="r"><code>log(10)
+## [1] 2.302585
+log(-1)
+## Warning in log(-1): NaNs produced
+## [1] NaN
+log(&apos;a&apos;)
+## Error in log(&quot;a&quot;): non-numeric argument to mathematical function</code></pre>
+<p>
+Vamos fazer as versões modificadas de <code>log</code>:
+</p>
+<pre class="r"><code>library(purrr)
+safe_log &lt;- safely(log) # outra forma fancy de escrever isso: log %&gt;% safely()
+possible_log &lt;- possibly(log, otherwise = &apos;putz&apos;)
+quiet_log &lt;- quietly(log)</code></pre>
+<p>
+Vamos mapear os seguintes elementos nessas funções:
+</p>
+<pre class="r"><code>entradas &lt;- list(10, -1, &apos;a&apos;)</code></pre>
+<p>
+Agora, os resultados:
+</p>
+<pre class="r"><code>## Esse c&#xF3;digo vai travar
+map(entradas, log) ## Warning in .f(.x[[i]], ...): NaNs produced
+## Error in .f(.x[[i]], ...): non-numeric argument to mathematical function</code></pre>
+<pre class="r"><code>## Retorna uma lista com erros e resultados NULL
+map(entradas, safe_log)
+## Warning in .f(...): NaNs produced
+## [[1]]
+## [[1]]$result
+## [1] 2.302585
+## ## [[1]]$error
+## NULL
+## ## ## [[2]]
+## [[2]]$result
+## [1] NaN
+## ## [[2]]$error
+## NULL
+## ## ## [[3]]
+## [[3]]$result
+## NULL
+## ## [[3]]$error
+## &lt;simpleError in .f(...): non-numeric argument to mathematical function&gt;</code></pre>
+<pre class="r"><code>## Retorna uma lista com os resultados que deram certo
+map(entradas, possible_log)
+## Warning in .f(...): NaNs produced
+## [[1]]
+## [1] 2.302585
+## ## [[2]]
+## [1] NaN
+## ## [[3]]
+## [1] &quot;putz&quot;</code></pre>
+<pre class="r"><code>## Tamb&#xE9;m trava, mesmo problema de log
+map(entradas, quiet_log) ## Error in .f(...): non-numeric argument to mathematical function ## Quando funciona, retorna todos os warnings e messages
+map(entradas[1:2], quiet_log)
+## [[1]]
+## [[1]]$result
+## [1] 2.302585
+## ## [[1]]$output
+## [1] &quot;&quot;
+## ## [[1]]$warnings
+## character(0)
+## ## [[1]]$messages
+## character(0)
+## ## ## [[2]]
+## [[2]]$result
+## [1] NaN
+## ## [[2]]$output
+## [1] &quot;&quot;
+## ## [[2]]$warnings
+## [1] &quot;NaNs produced&quot;
+## ## [[2]]$messages
+## character(0)</code></pre>
+
+<p>
+Um combo que eu gosto bastante de usar é adicionar erros do código
+retornado por <code>safely()</code> dentro de uma <code>tibble</code>.
+Uma forma de fazer isso é com o código abaixo:
+</p>
+<pre class="r"><code>library(tibble) # adiciona um resultado default caso d&#xEA; erro. No caso, NA.
+safe_log2 &lt;- log %&gt;% safely(otherwise = NA_real_) d_result &lt;- entradas %&gt;% map(safe_log2) %&gt;% # ao inv&#xE9;s de uma lista de tamanho 3 com 2 elementos (result e error), # temos uma lista de tamanho 2 (result e error) com 3 elementos. transpose() %&gt;% # simplifica o vetor de resultados simplify_all() %&gt;% # converte para data frame as_tibble() d_result
+## # A tibble: 3 x 2
+## result error
+## &lt;dbl&gt; &lt;list&gt;
+## 1 2.302585 &lt;NULL&gt;
+## 2 NaN &lt;NULL&gt;
+## 3 NA &lt;S3: simpleError&gt;</code></pre>
+<p>
+Assim, é possível guardar as informações dos erros de forma concisa, sem
+perder a informação dos erros.
+</p>
+<p>
+E é isso. Happy coding ;)
+</p>
+<p>
+<strong>PS</strong>: Até pouco tempo atrás eu usava a função
+<code>dplyr::failwith()</code> para fazer o mesmo que
+<code>possibly()</code>. Porém, descobri que essa função
+<a href="https://github.com/tidyverse/dplyr/blob/master/NEWS.md#deprecated-and-defunct">será
+retirada do <code>dplyr</code> no futuro</a>. Então se você é um usuário
+de <code>failwith()</code>, está na hora de mudar!
+</p>
+</div>
+
+  <footer class="article-footer">
+
+    <aside class="share">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=%2f2017%2f04%2f20%2ftratando-erros-the-tidy-way%2f&title=Tratando%20erros%3a%20the%20tidy%20way" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=%2f2017%2f04%2f20%2ftratando-erros-the-tidy-way%2f&text=Tratando%20erros%3a%20the%20tidy%20way&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=%2f2017%2f04%2f20%2ftratando-erros-the-tidy-way%2f&t=Tratando%20erros%3a%20the%20tidy%20way" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=%2f2017%2f04%2f20%2ftratando-erros-the-tidy-way%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=%2f2017%2f04%2f20%2ftratando-erros-the-tidy-way%2f&title=Tratando%20erros%3a%20the%20tidy%20way" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?Tratando%20erros%3a%20the%20tidy%20way %2f2017%2f04%2f20%2ftratando-erros-the-tidy-way%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+</aside>
+
+
+    <section class="footer">
+      <div>
+        <nav class="crumb">
+          <ol>
+            <li><a href="../../../../"><i class="fa fa-home" aria-hidden="true"></i>TOP</a></li>
+            
+            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="../../../../post/" itemprop="url"><span itemprop="title">POST</span></a></li>
+            
+            <li class="active">Tratando erros: the tidy way</li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    
+    
+    
+    <section class="footer">
+      <header>
+        <a href="../../../../categories/">CATEGORIES</a>
+      </header>
+      <div>
+        <ul class="terms">
+          
+          <li><a href="../../../../categories/curso-r/">curso-r</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+    
+    
+  </footer>
+
+</article>
+
+
+    <div class="adj">
+      <div class="mrow">
+        
+        <div class="mcol c6">
+          <header>Previous Article</header>
+          <article class="lism">
+  <a href="../../../../2017/04/17/colando-textos/">
+    <div class="thumb thumb-8842b35a19d2f16a35918f4564ff9cf8"></div>
+
+    <div class="inner">
+      <div class="title">Colando textos</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-17T11:07:31JST">Apr 17, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+        </div>
+        
+        
+        <div class="mcol c6">
+          <header>Next Article</header>
+          <article class="lism">
+  <a href="../../../../2017/04/22/k-means-e-paleta-de-cores/">
+    <div class="thumb thumb-57f669a6d089ec67f1087e4caa6cfccd"></div>
+
+    <div class="inner">
+      <div class="title">K-means e paleta de cores</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-22T11:07:31JST">Apr 22, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+        </div>
+        
+      </div>
+    </div>
+
+    
+  </div>
+  <div class="mcol c4">
+    <aside class="l-sidebar">
+
+  <div class="sections sidebar">
+    <section class="sidebar">
+      <header>LATESTS</header>
+      <div>
+        <div class="articles sm">
+          
+          <article class="lism">
+  <a href="../../../../2017/06/08/instalando-anaconda---tensorflow---keras-para-r-no-ubuntu-16.04-server/">
+    <div class="thumb thumb-4ca7aebf68b206ff8ebd3d339880cdbe"></div>
+
+    <div class="inner">
+      <div class="title">Instalando Anaconda &#43; TensorFlow &#43; Keras para R no Ubuntu 16.04 Server</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-08T18:12:00JST">Jun 8, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/06/05/keras-colocando-deep-learning-no-pipeline/">
+    <div class="thumb thumb-ea657ec9d261bce8d42f524cfa192f24"></div>
+
+    <div class="inner">
+      <div class="title">Keras: colocando deep learning no pipeline</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-05T11:07:31JST">Jun 5, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/06/01/a-kind-of-magick/">
+    <div class="thumb thumb-7a7e4e54f6ba40cf59b708a1b1438641"></div>
+
+    <div class="inner">
+      <div class="title">A kind of magick</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-06-01T20:26:00JST">Jun 1, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/28/pdf-e-ocr/">
+    <div class="thumb thumb-d477bfffbde22e4c5cc9e81c9ff3b556"></div>
+
+    <div class="inner">
+      <div class="title">PDF e OCR</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-28T11:07:31JST">May 28, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/23/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/">
+    <div class="thumb thumb-ee8e80ec72747e392813c983fcdbc25b"></div>
+
+    <div class="inner">
+      <div class="title">Slides da minha apresentação no SER 2017</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-23T03:00:00JST">May 23, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/19/web-scraping-do-site-da-secretaria-de-seguran%C3%A7a-p%C3%BAblica-de-s%C3%A3o-paulo/">
+    <div class="thumb thumb-3da60970259d2fd391b3fb0a4ff77692"></div>
+
+    <div class="inner">
+      <div class="title">Web scraping do site da Secretaria de Segurança Pública de São Paulo</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-19T20:26:00JST">May 19, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/16/blog-paix%C3%A3o-por-dados-estar%C3%A1-no-meetup-1%C2%BA-#analyticsemtudo---dados-abertos/">
+    <div class="thumb thumb-5b8f5e73458a26798a261512427240c8"></div>
+
+    <div class="inner">
+      <div class="title">Blog Paixão por Dados estará no meetup 1º #AnalyticsEmTudo - Dados Abertos</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-16T03:00:00JST">May 16, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/04/gr%C3%A1ficos-miojo-mapas-tem%C3%A1ticos-do-brasil-em-3-minutos-ou-menos/">
+    <div class="thumb thumb-d0bebe978f4bf6a447682918aea12509"></div>
+
+    <div class="inner">
+      <div class="title">Gráficos miojo: Mapas temáticos do Brasil em 3 minutos ou menos</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-04T20:26:00JST">May 4, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/05/01/as-cores-da-marvel-vs-dc/">
+    <div class="thumb thumb-adbafb32d64272a6d88e49a78a8c536a"></div>
+
+    <div class="inner">
+      <div class="title">As cores da Marvel vs DC</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-05-01T20:26:00JST">May 1, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+          <article class="lism">
+  <a href="../../../../2017/04/29/diagramas-de-venn-em-r/">
+    <div class="thumb thumb-88b3c0abd2dfcce2dd7b25a3500eae82"></div>
+
+    <div class="inner">
+      <div class="title">Diagramas de Venn em R</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-29T20:26:00JST">Apr 29, 2017</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+          
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="sidebar">
+      <header>CATEGORIES</header>
+      <div>
+        <ul class="terms">
+          <li><a href="../../../../categories/curso-r">curso-r</a></li><li><a href="../../../../categories/paixao-por-dados">paixao-por-dados</a></li>
+        </ul>
+      </div>
+    </section>
+    
+    <section class="sidebar">
+      <header>TAGS</header>
+      <div>
+        <ul class="terms">
+          
+        </ul>
+      </div>
+    </section>
+    
+  </div>
+
+</aside>
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="l-container">
+        <p><span class="h-logo">&copy; A Hugo website</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_robust">Robust</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
