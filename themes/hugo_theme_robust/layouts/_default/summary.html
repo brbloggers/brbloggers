@@ -13,6 +13,8 @@
     </ul>
 
   </header>
+  
+  
 
   {{ if .Params.toc }}
   <div class="toc">
@@ -20,7 +22,10 @@
   </div>
   {{ end }}
 
-  <div class="article-body">{{ .Content }}</div>
+  <div class="article-body">
+    <i>Leia a postagem original <a href='{{ .Params.original_url }}'>neste link.</a></i>  
+    {{ .Content }}
+  </div>
 
   <footer class="article-footer">
 
