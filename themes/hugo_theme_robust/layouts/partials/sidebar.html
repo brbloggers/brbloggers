@@ -16,7 +16,7 @@
       <header>BLOGS</header>
       <div>
         <ul class="terms">
-          {{ range $key, $value := first 10 .Site.Taxonomies.categories.ByCount }}<li><a href="{{ $.Site.BaseURL}}{{ $key }}/{{ .Name | urlize }}">{{ .Name }}</a></li>{{ end }}
+          {{ range $key, $value := first 10 .Site.Taxonomies.categories.ByCount }}<li><a href="{{ $.Site.BaseURL}}{{ .Name | urlize }}">{{ .Name }}</a></li>{{ end }}
         </ul>
       </div>
     </section>
