@@ -12,19 +12,14 @@
       </div>
     </section>
     
-    
-    
-    
-    {{ range $key, $value := .Site.Taxonomies }}
     <section class="sidebar">
-      <header>{{if eq $key "categories"}}BLOGS{{else}}{{$key | upper}}{{end}}</header>
+      <header>BLOGS</header>
       <div>
         <ul class="terms">
-          {{ range first 10 $value.ByCount }}<li><a href="{{ $.Site.BaseURL}}{{ $key }}/{{ .Name | urlize }}">{{ .Name }}</a></li>{{ end }}
+          {{ range $key, $value := first 10 .Site.Taxonomies.categories.ByCount }}<li><a href="{{ $.Site.BaseURL}}{{ $key }}/{{ .Name | urlize }}">{{ .Name }}</a></li>{{ end }}
         </ul>
       </div>
     </section>
-    {{ end }}
-  </div>
-
+    
+    
 </aside>
