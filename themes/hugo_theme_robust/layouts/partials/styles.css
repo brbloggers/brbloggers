@@ -346,6 +346,14 @@ article.sn > .article-body pre {
   overflow: auto;
 }
 
+article.sn > .article-body img {
+  max-width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 @media (max-width: 768px) {
   article.sn > .article-body pre {
     margin: 1.5rem -1rem;
