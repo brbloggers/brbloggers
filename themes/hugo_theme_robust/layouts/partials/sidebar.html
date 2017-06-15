@@ -5,7 +5,18 @@
       <header>MAIS RECENTES</header>
       <div>
         <div class="articles sm">
-          {{ range $i, $p := (first 3 .Site.Pages) }}
+          {{ range $i, $p := (first 3 (where .Site.Pages ".Params.at_home" "!=" "no")) }}
+          {{ .Render "li_sm" }}
+          {{ end }}
+        </div>
+      </div>
+    </section>
+    
+    <section class="sidebar">
+      <header>RECENTES NO STACK OVERFLOW</header>
+      <div>
+        <div class="articles sm">
+          {{ range $i, $p := (first 3 (where .Site.Pages ".Params.at_home" "eq" "no")) }}
           {{ .Render "li_sm" }}
           {{ end }}
         </div>
@@ -16,10 +27,13 @@
       <header>BLOGS</header>
       <div>
         <ul class="terms">
-          {{ range $key, $value := first 10 .Site.Taxonomies.categories.ByCount }}<li><a href="{{ $.Site.BaseURL}}{{ .Name | urlize }}">{{ .Name }}</a></li>{{ end }}
+          {{ range $key, $value := first 10 .Site.Taxonomies.categories.ByCount }}
+          {{ if ne .Name "sopt" }}
+          <li><a href="{{ $.Site.BaseURL}}{{ .Name | urlize }}">{{ .Name }}</a></li>
+          {{ end }}
+          {{ end }}
         </ul>
       </div>
     </section>
-    
     
 </aside>

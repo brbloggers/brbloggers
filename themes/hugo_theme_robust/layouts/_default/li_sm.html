@@ -1,5 +1,5 @@
 <article class="lism">
-  <a href="{{ .Permalink }}">
+  <a href={{ if eq .Params.at_home "no"}}"{{ .Params.original_url }}"{{ else }}"{{ .Permalink }}"{{ end }}>
     
     <div class="inner">
       <div class="title">{{ .Title }}</div>
