@@ -44,24 +44,7 @@
         </nav>
       </div>
     </section>
-
-    {{ $params := .Params }}
-    {{ range $key, $value := $.Site.Taxonomies }}
-    {{ if isset $params $key }}
-    <section class="footer">
-      <header>
-        <a href="{{ $.Site.BaseURL }}{{ $key | urlize }}/">{{ $key | upper }}</a>
-      </header>
-      <div>
-        <ul class="terms">
-          {{ range (index $params $key) }}
-          <li><a href="{{ $.Site.BaseURL }}{{ $key | urlize }}/{{ . | urlize }}/">{{ . }}</a></li>
-          {{ end }}
-        </ul>
-      </div>
-    </section>
-    {{ end }}
-    {{ end }}
+    
   </footer>
 
 </article>
