@@ -25,8 +25,8 @@
   {{ end }}
 
   <div class="article-body">
-    <i>Leia a postagem original <a href='{{ .Params.original_url }}'>neste link.</a></i>  
-    {{ .Content }}
+    {{ .Content | truncate 500 }}
+    <i>Continue lendo a postagem original <a href='{{ .Params.original_url }}'>neste link.</a></i>  
   </div>
 
   <footer class="article-footer">
