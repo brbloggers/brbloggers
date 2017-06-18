@@ -1,7 +1,7 @@
 baseurl = "/"
 relativeurls = true
 languageCode = "en-us"
-title = "bR Bloggers"
+title = "bloggers"
 theme = "hugo_theme_robust"
 googleAnalytics = "UA-101160377-1"
 disqusShortname = ""
