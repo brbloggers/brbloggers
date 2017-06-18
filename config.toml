@@ -7,3 +7,7 @@ googleAnalytics = "UA-101160377-1"
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 pluralizeListTitles = false
+
+[params]
+  maxChars = 750
+

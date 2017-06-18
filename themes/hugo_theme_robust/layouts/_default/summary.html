@@ -25,7 +25,7 @@
   {{ end }}
 
   <div class="article-body">
-    {{ .Content | truncate 500 }}
+    {{ .Content | truncate .Site.Params.maxchars }}
     <i>Continue lendo a postagem original <a href='{{ .Params.original_url }}'>neste link.</a></i>  
   </div>
 
