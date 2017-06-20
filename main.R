@@ -35,7 +35,8 @@ fix_file_name <- function(dir, item_link, feed_link){
     str_replace("/$", "") %>%
     str_extract("/[^/]+$") %>%
     str_replace_all("%", "-") %>%
-    str_replace_all("[\\(\\)]", "")
+    str_replace_all("[\\(\\)]", "") %>%
+    str_replace_all("^/", "")
   
   sprintf(
     "content/%s/%s", 
@@ -46,11 +47,11 @@ fix_file_name <- function(dir, item_link, feed_link){
 
 create_md_header <- function(title, date, blog, original_url){
   sprintf(
-  '+++\ntitle = "%s"\ndate = "%s"\ncategories = ["%s"]\noriginal_url = "%s"\n+++\n',
-  title,
-  date,
-  blog,
-  original_url
+    '+++\ntitle = "%s"\ndate = "%s"\ncategories = ["%s"]\noriginal_url = "%s"\n+++\n',
+    title,
+    date,
+    blog,
+    original_url
   )
 }
 
@@ -77,67 +78,67 @@ all_feeds <- feeds %>%
 
 # modificações necessárias p/ cada blog
 all_feeds$`curso-r` <- try({all_feeds$`curso-r` %>%
-  select(
-    feed_title,
-    feed_link,
-    item_title,
-    item_date_published,
-    item_link
-  )})
+    select(
+      feed_title,
+      feed_link,
+      item_title,
+      item_date_published,
+      item_link
+    )})
 
 all_feeds$`paixao-por-dados` <- try({all_feeds$`paixao-por-dados` %>%
-  select(
-    feed_title,
-    feed_link,
-    item_title,
-    item_date_published,
-    item_link
-  )})
+    select(
+      feed_title,
+      feed_link,
+      item_title,
+      item_date_published,
+      item_link
+    )})
 
 all_feeds$`analise-real` <- try({all_feeds$`analise-real` %>%
-  select(
-    feed_title,
-    feed_link,
-    item_title,
-    item_date_published,
-    item_link
-  )}) 
+    select(
+      feed_title,
+      feed_link,
+      item_title,
+      item_date_published,
+      item_link
+    )}) 
 
 all_feeds$dfalbel <- try({all_feeds$dfalbel %>%
-  select(
-    feed_title,
-    feed_link,
-    item_title,
-    item_date_published,
-    item_link
-  )})
+    select(
+      feed_title,
+      feed_link,
+      item_title,
+      item_date_published,
+      item_link
+    )})
 
 all_feeds$lurodrigo <- try({all_feeds$lurodrigo %>%
-  select(
-    feed_title,
-    feed_link,
-    item_title,
-    item_date_published = item_date_updated,
-    item_link
-  )})
+    select(
+      feed_title,
+      feed_link,
+      item_title,
+      item_date_published = item_date_updated,
+      item_link
+    )})
 
 all_feeds$`cantinho-do-r` <- try({all_feeds$`cantinho-do-r` %>%
-  select(
-    feed_title,
-    feed_link,
-    item_title,
-    item_date_published,
-    item_link
-  )})
+    select(
+      feed_title,
+      feed_link,
+      item_title,
+      item_date_published,
+      item_link
+    )})
 
 all_feeds$IBPAD <- try({all_feeds$IBPAD %>% 
-  select(
-    feed_title,
-    feed_link,
-    item_title,
-    item_date_published,
-    item_link
-  )})
+    select(
+      feed_title,
+      feed_link,
+      item_title,
+      item_date_published,
+      item_link
+    )})
 
 all_feeds$italocegatta <- try({all_feeds$italocegatta %>% 
     select(
@@ -151,13 +152,25 @@ all_feeds$italocegatta <- try({all_feeds$italocegatta %>%
 })
 
 all_feeds$`r-python-e-redes` <- try({all_feeds$`r-python-e-redes` %>% 
-  select(
-    feed_title,
-    feed_link,
-    item_title,
-    item_date_published,
-    item_link
-  )})
+    select(
+      feed_title,
+      feed_link,
+      item_title,
+      item_date_published,
+      item_link
+    )})
+
+all_feeds$`d-van` <- try({all_feeds$`d-van` %>%
+    tidyr::unite("category", starts_with("item_category"), sep = " | ") %>%
+    filter(stringr::str_detect(category, stringr::fixed("análise-de-dados"))) %>%
+    select(
+      feed_title,
+      feed_link,
+      item_title,
+      item_date_published,
+      item_link
+    )
+})
 
 all_feeds <- all_feeds %>%
   keep(is.data.frame) %>%
@@ -258,10 +271,10 @@ if(nrow(new_sopt) > 0){
     write_lines(
       sprintf(
         '+++\ntitle = "%s"\ndate = "%s"\ncategories = ["%s"]\noriginal_url = "%s"\nat_home="no"\n+++\n',
-      new_sopt$item_title[i],
-      new_sopt$item_date_updated[i],
-      "sopt",
-      new_sopt$item_link[i]
+        new_sopt$item_title[i],
+        new_sopt$item_date_updated[i],
+        "sopt",
+        new_sopt$item_link[i]
       ), 
       path = sprintf("content/sopt/%s.md", str_extract(new_sopt$item_link[i], "[^/]*$"))
     )

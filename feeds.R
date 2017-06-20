@@ -43,6 +43,11 @@ feeds <- list(
   "r-python-e-redes" = list(
     nome = "R Python e Redes",
     url = "http://neylsoncrepalde.github.io/feed.xml"
+  ),
+  
+  "d-van" = list(
+    nome = "Psiquiatria e neurociências clínicas",
+    url = "https://medium.com/feed/d-van"
   )
 
 )
