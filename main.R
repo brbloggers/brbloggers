@@ -11,6 +11,7 @@ library(xml2)
 # secure::encrypt("MERCURY_KEY", key = "xxxxxxxxxxxxxxxx")
 # secure::encrypt("NETLIFY_BUILD_HOOK", key = "xxxxxxxxxxxxxxx")
 
+message(sprintf("[%s]: Starting update",lubridate::now()))
 
 Sys.setenv(MERCURY_KEY = secure::decrypt("MERCURY_KEY")$key)
 
@@ -267,7 +268,7 @@ if(nrow(new_sopt) > 0){
   }  
 }
 
-
+message(sprintf("[%s]: Finished",lubridate::now()))
 
 
 
