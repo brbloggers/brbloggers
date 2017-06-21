@@ -26,7 +26,9 @@
 
   <div class="article-body">
     {{ .Content | truncate .Site.Params.maxchars }}
-    <i>Continue lendo a postagem original <a href='{{ .Params.original_url }}'>neste link.</a></i>  
+    {{if isset .Params "original_url"}}
+      <i>Continue lendo a postagem original <a href='{{ .Params.original_url }}'>neste link.</a></i>  
+    {{end}}
   </div>
 
   <footer class="article-footer">
