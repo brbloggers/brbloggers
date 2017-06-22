@@ -4,7 +4,7 @@ brbloggers
 Esse repositório contém o código fonte do página do **brbloggers**, agregador
 de blogs em português sobre R.
 
-Qualquer um pode incluir o seu blog feed. Para isso, basta abrir um issue [aqui](https://github.com/brbloggers/brbloggers/issues) ou fazer um PR [neste repositório](https://github.com/brbloggers/brbloggers-backend)
+Qualquer um pode incluir o seu blog feed. Para isso, basta abrir um issue [aqui](https://github.com/brbloggers/brbloggers/issues) ou fazer um PR neste repositório
 adicionando o seu blog no arquivo `feeds.R` e modificando o arquivo `main.R` para se adaptar
 ao seu blog. Você terá que adiconar algo parecido com isso no `main.R`:
 
