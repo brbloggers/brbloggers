@@ -210,10 +210,10 @@ saveRDS(posts, "data/posts.rds")
 
 # Write feeds to directory ------------------------------------------------
 if(nrow(new_posts) > 0){
+  message("writing new posts")
   for(i in 1:nrow(new_posts)){
-    
     if(!is.na(new_posts$item_content[i])){
-      
+      message(sprintf("writing post with link %s", new_posts$item_link[i]))
       file_name <- fix_file_name(
         new_posts$blog[i], 
         new_posts$item_link[i], 
