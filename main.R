@@ -267,6 +267,7 @@ all_sopt <- bind_rows(all_sopt, new_sopt)
 saveRDS(all_sopt, "data/sopt.rds")
 
 if(nrow(new_sopt) > 0){
+  message("writing new posts")
   for(i in 1:nrow(new_sopt)){
     write_lines(
       sprintf(
