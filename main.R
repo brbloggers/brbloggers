@@ -246,6 +246,7 @@ if(nrow(new_posts) > 0){
         
       } 
       
+      message("new post was written")
       # delete html file
       file.remove(sprintf("%s.html", file_name))
       
