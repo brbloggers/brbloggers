@@ -1,3 +1,5 @@
+setwd("~/brbloggers/")
+
 suppressPackageStartupMessages({
   library(purrr)
   library(stringr)
