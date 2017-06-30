@@ -58,6 +58,9 @@ create_md_header <- function(title, date, blog, original_url){
   )
 }
 
+tratar_titulo <- function(x){
+  stringr::str_replace_all(x, stringr::fixed('"'), "")
+}
 
 # Get all feeds
 source("feeds.R", local = TRUE)
@@ -273,7 +276,7 @@ if(nrow(new_posts) > 0){
           sprintf(
             "%s\n%s",
             create_md_header(
-              new_posts$item_title[i], 
+              new_posts$item_title[i] %>% tratar_titulo(), 
               new_posts$item_date_published[i], 
               new_posts$blog[i],
               new_posts$item_link[i]
@@ -312,7 +315,7 @@ if(nrow(new_sopt) > 0){
     write_lines(
       sprintf(
         '+++\ntitle = "%s"\ndate = "%s"\ncategories = ["%s"]\noriginal_url = "%s"\nat_home="no"\n+++\n',
-        new_sopt$item_title[i],
+        new_sopt$item_title[i] %>% tratar_titulo,
         new_sopt$item_date_updated[i],
         "sopt",
         new_sopt$item_link[i]
