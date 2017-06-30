@@ -27,7 +27,7 @@
       <header>BLOGS</header>
       <div>
         <ul class="terms">
-          {{ range $key, $value := first 10 .Site.Taxonomies.categories.ByCount }}
+          {{ range $key, $value := first 50 .Site.Taxonomies.categories.ByCount }}
           {{ if ne .Name "sopt" }}
           <li><a href="{{ $.Site.BaseURL}}{{ .Name | urlize }}">{{ .Name }}</a></li>
           {{ end }}
