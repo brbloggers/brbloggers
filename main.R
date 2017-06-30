@@ -76,8 +76,11 @@ for(blog in names(feeds)){
 
 posts <- readRDS("data/posts.rds")
 
-all_feeds <- feeds %>%
-  map(~safe_tidyfeed(.x$url))
+
+suppressMessages({
+  all_feeds <- feeds %>%
+    map(~safe_tidyfeed(.x$url))  
+})
 
 # modificações necessárias p/ cada blog
 message("Baixando dados do blog curso-r")
@@ -184,6 +187,20 @@ all_feeds$`d-van` <- try({all_feeds$`d-van` %>%
       item_link
     )
 })
+
+message("Baixando dados do blog Mind & Iron")
+all_feeds$`mind-and-iron` <- try({all_feeds$`mind-and-iron` %>%
+    filter(item_title != "") %>%
+    select(
+      feed_title,
+      feed_link,
+      item_title,
+      item_date_published,
+      item_link
+    )
+})
+
+
 
 all_feeds <- all_feeds %>%
   keep(is.data.frame) %>%

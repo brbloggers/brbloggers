@@ -48,6 +48,11 @@ feeds <- list(
   "d-van" = list(
     nome = "Psiquiatria e neurociências clínicas",
     url = "https://medium.com/feed/d-van"
+  ),
+  
+  "mind-and-iron" = list(
+    nome = "Mind & Iron",
+    url = "http://ctlente.com/pt/index.xml"
   )
 
 )
