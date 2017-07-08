@@ -203,7 +203,17 @@ all_feeds$`mind-and-iron` <- try({all_feeds$`mind-and-iron` %>%
     )
 })
 
-
+message("Baixando dados do blog José Guilherme Lopes")
+all_feeds$`jose-guilherme-lopes` <- try({all_feeds$`jose-guilherme-lopes` %>%
+    filter(item_title != "") %>%
+    select(
+      feed_title,
+      feed_link,
+      item_title,
+      item_date_published,
+      item_link
+    )
+})
 
 all_feeds <- all_feeds %>%
   keep(is.data.frame) %>%

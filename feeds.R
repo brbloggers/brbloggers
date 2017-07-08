@@ -53,6 +53,11 @@ feeds <- list(
   "mind-and-iron" = list(
     nome = "Mind & Iron",
     url = "http://ctlente.com/pt/index.xml"
+  ),
+  
+  "jose-guilherme-lopes" = list(
+    nome = "José Guilherme Lopes",
+    url = "http://joseguilhermelopes.com.br/feed/"
   )
 
 )
