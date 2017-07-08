@@ -11,17 +11,17 @@ suppressPackageStartupMessages({
   library(slackr)
 })
 
-slackr_setup(channel="#brbloggers", api_token = "",
-            incoming_webhook_url=secure::decrypt("SLACK")$key)
-
-
 # secure::add_user("daniel", public_key = secure::local_key())
 # secure::encrypt("MERCURY_KEY", key = "xxxxxxxxxxxxxxxx")
 # secure::encrypt("NETLIFY_BUILD_HOOK", key = "xxxxxxxxxxxxxxx")
 # secure::encrypt("SLACK", key = "")
+# secure::encrypt("SLACK_TOKEN", key = "xxxxxxx")
+
+slackr_setup(channel="#brbloggers", api_token = secure::decrypt("SLACK_TOKEN")$key,
+             incoming_webhook_url=secure::decrypt("SLACK")$key)
 
 message(sprintf("[%s]: Starting update",lubridate::now()))
-slackr(sprintf("[%s]: Starting update",lubridate::now()))
+slackr_msg(sprintf("[%s]: Starting update",lubridate::now()))
 
 Sys.setenv(MERCURY_KEY = secure::decrypt("MERCURY_KEY")$key)
 
@@ -73,6 +73,7 @@ tratar_titulo <- function(x){
 source("feeds.R", local = TRUE)
 
 message(sprintf("%02d blogs are watched", length(feeds)))
+slackr_msg(sprintf("%02d blogs are watched", length(feeds)))
 
 # verify and create necessary folders
 for(blog in names(feeds)){
@@ -254,8 +255,17 @@ try({
 new_posts <- setdiff(all_feeds, posts)
 
 message(sprintf("%03d new posts", nrow(new_posts)))
+slackr_msg(sprintf("%03d new posts", nrow(new_posts)))
 if(nrow(new_posts) > 0){
   message(
+    sprintf("%s\n", 
+            paste0(new_posts$item_title, "já existe em posts?",  
+                   new_posts$item_title %in% posts$item_title
+            )
+    )
+  )
+  
+  slackr_msg(
     sprintf("%s\n", 
             paste0(new_posts$item_title, "já existe em posts?",  
                    new_posts$item_title %in% posts$item_title
@@ -270,6 +280,7 @@ saveRDS(posts, "data/posts.rds")
 # Write feeds to directory ------------------------------------------------
 if(nrow(new_posts) > 0){
   message("writing new posts")
+  slackr_msg("writing new posts")
   for(i in 1:nrow(new_posts)){
     if(!is.na(new_posts$item_content[i])){
       message(sprintf("writing post with link %s", new_posts$item_link[i]))
@@ -304,8 +315,10 @@ if(nrow(new_posts) > 0){
         )
         
         message("new post was written")  
+        slackr_msg("new post was written")  
       } else {
         message("PANDOC WAS NOT AVAILABLE")
+        slackr_msg("PANDOC WAS NOT AVAILABLE")
       }
       
       # delete html file
@@ -345,7 +358,7 @@ if(nrow(new_sopt) > 0){
 }
 
 message(sprintf("[%s]: Finished",lubridate::now()))
-
+slackr_msg(sprintf("[%s]: Finished",lubridate::now()))
 
 
 
