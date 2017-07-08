@@ -8,13 +8,20 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(readr)
   library(xml2)
+  library(slackr)
 })
+
+slackr_setup(channel="#brbloggers", api_token = "",
+            incoming_webhook_url=secure::decrypt("SLACK")$key)
+
 
 # secure::add_user("daniel", public_key = secure::local_key())
 # secure::encrypt("MERCURY_KEY", key = "xxxxxxxxxxxxxxxx")
 # secure::encrypt("NETLIFY_BUILD_HOOK", key = "xxxxxxxxxxxxxxx")
+# secure::encrypt("SLACK", key = "")
 
 message(sprintf("[%s]: Starting update",lubridate::now()))
+slackr(sprintf("[%s]: Starting update",lubridate::now()))
 
 Sys.setenv(MERCURY_KEY = secure::decrypt("MERCURY_KEY")$key)
 
