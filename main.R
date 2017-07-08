@@ -286,9 +286,11 @@ if(nrow(new_posts) > 0){
           sprintf("%s.md", file_name)
         )
         
-      } 
+        message("new post was written")  
+      } else {
+        message("PANDOC WAS NOT AVAILABLE")
+      }
       
-      message("new post was written")
       # delete html file
       file.remove(sprintf("%s.html", file_name))
       
