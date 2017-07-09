@@ -134,14 +134,15 @@ Se utilizarmos a função <code>search()</code>, ela nos devolverá o
 (<em>magrathea</em> não será exibido).
 </p>
 <pre class="r"><code>search()
-## [1] &quot;.GlobalEnv&quot; &quot;package:stats&quot; &quot;package:graphics&quot; ## [4] &quot;package:grDevices&quot; &quot;package:utils&quot; &quot;package:datasets&quot; ## [7] &quot;Autoloads&quot; &quot;package:base&quot;</code></pre>
+## [1] &quot;.GlobalEnv&quot; &quot;package:methods&quot; &quot;package:stats&quot; ## [4] &quot;package:graphics&quot; &quot;package:grDevices&quot; &quot;package:utils&quot; ## [7] &quot;package:datasets&quot; &quot;Autoloads&quot; &quot;package:base&quot;</code></pre>
 <p>
 Repare que os pacotes carregados geram um novo <em>environment</em> na
 árvore.
 </p>
 <pre class="r"><code>library(ggplot2)
 search()
-## [1] &quot;.GlobalEnv&quot; &quot;package:ggplot2&quot; &quot;package:stats&quot; ## [4] &quot;package:graphics&quot; &quot;package:grDevices&quot; &quot;package:utils&quot; ## [7] &quot;package:datasets&quot; &quot;Autoloads&quot; &quot;package:base&quot;</code></pre>
+## [1] &quot;.GlobalEnv&quot; &quot;package:ggplot2&quot; &quot;package:methods&quot; ## [4] &quot;package:stats&quot; &quot;package:graphics&quot; &quot;package:grDevices&quot;
+## [7] &quot;package:utils&quot; &quot;package:datasets&quot; &quot;Autoloads&quot; ## [10] &quot;package:base&quot;</code></pre>
 <p>
 É por isso que, ao carregar um pacote, podemos utilizar as suas funções
 sem a necessidade de escrever coisas do tipo
@@ -150,8 +151,7 @@ usamos a função <code>attach()</code>
 </p>
 <pre class="r"><code>mighty &lt;- list(&quot;Jason&quot; = &quot;vermelho&quot;, &quot;Zach&quot; = &quot;Preto&quot;, &quot;Billy&quot; = &quot;Azul&quot;, &quot;Trini&quot; = &quot;Amarela&quot;, &quot;Kimberly&quot; = &quot;Rosa&quot;, &quot;Thomas&quot; = &quot;Verde&quot;) attach(mighty)
 search()
-## [1] &quot;.GlobalEnv&quot; &quot;mighty&quot; &quot;package:ggplot2&quot; ## [4] &quot;package:stats&quot; &quot;package:graphics&quot; &quot;package:grDevices&quot;
-## [7] &quot;package:utils&quot; &quot;package:datasets&quot; &quot;Autoloads&quot; ## [10] &quot;package:base&quot;</code></pre>
+## [1] &quot;.GlobalEnv&quot; &quot;mighty&quot; &quot;package:ggplot2&quot; ## [4] &quot;package:methods&quot; &quot;package:stats&quot; &quot;package:graphics&quot; ## [7] &quot;package:grDevices&quot; &quot;package:utils&quot; &quot;package:datasets&quot; ## [10] &quot;Autoloads&quot; &quot;package:base&quot;</code></pre>
 <p>
 Um novo <em>environment mighty</em> é criado acima do <em>global</em>!
 Isso quer dizer que se você não tiver total conhecimento dos objetos que
@@ -160,13 +160,15 @@ estão sendo anexados, você estará criando uma lista de objetos
 que acontece quando carregamos mais pacotes
 </p>
 <pre class="r"><code>library(dplyr)
+## Warning: Installed Rcpp (0.12.11.4) different from Rcpp used to build dplyr (0.12.11.3).
+## Please reinstall dplyr to avoid random crashes or undefined behavior.
 ## ## Attaching package: &apos;dplyr&apos;
 ## The following objects are masked from &apos;package:stats&apos;:
 ## ## filter, lag
 ## The following objects are masked from &apos;package:base&apos;:
 ## ## intersect, setdiff, setequal, union
 search()
-## [1] &quot;.GlobalEnv&quot; &quot;package:dplyr&quot; &quot;mighty&quot; ## [4] &quot;package:ggplot2&quot; &quot;package:stats&quot; &quot;package:graphics&quot; ## [7] &quot;package:grDevices&quot; &quot;package:utils&quot; &quot;package:datasets&quot; ## [10] &quot;Autoloads&quot; &quot;package:base&quot;</code></pre>
+## [1] &quot;.GlobalEnv&quot; &quot;package:dplyr&quot; &quot;mighty&quot; ## [4] &quot;package:ggplot2&quot; &quot;package:methods&quot; &quot;package:stats&quot; ## [7] &quot;package:graphics&quot; &quot;package:grDevices&quot; &quot;package:utils&quot; ## [10] &quot;package:datasets&quot; &quot;Autoloads&quot; &quot;package:base&quot;</code></pre>
 <p>
 O <em>environment</em> do pacote <code>dplyr</code> aparece antes do
 <code>mighty</code>. Isso quer dizer que os objetos do <em>mighty</em>
@@ -175,7 +177,7 @@ Veja um simples exemplo de como as coisas podem dar errado.
 </p>
 <pre class="r"><code>dados &lt;- tibble::tibble(paciente = 1:30, cancer = rbinom(30, size = 1, prob = 0.5)) attach(dados)
 cancer
-## [1] 0 1 1 0 0 0 1 0 0 1 0 0 0 1 0 0 1 0 1 0 0 0 1 1 0 1 0 1 0 0</code></pre>
+## [1] 0 0 1 1 0 0 0 1 0 0 0 0 0 0 0 1 1 0 0 1 1 0 0 1 1 1 1 0 0 0</code></pre>
 <p>
 Com o código acima, criamos um banco de dados representando 30 pacientes
 com (1) ou sem (0) um certo tipo de câncer. As variáveis
@@ -192,8 +194,7 @@ natural seria carregar a biblioteca <code>survival</code>.
 ## The following object is masked from &apos;dados&apos;:
 ## ## cancer
 search()
-## [1] &quot;.GlobalEnv&quot; &quot;package:survival&quot; &quot;dados&quot; ## [4] &quot;package:dplyr&quot; &quot;mighty&quot; &quot;package:ggplot2&quot; ## [7] &quot;package:stats&quot; &quot;package:graphics&quot; &quot;package:grDevices&quot;
-## [10] &quot;package:utils&quot; &quot;package:datasets&quot; &quot;Autoloads&quot; ## [13] &quot;package:base&quot;</code></pre>
+## [1] &quot;.GlobalEnv&quot; &quot;package:survival&quot; &quot;dados&quot; ## [4] &quot;package:dplyr&quot; &quot;mighty&quot; &quot;package:ggplot2&quot; ## [7] &quot;package:methods&quot; &quot;package:stats&quot; &quot;package:graphics&quot; ## [10] &quot;package:grDevices&quot; &quot;package:utils&quot; &quot;package:datasets&quot; ## [13] &quot;Autoloads&quot; &quot;package:base&quot;</code></pre>
 <p>
 O pacote <code>survival</code> também tem um objeto chamado
 <em>cancer</em>. Assim, ao carregá-lo, o <em>environment survival</em>
