@@ -1,6 +1,6 @@
 +++
 title = "Gráficos com dimensão espacial e temporal"
-date = "2017-06-16"
+date = "2017-07-08"
 categories = ["italocegatta"]
 original_url = "https://italocegatta.github.io/graficos-com-dimensao-espacial-e-temporal/"
 +++
