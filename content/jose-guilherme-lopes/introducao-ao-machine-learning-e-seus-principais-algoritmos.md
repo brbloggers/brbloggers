@@ -238,12 +238,26 @@ a seguir possui uma boa e clara apresentação sobre o tema:
 class="embed-youtube"><iframe class="youtube-player" width="708" height="429" src="http://www.youtube.com/embed/IpGxLWOIZy4?version=3&amp;rel=1&amp;fs=1&amp;autohide=2&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=1&amp;wmode=transparent"></iframe></span>
 
 <p>
+Os seguintes links abordam o tema de maneira introdutória e são de
+excelente qualidade:
+</p>
+<ul>
+<li>
+<strong><a href="http://ciml.info/">A course in Machine
+Learning</a></strong>
+</li>
+<li>
+<strong><a href="http://ai.stanford.edu/~nilsson/MLBOOK.pdf">Introduction
+to Machine Learning</a></strong>
+</li>
+</ul>
+<p>
 Se você é iniciante em Machine Learning e gostaria de começar a colocar
 em prática os seus conhecimentos, vale a pena dar uma olhada no artigo a
 seguir (clique na imagem para abrir):
 </p>
 <p>
-<img class="aligncenter wp-image-252 size-full" src="http://joseguilhermelopes.com.br/wp-content/uploads/2017/07/mlaa.jpg%20578w,%20http://joseguilhermelopes.com.br/wp-content/uploads/2017/07/mlaa-300x77.jpg%20300w" alt="" width="578" srcset="http://joseguilhermelopes.com.br/wp-content/uploads/2017/07/mlaa.jpg 578w, http://joseguilhermelopes.com.br/wp-content/uploads/2017/07/mlaa-300x77.jpg 300w">
+<a href="https://elitedatascience.com/machine-learning-projects-for-beginners"><img class="aligncenter wp-image-252 size-full" src="http://joseguilhermelopes.com.br/wp-content/uploads/2017/07/mlaa.jpg%20578w,%20http://joseguilhermelopes.com.br/wp-content/uploads/2017/07/mlaa-300x77.jpg%20300w" alt="" width="578" srcset="http://joseguilhermelopes.com.br/wp-content/uploads/2017/07/mlaa.jpg 578w, http://joseguilhermelopes.com.br/wp-content/uploads/2017/07/mlaa-300x77.jpg 300w"></a>
 </p>
 <p>
 Um outro conceito bastante importante do Machine Learning é a
