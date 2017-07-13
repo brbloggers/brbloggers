@@ -10,7 +10,7 @@ original_url = "http://curso-r.com/blog/2017/06/26/2017-06-26-construindo-autoen
 redes neurais treinadas com o objetivo de copiar o seu <em>input</em>
 para o seu <em>output</em>. Esse interesse pode parecer meio estranho,
 mas na prática o objetivo é <em>aprender</em> representações
-(<em>encodings</em>) dos dados, que poodem ser usadas para redução de
+(<em>encodings</em>) dos dados, que podem ser usadas para redução de
 dimensionalidade ou até mesmo
 <a href="https://research.googleblog.com/2016/09/image-compression-with-neural-networks.html">compressão
 de arquivos</a>.
@@ -75,7 +75,7 @@ dados. Agora vamos estimar <span
 class="math inline">*W*<sub>1</sub></span>, <span
 class="math inline">*W*<sub>2</sub></span>, <span
 class="math inline">*b*<sub>1</sub></span> e <span
-class="math inline">*b*<sub>2</sub></span> de modo a minimizar algua
+class="math inline">*b*<sub>2</sub></span> de modo a minimizar alguma
 função de perda.
 </p>
 <p>
@@ -98,7 +98,7 @@ descent</em>.
 </p>
 <p>
 Agora vamos carregar a base de dados e em seguida treinar o nosso
-àutoencoder\`.
+autoencoder\`.
 </p>
 <pre class="r"><code>mnist &lt;- dataset_mnist()
 # o mnist &#xE9; um banco de imagens 28x28, vamos transformar cada imagem em um vetor
@@ -141,14 +141,14 @@ foi <em>comprimida</em> usando o nosso <code>decoder</code>.
 </p>
 <pre class="r"><code>predict(decoder, encoded_imgs) %&gt;% split(1:10) %&gt;% lapply(matrix, ncol = 28) %&gt;% Reduce(cbind, .) %&gt;% as.raster() %&gt;% plot()</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-06-26-construindo-autoencoders_files/figure-html/unnamed-chunk-8-1.png" width="672">
+<img src="http://curso-r.com/blog/2017/06/26/2017-06-26-construindo-autoencoders/2017-06-26-construindo-autoencoders_files/figure-html/unnamed-chunk-8-1.png" width="672">
 </p>
 <p>
 Compare as reconstruções com as imagens originais abaixo:
 </p>
 <pre class="r"><code>x_test[1:10,] %&gt;% split(1:10) %&gt;% lapply(matrix, ncol = 28) %&gt;% Reduce(cbind, .) %&gt;% as.raster() %&gt;% plot()</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-06-26-construindo-autoencoders_files/figure-html/unnamed-chunk-10-1.png" width="672">
+<img src="http://curso-r.com/blog/2017/06/26/2017-06-26-construindo-autoencoders/2017-06-26-construindo-autoencoders_files/figure-html/unnamed-chunk-10-1.png" width="672">
 </p>
 <p>
 Um ponto interessante é que esse modelo faz uma

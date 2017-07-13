@@ -20,7 +20,7 @@ essas coisinhas para utilizar o conhecimento de seres humanos para
 dominar o mundo</a>.
 </p>
 <span id="fig:unnamed-chunk-1"></span>
-<img src="http://curso-r.com/blog/2017-06-29-captcha-intro_files/figure-html/unnamed-chunk-1-1.png" alt="Exemplo de CAPTCHA: Consulta de CNPJ da Receita Federal." width="768">
+<img src="http://curso-r.com/blog/2017/06/28/2017-06-29-captcha-intro/2017-06-29-captcha-intro_files/figure-html/unnamed-chunk-1-1.png" alt="Exemplo de CAPTCHA: Consulta de CNPJ da Receita Federal." width="768">
 <p class="caption">
 Figure 1: Exemplo de CAPTCHA: Consulta de CNPJ da Receita Federal.
 </p>
@@ -67,7 +67,7 @@ realizados.
 </p>
 <ol>
 <li>
-Introdução - feito! 😆
+Introdução - feito! 😉
 </li>
 <li>
 O pacote <code>decryptr</code>: baixar, visualizar e classificar

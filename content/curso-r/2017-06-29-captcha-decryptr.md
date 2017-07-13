@@ -107,7 +107,7 @@ Exemplo:
 <pre class="r"><code>library(decryptr)
 &apos;img/tjmg/captcha4d2f795d4e4_92522.jpeg&apos; %&gt;% read_captcha() %&gt;% plot()</code></pre>
 <span id="fig:unnamed-chunk-3"></span>
-<img src="http://curso-r.com/blog/2017-06-29-captcha-decryptr_files/figure-html/unnamed-chunk-3-1.png" alt="CAPTCHA do TJMG." width="384">
+<img src="http://curso-r.com/blog/2017/07/10/2017-06-29-captcha-decryptr/2017-06-29-captcha-decryptr_files/figure-html/unnamed-chunk-3-1.png" alt="CAPTCHA do TJMG." width="384">
 <p class="caption">
 Figure 2: CAPTCHA do TJMG.
 </p>

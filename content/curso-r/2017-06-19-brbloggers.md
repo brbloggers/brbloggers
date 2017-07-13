@@ -44,10 +44,7 @@ Gonzaga</a> autor do <a href="https://sillasgonzaga.github.io/">Paixão
 por Dados</a> criou o
 <a href="https://github.com/sillasgonzaga/rbloggers-BR">R-Bloggers
 BR</a> um bot do twitter que “twita” toda vez que algum blog da lista
-tem um novo post. Também temos uma lista
-</p>
-<p>
-Também temos uma
+tem um novo post. Também temos uma
 <a href="https://github.com/marcosvital/blogs-de-R-no-Brasil">lista de
 blogs</a> de R em português mantida pelo
 <a href="https://github.com/marcosvital">Marcos Vital</a> do
@@ -62,7 +59,7 @@ mesmo estilo para blogs em português. Por isso surgiu o
 <p>
 Esperamos que o bR Bloggers incentive a comunidade a escrever bastante
 conteúdo sobre R em português! Que ele seja uma vitrine para que todos
-possam mostrar os seus trabalhos e que ajude muitas pessoas a aprenderem
+possam mostrar os seus trabalhos e que ajude muitas pessoas a aprender
 R.
 </p>
 <div id="como-funciona" class="section level1">
@@ -111,18 +108,16 @@ de um <code>cronjob</code> que foi definido em um servidor na Google
 Cloud Platform. Esse servidor é uma instância micro do GCP com R
 instalado para rodar esses códigos. Ou seja, o backend do brbloggers
 custa
-U$5,00 por m&\#xEA;s para ficar no ar.&lt;/p&gt; &lt;p&gt;J&\#xE1; o reposit&\#xF3;rio &lt;code&gt;brbloggers&lt;/code&gt; est&\#xE1; linkado com um servi&\#xE7;o chamado &lt;a href="https://www.netlify.com/"&gt;Netlify&lt;/a&gt;. Basicamente o Netlify recebe o c&\#xF3;digo do front-end a cada novo commit no reposit&\#xF3;rio do site e &lt;em&gt;builda&lt;/em&gt; o site est&\#xE1;tico usando o Hugo. O Netlify tamb&\#xE9;m hospeda o site est&\#xE1;tico.&lt;/p&gt; &lt;/div&gt; &lt;div id="o-logo-do-br-bloggers" class="section level1"&gt; &lt;p&gt;O logo do bR Bloggers foio criado pelo &lt;a href="https://github.com/jtrecenti"&gt;Julio&lt;/a&gt; usando o R. O c&\#xF3;digo est&\#xE1; dispopn&\#xED;vel abaixo:&lt;/p&gt; &lt;pre class="r"&gt;&lt;code&gt;library(tidyverse) \#\# Warning: Installed Rcpp (0.12.11.3) different from Rcpp used to build dplyr (0.12.11.2). \#\# Please reinstall dplyr to avoid random crashes or undefined behavior. \#\# Loading tidyverse: ggplot2 \#\# Loading tidyverse: tibble \#\# Loading tidyverse: tidyr \#\# Loading tidyverse: readr \#\# Loading tidyverse: purrr \#\# Loading tidyverse: dplyr \#\# Conflicts with tidy packages ---------------------------------------------- \#\# filter(): dplyr, stats \#\# lag(): dplyr, stats library(ggforce) \# https://pt.wikipedia.org/wiki/Bandeira\_do\_Brasil\#Cores cores\_br &lt;- list(verde = &apos;\#009C3B&apos;, amarelo = &apos;\#FFDF00&apos;, azul = &apos;\#002776&apos;, branco = &quot;\#FFFFFF&quot;) p &lt;- tibble(x = 1, y = 1, lab1 = &apos;b&apos;, lab2 = &apos;R&apos;) %&gt;% ggplot(aes(x0 = x, y0 = y, r = y)) + geom\_circle(size = 5, n = 5.5, fill = &apos;transparent&apos;, color = cores\_br$verde,
+U$5,00 por m&\#xEA;s para ficar no ar.&lt;/p&gt; &lt;p&gt;J&\#xE1; o reposit&\#xF3;rio &lt;code&gt;brbloggers&lt;/code&gt; est&\#xE1; linkado com um servi&\#xE7;o chamado &lt;a href="https://www.netlify.com/"&gt;Netlify&lt;/a&gt;. Basicamente o Netlify recebe o c&\#xF3;digo do front-end a cada novo commit no reposit&\#xF3;rio do site e &lt;em&gt;builda&lt;/em&gt; o site est&\#xE1;tico usando o Hugo. O Netlify tamb&\#xE9;m hospeda o site est&\#xE1;tico.&lt;/p&gt; &lt;/div&gt; &lt;div id="o-logo-do-br-bloggers" class="section level1"&gt; &lt;p&gt;O logo do bR Bloggers foio criado pelo &lt;a href="http://curso-r.com/author/julio"&gt;Julio&lt;/a&gt; usando o R. O c&\#xF3;digo est&\#xE1; dispon&\#xED;vel abaixo:&lt;/p&gt; &lt;pre class="r"&gt;&lt;code&gt;library(tidyverse) library(ggforce) \# https://pt.wikipedia.org/wiki/Bandeira\_do\_Brasil\#Cores cores\_br &lt;- list(verde = &apos;\#009C3B&apos;, amarelo = &apos;\#FFDF00&apos;, azul = &apos;\#002776&apos;, branco = &quot;\#FFFFFF&quot;) p &lt;- tibble(x = 1, y = 1, lab1 = &apos;b&apos;, lab2 = &apos;R&apos;) %&gt;% ggplot(aes(x0 = x, y0 = y, r = y)) + geom\_circle(size = 5, n = 5.5, fill = &apos;transparent&apos;, color = cores\_br$verde,
 linetype = 1) + geom\_circle(size = 4, n = 5.5, fill = 'transparent',
 color =
 cores\_br$amarelo, linetype = 2) + geom\_text(aes(x, y, label = lab1), family = &quot;Ubuntu&quot;, size = 45, nudge\_x = -.3, nudge\_y = -.1, colour = cores\_br$azul)
 + geom\_text(aes(x, y, label = lab2), family = "Century", size = 60,
-nudge\_x = .3, colour = cores\_br$azul,fontface = 'bold') +
-coord\_equal() + theme\_minimal(0) + theme(panel.background =
-element\_rect(fill = 'transparent', colour = NA), plot.background =
-element\_rect(fill = 'transparent', colour = NA)) p</code>
+nudge\_x = .3, colour = cores\_br$azul, fontface = 'bold') +
+coord\_equal() + theme\_minimal(0) p</code>
 </pre>
 <p>
-<img src="http://curso-r.com/blog/2017-06-19-brbloggers_files/figure-html/unnamed-chunk-2-1.png" width="672">
+<img src="http://curso-r.com/blog/2017/06/19/2017-06-19-brbloggers/2017-06-19-brbloggers_files/figure-html/unnamed-chunk-2-1.png" width="672">
 </p>
 </div>
 </div>
