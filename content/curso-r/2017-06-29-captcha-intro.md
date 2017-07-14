@@ -67,7 +67,7 @@ realizados.
 </p>
 <ol>
 <li>
-Introdução - feito! 😊
+Introdução - feito! 😄
 </li>
 <li>
 O pacote <code>decryptr</code>: baixar, visualizar e classificar
