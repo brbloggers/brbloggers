@@ -93,7 +93,7 @@ Vá à sua conta do Github e crie um repositório com o nome do seu
 projeto.
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017/07/17/2017-07-17-rstudio-e-github/b/log/2017-07-17-rstudio-e-github/passo_1_criar_repo.gif">
+<img src="http://curso-r.com/blog/2017-07-17-rstudio-e-github/passo_1_criar_repo.gif">
 </p>
 <p>
 No exemplo acima eu poderia acessar o conteúdo do meu projeto no link
@@ -174,8 +174,8 @@ depois dei commit porque achei que já estava muito boa.
 </p>
 <p>
 <strong>Mudança 2</strong> Implementei a função <code>subtrai</code> e
-apesar de ter estar ainda com muitos bugs eu resolvi commitar porque
-precisava ir embora do Trabalho. Chegando chegando em casa eu arrumo.
+apesar de estar ainda com muitos bugs eu resolvi commitar porque
+precisava ir embora do Trabalho. Chegando em casa eu arrumo.
 </p>
 <p>
 <img src="http://curso-r.com/blog/2017-07-17-rstudio-e-github/passo_3_commit_2.gif">
