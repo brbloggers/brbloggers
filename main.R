@@ -18,7 +18,7 @@ suppressPackageStartupMessages({
 # secure::encrypt("SLACK_TOKEN", key = "xxxxxxx")
 
 # slackr_setup(channel="#brbloggers", api_token = secure::decrypt("SLACK_TOKEN")$key,
-             incoming_webhook_url=secure::decrypt("SLACK")$key)
+#             incoming_webhook_url=secure::decrypt("SLACK")$key)
 
 message(sprintf("[%s]: Starting update",lubridate::now()))
 # slackr_msg(sprintf("[%s]: Starting update",lubridate::now()))
