@@ -177,7 +177,7 @@ Veja um simples exemplo de como as coisas podem dar errado.
 </p>
 <pre class="r"><code>dados &lt;- tibble::tibble(paciente = 1:30, cancer = rbinom(30, size = 1, prob = 0.5)) attach(dados)
 cancer
-## [1] 1 1 0 0 1 1 1 0 0 0 1 1 1 1 1 0 1 1 1 0 0 0 0 1 1 0 0 1 0 1</code></pre>
+## [1] 1 1 0 0 0 0 1 0 0 0 0 1 0 1 1 0 0 0 0 0 1 0 0 1 0 1 1 1 0 0</code></pre>
 <p>
 Com o código acima, criamos um banco de dados representando 30 pacientes
 com (1) ou sem (0) um certo tipo de câncer. As variáveis
