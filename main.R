@@ -266,12 +266,12 @@ if(nrow(new_posts) > 0){
   )
   
   # slackr_msg(
-    sprintf("%s\n", 
-            paste0(new_posts$item_title, "já existe em posts?",  
-                   new_posts$item_title %in% posts$item_title
-            )
-    )
-  )
+  #  sprintf("%s\n", 
+  #          paste0(new_posts$item_title, "já existe em posts?",  
+  #                 new_posts$item_title %in% posts$item_title
+  #          )
+  #  )
+  #)
 }
 
 posts <- bind_rows(posts, new_posts)
