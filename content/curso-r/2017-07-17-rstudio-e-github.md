@@ -86,14 +86,14 @@ A vida com Github + RStudio segue a seguinte rotina (escreva esse fluxo
 num pedaço de papel e guarde na sua carteira):
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017/07/17/2017-07-17-rstudio-e-github/blog/2017-07-17-rstudio-e-github/fluxo_github_rstudio.png">
+<img src="http://curso-r.com/blog/2017-07-17-rstudio-e-github/fluxo_github_rstudio.png">
 </p>
 <p>
 Vá à sua conta do Github e crie um repositório com o nome do seu
 projeto.
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017/07/17/2017-07-17-rstudio-e-github/blog/2017-07-17-rstudio-e-github/passo_1_criar_repo.gif">
+<img src="http://curso-r.com/blog/2017/07/17/2017-07-17-rstudio-e-github/b/log/2017-07-17-rstudio-e-github/passo_1_criar_repo.gif">
 </p>
 <p>
 No exemplo acima eu poderia acessar o conteúdo do meu projeto no link
@@ -141,7 +141,7 @@ no Github. Por sorte, o RStudio já pensou em tudo e fez disso uma tarefa
 fácil.
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017/07/17/2017-07-17-rstudio-e-github/blog/2017-07-17-rstudio-e-github/passo_2_criacao_do_rproj_pt2.gif">
+<img src="http://curso-r.com/blog/2017-07-17-rstudio-e-github/passo_2_criacao_do_rproj_pt2.gif">
 </p>
 <p>
 O caminho é:
@@ -170,7 +170,7 @@ em dois commits.
 depois dei commit porque achei que já estava muito boa.
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017/07/17/2017-07-17-rstudio-e-github/blog/2017-07-17-rstudio-e-github/passo_3_commit_1.gif">
+<img src="http://curso-r.com/blog/2017-07-17-rstudio-e-github/passo_3_commit_1.gif">
 </p>
 <p>
 <strong>Mudança 2</strong> Implementei a função <code>subtrai</code> e
@@ -178,7 +178,7 @@ apesar de ter estar ainda com muitos bugs eu resolvi commitar porque
 precisava ir embora do Trabalho. Chegando chegando em casa eu arrumo.
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017/07/17/2017-07-17-rstudio-e-github/blog/2017-07-17-rstudio-e-github/passo_3_commit_2.gif">
+<img src="http://curso-r.com/blog/2017-07-17-rstudio-e-github/passo_3_commit_2.gif">
 </p>
 <p>
 Agora tem dois commits prontos para serem guardados no nosso repositório
@@ -196,7 +196,7 @@ Para eu continuar da onde ele parou eu devo dar um
 está lá no Github.
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017/07/17/2017-07-17-rstudio-e-github/blog/2017-07-17-rstudio-e-github/passo_5_pull.gif">
+<img src="http://curso-r.com/blog/2017-07-17-rstudio-e-github/passo_5_pull.gif">
 </p>
 <p>
 Então, toda vez que abrir seu projeto, dê um PULL para voltar a ficar de
@@ -210,7 +210,7 @@ Github permite delegar essas tarefas a alguém e também classificá-las se
 quiser.
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017/07/17/2017-07-17-rstudio-e-github/blog/2017-07-17-rstudio-e-github/passo_extra_issue.gif">
+<img src="http://curso-r.com/blog/2017-07-17-rstudio-e-github/passo_extra_issue.gif">
 </p>
 
 <p>
