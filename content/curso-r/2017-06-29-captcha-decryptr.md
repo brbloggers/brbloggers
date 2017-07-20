@@ -86,7 +86,7 @@ um CAPTCHA a partir de um modelo ajustado e um caminho de imagem.
 O modo de uso planejado do <code>decryptr</code> está descrito na Figura
 <a href="http://curso-r.com/blog/2017/07/10/2017-06-29-captcha-decryptr/#fig:fluxo">1</a>.
 </p>
-<pre><code>## Warning: Installed Rcpp (0.12.11.4) different from Rcpp used to build dplyr (0.12.11.3).
+<pre><code>## Warning: Installed Rcpp (0.12.12) different from Rcpp used to build dplyr (0.12.11.3).
 ## Please reinstall dplyr to avoid random crashes or undefined behavior.</code></pre>
 <span id="fig:fluxo"></span>
 <p class="caption">
@@ -107,7 +107,7 @@ Exemplo:
 <pre class="r"><code>library(decryptr)
 &apos;img/tjmg/captcha4d2f795d4e4_92522.jpeg&apos; %&gt;% read_captcha() %&gt;% plot()</code></pre>
 <span id="fig:unnamed-chunk-3"></span>
-<img src="http://curso-r.com/blog/2017/07/10/2017-06-29-captcha-decryptr/2017-06-29-captcha-decryptr_files/figure-html/unnamed-chunk-3-1.png" alt="CAPTCHA do TJMG." width="384">
+<img src="http://curso-r.com/blog/2017-06-29-captcha-decryptr_files/figure-html/unnamed-chunk-3-1.png" alt="CAPTCHA do TJMG." width="384">
 <p class="caption">
 Figure 2: CAPTCHA do TJMG.
 </p>

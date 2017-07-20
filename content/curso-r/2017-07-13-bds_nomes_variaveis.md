@@ -46,7 +46,7 @@ de pacientes do Instituto do Coração) tinha cerca 170 variáveis, então
 selecionei apenas algumas.
 </p>
 <pre class="r"><code>library(tidyverse)
-## Warning: Installed Rcpp (0.12.11.4) different from Rcpp used to build dplyr (0.12.11.3).
+## Warning: Installed Rcpp (0.12.12) different from Rcpp used to build dplyr (0.12.11.3).
 ## Please reinstall dplyr to avoid random crashes or undefined behavior. dados %&gt;% names
 ## [1] &quot;Sexo&quot; &quot;Nascimento&quot; &quot;Idade&quot; ## [4] &quot;Inclus&#xE3;o&quot; &quot;Cor&quot; &quot;Peso&quot; ## [7] &quot;Altura&quot; &quot;cintura&quot; &quot;IMC&quot; ## [10] &quot;Superf&#xED;cie corporal&quot; &quot;Tabagismo&quot; &quot;cg.tabag (cig/dia)&quot; ## [13] &quot;Alcool (dose/semana)&quot; &quot;Drogas il&#xED;citas&quot; &quot;Cafe&#xED;na/dia&quot; ## [16] &quot;Refrig/dia&quot; &quot;Sedentario&quot; &quot;ativ. Fisica&quot;</code></pre>
 <p>
