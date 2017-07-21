@@ -142,6 +142,13 @@ função:
 write.fst(x, &quot;/home/daniel/Desktop/dataset.fst&quot;) # ler
 a &lt;- read.fst(&quot;~/Desktop/dataset.fst&quot;) # ler apenas algumas linhas e colunas
 b &lt;- read.fst(&quot;~/Desktop/dataset.fst&quot;, c(&quot;Logicals&quot;, &quot;Text&quot;), 2000, 4990) </code></pre>
+<p>
+<strong>Note</strong> Como o Sillas mencionou nos comentários, a versão
+do CRAN do <code>fst</code> salva datas como numericos no arquivo. Os
+números podedm sser convertidos para data novamente usando a função
+<code>as.Date</code> do pacote <code>zoo</code>, mas tem que tomar
+cuidado!
+</p>
 
 <h2>
 Conclusão
