@@ -86,8 +86,6 @@ um CAPTCHA a partir de um modelo ajustado e um caminho de imagem.
 O modo de uso planejado do <code>decryptr</code> está descrito na Figura
 <a href="http://curso-r.com/blog/2017/07/10/2017-06-29-captcha-decryptr/#fig:fluxo">1</a>.
 </p>
-<pre><code>## Warning: Installed Rcpp (0.12.12) different from Rcpp used to build dplyr (0.12.11.3).
-## Please reinstall dplyr to avoid random crashes or undefined behavior.</code></pre>
 <span id="fig:fluxo"></span>
 <p class="caption">
 Figure 1: Fluxo de utilização do pacote <code>decryptr</code>.
