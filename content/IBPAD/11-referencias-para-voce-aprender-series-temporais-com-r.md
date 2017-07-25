@@ -95,7 +95,9 @@ principal pacote de previsão de séries temporais da linguagem R.
             <blockquote><p>
 
 <span style="color: #ff6600;">Que aprender mais? Conheça nosso curso de
-<strong>Séries Temporais</strong> em Brasília e
+<strong>Séries Temporais</strong> em
+<a href="http://www.ibpad.com.br/produto/series-temporais-df/" target="_blank" rel="noopener">Brasília
+</a>e
 <a href="http://www.ibpad.com.br/produto/series-temporais-sp/" target="_blank" rel="noopener">São
 Paulo</a></span>
 </p>
