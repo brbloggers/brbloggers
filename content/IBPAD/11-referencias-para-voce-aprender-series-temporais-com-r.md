@@ -47,7 +47,7 @@ Livros
         </div>
     </div>
 
-    <div  class="wpb_single_image wpb_content_element vc_align_left">
+    <div  class="wpb_single_image wpb_content_element vc_align_center">
         
         <figure class="wpb_wrapper vc_figure">
             <div class="vc_single_image-wrapper   vc_box_border_grey"><img class="vc_single_image-img"  src="https://i1.wp.com/i.imgur.com/YCTRIZ3.png?resize=245%2C394&#038;ssl=1" data-recalc-dims="1" /></div>
@@ -92,13 +92,26 @@ principal pacote de previsão de séries temporais da linguagem R.
 <div class="wpb_wrapper">
     <div class="wpb_text_column wpb_content_element " >
         <div class="wpb_wrapper">
+            <blockquote><p>
+
+<span style="color: #ff6600;">Que aprender mais? Conheça nosso curso de
+<strong>Séries Temporais</strong> em Brasília e
+<a href="http://www.ibpad.com.br/produto/series-temporais-sp/" target="_blank" rel="noopener">São
+Paulo</a></span>
+</p>
+</blockquote>
+        </div>
+    </div>
+
+    <div class="wpb_text_column wpb_content_element " >
+        <div class="wpb_wrapper">
             <h2>Papers</h2>
 
 <p>
 Artigos acadêmicos sobre séries temporais existem em abundância. Para
 achar uma boa referência que seja útil aos interesses, vale pesquisar no
-<a href="http://scholar.google.com/">Google Scholar</a> temas
-específicos. Por exemplo:
+<a href="http://scholar.google.com/" class="broken_link">Google
+Scholar</a> temas específicos. Por exemplo:
 </p>
 <p>
  
