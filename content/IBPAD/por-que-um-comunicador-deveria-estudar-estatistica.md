@@ -89,12 +89,13 @@ consequência, executar melhores ações e campanhas.
 Conheça nosso curso <strong>Estatística Básica para
 Comunicadores</strong> com edições
 em <a href="http://www.ibpad.com.br/produto/estatistica-basica-para-comunicadores-sp" target="_blank" rel="noopener">São
-Paulo</a> e
-<a href="http://www.ibpad.com.br/produto/estatistica-basica-para-comunicadores-rj/" target="_blank" rel="noopener">Rio
-de Janeiro</a>. Tem como objetivo ampliar o entendimento e capacidade de
-aplicação de métricas básicas, conceitos estatísticos e gráficos
-tecnicamente adequados em relatórios, planejamentos e questionamentos
-envolvendo informações analíticas de campanhas e marcas.
+Paulo</a>, <a href="http://www.ibpad.com.br/produto/estatistica-basica-para-comunicadores-rj/" target="_blank" rel="noopener">Rio
+de Janeiro</a> e
+<a href="http://www.ibpad.com.br/produto/estatistica-basica-para-comunicadores-df/">Brasília</a>.
+Tem como objetivo ampliar o entendimento e capacidade de aplicação de
+métricas básicas, conceitos estatísticos e gráficos tecnicamente
+adequados em relatórios, planejamentos e questionamentos envolvendo
+informações analíticas de campanhas e marcas.
 </p>
 
         </div>
