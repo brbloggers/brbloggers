@@ -224,6 +224,27 @@ all_feeds$`jose-guilherme-lopes` <- try({all_feeds$`jose-guilherme-lopes` %>%
     )
 })
 
+# feeds$NMEC$url %>%
+#   httr::GET() %>%
+#   httr::content(as = "text") %>%
+#   xml2::read_html() %>%
+#   rvest::html_nodes('.container div')
+# 
+# message("Baixando dados do blog do NMEC")
+# all_feeds$`NMEC` <- all_feeds$`NMEC` %>%
+#   select(
+#     feed_title,
+#     feed_link,
+#     item_title,
+#     item_date_published,
+#     item_link
+#   )
+
+
+
+
+
+
 all_feeds <- all_feeds %>%
   keep(is.data.frame) %>%
   map_df(~.x, .id = "blog") %>%
