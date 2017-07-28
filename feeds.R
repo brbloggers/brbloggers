@@ -1,5 +1,10 @@
 feeds <- list(
   
+  "NMEC" = list(
+    nome = "NMEC",
+    url = "http://pedrocostaferreira.github.io/blog/tags#R"
+  )
+  
   "curso-r" = list(
     nome = "Curso-R",
     url = "http://curso-r.com/blog/index.xml"
