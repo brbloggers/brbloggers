@@ -93,7 +93,19 @@ suppressMessages({
     map(~safe_tidyfeed(.x$url))  
 })
 
+
 # modificações necessárias p/ cada blog
+
+message("Baixando dados do blog do NMEC")
+all_feeds$`NMEC` <- all_feeds$`NMEC` %>%
+  select(
+    feed_title,
+    feed_link,
+    item_title,
+    item_date_published,
+    item_link
+  )
+
 message("Baixando dados do blog curso-r")
 all_feeds$`curso-r` <- try({all_feeds$`curso-r` %>%
     select(
