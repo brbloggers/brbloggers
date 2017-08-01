@@ -48,6 +48,9 @@ exemplo, em caso de eventos raros a <code>'accuracy'</code> não vai ser
 muito informativa, daí poderíamos usar <code>'auc'</code>,
 <code>'gini'</code>, etc.).
 </p>
+<pre class="r"><code>modelo_keras_1 %&gt;% compile( loss = &apos;binary_crossentropy&apos;, optimizer = optimizer_sgd(lr = 0.4), metrics = c(&apos;accuracy&apos;)
+) modelo_keras_1_fit &lt;- modelo_keras_1 %&gt;% fit( x = df$x, y = df$y_1, epochs = 20, batch_size = 1000, verbose = 0
+)</code></pre>
 <pre class="r"><code># coefficients
 modelo_keras_1 %&gt;% get_layer(&quot;camada_unica&quot;) %&gt;% get_weights # [[1]]
 # [,1]
