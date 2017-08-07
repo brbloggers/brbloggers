@@ -28,7 +28,7 @@ A seção de mais sucesso do nosso blog foi a de análises. Nós usamos
 diversas bases de dados divertidas e interessantes para mostrar os
 recursos do R de webscraping, visualização e modelagem.
 </p>
-<pre><code>## Linkging to ImageMagick 6.6.9
+<pre><code>## Linking to ImageMagick 6.6.9
 ## Enabled features: cairo, fontconfig, freetype, lcms, rsvg, x11
 ## Disabled features: fftw, ghostscript, pango, webp</code></pre>
 <p>
