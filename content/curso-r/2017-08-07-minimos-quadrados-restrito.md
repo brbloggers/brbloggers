@@ -54,7 +54,7 @@ problemas, inclusive com generalizações:
 </p>
 <p>
 <span class="math display">
-$$\\min\_x \\frac{1}{2}x&apos; Q x + c&apos; x, \\text{ sujeito &\#xE0; }Ax \\geq 0.$$
+$$\\min\_x \\frac{1}{2}x&apos; Q x + c&apos; x, \\text{ sujeito a }Ax \\geq 0.$$
 </span>
 </p>
 <ol>
@@ -121,7 +121,7 @@ ser, existe um pacote em R para resolver problemas do tipo:
 </p>
 <p>
 <span class="math display">
-$$\\min\_x \\frac{1}{2}x&apos; Q x + c&apos; x, \\text{ sujeito &\#xE0; }Ax \\geq 0.$$
+$$\\min\_x \\frac{1}{2}x&apos; Q x + c&apos; x, \\text{ sujeito a }Ax \\geq 0.$$
 </span>
 </p>
 <p>
@@ -179,7 +179,7 @@ com uma última ressalva. O problema resolvido no <code>solve.QP</code> é
 </p>
 <p>
 <span class="math display">
-$$\\min\_x \\frac{1}{2}x&apos; Q x + c&apos; x, \\text{ sujeito &\#xE0; }A&apos;x \\geq 0,$$
+$$\\min\_x \\frac{1}{2}x&apos; Q x + c&apos; x, \\text{ sujeito a }A&apos;x \\geq 0,$$
 </span>
 </p>
 <p>
