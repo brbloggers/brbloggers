@@ -48,8 +48,10 @@ Nesse post, vamos discutir como montar a base para fazer a magia negra.
 Nossa resposta não é mais uma categoria, e sim uma matriz. A matriz tem
 <span class="math inline">*k*</span> linhas (número de letras em um
 CAPTCHA) <span class="math inline">*p*</span> colunas (número de valores
-possíveis de um caractere). A matriz vale <code>1</code> se naquela
-posição
+possíveis de um caractere). O elemento <span
+class="math inline">(*i*, *j*)</span> vale <code>1</code> se na posição
+<span class="math inline">*i*</span> aparece a letra relativa à posição
+<span class="math inline">*j*</span>.
 </p>
 <p>
 Assim,
