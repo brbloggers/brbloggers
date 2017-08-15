@@ -56,7 +56,7 @@ Livros
 
     <div class="wpb_text_column wpb_content_element " >
         <div class="wpb_wrapper">
-            <p><em>Forecasting: principles and practices</em> é um excelente referência escrita por Rob Hyndman, uma das maiores autoridades sobre Séries Temporais do mundo. Felizmente, Hyndman publicou este livro de graça <a href="https://www.otexts.org/fpp/">na Internet</a>. Além de aprender conceitos teóricos fundamentais para o entendimento do assunto, o livro também é rico em exemplos de código R, permitindo ao leitor colocar em prática imediatamente o que aprende durante a leitura. A linguagem usada no livro é bem acessível mesmo para quem não é acadêmico.</p>
+            <p><em>Forecasting: principles and practices</em> é um excelente referência escrita por Rob Hyndman, uma das maiores autoridades sobre Séries Temporais do mundo. Felizmente, Hyndman publicou este livro de graça <a href="https://www.otexts.org/fpp/" class="broken_link">na Internet</a>. Além de aprender conceitos teóricos fundamentais para o entendimento do assunto, o livro também é rico em exemplos de código R, permitindo ao leitor colocar em prática imediatamente o que aprende durante a leitura. A linguagem usada no livro é bem acessível mesmo para quem não é acadêmico.</p>
 
 <p>
 Para quem não sabe, Hyndman é autor do pacote <code>forecast</code>, o
