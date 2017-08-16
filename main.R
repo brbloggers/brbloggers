@@ -87,7 +87,6 @@ for(blog in names(feeds)){
 
 posts <- readRDS("data/posts.rds")
 
-
 suppressMessages({
   all_feeds <- feeds %>%
     map(~safe_tidyfeed(.x$url))  
