@@ -89,7 +89,7 @@ ambiente, entre outras informações relevantes ao animal pesquisado.
 </p>
 <p>
 <strong>5°</strong> A parceria de algumas Instituições como
-<a href="http://www.kws.go.ke/" target="_blank" rel="noopener">Kenya
+<a href="http://www.kws.go.ke/" target="_blank" rel="noopener" class="broken_link">Kenya
 Wildlife Service</a>,
 <a href="http://www.savetheelephants.org/" target="_blank" rel="noopener">Save
 the Elephants</a>,
