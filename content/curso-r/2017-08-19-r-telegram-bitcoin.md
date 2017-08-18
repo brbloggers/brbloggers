@@ -1,5 +1,5 @@
 +++
-title = "R avisando se bitcoin tá barato pelo telegram"
+title = "Como fazer o R avisar pelo telegram se bitcoin tá barato"
 date = "2017-08-19 07:26:00"
 categories = ["curso-r"]
 original_url = "http://curso-r.com/blog/2017/08/19/2017-08-19-r-telegram-bitcoin/"
