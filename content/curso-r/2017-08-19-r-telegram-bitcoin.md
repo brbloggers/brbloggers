@@ -16,7 +16,7 @@ motivar, vou contar o que fiz de divertido usando telegram e preços de
 bitcoin.
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017/08/19/2017-08-19-r-telegram-bitcoin/2017-08-18-r_telegram_bitcoin/r_telegram.gif">
+<img src="http://curso-r.com/blog/2017-08-19-r-telegram-bitcoin/r_telegram.gif">
 </p>
 <p>
 Herói do dia: <a href="https://github.com/lbraglia">Luca Biglia</a>,
@@ -29,7 +29,7 @@ bitcoin</strong> pra ilustrar e ao fim do post teremos feito o R mandar
 um telegram quando o preço da bitcoin atingir um dado patamar.
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017/08/19/2017-08-19-r-telegram-bitcoin/2017-08-18-r_telegram_bitcoin/serie_bitcoin.png">
+<img src="http://curso-r.com/blog/2017-08-19-r-telegram-bitcoin/serie_bitcoin.png">
 </p>
 <p>
 Na arte de hoje vamos precisar de:
@@ -59,8 +59,10 @@ criar um loop infinito no R para acompanhar os preços sem parar.
 </li>
 <li>
 Fazer o R mandar mensagem pra gente quando o preço da bitcoin for maior
-que X, por exemplo. extra) Pensar em ideias mirabolantes do que fazer
-com telegram + R.
+que X, por exemplo.
+</li>
+<li>
+(extra) Pensar em ideias mirabolantes do que fazer com telegram + R.
 </li>
 </ol>
 
@@ -107,7 +109,7 @@ lá:
 <ol>
 <li>
 Vá ao seu telegram e procure pelo BotFather como se estivesse procurando
-uma pessoa da sua lista de contatos. Abra uma conversa com ele!
+uma pessoa da sua lista de contato. Abra uma conversa com ele!
 </li>
 <li>
 Envie o texto “/start” e em seguida “/newbot”. Dê um nome ao seu bot
@@ -116,13 +118,13 @@ necessariamente termina em <em>bot</em>.
 </li>
 <li>
 Agora copie e cole o token que o BotFather te enviou no
-<code>.Renvirom</code>. O meu bot tem o username
+<code>.Renviron</code>. O meu bot tem o username
 <code>AthosDamianiBot</code>, então eu devo colocar o nome da variável
 assim:
 </li>
 </ol>
 <p>
-<img src="http://curso-r.com/blog/2017/08/19/2017-08-19-r-telegram-bitcoin/2017-08-18-r_telegram_bitcoin/Renvirom_1.png">
+<img src="http://curso-r.com/blog/2017-08-19-r-telegram-bitcoin/Renvirom_1.png">
 </p>
 <p>
 Se você usar essa convenção de nome você poderá usar a função
@@ -153,7 +155,7 @@ BotFather) e comece uma conversa com ele.
 <li>
 <p>
 No R, chame o método
-<code>bot$getUpdates()&lt;/code&gt; para pegar no R as mensagens que voc&\#xEA; envou a ele e, finalmente, encontre o &lt;code&gt;chat\_id&lt;/code&gt; escondido no &lt;code&gt;msgs&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt; &lt;/ol&gt; &lt;pre class="r"&gt;&lt;code&gt;msgs &lt;- bot$getUpdates()
+<code>bot$getUpdates()&lt;/code&gt; para pegar no R as mensagens que voc&\#xEA; enviou a ele e, finalmente, encontre o &lt;code&gt;chat\_id&lt;/code&gt; escondido no &lt;code&gt;msgs&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt; &lt;/ol&gt; &lt;pre class="r"&gt;&lt;code&gt;msgs &lt;- bot$getUpdates()
 msgs*m**e**s**s**a**g**e*chat$id\[1\] \[1\] 135717340&lt;/code&gt;&lt;/pre&gt; &lt;ol&gt; &lt;li&gt;Com o &lt;code&gt;chat\_id&lt;/code&gt; em m&\#xE3;os, configure ele como &lt;code&gt;chat\_id&lt;/code&gt; padr&\#xE3;o.&lt;/li&gt; &lt;/ol&gt; &lt;pre class="r"&gt;&lt;code&gt;bot$set\_default\_chat\_id(135717340)</code>
 </pre>
 <p>
