@@ -21,7 +21,7 @@ olhada nesse exemplo horrível:
 <pre class="r"><code>car_data &lt;- transform(aggregate(. ~ cyl, data = subset(mtcars, hp &gt; 100), FUN = function(x) round(mean(x, 2))), kpl = mpg*0.4251)</code></pre>
 <p>
 Se não quisermos salvar resultados intermediários, compor diversas
-funçõês passa a ser super importante. Mas a estratégia mostrada acima
+funções passa a ser super importante. Mas a estratégia mostrada acima
 faz com que seja muito difícil entender o que está acontecendo e em que
 ordem (para os nerds lendo isso, é o equivalente de escrever <span
 class="math inline">*g*(*f*(*x*))</span> ao invés de <span
