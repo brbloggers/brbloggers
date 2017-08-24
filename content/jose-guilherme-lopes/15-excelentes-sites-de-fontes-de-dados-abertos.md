@@ -16,11 +16,11 @@ Neste artigo apresento diversos portais e plataformas que fornecem
 fontes de dados publicamente. Confira:
 </p>
 <h2>
-<strong>1 – Governo brasileiro e Instituições públicas</strong>
+<strong>1 – Governo brasileiro e instituições públicas</strong>
 </h2>
 <p>
 Pelo <strong><a href="http://transparencia.gov.br/">Portal da
-Transparência</a> </strong>, é possível encontrar dados em escala
+Transparência</a></strong>, é possível encontrar dados em escala
 municipal, estadual e federal. Instituições como
 <a href="http://www.transparencia.mpf.mp.br/">MPF</a>,
 <a href="http://www.pf.gov.br/acessoainformacao/acesso-a-informacao">Polícia
@@ -32,7 +32,7 @@ portal.
 <p>
 No Portal Brasileiro de Dados Abertos, estão disponíveis mais de 3 mil
 datasets. Acesse por meio <a href="http://dados.gov.br/dataset">deste
-link</a>,
+link</a>.
 </p>
 <p>
 Instituições como o
@@ -110,8 +110,8 @@ Nações Unidas</a></strong>
 </h2>
 <p>
 No UNdata, é possível encontrar datasets das diferentes entidades que
-compõem a ONU. Muitas informações úteis, em especial sobre saúde e
-índices de desenvolvimento, podem ser obtidos neste portal.
+compõem a ONU. Possui muitas informações úteis, em especial sobre saúde
+e índices de desenvolvimento.
 </p>
 <h2>
 <strong>8 – <a href="https://aws.amazon.com/pt/public-datasets/">Amazon
@@ -209,10 +209,10 @@ em tempo real.
 <strong>15 – <a href="http://wiki.dbpedia.org/">DBPedia</a></strong>
 </h2>
 <p>
-O Wikipedia é uma composto por milhões de dados, estruturados e
+O Wikipedia é composto por milhões de dados, estruturados e
 não-estruturados, sobre os mais diversos assuntos. O DBPedia é um
 ambicioso projeto que cataloga essas informações e cria uma base de
-dados pública, permitindo qualquer pessoa analisar estes dados.
+dados pública, permitindo a qualquer pessoa analisar estes dados.
 </p>
 <p>
 <img class="wp-image-363 aligncenter" src="http://joseguilhermelopes.com.br/wp-content/uploads/2017/08/Sem-t&#xED;tulo-300x170.jpg%20300w,%20http://joseguilhermelopes.com.br/wp-content/uploads/2017/08/Sem-t&#xED;tulo.jpg%20642w" alt="" width="438" srcset="http://joseguilhermelopes.com.br/wp-content/uploads/2017/08/Sem-t&#xED;tulo-300x170.jpg 300w, http://joseguilhermelopes.com.br/wp-content/uploads/2017/08/Sem-t&#xED;tulo.jpg 642w">
