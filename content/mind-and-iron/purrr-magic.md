@@ -14,7 +14,7 @@ mas não sabe de todo o seu pontencial, esse post é feito para você.
 </p>
 <p>
 Se você quisesse tornar o R mais conciso, o que você mudaria nele? Uma
-boa primeira tentariva talvez envolvesse simplificar a “composição de
+boa primeira tentativa talvez envolvesse simplificar a “composição de
 funções” (o ato de aplicar uma função ao resultado de outra). Dê uma
 olhada nesse exemplo horrível:
 </p>
@@ -56,7 +56,7 @@ usá-la para propósitos educacionais. O primeiro nível de
 <strong>usuário</strong> do GitHub. Cada uma destas listas é feita de
 mais ou menos 30 listas menores representando os
 <strong>repositórios</strong> daquele usuário. Cada repositório tem mais
-de 60 campos com <strong>informação</strong> sobre o repo; um destes
+de 60 campos com <strong>informações</strong> sobre o repo; um destes
 campos também é uma lista e contém <strong>dados de login</strong>
 pertencentes ao dono do repo.
 </p>
@@ -74,9 +74,9 @@ primeiro usuário em <code>ghr</code> tem:
 Nesse pequeno comando estamos selecionando o primeiro elemento do
 primeiro nível da lista (<code>ghr\[\[1\]\]</code>) ou, em outras
 palavras, estamos escolhendo o primeiro usuário. Ao aplicar
-<code>length()</code> neste usuário, podemos ver quantos elementos ele
-tem, resultando no número de repositórios pertencentes a ele(a). De
-forma geral, se quiséssemos ver quantos campos de informação tem o
+<code>length()</code> neste usuário, podemos ver quantos elementos
+ele(a) tem, resultando no número de repositórios pertencentes a ele(a).
+De forma geral, se quiséssemos ver quantos campos de informação tem o
 terceiro repo deste usuário (ou o comprimento do terceiro elemento do
 segundo nível associado ao primeiro elemento do primeiro nível),
 poderíamos rodar <code>length(ghr\[\[1\]\]\[\[3\]\])</code>.
@@ -137,9 +137,9 @@ que aquele laço horrível lá em cima!
 <p>
 Agora que você já conheceu os princípios fundamentais do
 <code>purrr</code>, eu vou lhe apresentar às funções anônimas, outra
-funcionalidade interessantíssima do <code>purrr</code>. Elas são funções
-que podemos definir dentro de um <code>map()</code> sem ter que
-nomeá-las. Elas podem aparecer de duas formas: fórmulas e funções.
+funcionalidade interessantíssima do pacote. Elas são funções que podemos
+definir dentro de um <code>map()</code> sem ter que nomeá-las,
+aparecendo em duas formas: fórmulas e funções.
 </p>
 <p>
 Fórmulas são antecedidas por um til e você não pode controlar o nome de
@@ -150,9 +150,9 @@ Primeiramente vamos ver como fórmulas funcionam:
 # [1] 30 30 30 26 30 30</code></pre>
 <p>
 Fórmulas nos permitem passar argumentos para a função sendo mapeada.
-Lembre-se de como estamos tirando o comprimenro de cada sub-lista de
+Lembre-se de como estamos tirando o comprimento de cada sub-lista de
 <code>ghr</code>? Se usarmos a notação-til podemos explicitamente
-acessar aquele elemento e colocá-lo onde quisermos dentro do chamado da
+acessar aquele elemento e colocá-lo onde quisermos dentro da chamada da
 função, mas o seu nome será <code>.x</code> independentemente de
 qualquer outra coisa.
 </p>
@@ -227,11 +227,11 @@ inteligente, usar <code>map\_dbl()</code> na chamada mais interna nos
 permite devolver um único vetor para cada usuário.
 </p>
 <p>
-No entanto, esse campos contém informações preciosas. Até agora nossa
-lista permaneceu completamente sem nomes, o que significa que cada lista
-de usuário e cada lista de repo não estão marcadas com os nomes dos
-usuários e repos. Vamos ver se podemos encontrar os nomes dos usuários
-no campo <code>login</code> da lista
+No entanto, esse campos contém outras informações preciosas. Até agora
+nossa lista permaneceu completamente sem nomes, o que significa que cada
+lista de usuário e cada lista de repo não estão marcadas com os nomes
+dos usuários e repos. Vamos ver se podemos encontrar os nomes dos
+usuários no campo <code>login</code> da lista
 <code>$owner&lt;/code&gt; de cada repo (note o uso de &lt;code&gt;map\_chr()&lt;/code&gt;; esse &\#xE9; o equivalente de &lt;code&gt;map\_dbl()&lt;/code&gt; para caracteres):&lt;/p&gt; &lt;pre class="r"&gt;&lt;code&gt;map(ghr, function(user) { map\_chr(user, ~.x$owner$login) }) \# \[\[1\]\] \# \[1\] &quot;gaborcsardi&quot; &quot;gaborcsardi&quot; &quot;gaborcsardi&quot; &quot;gaborcsardi&quot; \# \[5\] &quot;gaborcsardi&quot; &quot;gaborcsardi&quot; &quot;gaborcsardi&quot; &quot;gaborcsardi&quot; \# ... \# \# \[\[2\]\] \# \[1\] &quot;jennybc&quot; &quot;jennybc&quot; &quot;jennybc&quot; &quot;jennybc&quot; &quot;jennybc&quot; \# \[6\] &quot;jennybc&quot; &quot;jennybc&quot; &quot;jennybc&quot; &quot;jennybc&quot; &quot;jennybc&quot; \# ... \# \# ... map(ghr, function(user) { user %&gt;% map\_chr(~.x$owner$login) }) \# ... map(ghr, ~map\_chr(.x, ~.x$owner$login)) \# ...&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Todos os 3 comandos devolvem exatamente a mesma coisa, mas o primeiro &\#xE9; o mais f&\#xE1;cil de entender. Para cada autor, iteramos em seus repos e acessamos o elemento &lt;code&gt;$owner$login&lt;/code&gt;. O segundo nos mostra que &\#xE9; poss&\#xED;vel mapear um &lt;em&gt;pipe&lt;/em&gt;. O terceiro por sua vez condensa tudo ao m&\#xE1;ximo (note como usamos &lt;code&gt;.x&lt;/code&gt; duas vezes; a primeira vez vem do &lt;code&gt;map()&lt;/code&gt; e representa cada usu&\#xE1;rio, enquanto a segunda vem do &lt;code&gt;map\_chr()&lt;/code&gt; e representa cada repo).&lt;/p&gt; &lt;p&gt;No entanto, todos todos os comandos sofrem de repeti&\#xE7;&\#xE3;o na sa&\#xED;da dado que estamos fazendo a mesma coisa para cada repo dispon&\#xED;vel. J&\#xE1; que s&\#xF3; precisamos dessa informa&\#xE7;&\#xE3;o uma vez para cada usu&\#xE1;rio, podemos usar o bom e velho &lt;code&gt;\[1\]&lt;/code&gt; para pegar apenas o primeiro elemento do vetor retornado por &lt;code&gt;map\_chr()&lt;/code&gt; e depois usar outro &lt;code&gt;map\_chr()&lt;/code&gt; para que n&\#xE3;o precisemos lidar com listas estranhas:&lt;/p&gt; &lt;pre class="r"&gt;&lt;code&gt;map\_chr(ghr, ~map\_chr(.x, ~.x$owner$login)\[1\]) \# \[1\] &quot;gaborcsardi&quot; &quot;jennybc&quot; &quot;jtleek&quot; &quot;juliasilge&quot; \# \[5\] &quot;leeper&quot; &quot;masalmon&quot; &lt;/code&gt;&lt;/pre&gt; &lt;/div&gt; &lt;div id="pipes-e-maps" class="section level2"&gt; &lt;p&gt;Na se&\#xE7;&\#xE3;o acima usamos &lt;code&gt;map()&lt;/code&gt;s com &lt;em&gt;pipes&lt;/em&gt;, e agora vamos usar &lt;em&gt;pipes&lt;/em&gt; com &lt;code&gt;map()&lt;/code&gt;s. Isso deveria ser bastante l&\#xF3;gico dado o &\#xFA;ltimo trecho de c&\#xF3;digo, mas vamos usar o &lt;code&gt;map()&lt;/code&gt; para pegar o login dos usu&\#xE1;rios, usar &lt;code&gt;set\_names()&lt;/code&gt; para dar nomes aos usu&\#xE1;rios de acordo com seus logins e por fim usar &lt;code&gt;pluck()&lt;/code&gt; para selecionar a lista de reposit&\#xF3;rios de &\#x201C;jennybc&\#x201D; (note o ponto em &lt;code&gt;set\_names()&lt;/code&gt;; ele representa o resultado vindo da linha cima, estamos usando ele como o segundo argumento da fun&\#xE7;&\#xE3;o):&lt;/p&gt; &lt;pre class="r"&gt;&lt;code&gt;ghr %&gt;% map\_chr(~map\_chr(.x, ~.x$owner*l**o**g**i**n*)\[1\])name))
 }) %&gt;% pluck("jennybc", "eigencoder") \# ... ghr %&gt;%
 map(~set\_names(.x, map(.x, ~.x*n**a**m**e*)))name</code> de cada um e
