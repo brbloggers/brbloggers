@@ -28,9 +28,9 @@ A seção de mais sucesso do nosso blog foi a de análises. Nós usamos
 diversas bases de dados divertidas e interessantes para mostrar os
 recursos do R de webscraping, visualização e modelagem.
 </p>
-<pre><code>## Linking to ImageMagick 6.6.9
-## Enabled features: cairo, fontconfig, freetype, lcms, rsvg, x11
-## Disabled features: fftw, ghostscript, pango, webp</code></pre>
+<pre><code>## Linking to ImageMagick 6.7.7.10
+## Enabled features: cairo, fontconfig, freetype, fftw, lcms, pango, rsvg, x11
+## Disabled features: ghostscript, webp</code></pre>
 <p>
 <img src="http://curso-r.com/blog/2017-08-05-o-melhor-de-50-posts_files/figure-html/unnamed-chunk-1-1.png" width="576">
 </p>
