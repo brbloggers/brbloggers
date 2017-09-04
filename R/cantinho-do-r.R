@@ -1,9 +1,9 @@
 `cantinho-do-r` <- list(
   nome = "Cantinho do R",
-  url = "https://analisereal.com/feed/",
+  url = "https://cantinhodor.wordpress.com/feed/",
   
   lista = function(){
-    df <- safe_tidyfeed("https://analisereal.com/feed/")
+    df <- safe_tidyfeed("https://cantinhodor.wordpress.com/feed/")
     df %>%
       select(
         feed_title,
@@ -19,5 +19,5 @@
   }
 )
 
-# a <- `analise-real`$lista()
-# b <- `analise-real`$post(a$item_link[1])
+# a <- `cantinho-do-r`$lista()
+#b <- `cantinho-do-r`$post(a$item_link[1])
