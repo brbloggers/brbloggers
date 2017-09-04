@@ -3,18 +3,31 @@ ibpad <- list(
   url = "http://www.ibpad.com.br/blog/analise-de-dados/feed/",
   
   lista = function(){
-    df <- safe_tidyfeed("http://www.ibpad.com.br/blog/analise-de-dados/feed/")
-    df %>%
-      select(
-        feed_title,
-        feed_link,
-        item_title,
-        item_date_published,
-        item_link
-      )
+    x <- readr::read_lines("http://www.ibpad.com.br/blog/analise-de-dados/feed/")
+    x <- x[-1]
+    x <- paste(x, collapse = '')
+    x <- xml2::read_xml(x)
+    x <- xml2::as_list(x)
+    
+    id_items <- which(names(x$channel) == "item")
+    
+    df <- dplyr::data_frame(
+      feed_title = unlist(x$channel$title),
+      feed_link = attr(x$channel$link, "href"),
+      item_title = map_chr(id_items, ~unlist(x$channel[[.x]]$title)),
+      item_date_published = map_chr(id_items, ~unlist(x$channel[[.x]]$pubDate)),
+      item_link = map_chr(id_items, ~unlist(x$channel[[.x]]$link))
+    )
+    
+    df$item_date_published <- lubridate::dmy_hms(df$item_date_published)
+    
+    df
   },
   
   post = function(url){
     safe_mercury(url)
   }
 )
+
+# a <- ibpad$lista()
+# b <- `ibpad`$post(a$item_link[1])
