@@ -43,7 +43,10 @@ posts <- readRDS("data/posts.rds")
 new_posts <- map(feeds, ~.x$lista) %>%
   map(~safely(.x, otherwise = NULL)) %>%
   map_df(~.x()$result, .id = "blog") %>%
-  filter(item_date_published >= lubridate::today() - 7) %>%
+  filter(
+    (item_date_published >= lubridate::today() - 7) | 
+      (!blog %in% unique(posts$blog))
+  ) %>%
   mutate(
     post_fun = map(feeds[blog], ~.x$post),
     item_content = map2_chr(post_fun, item_link, ~.x(.y))
