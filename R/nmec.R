@@ -1,17 +1,26 @@
 `nmec` <- list(
   nome = "NMEC",
-  url = "http://joseguilhermelopes.com.br/feed/",
+  url = "pedrocostaferreira.github.io/atom.xml",
   
   lista = function(){
-    df <- safe_tidyfeed("http://joseguilhermelopes.com.br/feed/")
-    df %>%
+    df <- safe_tidyfeed("http://pedrocostaferreira.github.io/atom.xml")
+    df <- df %>%
       select(
         feed_title,
         feed_link,
         item_title,
-        item_date_published,
+        item_date_published = item_date_updated,
         item_link
+      ) %>%
+      mutate(
+        item_link = str_replace(
+          item_link, 
+          stringr::fixed("http://pedrocostaferreira.github.io//"), 
+          "http://pedrocostaferreira.github.io/"
+        )
       )
+    
+    
   },
   
   post = function(url){
@@ -19,5 +28,5 @@
   }
 )
 
-# a <- `jose-guilherme_lopes`$lista()
-# b <- `jose-guilherme_lopes`$post(a$item_link[1])
+# a <- `nmec`$lista()
+# b <- `nmec`$post(a$item_link[1])
