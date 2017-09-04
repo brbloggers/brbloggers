@@ -25,7 +25,13 @@ ibpad <- list(
   },
   
   post = function(url){
-    safe_mercury(url)
+    x <- httr::GET(url) %>%
+      httr::content('text') %>%
+      xml2::read_html() %>%
+      rvest::html_node(".post-inner-content") %>%
+      as.character()
+    
+    x
   }
 )
 
