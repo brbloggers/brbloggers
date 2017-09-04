@@ -15,7 +15,7 @@ suppressPackageStartupMessages({
 
 # Carregar feeds e funções auxiliares ---------------------------------
 
-source("feeds.R", local = TRUE)
+source("feeds2.R", local = TRUE)
 source("R/utils.R", local = TRUE)
 
 # Iniciar o processamento ---------------------------------------------
@@ -35,5 +35,7 @@ for(blog in names(feeds)){
     message(sprintf("content/%s was created", blog))
   }
 }
+
+all_feeds <- map_df(feeds, ~.x$lista())
 
 

@@ -1,4 +1,4 @@
-`nmec` <- list(
+`NMEC` <- list(
   nome = "NMEC",
   url = "pedrocostaferreira.github.io/atom.xml",
   
@@ -15,7 +15,7 @@
       mutate(
         item_link = str_replace(
           item_link, 
-          stringr::fixed("http://pedrocostaferreira.github.io//"), 
+          stringr::fixed("http://http://pedrocostaferreira.github.io//"), 
           "http://pedrocostaferreira.github.io/"
         )
       )
