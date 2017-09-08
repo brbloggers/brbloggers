@@ -31,9 +31,8 @@ o próprio RStudio para criar pacotes ou clonar coisas do github</a>, mas
 isso pode dar alguns bugs.
 </p>
 <p>
-Clique no link: &lt;a
-href=‘<a href="https://github.com/new" class="uri">https://github.com/new</a>’,
-target=‘blank’&gt;<https://github.com/new>
+Clique no link:
+<a href="https://github.com/new" class="uri">https://github.com/new</a>
 </p>
 <ul>
 <li>
