@@ -81,7 +81,7 @@ verificar_presenca(&quot;eu&quot;, vect)
 verificar_presenca(&quot;abc&quot;, vect)</code></pre>
 <p>
 Com <code>m = 1000</code> e <code>k = 7</code> não consegui encontrar
-nenhum falso positivo, mas basta diminuir o tamango de <code>m</code> e
+nenhum falso positivo, mas basta diminuir o tamanho de <code>m</code> e
 de <code>k</code> que encontraremos. No verbete da Wikipedia a conta
 está bonitinha mas de fato a probabilidade de falsos positivos pode ser
 estimada em função dos parâmetros <span class="math inline">*k*</span> e
