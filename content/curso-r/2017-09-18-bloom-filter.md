@@ -58,7 +58,7 @@ retorna o vetor <code>vec</code>, onde armazenamos como atributos os
 parâmetros usados na sua construção.
 </p>
 <pre class="r"><code>library(digest)
-library(magrittr) criar_vetor_de_bits &lt;- function(x, m = 1000, k = 7){ vec &lt;- rep(FALSE, m) for (i in 1:k) { for (j in 1:length(x)) { hash &lt;- digest(x[j], algo = &quot;murmur32&quot;, serialize = FALSE, seed = i) %&gt;% Rmpfr::mpfr(base = 16) %% m %&gt;% as.integer() vec[hash] &lt;- TRUE } } # armazenamos os par&#xE2;metros usados na constru&#xE7;&#xE3;o attributes(vec) &lt;- list(m = m, k= k) return(vec)
+library(magrittr) criar_vetor_de_bits &lt;- function(x, m = 1000, k = 7){ vec &lt;- rep(FALSE, m) for (i in 1:k) { for (j in 1:length(x)) { hash &lt;- digest(x[j], algo = &quot;murmur32&quot;, serialize = FALSE, seed = i) %&gt;% Rmpfr::mpfr(base = 16) %% m %&gt;% as.integer() vec[hash + 1] &lt;- TRUE } } # armazenamos os par&#xE2;metros usados na constru&#xE7;&#xE3;o attributes(vec) &lt;- list(m = m, k= k) return(vec)
 }</code></pre>
 <p>
 Dado um conjunto de strings, podemos criar o vetor de bits que o
@@ -75,7 +75,7 @@ com <code>TRUE</code> então continuamos, se não, retorna
 Continuamos até acabarem as funções de hash ou até 1 <code>FALSE</code>
 ter sido retornado.
 </p>
-<pre class="r"><code>verificar_presenca &lt;- function(x, vetor_de_bits){ k &lt;- attr(vetor_de_bits, &quot;k&quot;) m &lt;- attr(vetor_de_bits, &quot;m&quot;) for(i in 1:k){ hash &lt;- digest(x, algo = &quot;murmur32&quot;, serialize = FALSE, seed = i) %&gt;% Rmpfr::mpfr(base = 16) %% m %&gt;% as.integer() if(!vetor_de_bits[hash]) { return(FALSE) } } return(TRUE)
+<pre class="r"><code>verificar_presenca &lt;- function(x, vetor_de_bits){ k &lt;- attr(vetor_de_bits, &quot;k&quot;) m &lt;- attr(vetor_de_bits, &quot;m&quot;) for(i in 1:k){ hash &lt;- digest(x, algo = &quot;murmur32&quot;, serialize = FALSE, seed = i) %&gt;% Rmpfr::mpfr(base = 16) %% m %&gt;% as.integer() if(!vetor_de_bits[hash + 1]) { return(FALSE) } } return(TRUE)
 } verificar_presenca(&quot;nao&quot;, vect)
 verificar_presenca(&quot;eu&quot;, vect)
 verificar_presenca(&quot;abc&quot;, vect)</code></pre>
