@@ -1,8 +1,8 @@
 +++
 title = "Filtros de Bloom em R"
-date = "2017-09-13 07:12:00"
+date = "2017-09-18 07:12:00"
 categories = ["curso-r"]
-original_url = "http://curso-r.com/blog/2017/09/13/2017-09-18-bloom-filter/"
+original_url = "http://curso-r.com/blog/2017/09/18/2017-09-18-bloom-filter/"
 +++
 
 <p>
@@ -22,7 +22,7 @@ sistemas de bancos de dados usam bloom filters para reduzir o número de
 buscas no disco (ex.
 <a href="https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_tuning_bloom_filters_c.html">Cassandra</a>).
 O
-<a href="https://blog.medium.com/what-are-bloom-filters-1ec2a50c68ff">Medium</a>,
+<a href="https://blog.medium.com/what-are-bloom-filters-1ec2a50c68ff">Medium</a>
 usa para evitar recomendar uma paǵina que você já leu. Recentemente,
 encontraram até <a href="https://arxiv.org/abs/1706.03993">aplicações
 para bloom filters em machine learning</a>.
