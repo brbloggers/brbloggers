@@ -1,12 +1,6 @@
 <div><p>Esse paper &#xE9;, para mim, o melhor artigo do Hadley. A primeira frase da defini&#xE7;&#xE3;o cita Tolstoy e diz:</p><blockquote>
 <p>Like families, tidy datasets are all alike but every messy dataset is messy in its own way.</p>
-</blockquote><p>Essa frase resume a vida de qualquer um que trabalha ou j&#xE1; trabalhou com an&#xE1;lise de dados. O ponto mais importante do que significa <em>tidy data</em> tamb&#xE9;m est&#xE1; neste primeiro par&#xE1;grafo: s&#xE3;o datasets em que a estrutura dos dados est&#xE1; ligada padronizadamente com o seu significado. A forma padronizada &#xE9;:</p><p>O exemplo c&#xE1;ssico &#xE9; o seguinte. Primeiro vamos ver um banco de dados <em>desarrumado</em>.</p><p>Esse dataset est&#xE1; <em>desarrumado</em> pois existem duas colunas <strong>Idh2015</strong> e <strong>Idh2014</strong> que representam a mesma vari&#xE1;vel: <strong>IDH</strong> e uma vari&#xE1;vel impl&#xED;cita <strong>ANO</strong>, que tamb&#xE9;m aparece nesta duas colunas. A forma <em>tidy</em> de representar este dataset seria:</p><pre><code>## Loading tidyverse: ggplot2
-## Loading tidyverse: tibble
-## Loading tidyverse: tidyr
-## Loading tidyverse: readr
-## Loading tidyverse: purrr
-## Loading tidyverse: dplyr</code></pre><pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre><pre><code>## filter(): dplyr, stats
-## lag(): dplyr, stats</code></pre><div id="o-que-isso-tem-a-ver-com" class="section level2"> <p>&#x2026; teste t-pareado ou com modelos mistos?</p>
+</blockquote><p>Essa frase resume a vida de qualquer um que trabalha ou j&#xE1; trabalhou com an&#xE1;lise de dados. O ponto mais importante do que significa <em>tidy data</em> tamb&#xE9;m est&#xE1; neste primeiro par&#xE1;grafo: s&#xE3;o datasets em que a estrutura dos dados est&#xE1; ligada padronizadamente com o seu significado. A forma padronizada &#xE9;:</p><p>O exemplo c&#xE1;ssico &#xE9; o seguinte. Primeiro vamos ver um banco de dados <em>desarrumado</em>.</p><p>Esse dataset est&#xE1; <em>desarrumado</em> pois existem duas colunas <strong>Idh2015</strong> e <strong>Idh2014</strong> que representam a mesma vari&#xE1;vel: <strong>IDH</strong> e uma vari&#xE1;vel impl&#xED;cita <strong>ANO</strong>, que tamb&#xE9;m aparece nesta duas colunas. A forma <em>tidy</em> de representar este dataset seria:</p><div id="o-que-isso-tem-a-ver-com" class="section level2"> <p>&#x2026; teste t-pareado ou com modelos mistos?</p>
 <p>Suponha que queremos inferir se houve alguma mudan&#xE7;a na m&#xE9;dia do IDH de um ano para o outro. Ou seja testar se a m&#xE9;dia do IDH de 2015 &#xE9; diferente da m&#xE9;dia do IDH de 2014. Vamos considerar um banco de dados simulado:</p>
 <pre class="r"><code>set.seed(10201)
 library(tidyverse)
@@ -29,11 +23,8 @@ df &lt;- data_frame( Pais = paste0(&quot;pais&quot;, 1:50), Idh2014 = runif(50),
 ## mean of the differences ## 0.09714188</code></pre>
 <p>Mas a&#xED; estamos voltando para a forma desarrumada para fazer o teste. Outra forma de fazer &#xE9; considerar essa compara&#xE7;&#xE3;o de m&#xE9;dias como um problema de regress&#xE3;o em que a suposi&#xE7;&#xE3;o independ&#xEA;ncia das observa&#xE7;&#xF5;es n&#xE3;o &#xE9; v&#xE1;lida, uma vez que dado um pais, com certeza existe rela&#xE7;&#xE3;o entre o idh de 2014 e de 2015.</p>
 <p>Vamos ajustar um modelo com efeitos aleat&#xF3;rios para esse problema e comparar os resultados.</p>
-<pre class="r"><code>library(nlme)</code></pre>
-<pre><code>## ## Attaching package: &apos;nlme&apos;</code></pre>
-<pre><code>## The following object is masked from &apos;package:dplyr&apos;:
-## ## collapse</code></pre>
-<pre class="r"><code>model &lt;- lme(idh ~ as.factor(ano), random = ~1|Pais, data = df)
+<pre class="r"><code>library(nlme)
+model &lt;- lme(idh ~ as.factor(ano), random = ~1|Pais, data = df)
 summary(model)</code></pre>
 <pre><code>## Linear mixed-effects model fit by REML
 ## Data: df ## AIC BIC logLik
