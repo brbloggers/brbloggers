@@ -1,5 +1,5 @@
 <div><p class="text-muted text-uppercase mb-small text-right"> Por <a href="http://curso-r.com/author/julio">Julio</a> 03/11/2017 </p><div id="post-content"> <blockquote>
-<p>Para quem est&#xE1; esperando posts sobre captchas, esperem mais um pouquinho &#x1F64B;&#x1F3FD;. Em novembro voltarei a postar sobre esse assunto.</p>
+<p>Para quem est&#xE1; esperando posts sobre captchas, esperem mais um pouquinho &#x1F64B;&#x1F3FC;. Em novembro voltarei a postar sobre esse assunto.</p>
 </blockquote>
 <p>Em setembro de 2017, participei do <a href="http://compmus.ime.usp.br/sbcm/2017">16th Symposium on Computer Music</a>, organizado pelo prof. Marcelo Queiroz do IME-USP. O evento foi muito legal! Estou estudando m&#xFA;sica nos &#xFA;ltimos meses e acho que farei meu doutorado em solu&#xE7;&#xF5;es que ligam estat&#xED;stica e m&#xFA;sica. &#xC9; uma &#xE1;rea realmente apaixonante.</p>
 <p>Uma das formas que usarei para aprender os m&#xE9;todos e estudar os conceitos ser&#xE1; esse blog! Assim voc&#xEA;s poder&#xE3;o acompanhar meus avan&#xE7;os e propor ideias para colaborar com meus trabalhos. Pretendo desenvolver tanto modelos estat&#xED;sticos e programa&#xE7;&#xE3;o quanto teoria musical.</p>
@@ -11,11 +11,11 @@
 </ul>
 <div id="computacao-musical-numa-casca-de-noz" class="section level2"> <p>Apesar da minha falta de conhecimento sobre o tema, acredito que a &#xE1;rea de computa&#xE7;&#xE3;o musical pode ser resumida em tr&#xEA;s frentes:</p>
 <p><strong>Leitura</strong>: extrair dados estruturados dos &#xE1;udios. Envolve <em>Music Information Retrieval</em> - MIR</p>
-<p><img src="http://curso-r.com/blog/img/music-download.png" width="80%"></p>
+<p><img src="http://curso-r.com/blog/img/music-download.png" width="40%"></p>
 <p><strong>Composi&#xE7;&#xE3;o</strong>: Criar ou completar m&#xFA;sicas automaticamente</p>
-<p><img src="http://curso-r.com/blog/img/music-generate.png" width="80%"></p>
+<p><img src="http://curso-r.com/blog/img/music-generate.png" width="40%"></p>
 <p><strong>Edi&#xE7;&#xE3;o</strong>: Adicionar efeitos na m&#xFA;sica para produ&#xE7;&#xE3;o</p>
-<p><img src="http://curso-r.com/blog/img/music-transform.png" width="80%"></p>
+<p><img src="http://curso-r.com/blog/img/music-transform.png" width="40%"></p>
 <p>Meu foco ser&#xE1; na parte de composi&#xE7;&#xE3;o, com foco em harmoniza&#xE7;&#xE3;o, que significa criar e completar harmonias das m&#xFA;sicas dado algum estilo (e.g.&#xA0;Bach ou Beatles). Tamb&#xE9;m tentarei criar solu&#xE7;&#xF5;es de improviso, apesar de n&#xE3;o garantir nada.</p>
 </div>
 <div id="music21" class="section level1"> <p>O objetivo do pacote <code>music21</code> &#xE9; funcionar como um port pipe&#xE1;vel (<code>%&gt;%</code>-able) da <a href="http://web.mit.edu/music21/doc/index.html">biblioteca music21, em python</a>. Ele usa o excelente pacote <a href="https://github.com/rstudio/reticulate"><code>reticulate</code></a> do RStudio como backend.</p>
@@ -35,10 +35,11 @@ sudo pip install music21</code></pre>
 <div id="o-objeto-music21" class="section level2"> <pre class="r"><code>library(music21)
 music21
 ## Module(music21)</code></pre>
-<p><code>music21</code> object stores the python module. It is possible to run any function from it just by using <code>$</code>, treating it as a Reference Class object.</p>
 <p>O objeto <code>music21</code> &#xE9; um m&#xF3;dulo do python. Com ele &#xE9; poss&#xED;vel rodar qualquer fun&#xE7;&#xE3;o do pacote usando <code>$</code>, tratando o objeto como uma <a href="http://adv-r.had.co.nz/R5.html">Reference Class</a>.</p>
 <pre class="r"><code>note &lt;- music21$note$Note(&quot;C#&quot;)
-note</code></pre> <pre class="r"><code>note %&gt;% plot()</code></pre>
+note
+## &lt;music21.note.Note C#&gt;</code></pre>
+<pre class="r"><code>note %&gt;% plot()</code></pre>
 <p><img src="http://curso-r.com/blog/2017-11-03-music01_files/figure-html/note-1.png" width="192"></p>
 </div>
 <div id="exemplo" class="section level2"> <div id="corais-do-bach" class="section level3"> <pre class="r"><code>get_composer(&quot;bach&quot;) %&gt;% head()
@@ -54,7 +55,8 @@ note</code></pre> <pre class="r"><code>note %&gt;% plot()</code></pre>
 <p><img src="http://curso-r.com/blog/2017-11-03-music01_files/figure-html/bach-1.png" width="576"></p>
 <p>No RStudio, voc&#xEA; pode usar a fun&#xE7;&#xE3;o <code>view()</code> para visualizar a m&#xFA;sica em melhor resolu&#xE7;&#xE3;o no Viewer Pane.</p>
 </div>
-<div id="imprimindo-bwv165.6-so-o-soprano" class="section level3"> <pre class="r"><code>bach_music[[1]]
+<div id="imprimindo-bwv165.6-so-o-soprano" class="section level3"> <p>Para visualizar as notas de uma m&#xFA;sica basta rodar o objeto no console. A m&#xFA;sica &#xE9; organizada por Measures (compassos) e cada compasso vai mostrar seus componentes. No primeiro compasso, podemos ver a clave de sol (TrebleClef), as defini&#xE7;&#xF5;es do tom (sol maior) e do tempo (4/4). Nos demais, observamos as notas e os temos associados a cada nota. Por exemplo, temos uma nota F# no primeiro tempo.</p>
+<pre class="r"><code>bach_music[[1]]
 ## {0.0} &lt;music21.instrument.Instrument P1: Soprano: Instrument 1&gt;
 ## {0.0} &lt;music21.stream.Measure 0 offset=0.0&gt;
 ## {0.0} &lt;music21.clef.TrebleClef&gt;
@@ -105,7 +107,15 @@ note</code></pre> <pre class="r"><code>note %&gt;% plot()</code></pre>
 ## {0.0} &lt;music21.note.Note A&gt;
 ## {2.0} &lt;music21.note.Note G&gt;
 ## {3.0} &lt;music21.bar.Barline style=final&gt;</code></pre>
-<p>Por enquanto vou acabar por aqui. Convido voc&#xEA;s a usar o <code>music21</code> e experimentar suas funcionalidades. Adicionem issues em <a href="https://github.com/jtrecenti/music21/issues" class="uri">https://github.com/jtrecenti/music21/issues</a> e mandem pergundas nos coment&#xE1;rios.</p>
+<p>Voc&#xEA; pode tratar esse objeto como uma lista. Se voc&#xEA; entrar numa nota, voc&#xEA; poder&#xE1; ver algumas caracter&#xED;sticas dela</p>
+<pre class="r"><code># Nota F#
+bach_music[[1]][[2]][[3]]
+## &lt;music21.note.Note F#&gt; # dura&#xE7;&#xE3;o da nota
+bach_music[[1]][[2]][[3]]$duration
+## &lt;music21.duration.Duration 0.5&gt; # som exato
+bach_music[[1]][[2]][[3]]$pitch
+## F#4</code></pre>
+<p>Por enquanto vou acabar por aqui. Convido voc&#xEA;s a usarem o <code>music21</code> e experimentar suas funcionalidades. Adicionem issues em <a href="https://github.com/jtrecenti/music21/issues" class="uri">https://github.com/jtrecenti/music21/issues</a> e mandem pergundas nos coment&#xE1;rios.</p>
 <p>&#xC9; isso! Happy coding ;)</p>
 </div>
 </div>
