@@ -8,7 +8,7 @@ devtools::install_github(&quot;hrbrmstr/darksky&quot;)</code></pre>
 <p>Depois de instalado o pacote, v&#xE1; para o <a href="https://darksky.net/dev">portal do desenvolvedor</a> da DarkSky, crie uma conta e obtenha uma chave secreta para acessar a API.</p>
 <pre class="r"><code>Sys.setenv(DARKSKY_API_KEY = &quot;SUA CHAVE SECRETA&quot;)</code></pre>
 </div>
-<div id="baixando-os-dados" class="section level2"> <p>O primeiro passo da nossa an&#xE1;lise &#xE9; determinar as latitudes e longitudes das maiores cidades cidades do mundo para que possamos pedir as previs&#xF5;es do tempo destas coordenadas.</p>
+<div id="baixando-os-dados" class="section level2"> <p>O primeiro passo da nossa an&#xE1;lise &#xE9; determinar as latitudes e longitudes das maiores cidades do mundo para que possamos pedir as previs&#xF5;es do tempo destas coordenadas.</p>
 <p>Com o pacote <code>maps</code> podemos fazer isso de uma maneira bastante simples:</p>
 <pre class="r"><code>forecasts &lt;- maps::world.cities %&gt;% dplyr::as_tibble() %&gt;% dplyr::filter(pop &gt; 2000000) %&gt;% dplyr::rename(country = country.etc) %&gt;% dplyr::select(name, country, lat, long) %&gt;% dplyr::mutate( currently = list(&quot;&quot;), hourly = list(&quot;&quot;), daily = list(&quot;&quot;))</code></pre>
 <p>No trecho de c&#xF3;digo acima pegamos todas as cidades com mais de 2 milh&#xF5;es de habitantes (juntamente com suas localiza&#xE7;&#xF5;es) da base <code>maps::world.cities</code>. As &#xFA;ltimas 4 linhas s&#xE3;o uma prepara&#xE7;&#xE3;o para a obten&#xE7;&#xE3;o das previs&#xF5;es do tempo que faremos logo a seguir:</p>
@@ -17,7 +17,8 @@ devtools::install_github(&quot;hrbrmstr/darksky&quot;)</code></pre>
 <p>Na coluna <code>currently</code> guardamos o estado meteorol&#xF3;gico atual da cidade, enquanto em <code>hourly</code> e <code>daily</code> colocamos as previs&#xF5;es do tempo para as pr&#xF3;ximas 48 horas e para os pr&#xF3;ximos 7 dias respectivamente. Agora s&#xF3; resta salvar isso tudo em um arquivo RDS:</p>
 <pre class="r"><code>file &lt;- lubridate::now() %&gt;% lubridate::ymd_hms() %&gt;% as.character() %&gt;% stringr::str_replace_all(&quot;[-: ]&quot;, &quot;_&quot;) %&gt;% stringr::str_c(&quot;.rds&quot;)&#xA0; readr::write_rds(forecasts, stringr::str_c(&quot;DIRET&#xD3;RIO DOS ARQUIVOS&quot;, file))</code></pre>
 </div>
-<div id="cronr" class="section level2"> <p>Perceba que o script descrito na se&#xE7;&#xE3;o anterior n&#xE3;o depende de nenhum input do programador e pode ser rodado automaticamente. Agora s&#xF3; nos resta automatizar essa execu&#xE7;&#xE3;o, tarefa que realizaremos com o pacote <code>cronR</code>.</p>
+<div id="cronr" class="section level2"> <p>Perceba que o script descrito na se&#xE7;&#xE3;o anterior n&#xE3;o depende de nenhum input do programador e pode ser rodado automaticamente. Agora s&#xF3; nos resta automatizar essa execu&#xE7;&#xE3;o, tarefa que realizaremos com o pacote <code>cronR</code>. Ele funciona nas plataformas Mac e Linux e pode ser instalado com o comando a seguir:</p>
+<pre class="r"><code>install.packages(&quot;cronR&quot;)</code></pre>
 <p>Esse pacote nos permite agendar a execu&#xE7;&#xE3;o de qualquer comando para que ela ocorra a cada tantos minutos/horas/dias/&#x2026; Certifique-se de que voc&#xEA; est&#xE1; em uma m&#xE1;quina ou servidor que n&#xE3;o ser&#xE1; desligado, <a href="https://en.wikipedia.org/wiki/Cron">verifique se o cron daemon est&#xE1; ativo</a> e agende a execu&#xE7;&#xE3;o do nosso script:</p>
 <pre class="r"><code>cmd &lt;- cronR::cron_rscript(&quot;CAMINHO PARA SCRIPT&quot;) cronR::cron_add(cmd, &quot;daily&quot;, &quot;12AM&quot;)
 cronR::cron_add(cmd, &quot;daily&quot;, &quot;12PM&quot;)</code></pre>
