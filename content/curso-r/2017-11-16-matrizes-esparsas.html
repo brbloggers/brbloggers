@@ -1,0 +1,133 @@
+<div id="post-content"> <p>Matrizes esparsas s&#xE3;o matrizes em que a maior parte dos elementos &#xE9; igual a zero. Matrizes dessa forma surgem em diversos problemas relacionados a Machine Learning e an&#xE1;lise de dados.</p>
+<p>Por exemplo, &#xE9; comum em <em>text mining</em> representar os documentos usando o chamado <a href="https://en.wikipedia.org/wiki/Bag-of-words_model"><em>Bag of Words</em></a>. <em>Bag of Words</em> nada mais &#xE9; do que listar as palavras que aparecem em todos os documentos e em seguida criar uma matriz em que cada linha &#xE9; um documento e cada coluna &#xE9; uma palavra que poderia ter aparecido neste documento. Cada elemento <span class="math inline">\((i,j)\)</span> desssa matriz &#xE9; 1 se a palavra <span class="math inline">\(j\)</span> aparace no documento <span class="math inline">\(i\)</span> e 0 caso contr&#xE1;rio. Naturalmente, o n&#xFA;mero de palavras que podem aparecer &#xE9; muito maior do que o n&#xFA;mero de palavras que de fato aparecem em um documento, por isso a maioria dos elementos dessa matriz ser&#xE1; 0.</p>
+<p>Matrizes esparsas tamb&#xE9;m aparecem muito em problemas de recomenda&#xE7;&#xE3;o. Nesse tipo de aplcia&#xE7;&#xE3;o representamos as transa&#xE7;&#xF5;es em uma matriz em que cada linha &#xE9; um cliente e cada coluna um produto que ele poderia ter comprado. Para recomendar filmes no Netflix, por exemplo, cada linha seria um cliente e cada coluna um filme que est&#xE1; no cat&#xE1;logo do Netflix. Em seguida marcar&#xED;amos cada elemento <span class="math inline">\((i,j)\)</span> dessa matriz com 1 se o cliente <span class="math inline">\(i\)</span> assistiu o filme <span class="math inline">\(j\)</span> e 0 caso contr&#xE1;rio. Como o cat&#xE1;logo de filmes &#xE9; muito grande, a mairoia dos elementos dessa matriz ser&#xE1; 0.</p>
+<p>Essa <a href="https://www.quora.com/What-is-the-significance-of-sparse-matrices-What-are-some-common-applications-in-computer-science">pergunta do Quora</a> tem mais algumas aplica&#xE7;&#xF5;es importantes de matrizes esparsas.</p>
+<p>Note que nos problemas que eu mencionei, encontramos dimens&#xF5;es muito altas. O n&#xFA;mero de palavras distintas em um conjunto de documentos pode facilmente passar de 20.000. O n&#xFA;mero de filmes no cat&#xE1;logo do netflix pode passar de 100.000. Agora vamos definir uma matriz como esta no R da forma usual. Vou preench&#xEA;-la aleatoriamente com 0&#x2019;s e 1&#x2019;s, sendo 1&#x2019;s aproximadamente 1%. Considere que essa matriz seria utilizada em um problema de bagwords com 1 milh&#xE3;o de documentos com apenas 500 palavras distintas.</p>
+<pre class="r"><code>nrow &lt;- 1e6
+ncol &lt;- 500
+x &lt;- matrix(sample(c(0,1), size = nrow*ncol, replace = TRUE,prob = c(0.99, 0.1)), nrow = nrow, ncol = ncol)</code></pre>
+<p>Se voc&#xEA; tiver um computador com bastante RAM, talvez consiga rodar isso, mas provavelmente voc&#xEA; ter&#xE1; um erro do tipo <code>Error: cannot allocate vector of size 74.5 Gb</code>.</p>
+<p>De fato, essa matrix ocupa bastante mem&#xF3;ria:</p>
+<pre class="r"><code>pryr::object_size(x)
+#&gt; 4 GB</code></pre>
+<p>Ser&#xE1; que existe uma forma mais eficiente de representar essa matriz na mem&#xF3;ria do computador? A resposta &#xE9; sim! E no R vamos usar o pacote Matrix.</p>
+<p>Existem diversas formas de transformar a matriz <code>x</code> em uma matriz esparsa, a forma mais simples &#xE9;:</p>
+<pre class="r"><code>library(Matrix)
+x_s &lt;- Matrix(x)
+pryr::object_size(x_s)
+#&gt; 550 MB</code></pre>
+<p>Ou seja, a matriz esparsa ocupa quase 1/8 menos mem&#xF3;ria do que a matriz densa. A maioria dos m&#xE9;todos para matrizes no R est&#xE3;o tamb&#xE9;m implementados para matrizes esparsas. Isso quer dizer que voc&#xEA; pode fazer <code>x*y</code>, <code>x+y</code>, <code>x/y</code>, <code>x%*%y</code>, <code>x[1,1]</code>, etc. como se fossem matrizes normais.</p>
+<p>Uma outra grande vantagem &#xE9; que muitos pacotes possuem implementa&#xE7;&#xF5;es mais eficientes (tanto em tempo de execu&#xE7;&#xE3;o quanto em mem&#xF3;ria utilizada) para matrizes esparsas, por exemplo o <a href="https://cran.r-project.org/web/packages/glmnet/"><code>glmnet</code></a> muito usado para fazer regress&#xE3;o do tipo LASSO. O <a href="https://github.com/mhahsler/recommenderlab"><code>recommenderlab</code></a> que implementa alguns algoritmos de recomenda&#xE7;&#xE3;o tamb&#xE9;m &#xE9; inteiramente baseado em matrizes esparsas. O pacote <a href="http://text2vec.org/index.html"><code>text2vec</code></a> que implementa algoritmos como GloVe tamb&#xE9;m usa muito esse tipo de matrizes.</p>
+<p>Vale lembrar que na maioria das vezes voc&#xEA; possui uma base <em>transacional</em> que precisa ser representada como uma matriz. Algo mais ou menos assim:</p>
+<pre class="r"><code>bd &lt;- data.frame( cliente = c(1,1,1,2,2,3,3,4,5,6,7,7,8,8,8,8,9,9,9,9), itens = sample(1:50, 20) )</code></pre>
+<table>
+<thead> </thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>34</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>41</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>31</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>22</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>17</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>42</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>21</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>48</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>28</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>49</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>26</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>23</td>
+</tr>
+</tbody>
+</table>
+<p>Nesse caso, faz mais sentido criar a matriz esparsa usando a fun&#xE7;&#xE3;o <code>sparseMatrix</code>. Assim, voc&#xEA; s&#xF3; especifica as coordenadas da matriz que t&#xEA;m algum 1.</p>
+<pre class="r"><code>library(Matrix)
+sparseMatrix(bd$cliente, bd$itens)</code></pre>
+<pre><code>## 9 x 50 sparse Matrix of class &quot;ngCMatrix&quot;
+## ## [1,] . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . . . . |
+## [2,] . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . | . . .
+## [3,] . . . . . . . . . . | . . . . . . . . . . | . . . . . . . . . . . .
+## [4,] . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . .
+## [5,] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+## [6,] . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . .
+## [7,] . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . .
+## [8,] . . . . | . . . . . . . . . . . . . . . . . . . . . . | . . . . | .
+## [9,] . . . . . . . . | . . . . . . . . . . . . . | . . | . . . . . . . .
+## ## [1,] . . . . . . | . . . . . . . . .
+## [2,] . . . . . . . . . . . . . . . .
+## [3,] . . . . . . . . . . . . . . . .
+## [4,] . . . . . . . . . . . . . . . .
+## [5,] . . . . . . . | . . . . . . . .
+## [6,] . . . . . . . . . . . . . . . .
+## [7,] . . . . . . . . . . . . . | . .
+## [8,] . . . . . . . . . . . . . . . |
+## [9,] . . . . . . . . . . . . . . | .</code></pre>
+<p>Outra fun&#xE7;&#xE3;o importante &#xE9; a <code>sparse.model.matrix</code>. Ela &#xE9; equivalente &#xE0; fun&#xE7;&#xE3;o <code>model.matrix</code> mas cria uma matriz de modelo esparsa o que pode ser &#xFA;til quando voc&#xEA; tem um fator que possui muitos n&#xED;veis no seu modelo. A vignette <a href="https://cran.r-project.org/web/packages/Matrix/vignettes/sparseModels.pdf"><em>Sparse Model Matrices</em></a> fala sobre isso.</p>
+<p>Tamb&#xE9;m &#xE9; poss&#xED;vel programar em Rcpp usando matrizes esparsas usando o RcppArmadillo, veja <a href="http://gallery.rcpp.org/articles/armadillo-sparse-matrix/">esse exemplo</a> para mais detalhes.</p>
+<p>Para saber mais leia as vignettes do pacote <a href="https://cran.r-project.org/web/packages/Matrix/index.html">Matrix</a>. Em especial, vale a pena ler as seguintes <a href="https://cran.r-project.org/web/packages/Matrix/vignettes/Intro2Matrix.pdf">2nd Introduction to the Matrix Package</a>.</p>
+<p>Nota: a inspira&#xE7;&#xE3;o para esse post foi <a href="http://www.johnmyleswhite.com/notebook/2011/10/31/using-sparse-matrices-in-r/">esse post</a> de 2011 do John Myles White</p> </div>
