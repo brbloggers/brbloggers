@@ -25,47 +25,47 @@ pryr::object_size(x_s)
 <tbody>
 <tr class="odd">
 <td>1</td>
-<td>40</td>
+<td>45</td>
 </tr>
 <tr class="even">
 <td>1</td>
-<td>42</td>
+<td>2</td>
 </tr>
 <tr class="odd">
 <td>1</td>
-<td>31</td>
+<td>36</td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td>10</td>
+<td>23</td>
 </tr>
 <tr class="odd">
 <td>2</td>
-<td>7</td>
+<td>50</td>
 </tr>
 <tr class="even">
 <td>3</td>
-<td>11</td>
+<td>18</td>
 </tr>
 <tr class="odd">
 <td>3</td>
-<td>19</td>
+<td>38</td>
 </tr>
 <tr class="even">
 <td>4</td>
-<td>44</td>
+<td>31</td>
 </tr>
 <tr class="odd">
 <td>5</td>
-<td>35</td>
+<td>16</td>
 </tr>
 <tr class="even">
 <td>6</td>
-<td>49</td>
+<td>15</td>
 </tr>
 <tr class="odd">
 <td>7</td>
-<td>24</td>
+<td>19</td>
 </tr>
 <tr class="even">
 <td>7</td>
@@ -73,60 +73,60 @@ pryr::object_size(x_s)
 </tr>
 <tr class="odd">
 <td>8</td>
-<td>22</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>16</td>
-</tr>
-<tr class="odd">
-<td>8</td>
-<td>14</td>
+<td>17</td>
 </tr>
 <tr class="even">
 <td>8</td>
 <td>46</td>
 </tr>
 <tr class="odd">
-<td>9</td>
-<td>15</td>
-</tr>
-<tr class="even">
-<td>9</td>
-<td>23</td>
-</tr>
-<tr class="odd">
-<td>9</td>
+<td>8</td>
 <td>41</td>
 </tr>
 <tr class="even">
+<td>8</td>
+<td>4</td>
+</tr>
+<tr class="odd">
 <td>9</td>
-<td>28</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>29</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>12</td>
 </tr>
 </tbody>
 </table>
 <p>Nesse caso, faz mais sentido criar a matriz esparsa usando a fun&#xE7;&#xE3;o <code>sparseMatrix</code>. Assim, voc&#xEA; s&#xF3; especifica as coordenadas da matriz que t&#xEA;m algum 1.</p>
 <pre class="r"><code>library(Matrix)
 sparseMatrix(bd$cliente, bd$itens)</code></pre>
-<pre><code>## 9 x 49 sparse Matrix of class &quot;ngCMatrix&quot;
-## ## [1,] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . | . . .
-## [2,] . . . . . . | . . | . . . . . . . . . . . . . . . . . . . . . . . .
-## [3,] . . . . . . . . . . | . . . . . . . | . . . . . . . . . . . . . . .
-## [4,] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-## [5,] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-## [6,] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-## [7,] . . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . .
-## [8,] . . . . . . . . . . . . . | . | . . . . . | . . . . . . . . . . . .
-## [9,] . . . . . . . . . . . . . . | . . . . . . . | . . . . | . . . . . .
-## ## [1,] . . . . . | . | . . . . . . .
-## [2,] . . . . . . . . . . . . . . .
-## [3,] . . . . . . . . . . . . . . .
-## [4,] . . . . . . . . . | . . . . .
-## [5,] | . . . . . . . . . . . . . .
-## [6,] . . . . . . . . . . . . . . |
-## [7,] . . . . | . . . . . . . . . .
-## [8,] . . . . . . . . . . . | . . .
-## [9,] . . . . . . | . . . . . . . .</code></pre>
+<pre><code>## 9 x 50 sparse Matrix of class &quot;ngCMatrix&quot;
+## ## [1,] . | . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+## [2,] . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . .
+## [3,] . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . .
+## [4,] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . | . . .
+## [5,] . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . .
+## [6,] . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . .
+## [7,] . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . .
+## [8,] . . . | . . . . . . . . . . . . | . . . . . . . . . . . . . . . . .
+## [9,] | . . . . . . . . . . | . | . . . . . . . . . . . . . . | . . . . .
+## ## [1,] . | . . . . . . . . | . . . . .
+## [2,] . . . . . . . . . . . . . . . |
+## [3,] . . . | . . . . . . . . . . . .
+## [4,] . . . . . . . . . . . . . . . .
+## [5,] . . . . . . . . . . . . . . . .
+## [6,] . . . . . . . . . . . . . . . .
+## [7,] . . . . | . . . . . . . . . . .
+## [8,] . . . . . . | . . . . | . . . .
+## [9,] . . . . . . . . . . . . . . . .</code></pre>
 <p>Outra fun&#xE7;&#xE3;o importante &#xE9; a <code>sparse.model.matrix</code>. Ela &#xE9; equivalente &#xE0; fun&#xE7;&#xE3;o <code>model.matrix</code> mas cria uma matriz de modelo esparsa o que pode ser &#xFA;til quando voc&#xEA; tem um fator que possui muitos n&#xED;veis no seu modelo. A vignette <a href="https://cran.r-project.org/web/packages/Matrix/vignettes/sparseModels.pdf"><em>Sparse Model Matrices</em></a> fala sobre isso.</p>
 <p>Tamb&#xE9;m &#xE9; poss&#xED;vel programar em Rcpp usando matrizes esparsas usando o RcppArmadillo, veja <a href="http://gallery.rcpp.org/articles/armadillo-sparse-matrix/">esse exemplo</a> para mais detalhes.</p>
 <p>Para saber mais leia as vignettes do pacote <a href="https://cran.r-project.org/web/packages/Matrix/index.html">Matrix</a>. Em especial, vale a pena ler as seguintes <a href="https://cran.r-project.org/web/packages/Matrix/vignettes/Intro2Matrix.pdf">2nd Introduction to the Matrix Package</a>.</p>
