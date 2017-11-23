@@ -5,7 +5,7 @@
 <p>Para explorar os benef&#xED;cios que o C++ pode trazer para o seu c&#xF3;digo R, instale e carregue o pacote <code>Rcpp</code> com os comandos abaixo:</p>
 <pre class="r"><code>install.packages(&quot;Rcpp&quot;)
 library(Rcpp)</code></pre>
-<p>Vejamos agora um exemplo simples de como chamar c&#xF3;digo C++ do R. O jeito mais f&#xE1;cil de fazer isso &#xE9; atrav&#xE9;s da fun&#xE7;&#xE3;o <code>cppFunction()</code>: ela recebe uma string que ser&#xE1; interpretada como fuma fun&#xE7;&#xE3;o em C++.</p>
+<p>Vejamos agora um exemplo simples de como chamar c&#xF3;digo C++ do R. O jeito mais f&#xE1;cil de fazer isso &#xE9; atrav&#xE9;s da fun&#xE7;&#xE3;o <code>cppFunction()</code>: ela recebe uma string que ser&#xE1; interpretada como uma fun&#xE7;&#xE3;o em C++.</p>
 <pre class="r"><code>adicao_r &lt;- function(x, y, z) { sum = x + y + z return(sum)
 } cppFunction( &quot;int adicao_c(int x, int y, int z) { int sum = x + y + z; return sum; }&quot;) adicao_r(1, 2, 3)
 #&gt; [1] 6 adicao_c(1, 2, 3)
