@@ -1,4 +1,4 @@
-<div><p>Vamos utilizar o <code>tidyverse</code> e o pacote <code>sf</code>. Para instalar o <code>tidyverse</code>, rode</p><p>O pacote <code>sf</code> pode ser um tanto trabalhoso. Se voc&#xEA; usa Windows, basta instalar o <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> e depois rodar</p><p>Se voc&#xEA; usa Mac ou Linux, recomendo ler a primeira p&#xE1;gina <a href="https://r-spatial.github.io/sf/">da documenta&#xE7;&#xE3;o oficial do pacote</a>. L&#xE1; voc&#xEA; pode checar todos os requerimentos do pacote em detalhe. Eu recomendo que voc&#xEA; instale logo a vers&#xE3;o de desenvolvimento:</p><p>Para rodar as fun&#xE7;&#xF5;es gr&#xE1;ficas, tamb&#xE9;m recomendo que voc&#xEA; instale a vers&#xE3;o de desenvolvimento do <code>ggplot2</code>, rodando</p><p>Outros pacotes que usaremos no meio do c&#xF3;digo s&#xE3;o</p><div id="parte-1-baixando-os-dados" class="section level3"> <p>Primeiro, vamos baixar da internet! Obviamente, o melhor lugar para baixar esses arquivos &#xE9; do FTP do <a href="ftp://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/">Instituto Brasileiro de Geografia e Estat&#xED;stica</a>.</p>
+<div><p>Vamos utilizar o <code>tidyverse</code> e o pacote <code>sf</code>. Para instalar o <code>tidyverse</code>, rode</p><p>A instala&#xE7;&#xE3;o do <code>sf</code> pode ser um tanto trabalhosa. Se voc&#xEA; usa Windows, basta instalar o <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> e depois rodar</p><p>Se voc&#xEA; usa Mac ou Linux, recomendo ler a primeira p&#xE1;gina <a href="https://r-spatial.github.io/sf/">da documenta&#xE7;&#xE3;o oficial do pacote</a>. L&#xE1; voc&#xEA; pode checar todos os requerimentos do pacote em detalhe. Eu recomendo que voc&#xEA; instale logo a vers&#xE3;o de desenvolvimento:</p><p>Para rodar as fun&#xE7;&#xF5;es gr&#xE1;ficas, tamb&#xE9;m recomendo que voc&#xEA; instale a vers&#xE3;o de desenvolvimento do <code>ggplot2</code>, rodando</p><p>Outros pacotes que usaremos no meio do c&#xF3;digo s&#xE3;o</p><div id="parte-1-baixando-os-dados" class="section level3"> <p>Primeiro, vamos baixar da internet! Obviamente, o melhor lugar para baixar esses arquivos &#xE9; no FTP do <a href="ftp://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/">Instituto Brasileiro de Geografia e Estat&#xED;stica</a>.</p>
 <pre class="r"><code># Cria uma pasta onde os arquivos ser&#xE3;o salvos
 dir.create(&quot;shp&quot;, showWarnings = FALSE) # URL de download
 u_ibge &lt;- paste0( &quot;ftp://geoftp.ibge.gov.br/organizacao_do_territorio/&quot;, &quot;malhas_territoriais/malhas_municipais/&quot;, &quot;municipio_2015/UFs/SP/sp_municipios.zip&quot;, collapse = &quot;&quot;)</code></pre>
@@ -24,9 +24,9 @@ dplyr::glimpse(d_sf_municipio)
 # $ geometry &lt;simple_feature&gt; MULTIPOLYGON (((-51.8600105..., MULTIPOLYGON...</code></pre>
 <p>Observe que temos tr&#xEA;s colunas na base de dados, nome do munic&#xED;pio, c&#xF3;digo do munic&#xED;pio e <code>geometry</code>. Essa terceira &#xE9; do tipo <code>simple_feature</code> e carrega objetos do tipo <code>MULTIPOLYGON</code>. Ou seja, um objeto lido pelo <code>sf</code> nada mais &#xE9; do que um <code>data.frame</code> que tem uma coluna especial, capaz de guardar objetos mais complexos, como pol&#xED;gonos.</p>
 <blockquote>
-<p>Chamamos esse tipo de coluna especial de <code>list-column</code>. Quem faz nossos cursos avan&#xE7;ados acaba aprendendo esses conceitos a partir do aninhamento de objetos e utiliza&#xE7;&#xE3;o de algoritmos mais complexos usando o pacote <code>purrr</code>.</p>
+<p>Chamamos esse tipo de coluna especial de <code>list-column</code>. Quem faz nossos <a href="http://curso-r.com/cursos/r4ds/">cursos avan&#xE7;ados</a> acaba aprendendo esses conceitos a partir do aninhamento de objetos e utiliza&#xE7;&#xE3;o de algoritmos mais complexos usando o pacote <code>purrr</code>.</p>
 </blockquote>
-<p>Agora, queremos juntar essa base com nossa base de comarcas, circunscri&#xE7;&#xF5;es e regi&#xF5;es.</p>
+<p>Agora, queremos juntar essa base com nossos dados de comarcas, circunscri&#xE7;&#xF5;es e regi&#xF5;es.</p>
 <pre class="r"><code>muni_comarcas_completo &lt;- readRDS(&quot;muni_comarcas_completo.rds&quot;)
 dplyr::glimpse(muni_comarcas_completo)
 # Observations: 645
@@ -56,25 +56,25 @@ dplyr::glimpse(muni_comarcas_completo)
 # $ num_regiao &lt;chr&gt; &quot;5&#xAA; RAJ&quot;, &quot;2&#xAA; RAJ&quot;, &quot;5&#xAA; RAJ&quot;, &quot;5&#xAA; RAJ&quot;, &quot;5&#xAA; RA...
 # $ regiao &lt;chr&gt; &quot;Presidente Prudente&quot;, &quot;Ara&#xE7;atuba&quot;, &quot;President...
 # $ geometry &lt;simple_feature&gt; MULTIPOLYGON (((-51.8600105..., MUL...</code></pre>
-<p>Se vc quiser fazer um gr&#xE1;fico feinho s&#xF3; pra saber o que est&#xE1; rolando, use <code>plot()</code>:</p>
+<p>Se voc&#xEA; quiser fazer um gr&#xE1;fico feinho s&#xF3; pra saber o que est&#xE1; rolando, use <code>plot()</code>:</p>
 <pre class="r"><code>plot(d_sf_municipio[, c(&quot;num_regiao&quot;, &quot;geometry&quot;)])</code></pre>
 <div class="figure">
 <img src="http://curso-r.com/blog/img/sf_blog01.png" alt=""> </div>
-</div><div id="parte-2-agrupando-os-municipios" class="section level3"> <p>Aqui &#xE9; onde a m&#xE1;gica acontece! Para unir os pol&#xED;gonos do mapa, por incr&#xED;vel que pare&#xE7;a, utilizaremos o pacote <code>dplyr</code>. O autor do pacote <code>sf</code>, Edzer Pebesma, teve a incr&#xED;vel ideia de criar um m&#xE9;todo <code>S3</code> para objetos do tipo <code>sf</code> (como &#xE9; nosso caso), j&#xE1; fazendo algumas opera&#xE7;&#xF5;es para n&#xF3;s. Essa pacote simplesmente reimplementa mais de 20 fun&#xE7;&#xF5;es provenientes do <code>dplyr</code>. Veja <code>?sf::dplyr</code> para detalhes.</p>
-<p>No nosso caso, vamos usar <code>group_by()</code> e <code>summarise()</code>:</p>
+</div><div id="parte-2-agrupando-os-municipios" class="section level3"> <p>Aqui &#xE9; onde a m&#xE1;gica acontece! Para unir os pol&#xED;gonos do mapa, por incr&#xED;vel que pare&#xE7;a, utilizaremos o pacote <code>dplyr</code>. O autor do pacote <code>sf</code>, Edzer Pebesma, teve a incr&#xED;vel ideia de criar um m&#xE9;todo <code>S3</code> para objetos do tipo <code>sf</code> (como &#xE9; nosso caso), j&#xE1; fazendo algumas opera&#xE7;&#xF5;es para n&#xF3;s. Na pr&#xE1;tica, o pacote estende e reimplementa mais de 20 fun&#xE7;&#xF5;es provenientes do <code>dplyr</code>. Veja <code>?sf::dplyr</code> para detalhes.</p>
+<p>No nosso caso, vamos usar <code>group_by()</code> (ou <code>sf::group_by.sf()</code>) e <code>summarise()</code> (ou<code>sf::summarise.sf()</code>):</p>
 <pre class="r"><code>d_sf_comarca &lt;- d_sf_municipio %&gt;% dplyr::group_by(comarca) %&gt;% dplyr::summarise() %&gt;% dplyr::ungroup() dplyr::glimpse(d_sf_comarca)
 # Observations: 319
 # Variables: 2
 # $ comarca &lt;chr&gt; &quot;ADAMANTINA&quot;, &quot;AGUAI&quot;, &quot;AGUAS DE LINDOIA&quot;, &quot;AGUDOS&quot;, &quot;...
 # $ geometry &lt;simple_feature&gt; MULTIPOLYGON (((-50.9930145..., MULTIPOLYGO...</code></pre>
-<p>Simples assim! Note que agora temos 319 objetos, que &#xE9; exatamente o n&#xFA;mero de comarcas. Se quiser adicionar mais vari&#xE1;veis, basta adicionar dentro do <code>summarise()</code>:</p>
+<p>Simples assim! Note que agora temos 319 objetos, que &#xE9; exatamente o n&#xFA;mero de comarcas. Se quiser adicionar mais vari&#xE1;veis, basta inclu&#xED;-las no <code>summarise()</code>:</p>
 <pre class="r"><code>d_sf_comarca &lt;- d_sf_municipio %&gt;% dplyr::group_by(comarca) %&gt;% # a entrancia identifica o qu&#xE3;o grande/relevante &#xE9; uma comarca dplyr::summarise(entrancia = dplyr::first(entrancia)) %&gt;% dplyr::ungroup()</code></pre>
 <p>Para criar <code>d_sf_circunscricao</code> e <code>d_sf_regiao</code> utilizamos o mesmo procedimento.</p>
-</div><div id="parte-3-montando-os-graficos" class="section level3"> <p>Digamos que voc&#xEA; tenha essa lista de mapas</p>
+</div><div id="parte-3-montando-os-graficos" class="section level3"> <p>Agora digamos que voc&#xEA; tenha essa lista de mapas</p>
 <pre class="r"><code>mapas &lt;- list( d_sf_municipio, d_sf_comarca, d_sf_circunscricao, d_sf_regiao)</code></pre>
-<p>E voc&#xEA; quer montar mapas com esses t&#xED;tulos</p>
+<p>E voc&#xEA; quer desenhar mapas com esses t&#xED;tulos</p>
 <pre class="r"><code>titulos &lt;- c( &quot;Munic&#xED;pios&quot;, &quot;Comarcas&quot;, &quot;Circunscri&#xE7;&#xF5;es judici&#xE1;rias&quot;, &quot;Regi&#xF5;es Admnistrativas&quot;)</code></pre>
-<p>Vamos usar o <code>purrr::map2</code> para montar nossos gr&#xE1;ficos em <code>ggplot2</code> e guardar numa lista. Internamente, utilizaremos o <code>geom_sf()</code>, uma extens&#xE3;o do <code>ggplot2</code> criada para tratar objetos do pacote <code>sf</code>. Um c&#xF3;digo minimalista seria</p>
+<p>Vamos usar o <code>purrr::map2()</code> para montar nossos gr&#xE1;ficos em <code>ggplot2</code> e guardar numa lista. Internamente, utilizaremos o <code>geom_sf()</code>, uma extens&#xE3;o do <code>ggplot2</code> criada para tratar objetos do pacote <code>sf</code>. Um c&#xF3;digo minimalista seria</p>
 <pre class="r"><code>graficos &lt;- purrr::map2(mapas, titulos, ~{ ggplot(.x) + # cria o ggplot geom_sf() + # desenha o mapa ggtitle(.y) + # adiciona o t&#xED;tulo theme_minimal() # deixa o fundo mais bonitinho
 })</code></pre>
 <p>Voc&#xEA; pode usar a fun&#xE7;&#xE3;o <code>gridExtra::grid.arrange()</code> para juntar essa lista de gr&#xE1;ficos em um gr&#xE1;fico s&#xF3;, rodando</p>
