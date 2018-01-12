@@ -34,8 +34,8 @@ Postado em
 </p>
 <p class="date-link">
 <a href="https://analisereal.com/2017/01/16/disclosure-statements/" class="permalink"><span
-class="month">jan</span><span class="sep">·</span><span
-class="day">16</span></a>
+class="month upper">jan</span><span class="sep">·</span><span
+class="day lower">16</span></a>
 </p>
 </footer>
 </article>

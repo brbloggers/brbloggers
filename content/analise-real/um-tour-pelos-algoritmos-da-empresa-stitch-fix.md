@@ -38,8 +38,8 @@ de dados</a>,
 </p>
 <p class="date-link">
 <a href="https://analisereal.com/2017/03/13/um-tour-pelos-algoritmos-da-empresa-stitch-fix/" class="permalink"><span
-class="month">mar</span><span class="sep">·</span><span
-class="day">13</span></a>
+class="month upper">mar</span><span class="sep">·</span><span
+class="day lower">13</span></a>
 </p>
 </footer>
 </article>

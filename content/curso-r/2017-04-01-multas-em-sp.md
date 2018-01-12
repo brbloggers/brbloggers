@@ -102,9 +102,10 @@ Em primeiro lugar, vamos analisar a quantidade de multas por dia em São
 Paulo desde 2014.
 </p>
 
-<pre class="r"><code>carros_eletronicas %&gt;% group_by(data) %&gt;% summarise(qtd = sum(qtd)) %&gt;% ggplot(aes(data, qtd)) + geom_line()</code></pre>
+<pre class="r"><code>carros_summary &lt;- carros_eletronicas %&gt;% group_by(data) %&gt;% summarise(qtd = sum(qtd))</code></pre>
+<pre class="r"><code>carros_summary %&gt;% ggplot(aes(data, qtd)) + geom_line()</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-3-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-5-1.png" width="672">
 </p>
 <p>
 Vemos nesse gráfico que o número de multas (por radar) era sempre por
@@ -139,8 +140,8 @@ Transitar em faixa de ônibus ou exclusiva p/ determinado veículo
 <p>
 O agrupamento final ficou assim:
 </p>
-<pre class="r"><code>depara &lt;- carros_eletronicas %&gt;% group_by(enquadramento) %&gt;% summarise(qtd = sum(qtd)) %&gt;% arrange(qtd) %&gt;% select(-qtd)
-depara$agrup_enquadramento &lt;- c(&quot;Convers&#xE3;o proibida&quot;, &quot;Velocidade&quot;, &quot;Faixa de Pedestres&quot;, &quot;Faixa de &#xF4;nibus&quot;, &quot;Sinal vermelho&quot;, &quot;Faixa de &#xF4;nibus&quot;, &quot;Convers&#xE3;o proibida&quot;, &quot;Faixa de &#xF4;nibus&quot;, &quot;Velocidade&quot;, &quot;Rod&#xED;zio&quot;, &quot;Velocidade&quot; ) depara %&gt;% knitr::kable()</code></pre>
+<pre class="r"><code>depara &lt;- carros_eletronicas %&gt;% group_by(enquadramento) %&gt;% summarise(qtd = sum(qtd)) %&gt;% arrange(qtd) %&gt;% select(-qtd)</code></pre>
+<pre class="r"><code>depara$agrup_enquadramento &lt;- c( &quot;Convers&#xE3;o proibida&quot;, &quot;Velocidade&quot;, &quot;Faixa de Pedestres&quot;, &quot;Faixa de &#xF4;nibus&quot;, &quot;Sinal vermelho&quot;, &quot;Faixa de &#xF4;nibus&quot;, &quot;Convers&#xE3;o proibida&quot;, &quot;Faixa de &#xF4;nibus&quot;, &quot;Velocidade&quot;, &quot;Rod&#xED;zio&quot;, &quot;Velocidade&quot;) depara %&gt;% knitr::kable()</code></pre>
 <table>
 <thead>
 </thead>
@@ -242,9 +243,10 @@ Velocidade
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>carros_eletronicas %&gt;% left_join(depara, by = &quot;enquadramento&quot;) %&gt;% group_by(data, agrup_enquadramento) %&gt;% summarise(qtd = sum(qtd)) %&gt;% ggplot(aes(data, qtd, color = agrup_enquadramento)) + geom_line()</code></pre>
+<pre class="r"><code>carros_summary_enquad &lt;- carros_eletronicas %&gt;% left_join(depara, by = &quot;enquadramento&quot;) %&gt;% group_by(data, agrup_enquadramento) %&gt;% summarise(qtd = sum(qtd))</code></pre>
+<pre class="r"><code>carros_summary_enquad %&gt;% ggplot(aes(data, qtd, color = agrup_enquadramento)) + geom_line()</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-5-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-9-1.png" width="672">
 </p>
 <p>
 No gráfico, vemos que em 2015, o tipo de multa que mais aumentou em
@@ -260,9 +262,10 @@ geral na cidade. Vamos agora matar algumas curiosidades.
 Quais são os horários com mais multas em SP?
 </li>
 </ol>
-<pre class="r"><code>carros_eletronicas %&gt;% group_by(hora) %&gt;% summarise(qtd = sum(qtd)) %&gt;% ggplot(aes(x = hora, y = qtd)) + geom_bar(stat = &quot;identity&quot;)</code></pre>
+<pre class="r"><code>carros_summary_hora &lt;- carros_eletronicas %&gt;% group_by(hora) %&gt;% summarise(qtd = sum(qtd))</code></pre>
+<pre class="r"><code>carros_summary_hora %&gt;% ggplot(aes(x = hora, y = qtd)) + geom_bar(stat = &quot;identity&quot;)</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-6-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-11-1.png" width="672">
 </p>
 <p>
 Notamos que o maior número de multas ocorre justamente na hora do rush.
@@ -271,9 +274,10 @@ nessas horas o trânsito da cidade está todo parado. Será que a
 distribuição fica diferente por tipo de multa? Principalmente as de
 velocidade.
 </p>
-<pre class="r"><code>carros_eletronicas %&gt;% left_join(depara, by = &quot;enquadramento&quot;) %&gt;% group_by(hora, agrup_enquadramento) %&gt;% summarise(qtd = sum(qtd)) %&gt;% ggplot(aes(x = hora, y = qtd, fill = agrup_enquadramento)) + geom_bar(stat = &quot;identity&quot;)</code></pre>
+<pre class="r"><code>carros_depara_enquad &lt;- carros_eletronicas %&gt;% left_join(depara, by = &quot;enquadramento&quot;) %&gt;% group_by(hora, agrup_enquadramento) %&gt;% summarise(qtd = sum(qtd))</code></pre>
+<pre class="r"><code>carros_depara_enquad %&gt;% ggplot(aes(x = hora, y = qtd, fill = agrup_enquadramento)) + geom_bar(stat = &quot;identity&quot;)</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-7-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-13-1.png" width="672">
 </p>
 <p>
 Veja que interessante! O grande responsável pelo pico da hora do rush é
@@ -288,9 +292,10 @@ madrugada.
 Qual é o dia da semana com mais multas?
 </li>
 </ol>
-<pre class="r"><code>carros_eletronicas %&gt;% left_join(depara, by = &quot;enquadramento&quot;) %&gt;% group_by(dia_da_semana = wday(data), agrup_enquadramento) %&gt;% summarise(qtd = sum(qtd)) %&gt;% ggplot(aes(x = dia_da_semana, y = qtd, fill = agrup_enquadramento)) + geom_bar(stat = &quot;identity&quot;)</code></pre>
+<pre class="r"><code>carros_depara_enquad_wday &lt;- carros_eletronicas %&gt;% left_join(depara, by = &quot;enquadramento&quot;) %&gt;% group_by(dia_da_semana = wday(data), agrup_enquadramento) %&gt;% summarise(qtd = sum(qtd))</code></pre>
+<pre class="r"><code>carros_depara_enquad_wday %&gt;% ggplot(aes(x = dia_da_semana, y = qtd, fill = agrup_enquadramento)) + geom_bar(stat = &quot;identity&quot;)</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-8-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-15-1.png" width="672">
 </p>
 <p>
 O dia da semana com mais multas é quinta feira. Nos finais de semana,
@@ -302,8 +307,8 @@ ruas estão mais vazias).
 Quais são os radares que mais multam em SP? E porque?
 </li>
 </ol>
-<pre class="r"><code>top10_locais &lt;- carros_eletronicas %&gt;% group_by(local) %&gt;% summarise(n = sum(qtd)) %&gt;% arrange(desc(n)) %&gt;% slice(1:10)
-knitr::kable(top10_locais)</code></pre>
+<pre class="r"><code>top10_locais &lt;- carros_eletronicas %&gt;% group_by(local) %&gt;% summarise(n = sum(qtd)) %&gt;% arrange(desc(n)) %&gt;% slice(1:10)</code></pre>
+<pre class="r"><code>knitr::kable(top10_locais)</code></pre>
 <table>
 <thead>
 </thead>
@@ -400,9 +405,10 @@ Senna
 <p>
 Agora vamos ver os motivos, em cada um desses lugares.
 </p>
-<pre class="r"><code>top10_locais %&gt;% left_join(carros_eletronicas, by = &quot;local&quot;) %&gt;% left_join(depara, by = &quot;enquadramento&quot;) %&gt;% mutate(local = stringr::str_wrap(local, width = 20) %&gt;% forcats::fct_reorder(-n)) %&gt;% group_by(local, agrup_enquadramento) %&gt;% summarise(qtd = sum(qtd)) %&gt;% ggplot(aes(x = local, y = qtd, fill = agrup_enquadramento)) + geom_bar(stat = &quot;identity&quot;)</code></pre>
+<pre class="r"><code>top10_motivos &lt;- top10_locais %&gt;% left_join(carros_eletronicas, by = &quot;local&quot;) %&gt;% left_join(depara, by = &quot;enquadramento&quot;) %&gt;% mutate(local = stringr::str_wrap(local, width = 20) %&gt;% forcats::fct_reorder(-n)) %&gt;% group_by(local, agrup_enquadramento) %&gt;% summarise(qtd = sum(qtd))</code></pre>
+<pre class="r"><code>top10_motivos %&gt;% ggplot(aes(x = local, y = qtd, fill = agrup_enquadramento)) + geom_bar(stat = &quot;identity&quot;)</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-10-1.png" width="1000px">
+<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-19-1.png" width="1000px">
 </p>
 <p>
 Por incrível que pareça, nos dois radares com mais multas, o motivo da
@@ -411,6 +417,6 @@ multa é conversão proibida. A foto de onde fica esse radar saiu em uma
 sobre o mesmo tema</a> na Folha de São Paulo.
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-11-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-04-01-multas-em-sp_files/figure-html/unnamed-chunk-20-1.png" width="672">
 </p>
 

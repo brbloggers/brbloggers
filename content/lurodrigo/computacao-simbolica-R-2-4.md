@@ -194,12 +194,11 @@ Seguem as modificações que devem ser feitas:
 
 <p>
 Agora a representação de composições de funções se torna trivial. Se
-<code class="highlighter-rouge">[f%@%"repr"](mailto:f%@%%22repr%22)</code>
-é <code class="highlighter-rouge">1\*{x}^2 + exp({x})</code>, por
-exemplo, a linha
-<code class="highlighter-rouge">glue([f%@%"repr"](mailto:f%@%%22repr%22),
-x = "sin(x)")</code> dará a representação desta função composta com a
-função seno.
+<code class="highlighter-rouge">f%@%"repr"</code> é
+<code class="highlighter-rouge">1\*{x}^2 + exp({x})</code>, por exemplo,
+a linha <code class="highlighter-rouge">glue(f%@%"repr", x =
+"sin(x)")</code> dará a representação desta função composta com a função
+seno.
 </p>
 <p>
 Segundo problema: Não há nenhum operador definido como função genérica

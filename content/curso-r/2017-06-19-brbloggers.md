@@ -117,7 +117,7 @@ nudge\_x = .3, colour = cores\_br$azul, fontface = 'bold') +
 coord\_equal() + theme\_minimal(0) p</code>
 </pre>
 <p>
-<img src="http://curso-r.com/blog/2017/06/19/2017-06-19-brbloggers/2017-06-19-brbloggers_files/figure-html/unnamed-chunk-2-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-06-19-brbloggers_files/figure-html/unnamed-chunk-2-1.png" width="672">
 </p>
 </div>
 </div>

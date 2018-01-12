@@ -2,13 +2,19 @@
 title = "11 referências para você aprender Séries Temporais com R"
 date = "2017-07-25 12:28:51"
 categories = ["IBPAD"]
-original_url = "http://www.ibpad.com.br/blog/analise-de-dados/11-referencias-para-voce-aprender-series-temporais-com-r/"
+original_url = "https://www.ibpad.com.br/blog/analise-de-dados/11-referencias-para-voce-aprender-series-temporais-com-r/"
 +++
 
-    <div class="wpb_text_column wpb_content_element " >
-        <div class="wpb_wrapper">
-            <p>Quando uma variável é medida e registrada sequencialmente em tempo durante ou em um intervalo fixo, chamado de intervalo amostral, os dados resultantes são chamados de <strong>Série Temporal</strong>. Observações coletadas em um intervalo amostral no passado recebem o nome de série temporal histórica e são usadas para analisar e entender o passado e para prever o futuro.</p>
-
+<div class="post-inner-content">
+<p>
+Quando uma variável é medida e registrada sequencialmente em tempo
+durante ou em um intervalo fixo, chamado de intervalo amostral, os dados
+resultantes são chamados de
+<a href="https://www.ibpad.com.br/produto/series-temporais-df/" target="_blank">Série
+Temporal</a>. Observações coletadas em um intervalo amostral no passado
+recebem o nome de série temporal histórica e são usadas para analisar e
+entender o passado e para prever o futuro.
+</p>
 <p>
 Em outras palavras, série temporal é uma sequência de dados em ordem
 cronológica.
@@ -37,83 +43,69 @@ materiais:
 <h2>
 Livros
 </h2>
-        </div>
-    </div>
 
-    <div class="wpb_text_column wpb_content_element " >
-        <div class="wpb_wrapper">
-            <h4>1 &#8211; HYNDMAN, R.J., ATHANASOPOULOS, G. (2017) Forecasting: principles and practice.</h4>
+<h4>
+1 – HYNDMAN, R.J., ATHANASOPOULOS, G. (2017) Forecasting: principles and
+practice.
+</h4>
 
-        </div>
-    </div>
+<figure class="wpb_wrapper vc_figure">
+<img class="vc_single_image-img" width="245" height="394" src="https://i.imgur.com/YCTRIZ3.png">
 
-    <div  class="wpb_single_image wpb_content_element vc_align_center">
-        
-        <figure class="wpb_wrapper vc_figure">
-            <div class="vc_single_image-wrapper   vc_box_border_grey"><img class="vc_single_image-img"  src="https://i1.wp.com/i.imgur.com/YCTRIZ3.png?resize=245%2C394&#038;ssl=1" data-recalc-dims="1" /></div>
-        </figure>
-    </div>
+</figure>
 
-    <div class="wpb_text_column wpb_content_element " >
-        <div class="wpb_wrapper">
-            <p><em>Forecasting: principles and practices</em> é um excelente referência escrita por Rob Hyndman, uma das maiores autoridades sobre Séries Temporais do mundo. Felizmente, Hyndman publicou este livro de graça <a href="https://www.otexts.org/fpp/" class="broken_link">na Internet</a>. Além de aprender conceitos teóricos fundamentais para o entendimento do assunto, o livro também é rico em exemplos de código R, permitindo ao leitor colocar em prática imediatamente o que aprende durante a leitura. A linguagem usada no livro é bem acessível mesmo para quem não é acadêmico.</p>
-
+<p>
+<em>Forecasting: principles and practices</em> é um excelente referência
+escrita por Rob Hyndman, uma das maiores autoridades sobre Séries
+Temporais do mundo. Felizmente, Hyndman publicou este livro de graça
+<a href="https://www.otexts.org/fpp/">na Internet</a>. Além de aprender
+conceitos teóricos fundamentais para o entendimento do assunto, o livro
+também é rico em exemplos de código R, permitindo ao leitor colocar em
+prática imediatamente o que aprende durante a leitura. A linguagem usada
+no livro é bem acessível mesmo para quem não é acadêmico.
+</p>
 <p>
 Para quem não sabe, Hyndman é autor do pacote <code>forecast</code>, o
 principal pacote de previsão de séries temporais da linguagem R.
 </p>
-        </div>
-    </div>
 
-    <div class="wpb_text_column wpb_content_element " >
-        <div class="wpb_wrapper">
-            <h4>2 &#8211; COWPERTWAIT; METCALFE. Introductory Time Series with R (2009).</h4>
+<h4>
+2 – COWPERTWAIT; METCALFE. Introductory Time Series with R (2009).
+</h4>
 
-        </div>
-    </div>
+<figure class="wpb_wrapper vc_figure">
+<img class="vc_single_image-img" src="https://i0.wp.com/i.imgur.com/ICWCl1r.png?zoom=0.8999999761581421&amp;resize=300%2C300">
 
-    <div  class="wpb_single_image wpb_content_element vc_align_left">
-        
-        <figure class="wpb_wrapper vc_figure">
-            <div class="vc_single_image-wrapper   vc_box_border_grey"><img class="vc_single_image-img"  src="https://i0.wp.com/i.imgur.com/ICWCl1r.png?zoom=0.8999999761581421&amp;resize=300%2C300" /></div>
-        </figure>
-    </div>
+</figure>
 
-    <div class="wpb_text_column wpb_content_element " >
-        <div class="wpb_wrapper">
-            <p>Apesar da palavra <em>introdução</em> constar no título do livro, <em>Introductory Time Series with R</em> é notoriamente mais teórico que o primeiro da lista, apesar de também trazer exemplos práticos em R para quem deseja colocar as mãos na massa. Ideal para quem deseja se aprofundar na formulação matemática dos conceitos apresentados, aboda ainda alguns assuntos não cobertos por <em>Forecasting: principles and practice</em>, como <a href="https://en.wikipedia.org/wiki/Long-range_dependence">processos de memória longa</a>, análise de espectro, correlação espúria e testes unitários. Todos os capítulos acompanham exemplos de aplicação das técnicas estudadas.</p>
-
-        </div>
-    </div>
+<p>
+Apesar da palavra <em>introdução</em> constar no título do livro,
+<em>Introductory Time Series with R</em> é notoriamente mais teórico que
+o primeiro da lista, apesar de também trazer exemplos práticos em R para
+quem deseja colocar as mãos na massa. Ideal para quem deseja se
+aprofundar na formulação matemática dos conceitos apresentados, aboda
+ainda alguns assuntos não cobertos por <em>Forecasting: principles and
+practice</em>, como
+<a href="https://en.wikipedia.org/wiki/Long-range_dependence">processos
+de memória longa</a>, análise de espectro, correlação espúria e testes
+unitários. Todos os capítulos acompanham exemplos de aplicação das
+técnicas estudadas.
+</p>
 
 <div class="vc_row wpb_row vc_row-fluid">
 <div class="wpb_column vc_column_container vc_col-sm-12">
 <div class="vc_column-inner ">
 <div class="wpb_wrapper">
-    <div class="wpb_text_column wpb_content_element " >
-        <div class="wpb_wrapper">
-            <blockquote><p>
-
-<span style="color: #ff6600;">Que aprender mais? Conheça nosso curso de
-<strong>Séries Temporais</strong> em
-<a href="http://www.ibpad.com.br/produto/series-temporais-df/" target="_blank" rel="noopener">Brasília
-</a>e
-<a href="http://www.ibpad.com.br/produto/series-temporais-sp/" target="_blank" rel="noopener">São
-Paulo</a></span>
-</p>
-</blockquote>
-        </div>
-    </div>
-
-    <div class="wpb_text_column wpb_content_element " >
-        <div class="wpb_wrapper">
-            <h2>Papers</h2>
-
+<div class="wpb_text_column wpb_content_element ">
+<div class="wpb_wrapper">
+<h2>
+Papers
+</h2>
 <p>
 Artigos acadêmicos sobre séries temporais existem em abundância. Para
 achar uma boa referência que seja útil aos interesses, vale pesquisar no
-<a href="http://scholar.google.com/" class="broken_link">Google
-Scholar</a> temas específicos. Por exemplo:
+<a href="https://scholar.google.com/">Google Scholar</a> temas
+específicos. Por exemplo:
 </p>
 <p>
  
@@ -161,7 +153,7 @@ Conteúdo online
                 o blog do Rob Hyndman;
                 </p>
                 <p>
-                1.  <a href="http://ellisp.github.io/">Peter’s stats
+                1.  <a href="https://ellisp.github.io/">Peter’s stats
                     stuff</a>, o blog do autor do pacote
                     <code>forecastHybrid</code>;
                     </p>
@@ -176,18 +168,23 @@ Conteúdo online
                     temporais interrompidas</a>, você pode pesquisar por
                     <code>interrupted time series site:edu</code>.
                     </p>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <figure class="wpb_wrapper vc_figure">
+                    <a href="https://www.ibpad.com.br/produto/series-temporais-df/" target="_self" class="vc_single_image-wrapper   vc_box_border_grey"><img width="260" height="279" src="https://www.ibpad.com.br/wp-content/uploads/2016/10/ST-260x279.jpg" class="vc_single_image-img attachment-medium" alt="" srcset="https://www.ibpad.com.br/wp-content/uploads/2016/10/ST-260x279.jpg 260w, https://www.ibpad.com.br/wp-content/uploads/2016/10/ST-768x823.jpg 768w, https://www.ibpad.com.br/wp-content/uploads/2016/10/ST-955x1024.jpg 955w, https://www.ibpad.com.br/wp-content/uploads/2016/10/ST-93x100.jpg 93w, https://www.ibpad.com.br/wp-content/uploads/2016/10/ST.jpg 1060w" sizes="(max-width: 260px) 100vw, 260px"></a>
+                    </figure>
 
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        <p>
-        O post
-        <a rel="nofollow" href="http://www.ibpad.com.br/blog/analise-de-dados/11-referencias-para-voce-aprender-series-temporais-com-r/">11
-        referências para você aprender Séries Temporais com R</a>
-        apareceu primeiro em
-        <a rel="nofollow" href="http://www.ibpad.com.br">IBPAD</a>.
-        </p>
+                    <p>
+                    Se interessa em aprender mais sobre <strong>séries
+                    temporais</strong> utilizando a programação R?
+                    Conheça o curso presencial que acontecerá no mês de
+                    novembro em
+                    <a href="https://www.ibpad.com.br/produto/series-temporais-df/" target="_blank">Brasília</a>.
+                    </p>
+
+                    </div>
 

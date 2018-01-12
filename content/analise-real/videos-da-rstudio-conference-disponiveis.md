@@ -28,8 +28,8 @@ Marcado <a href="https://analisereal.com/tag/r/">R</a>,
 </p>
 <p class="date-link">
 <a href="https://analisereal.com/2017/02/16/videos-da-rstudio-conference-disponiveis/" class="permalink"><span
-class="month">fev</span><span class="sep">·</span><span
-class="day">16</span></a>
+class="month upper">fev</span><span class="sep">·</span><span
+class="day lower">16</span></a>
 </p>
 </footer>
 </article>

@@ -17,9 +17,9 @@ particular quando falam <strong>“maximizar a variância total”</strong> e
 grande “HEIN?”.
 </p>
 <p>
-Abaixo tem alguns gráficos em 3 dimensões que dá uma boa ilustração
+Abaixo tem alguns gráficos em 3 dimensões que dão uma boa ilustração
 sobre o que essas duas afirmativas querem dizer e, mesmo sendo um
-exemplo simples, irá ajudar a extrapolar a ideia para problemas mais
+exemplo simples, irão ajudar a extrapolar a ideia para problemas mais
 complexos.
 </p>
 <ol>
@@ -46,8 +46,7 @@ dimensões.
 <p>
 <strong>pacotes para os exemplos</strong>
 </p>
-<pre class="r"><code>library(plotly)
-library(magrittr)
+<pre class="r"><code>library(magrittr)
 library(tidyr)
 library(dplyr)</code></pre>
 <p>
@@ -111,7 +110,7 @@ Cumulative Proportion
 <p>
 <strong>3 dimensões (100% da variância)</strong>
 </p>
-<pre class="r"><code>plot_ly(tetraedro_linhas, x = ~x, y = ~y, z = ~z) %&gt;% add_lines() %&gt;% add_markers()</code></pre>
+<pre class="r"><code>library(plotly) plot_ly(tetraedro_linhas, x = ~x, y = ~y, z = ~z) %&gt;% add_lines() %&gt;% add_markers()</code></pre>
 <p>
 <strong>2 dimensões (67% da variância)</strong>
 </p>

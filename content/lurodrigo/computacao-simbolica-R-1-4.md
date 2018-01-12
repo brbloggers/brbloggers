@@ -81,9 +81,9 @@ os atributos em R.
 Em R, todo objeto pode guardar dados através da função
 <code class="highlighter-rouge">attr()</code>. Pode-se depois acessá-los
 via <code class="highlighter-rouge">attr()</code> ou
-<code class="highlighter-rouge">[%@%](mailto:%@%)</code>. Então basta
-pegar uma função matemática ordinária em R e adicionar os dados que
-forem necessários a ela via atributos. Também modificarei o método
+<code class="highlighter-rouge">%@%</code>. Então basta pegar uma função
+matemática ordinária em R e adicionar os dados que forem necessários a
+ela via atributos. Também modificarei o método
 <code class="highlighter-rouge">print()</code> e o
 <code class="highlighter-rouge">as.character</code> delas para que o
 trabalho com essas funções no console seja mais agradável. Por último,

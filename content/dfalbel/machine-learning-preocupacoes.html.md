@@ -64,8 +64,8 @@ quando fala em seu últimos tópicos.
         it is mostly in the control of white males (be they bright AI
         leaders like Yoshua Bengio, Josh Tenenbaum, Geoff Hinton,
         Michael Jordan and many others, or AI commentators like Elon
-        Musk, Nick Bostrom, Stephen Hawkins et al? - They are all
-        white males). Enough of ignoring this question! It is bloody
+        Musk, Nick Bostrom, Stephen Hawkins et al? - They are all white
+        males). Enough of ignoring this question! It is bloody
         important! I think the roots of the problem are in the way we
         educate children. Education must improve. How can I convince
         people to invest more in education? How can fight the pernicious

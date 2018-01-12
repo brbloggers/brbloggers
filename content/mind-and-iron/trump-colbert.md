@@ -62,7 +62,7 @@ estimativa do conteúdo de seu programa.
 A primeira coisa que eu queria saber era quais palavras ele mais fala.
 Dê uma olhada na vencedora…
 </p>
-<img src="http://ctlente.com/trump-colbert/top_terms_pt.png">
+<img src="http://ctlente.com/trump-colbert/top_terms_pt.png" alt="">
 
 <p>
 É isso mesmo, excluindo palavras vazias, o termo mais usado no seu
@@ -97,7 +97,7 @@ dois temas principais: entrevistas e política. Podemos ver isso dando
 uma olhada nas palavras que o modelo considerou mais características de
 cada tópico.
 </p>
-<img src="http://ctlente.com/trump-colbert/log_ratio_pt.png">
+<img src="http://ctlente.com/trump-colbert/log_ratio_pt.png" alt="">
 
 <p>
 De forma simples, a “razão dos logs” na abscissa de cada gráfico indica

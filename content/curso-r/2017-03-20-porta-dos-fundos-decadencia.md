@@ -146,6 +146,9 @@ existirem apenas dois. Vivemos na era do <em>hype</em>. O que é velho, o
 que é notícia da semana passada, já não interessa mais.
 </p>
 <pre class="r"><code>dados %&gt;% mutate(views = map(videos_stats, .f = &apos;viewCount&apos;)) %&gt;% unnest(views) %&gt;% mutate(views = as.numeric(views), publishedAt = as_date(publishedAt)) %&gt;% ggplot(aes(x = publishedAt, y = views)) + geom_line(aes(y = 1000000, colour = &quot;1 Milh&#xE3;o&quot;)) + geom_line(aes(y = 10000000, colour = &apos;10 Milh&#xF5;es&apos;)) + geom_line(aes(y = 20000000, colour = &apos;20 Milh&#xF5;es&apos;)) + geom_line() + labs(x = &quot;Data de publica&#xE7;&#xE3;o&quot;, y = &quot;Visualiza&#xE7;&#xF5;es&quot;) + theme_bw()</code></pre>
+<pre><code>## Linking to ImageMagick 6.8.9.9
+## Enabled features: cairo, fontconfig, freetype, fftw, lcms, pango, rsvg, x11
+## Disabled features: ghostscript, webp</code></pre>
 <p>
 <img src="http://curso-r.com/blog/2017-03-20-porta-dos-fundos-decadencia_files/figure-html/unnamed-chunk-9-1.png" width="4800">
 </p>

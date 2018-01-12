@@ -45,20 +45,20 @@ janeiro de 2001.
 pacman::p_load(dplyr, purrr, stringr, tidyr, forcats, ggplot2)
 pacman::p_load_gh(&quot;italocegatta/fipe&quot;)</code></pre>
 <pre class="r"><code>fipe_referencia()</code></pre>
-<pre><code>## # A tibble: 199 x 2
+<pre><code>## # A tibble: 202 x 2
 ## data_ref cod_ref
 ## &lt;date&gt; &lt;int&gt;
-## 1 2017-07-01 215
-## 2 2017-06-01 214
-## 3 2017-05-01 212
-## 4 2017-04-01 211
-## 5 2017-03-01 207
-## 6 2017-02-01 205
-## 7 2017-01-01 202
-## 8 2016-12-01 200
-## 9 2016-11-01 198
-## 10 2016-10-01 197
-## # ... with 189 more rows</code></pre>
+## 1 2017-10-01 218
+## 2 2017-09-01 217
+## 3 2017-08-01 216
+## 4 2017-07-01 215
+## 5 2017-06-01 214
+## 6 2017-05-01 212
+## 7 2017-04-01 211
+## 8 2017-03-01 207
+## 9 2017-02-01 205
+## 10 2017-01-01 202
+## # ... with 192 more rows</code></pre>
 <p>
 Como o objetivo saber o preço atual do veículo, pegaremos o código
 <code>215</code> (mês em que escrevo este post). Agora vamos procurar o
@@ -267,10 +267,10 @@ que resume a consulta que acabamos de fazer.
 </p>
 <p>
 Caso tenha alguma dúvida ou sugestão sobre o post, fique à vontade para
-fazer um comentário ou me contactar por Email.
+fazer um comentário ou me contatar por E-mail.
 </p>
 <pre class="r"><code>devtools::session_info()</code></pre>
 <pre><code>## setting value ## version R version 3.3.3 (2017-03-06)
-## system x86_64, mingw32 ## ui RTerm ## language (EN) ## collate Portuguese_Brazil.1252 ## tz America/Sao_Paulo ## date 2017-07-29 ## ## package * version date source ## assertthat 0.2.0 2017-04-11 CRAN (R 3.3.3) ## backports 1.1.0 2017-05-22 CRAN (R 3.3.3) ## base * 3.3.3 2017-03-06 local ## bindr 0.1 2016-11-13 CRAN (R 3.3.3) ## bindrcpp * 0.2 2017-06-17 CRAN (R 3.3.3) ## blogdown 0.0.25 2017-03-23 Github (rstudio/blogdown@1c10d16) ## bookdown 0.4 2017-05-20 CRAN (R 3.3.3) ## colorspace 1.3-2 2016-12-14 CRAN (R 3.3.2) ## curl 2.8.1 2017-07-21 CRAN (R 3.3.3) ## datasets * 3.3.3 2017-03-06 local ## devtools 1.13.2 2017-06-02 CRAN (R 3.3.3) ## digest 0.6.12 2017-01-27 CRAN (R 3.3.2) ## dplyr * 0.7.2 2017-07-20 CRAN (R 3.3.3) ## evaluate 0.10.1 2017-06-24 CRAN (R 3.3.3) ## fipe * 0.0.0.9000 2017-07-29 local ## forcats * 0.2.0 2017-01-23 CRAN (R 3.3.2) ## ggplot2 * 2.2.1.9000 2017-07-15 Github (tidyverse/ggplot2@45853c7)
-## glue 1.1.1 2017-06-21 CRAN (R 3.3.3) ## graphics * 3.3.3 2017-03-06 local ## grDevices * 3.3.3 2017-03-06 local ## grid 3.3.3 2017-03-06 local ## gtable 0.2.0 2016-02-26 CRAN (R 3.3.2) ## hms 0.3 2016-11-22 CRAN (R 3.3.2) ## htmltools 0.3.6 2017-04-28 CRAN (R 3.3.3) ## httr 1.2.1 2016-07-03 CRAN (R 3.3.2) ## jsonlite 1.5 2017-06-01 CRAN (R 3.3.3) ## knitr 1.16 2017-05-18 CRAN (R 3.3.3) ## lazyeval 0.2.0 2016-06-12 CRAN (R 3.3.2) ## lubridate 1.6.0 2016-09-13 CRAN (R 3.3.2) ## magrittr 1.5 2014-11-22 CRAN (R 3.3.2) ## memoise 1.1.0 2017-04-21 CRAN (R 3.3.3) ## methods 3.3.3 2017-03-06 local ## munsell 0.4.3 2016-02-13 CRAN (R 3.3.2) ## pacman * 0.4.6 2017-05-14 CRAN (R 3.3.3) ## pkgconfig 2.0.1 2017-03-21 CRAN (R 3.3.3) ## plyr 1.8.4 2016-06-08 CRAN (R 3.3.2) ## purrr * 0.2.2.2 2017-05-11 CRAN (R 3.3.3) ## R6 2.2.2 2017-06-17 CRAN (R 3.3.3) ## Rcpp 0.12.12 2017-07-15 CRAN (R 3.3.3) ## readr 1.1.1 2017-05-16 CRAN (R 3.3.3) ## rlang 0.1.1 2017-05-18 CRAN (R 3.3.3) ## rmarkdown 1.6 2017-06-15 CRAN (R 3.3.3) ## rprojroot 1.2 2017-01-16 CRAN (R 3.3.3) ## scales 0.4.1.9002 2017-07-15 Github (hadley/scales@6db7b6f) ## stats * 3.3.3 2017-03-06 local ## stringi 1.1.5 2017-04-07 CRAN (R 3.3.3) ## stringr * 1.2.0 2017-02-18 CRAN (R 3.3.2) ## tibble 1.3.3 2017-05-28 CRAN (R 3.3.3) ## tidyr * 0.6.3 2017-05-15 CRAN (R 3.3.3) ## tools 3.3.3 2017-03-06 local ## utils * 3.3.3 2017-03-06 local ## viridisLite 0.2.0 2017-03-24 CRAN (R 3.3.3) ## withr 1.0.2 2016-06-20 CRAN (R 3.3.3) ## yaml 2.1.14 2016-11-12 CRAN (R 3.3.3)</code></pre>
+## system x86_64, mingw32 ## ui RTerm ## language (EN) ## collate Portuguese_Brazil.1252 ## tz America/Sao_Paulo ## date 2017-10-14 ## ## package * version date source ## assertthat 0.2.0 2017-04-11 CRAN (R 3.3.3) ## backports 1.1.1 2017-09-25 CRAN (R 3.3.3) ## base * 3.3.3 2017-03-06 local ## bindr 0.1 2016-11-13 CRAN (R 3.3.3) ## bindrcpp * 0.2 2017-06-17 CRAN (R 3.3.3) ## blogdown 0.1 2017-08-22 CRAN (R 3.3.3) ## bookdown 0.5 2017-08-20 CRAN (R 3.3.3) ## colorspace 1.3-2 2016-12-14 CRAN (R 3.3.2) ## curl 2.8.1 2017-07-21 CRAN (R 3.3.3) ## datasets * 3.3.3 2017-03-06 local ## devtools 1.13.3 2017-08-02 CRAN (R 3.3.3) ## digest 0.6.12 2017-01-27 CRAN (R 3.3.2) ## dplyr * 0.7.4 2017-09-28 CRAN (R 3.3.3) ## evaluate 0.10.1 2017-06-24 CRAN (R 3.3.3) ## fipe * 0.0.0.9000 2017-07-29 local ## forcats * 0.2.0 2017-01-23 CRAN (R 3.3.2) ## ggplot2 * 2.2.1.9000 2017-07-15 Github (tidyverse/ggplot2@45853c7)
+## glue 1.1.1 2017-06-21 CRAN (R 3.3.3) ## graphics * 3.3.3 2017-03-06 local ## grDevices * 3.3.3 2017-03-06 local ## grid 3.3.3 2017-03-06 local ## gtable 0.2.0 2016-02-26 CRAN (R 3.3.2) ## hms 0.3 2016-11-22 CRAN (R 3.3.2) ## htmltools 0.3.6 2017-04-28 CRAN (R 3.3.3) ## httr 1.3.1 2017-08-20 CRAN (R 3.3.3) ## jsonlite 1.5 2017-06-01 CRAN (R 3.3.3) ## knitr 1.17 2017-08-10 CRAN (R 3.3.3) ## lazyeval 0.2.0 2016-06-12 CRAN (R 3.3.2) ## lubridate 1.6.0 2016-09-13 CRAN (R 3.3.2) ## magrittr 1.5 2014-11-22 CRAN (R 3.3.2) ## memoise 1.1.0 2017-04-21 CRAN (R 3.3.3) ## methods * 3.3.3 2017-03-06 local ## munsell 0.4.3 2016-02-13 CRAN (R 3.3.2) ## pacman * 0.4.6 2017-05-14 CRAN (R 3.3.3) ## pkgconfig 2.0.1 2017-03-21 CRAN (R 3.3.3) ## plyr 1.8.4 2016-06-08 CRAN (R 3.3.2) ## purrr * 0.2.3 2017-08-02 CRAN (R 3.3.3) ## R6 2.2.2 2017-06-17 CRAN (R 3.3.3) ## Rcpp 0.12.13 2017-09-28 CRAN (R 3.3.3) ## readr 1.1.1 2017-05-16 CRAN (R 3.3.3) ## rlang 0.1.2 2017-08-09 CRAN (R 3.3.3) ## rmarkdown 1.6 2017-06-15 CRAN (R 3.3.3) ## rprojroot 1.2 2017-01-16 CRAN (R 3.3.3) ## scales 0.5.0 2017-08-24 CRAN (R 3.3.3) ## stats * 3.3.3 2017-03-06 local ## stringi 1.1.5 2017-04-07 CRAN (R 3.3.3) ## stringr * 1.2.0 2017-02-18 CRAN (R 3.3.2) ## tibble 1.3.4 2017-08-22 CRAN (R 3.3.3) ## tidyr * 0.7.1 2017-09-01 CRAN (R 3.3.3) ## tidyselect 0.2.0 2017-08-30 CRAN (R 3.3.3) ## tools 3.3.3 2017-03-06 local ## utils * 3.3.3 2017-03-06 local ## viridisLite 0.2.0 2017-03-24 CRAN (R 3.3.3) ## withr 2.0.0 2017-07-28 CRAN (R 3.3.3) ## yaml 2.1.14 2016-11-12 CRAN (R 3.3.3)</code></pre>
 

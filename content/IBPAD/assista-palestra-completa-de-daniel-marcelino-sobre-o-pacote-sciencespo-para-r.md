@@ -2,7 +2,7 @@
 title = "Assista palestra completa de Daniel Marcelino sobre o pacote SciencesPo para R"
 date = "2016-11-16 16:00:06"
 categories = ["IBPAD"]
-original_url = "http://www.ibpad.com.br/blog/analise-de-dados/assista-palestra-completa-de-daniel-marcelino-sobre-o-pacote-sciencespo-para-r/"
+original_url = "https://www.ibpad.com.br/blog/analise-de-dados/assista-palestra-completa-de-daniel-marcelino-sobre-o-pacote-sciencespo-para-r/"
 +++
 
 <p>
@@ -41,11 +41,4 @@ Confira a apresentação completa logo abaixo:
  
 </p>
 </blockquote>
-<p>
-O post
-<a rel="nofollow" href="http://www.ibpad.com.br/blog/analise-de-dados/assista-palestra-completa-de-daniel-marcelino-sobre-o-pacote-sciencespo-para-r/">Assista
-palestra completa de Daniel Marcelino sobre o pacote SciencesPo para
-R</a> apareceu primeiro em
-<a rel="nofollow" href="http://www.ibpad.com.br">IBPAD</a>.
-</p>
 

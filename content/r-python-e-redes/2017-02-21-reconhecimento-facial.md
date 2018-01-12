@@ -111,14 +111,12 @@ maneira:
                                     <p>
                                     1.  Exibe uma mensagem reconfortante
                                         de missão cumprida com os
-                                        dizeres “Cabô, manolo!” (by
-                                        <a href="https://www.facebook.com/wesley.matheus.777701">Wesley
-                                        Matheus</a>).
+                                        dizeres “Cabô, manolo!”.
                                         </p>
                                         <p>
                                         Há ainda uma opção para exibir,
-                                        uma por uma, as figuras com
-                                        os retângulos. Se forem apenas
+                                        uma por uma, as figuras com os
+                                        retângulos. Se forem apenas
                                         algumas poucas imagens, é
                                         interessante verificar em tempo
                                         real como está o reconhecimento.
@@ -145,15 +143,15 @@ maneira:
                                         tamanho mínimo da área a ser
                                         investigada pelo classificador
                                         em pixels. Áreas menores do que
-                                        o estabelecido aqui
-                                        serão ignoradas.
+                                        o estabelecido aqui serão
+                                        ignoradas.
                                         </p>
                                         <p>
                                         <em>detectMultiScale(image\[,
                                         scaleFactor\[, minNeighbors\[,
-                                        flags\[,
-                                        minSize\[, maxSize\]\]\]\]\])
-                                        -&gt; objects</em>
+                                        flags\[, minSize\[,
+                                        maxSize\]\]\]\]\]) -&gt;
+                                        objects</em>
                                         </p>
                                         <p>
                                         Vamos aos códigos!
@@ -215,8 +213,8 @@ maneira:
                                         <p>
                                         Depois disso, podemos importar o
                                         banco de dados para o Python
-                                        (ou R) e verificar como foi
-                                        a classificação. Vejam também um
+                                        (ou R) e verificar como foi a
+                                        classificação. Vejam também um
                                         exemplo de uma imagem após o
                                         reconhecimento:
                                         </p>

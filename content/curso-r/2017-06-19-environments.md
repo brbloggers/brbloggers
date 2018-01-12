@@ -160,8 +160,6 @@ estão sendo anexados, você estará criando uma lista de objetos
 que acontece quando carregamos mais pacotes
 </p>
 <pre class="r"><code>library(dplyr)
-## Warning: Installed Rcpp (0.12.11.4) different from Rcpp used to build dplyr (0.12.11.3).
-## Please reinstall dplyr to avoid random crashes or undefined behavior.
 ## ## Attaching package: &apos;dplyr&apos;
 ## The following objects are masked from &apos;package:stats&apos;:
 ## ## filter, lag
@@ -177,7 +175,7 @@ Veja um simples exemplo de como as coisas podem dar errado.
 </p>
 <pre class="r"><code>dados &lt;- tibble::tibble(paciente = 1:30, cancer = rbinom(30, size = 1, prob = 0.5)) attach(dados)
 cancer
-## [1] 1 1 1 0 1 0 1 1 1 0 1 0 1 1 1 1 1 0 1 0 0 0 0 1 0 0 1 1 0 1</code></pre>
+## [1] 0 0 0 0 0 1 1 0 1 1 1 0 0 1 0 0 0 1 1 0 0 0 1 1 1 1 1 1 0 0</code></pre>
 <p>
 Com o código acima, criamos um banco de dados representando 30 pacientes
 com (1) ou sem (0) um certo tipo de câncer. As variáveis

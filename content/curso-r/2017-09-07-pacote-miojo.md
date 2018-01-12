@@ -137,7 +137,7 @@ soma_2(1:10)
 Você também pode ver o help da função com <code>?soma\_2</code>:
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017-09-07-pacote-miojo_files/figure-html/unnamed-chunk-4-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-09-07-pacote-miojo_files/figure-html/unnamed-chunk-5-1.png" width="672">
 </p>
 <p>
 FIM!
@@ -154,7 +154,7 @@ elaborado por você sabe quem.
 </li>
 </ul>
 <p>
-<img src="http://curso-r.com/blog/2017-09-07-pacote-miojo_files/figure-html/unnamed-chunk-6-1.png" width="480">
+<img src="http://curso-r.com/blog/2017-09-07-pacote-miojo_files/figure-html/unnamed-chunk-7-1.png" width="480">
 </p>
 
 <ul>
@@ -190,7 +190,7 @@ a esse do dplyr, por exemplo</a>.
 </li>
 </ul>
 <p>
-<img src="http://curso-r.com/blog/2017-09-07-pacote-miojo_files/figure-html/unnamed-chunk-7-1.png" width="480">
+<img src="http://curso-r.com/blog/2017-09-07-pacote-miojo_files/figure-html/unnamed-chunk-8-1.png" width="480">
 </p>
 <p>
 É isso. Happy coding ;)

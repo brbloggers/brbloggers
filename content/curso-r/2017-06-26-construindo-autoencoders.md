@@ -141,14 +141,14 @@ foi <em>comprimida</em> usando o nosso <code>decoder</code>.
 </p>
 <pre class="r"><code>predict(decoder, encoded_imgs) %&gt;% split(1:10) %&gt;% lapply(matrix, ncol = 28) %&gt;% Reduce(cbind, .) %&gt;% as.raster() %&gt;% plot()</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017/06/26/2017-06-26-construindo-autoencoders/2017-06-26-construindo-autoencoders_files/figure-html/unnamed-chunk-8-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-06-26-construindo-autoencoders_files/figure-html/unnamed-chunk-8-1.png" width="672">
 </p>
 <p>
 Compare as reconstruções com as imagens originais abaixo:
 </p>
 <pre class="r"><code>x_test[1:10,] %&gt;% split(1:10) %&gt;% lapply(matrix, ncol = 28) %&gt;% Reduce(cbind, .) %&gt;% as.raster() %&gt;% plot()</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017/06/26/2017-06-26-construindo-autoencoders/2017-06-26-construindo-autoencoders_files/figure-html/unnamed-chunk-10-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-06-26-construindo-autoencoders_files/figure-html/unnamed-chunk-10-1.png" width="672">
 </p>
 <p>
 Um ponto interessante é que esse modelo faz uma

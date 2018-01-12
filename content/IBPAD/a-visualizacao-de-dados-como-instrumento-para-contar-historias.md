@@ -2,7 +2,7 @@
 title = "A visualização de dados como instrumento para contar histórias"
 date = "2017-01-30 08:00:46"
 categories = ["IBPAD"]
-original_url = "http://www.ibpad.com.br/blog/analise-de-dados/a-visualizacao-de-dados-como-instrumento-para-contar-historias/"
+original_url = "https://www.ibpad.com.br/blog/analise-de-dados/a-visualizacao-de-dados-como-instrumento-para-contar-historias/"
 +++
 
 <p>
@@ -30,10 +30,10 @@ conceitos matemáticos e de design para traduzir de forma agradável o que
 se deseja passar.
 </p>
 <p>
-<a href="http://estadaodados.com/representantes/"><img data-attachment-id="3871" data-permalink="http://www.ibpad.com.br/blog/analise-de-dados/a-visualizacao-de-dados-como-instrumento-para-contar-historias/attachment/grafico-raca/" data-orig-file="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça.png?fit=742%2C575" data-orig-size="742,575" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="grafico-raça" data-image-description="" data-medium-file="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça.png?fit=260%2C201" data-large-file="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça.png?fit=742%2C575" class="aligncenter size-full wp-image-3871" src="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça.png?resize=742%2C575" alt="" srcset="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça.png?w=742 742w, https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça.png?resize=260%2C201 260w, https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça.png?resize=100%2C77 100w" sizes="(max-width: 742px) 100vw, 742px" data-recalc-dims="1" /></a>
+<a href="http://estadaodados.com/representantes/"><img class="aligncenter size-full wp-image-3871" src="https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-ra%C3%A7a.png" alt="" width="742" height="575" srcset="https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça.png 742w, https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça-260x201.png 260w, https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça-100x77.png 100w" sizes="(max-width: 742px) 100vw, 742px"></a>
 </p>
 <p>
-<a href="http://estadaodados.com/representantes/"><img data-attachment-id="3872" data-permalink="http://www.ibpad.com.br/blog/analise-de-dados/a-visualizacao-de-dados-como-instrumento-para-contar-historias/attachment/grafico-raca2/" data-orig-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça2.png?fit=740%2C572" data-orig-size="740,572" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="grafico-raça2" data-image-description="" data-medium-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça2.png?fit=260%2C201" data-large-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça2.png?fit=740%2C572" class="aligncenter size-full wp-image-3872" src="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça2.png?resize=740%2C572" alt="" srcset="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça2.png?w=740 740w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça2.png?resize=260%2C201 260w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça2.png?resize=100%2C77 100w" sizes="(max-width: 740px) 100vw, 740px" data-recalc-dims="1" /></a>
+<a href="http://estadaodados.com/representantes/"><img class="aligncenter size-full wp-image-3872" src="https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-ra%C3%A7a2.png" alt="" width="740" height="572" srcset="https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça2.png 740w, https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça2-260x201.png 260w, https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-raça2-100x77.png 100w" sizes="(max-width: 740px) 100vw, 740px"></a>
 </p>
 <p>
 Os dois gráficos acima fazem parte do projeto
@@ -51,10 +51,10 @@ público para enxergar com os próprios olhos como se dá essa
 discrepância.
 </p>
 <p>
-<a href="http://estadaodados.com/padrinhos/#.WInxaPkrLIU"><img data-attachment-id="3873" data-permalink="http://www.ibpad.com.br/blog/analise-de-dados/a-visualizacao-de-dados-como-instrumento-para-contar-historias/attachment/grafico-doacoes/" data-orig-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?fit=1331%2C489" data-orig-size="1331,489" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="grafico-doaçoes" data-image-description="" data-medium-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?fit=260%2C96" data-large-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?fit=900%2C330" class="aligncenter size-full wp-image-3873" src="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?resize=900%2C331" alt="" srcset="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?w=1331 1331w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?resize=260%2C96 260w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?resize=768%2C282 768w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?resize=1024%2C376 1024w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?resize=100%2C37 100w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></a>
+<a href="http://estadaodados.com/padrinhos/#.WInxaPkrLIU"><img class="aligncenter size-full wp-image-3873" src="https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doa%C3%A7oes.png" alt="" width="1331" height="489" srcset="https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png 1331w, https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes-260x96.png 260w, https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes-768x282.png 768w, https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes-1024x376.png 1024w, https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes-100x37.png 100w" sizes="(max-width: 1331px) 100vw, 1331px"></a>
 </p>
 <p>
-<a href="http://estadaodados.com/padrinhos/#.WInxaPkrLIU"><img data-attachment-id="3873" data-permalink="http://www.ibpad.com.br/blog/analise-de-dados/a-visualizacao-de-dados-como-instrumento-para-contar-historias/attachment/grafico-doacoes/" data-orig-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?fit=1331%2C489" data-orig-size="1331,489" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="grafico-doaçoes" data-image-description="" data-medium-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?fit=260%2C96" data-large-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?fit=900%2C330" class="aligncenter size-full wp-image-3873" src="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?resize=900%2C331" alt="" srcset="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?w=1331 1331w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?resize=260%2C96 260w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?resize=768%2C282 768w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?resize=1024%2C376 1024w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png?resize=100%2C37 100w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></a>
+<a href="http://estadaodados.com/padrinhos/#.WInxaPkrLIU"><img class="aligncenter size-full wp-image-3873" src="https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doa%C3%A7oes.png" alt="" width="1331" height="489" srcset="https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes.png 1331w, https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes-260x96.png 260w, https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes-768x282.png 768w, https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes-1024x376.png 1024w, https://www.ibpad.com.br/wp-content/uploads/2017/01/grafico-doaçoes-100x37.png 100w" sizes="(max-width: 1331px) 100vw, 1331px"></a>
 </p>
 <p>
 Os dois gráficos acima, do projeto “Os padrinhos”, também do Estadão
@@ -68,31 +68,22 @@ Visualmente, assim como os anteriores, facilitam bastante o impacto para
 que o leitor consiga entender o tamanho das doações feitas por quem e
 para quem.
 </p>
+
+<span class="vc_sep_holder vc_sep_holder_l"><span
+class="vc_sep_line"></span></span><span
+class="vc_sep_holder vc_sep_holder_r"><span
+class="vc_sep_line"></span></span>
+
 <p>
-<a href="http://www.ibpad.com.br/cursos/introducao-visualizacao-de-dados-sp/"><img data-attachment-id="3747" data-permalink="http://www.ibpad.com.br/blog/analise-de-dados/usando-a-visualizacao-de-dados-para-entender-falhas-do-governo-federal/attachment/vis/" data-orig-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/vis.jpg?fit=1112%2C1180" data-orig-size="1112,1180" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="vis" data-image-description="" data-medium-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/vis.jpg?fit=260%2C276" data-large-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/vis.jpg?fit=900%2C955" class="size-medium wp-image-3747 alignleft" src="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/vis.jpg?resize=260%2C276" alt="" srcset="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/vis.jpg?resize=260%2C276 260w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/vis.jpg?resize=768%2C815 768w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/vis.jpg?resize=965%2C1024 965w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/vis.jpg?resize=94%2C100 94w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/vis.jpg?w=1112 1112w" sizes="(max-width: 260px) 100vw, 260px" data-recalc-dims="1" /></a>Em
-ambos os casos os dados analisados foram retirados de fontes públicas e
-abertas: o Tribunal Superior Eleitoral (TSE) e Instituto Brasileiro de
-Geografia e Estatística (IBGE). Os dois projetos também foram comandados
-por Rodrigo Burgarelli, professor do nosso recém-lançado curso de
-<a href="http://www.ibpad.com.br/produto/introducao-visualizacao-de-dados-sp/" target="_blank">Introdução
-à Visualização de Dados</a> que acontece em São Paulo no dia 18 de
-fevereiro. Para além de técnicas de dataviz, os alunos ainda aprenderão
-onde encontrar dados abertos para pode contextualizar os dados das suas
-mídias sociais com dados públicos dos cidadãos brasileiros, o que pode
-gerar ainda mais inteligência para uma análise profunda de mercado.
+Conheça o
+<a href="https://www.ibpad.com.br/produto/combo-monitoramento-redes-etnografia-midias-sociais/" target="_blank">pacote
+de cursos online</a> de <strong>Análise de Redes</strong>,
+<strong>Monitoramento</strong> e <strong>Etnografia em Mídias
+Sociais</strong>. Com professores referências no mercado e academia, a
+formação tem o objetivo de ensinar conceitos, ferramentas e técnicas
+detalhadas nas áreas pertinentes.
 </p>
-<p>
-Na
-<a href="http://www.ibpad.com.br/cursos/introducao-visualizacao-de-dados-sp/" target="_blank">página
-do curso</a> já é possível tomar conhecimento do conteúdo programático,
- que também conta com outras produções de visualizações de dados
-listada. Faça já a sua inscrição!
-</p>
-<p>
-O post
-<a rel="nofollow" href="http://www.ibpad.com.br/blog/analise-de-dados/a-visualizacao-de-dados-como-instrumento-para-contar-historias/">A
-visualização de dados como instrumento para contar histórias</a>
-apareceu primeiro em
-<a rel="nofollow" href="http://www.ibpad.com.br">IBPAD</a>.
-</p>
+
+<iframe src="https://player.vimeo.com/video/196456688" width="900" height="506" frameborder="0" title="Curso de Análise de Redes em Mídias Sociais" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+</iframe>
 

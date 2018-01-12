@@ -44,6 +44,9 @@ Para começar a usar as funções do <code>magick</code>, carregue o
 pacote.
 </p>
 <pre class="r"><code>library(magick)
+## Linking to ImageMagick 6.8.9.9
+## Enabled features: cairo, fontconfig, freetype, fftw, lcms, pango, rsvg, x11
+## Disabled features: ghostscript, webp
 library(magrittr)</code></pre>
 <p>
 Vamos utilizar a seguinte imagem como exemplo neste post:
@@ -58,7 +61,7 @@ suportadas. Utilize <code>str(magick::magick\_config())</code> para
 verificar quais formatos estão disponíveis na sua versão do ImageMagick.
 </p>
 <pre><code>## format width height colorspace filesize
-## 1 JPEG 2745 1780 RGB 662239</code></pre>
+## 1 JPEG 2745 1780 sRGB 662239</code></pre>
 <p>
 A função <code>image\_write()</code> exporta imagens em qualquer um dos
 formatos suportados.
@@ -77,7 +80,7 @@ original. Para converter essa imagem, utilizamos a função
 <pre class="r"><code>freddie_png &lt;- image_convert(freddie, &quot;png&quot;)
 image_info(freddie_png)
 ## format width height colorspace filesize
-## 1 png 2745 1780 RGB 0</code></pre>
+## 1 PNG 2745 1780 sRGB 0</code></pre>
 <p>
 Neste ponto você já deve ter reparado que as (principais) funções do
 pacote <code>magick</code> utilizam o prefixo <code>image\_</code>.
@@ -123,7 +126,7 @@ algumas funções.
 <pre class="r"><code>freddie_resized &lt;- image_scale(freddie, &quot;500&quot;)
 image_info(freddie_resized)
 ## format width height colorspace filesize
-## 1 JPEG 500 324 RGB 0</code></pre>
+## 1 JPEG 500 324 sRGB 0</code></pre>
 <p>
 Agora, vamos recortar um pedaço.
 </p>
@@ -185,7 +188,7 @@ GIFs e animações! Ou fazer coisas como:
 <pre class="r"><code>library(ggplot2)
 library(grid) qplot(speed, dist, data = cars, geom = c(&quot;point&quot;, &quot;smooth&quot;))
 grid.raster(freddie_cropped, width = 0.15, height = 0.3, hjust = -2, vjust = 1)</code></pre>
-<pre><code>## `geom_smooth()` using method = &apos;loess&apos;</code></pre>
+<pre><code>## `geom_smooth()` using method = &apos;loess&apos; and formula &apos;y ~ x&apos;</code></pre>
 <p>
 <img src="http://curso-r.com/blog/2017-06-01-a-kind-of-magick_files/figure-html/unnamed-chunk-25-1.png" width="672">
 </p>

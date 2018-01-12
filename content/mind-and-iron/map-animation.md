@@ -23,7 +23,7 @@ feito nenhum gráfico em R com dados geográficos, então demorei um pouco
 antes de ter certeza de que tudo estava funcionando. Eu decidi criar uma
 camada base para o gráfico e só então me preocupar com os dados.
 </p>
-<pre><code>plot_deaths &lt;- ggplot() + geom_polygon(data = map_data(&quot;usa&quot;), aes(long, lat, group = group), fill = &quot;#e6e6e6&quot;) + theme(axis.text.x = element_blank(), axis.text.y = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(), panel.background = element_blank(), panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = &quot;none&quot;) + coord_quickmap()</code></pre>
+<pre class="r"><code>plot_deaths &lt;- ggplot() + geom_polygon(data = map_data(&quot;usa&quot;), aes(long, lat, group = group), fill = &quot;#e6e6e6&quot;) + theme(axis.text.x = element_blank(), axis.text.y = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(), axis.line = element_blank(), axis.ticks = element_blank(), panel.background = element_blank(), panel.border = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = &quot;none&quot;) + coord_quickmap()</code></pre>
 <p>
 O código acima cria essa imagem:
 </p>
@@ -36,7 +36,7 @@ Depois de uma limpeza, eu também criai a lista de cidades (e suas
 respectivas localizações) que tinha mais de 5 mortes registradas na
 base: <code>deadly\_cities</code>.
 </p>
-<pre><code>plot_deaths + geom_text_repel(data = deadly_cities, aes(long, lat, label = city), size = 4) + geom_point(data = cont_deaths, aes(longitude, latitude), alpha = 0.2, color = &quot;red&quot;) + ggtitle(&quot;Killed by Police (showing cities with most deaths)&quot;)</code></pre>
+<pre class="r"><code>plot_deaths + geom_text_repel(data = deadly_cities, aes(long, lat, label = city), size = 4) + geom_point(data = cont_deaths, aes(longitude, latitude), alpha = 0.2, color = &quot;red&quot;) + ggtitle(&quot;Killed by Police (showing cities with most deaths)&quot;)</code></pre>
 <p>
 Eu tentei usar a função <code>geom\_text</code> do pacote
 <code>ggplot</code> mas muitas cidades se sobrepunham, então procurei
@@ -60,7 +60,7 @@ um programa chamado ImageMagick. Com <code>animation::saveGIF</code>
 tudo que tive que fazer foi um loop em que gerava o gráfico de fada
 <em>frame</em> e o pacote cuidava do resto.
 </p>
-<pre><code>saveGIF(for (i in 0:730) { # Filter deaths up to a certain date time_deaths &lt;- cont_deaths %&gt;% filter(date &lt;= ymd(&quot;2015-01-01&quot;) + i) # Get the cities that have already had more than 5 deaths time_cities &lt;- deadly_cities %&gt;% left_join(time_deaths, c(&quot;city&quot; = &quot;city&quot;, &quot;country.etc&quot; = &quot;state&quot;)) %&gt;% group_by(city, country.etc) %&gt;% summarise(count = n(), long = long[1], lat = lat[1]) %&gt;% ungroup() %&gt;% mutate(alph = count &gt; 5) # Plot deaths print(plot_deaths + geom_text_repel(data = time_cities, size = 4, segment.alpha = 0, aes(long, lat, label = city, alpha = factor(alph))) + scale_alpha_manual(values = c(0, 1)) + geom_point(data = time_deaths, aes(longitude, latitude), alpha = 0.2, color = &quot;red&quot;) + ggtitle(paste0(&quot;Deaths until &quot;, ymd(&quot;2015-01-01&quot;) + i, &quot; (showing when each city crosses the 5 deaths line)&quot;))) }, &quot;deaths.gif&quot;, interval = 0.005, ani.width = 900, ani.height = 630)</code></pre>
+<pre class="r"><code>saveGIF(for (i in 0:730) { # Filter deaths up to a certain date time_deaths &lt;- cont_deaths %&gt;% filter(date &lt;= ymd(&quot;2015-01-01&quot;) + i) # Get the cities that have already had more than 5 deaths time_cities &lt;- deadly_cities %&gt;% left_join(time_deaths, c(&quot;city&quot; = &quot;city&quot;, &quot;country.etc&quot; = &quot;state&quot;)) %&gt;% group_by(city, country.etc) %&gt;% summarise(count = n(), long = long[1], lat = lat[1]) %&gt;% ungroup() %&gt;% mutate(alph = count &gt; 5) # Plot deaths print(plot_deaths + geom_text_repel(data = time_cities, size = 4, segment.alpha = 0, aes(long, lat, label = city, alpha = factor(alph))) + scale_alpha_manual(values = c(0, 1)) + geom_point(data = time_deaths, aes(longitude, latitude), alpha = 0.2, color = &quot;red&quot;) + ggtitle(paste0(&quot;Deaths until &quot;, ymd(&quot;2015-01-01&quot;) + i, &quot; (showing when each city crosses the 5 deaths line)&quot;))) }, &quot;deaths.gif&quot;, interval = 0.005, ani.width = 900, ani.height = 630)</code></pre>
 <p>
 Neste código fiz um loop nos 730 dias da base e gerei gráficos somente
 com as mortes até cada data. Também verifiquei para ver se nenhuma

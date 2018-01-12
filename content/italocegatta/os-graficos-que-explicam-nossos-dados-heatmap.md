@@ -31,9 +31,28 @@ coluna <code>Esp</code> informando a ordem crescente das espécies em
 função da altura dominante. Em seguida, apenas por conveniência,
 converti a idade dos inventários de meses para anos.
 </p>
-<pre class="r"><code>if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;) pacman::p_load(readr, dplyr, ggplot2, ggthemes, viridis)</code></pre>
-<pre class="r"><code>dados &lt;- read_csv2( &quot;https://github.com/italocegatta/italocegatta.github.io_source/raw/master/content/dados/tume0.csv&quot; ) # Cria um fator com o atributo para a vari&#xE1;vel Esp que informa a ordem crescente # das esp&#xE9;cies em fun&#xE7;&#xE3;o da altura dominante. dados &lt;- dados %&gt;% mutate( Esp = reorder(Esp, Hdom, function(x) max(x)), Idade = round(I_meses/12,1) ) dados</code></pre>
-<pre><code>## # A tibble: 138 &#xD7; 16 ## N_tume Esp I_meses Parc_m2 DAPmed DAPsd Hmed Hsd Hdom ## &lt;int&gt; &lt;fctr&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; ## 1 0 Clone_1 52 1425.6 11.4 1.4 16.5 1.3 17.8 ## 2 0 Clone_2 52 1425.6 10.2 1.4 15.9 1.4 16.6 ## 3 0 Clone_3 52 1425.6 10.7 1.6 15.0 1.3 16.1 ## 4 0 E_benthamii 52 1425.6 9.0 2.7 9.8 2.3 13.0 ## 5 0 E_botryoides 52 1425.6 9.1 4.3 10.8 3.4 15.3 ## 6 0 E_camaldulensis 52 1425.6 8.3 2.9 8.3 2.3 11.8 ## 7 0 E_citriodora 52 1425.6 8.0 3.5 8.3 2.8 12.0 ## 8 0 E_cloeziana 52 928.8 7.5 2.5 7.0 2.0 9.6 ## 9 0 E_deanei 52 1425.6 10.6 2.9 11.3 1.8 13.4 ## 10 0 E_dunnii 52 1425.6 6.7 3.7 6.1 2.4 10.3 ## # ... with 128 more rows, and 7 more variables: N_fuste &lt;int&gt;, Sobr &lt;dbl&gt;, ## # G &lt;dbl&gt;, V &lt;int&gt;, IMA &lt;dbl&gt;, B &lt;int&gt;, Idade &lt;dbl&gt;</code></pre>
+<pre class="r"><code>if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;)
+pacman::p_load(readr, dplyr, ggplot2, ggthemes, viridis)</code></pre>
+<pre class="r"><code>dados &lt;- read_csv2( &quot;https://github.com/italocegatta/italocegatta.github.io_source/raw/master/content/dados/tume0.csv&quot;
+) # Cria um fator com o atributo para a vari&#xE1;vel Esp que informa a ordem crescente
+# das esp&#xE9;cies em fun&#xE7;&#xE3;o da altura dominante.
+dados &lt;- dados %&gt;% mutate( Esp = reorder(Esp, Hdom, function(x) max(x)), Idade = round(I_meses/12,1) )
+dados</code></pre>
+<pre><code>## # A tibble: 138 x 16
+## N_tume Esp I_meses Parc_m2 DAPmed DAPsd Hmed Hsd Hdom
+## &lt;int&gt; &lt;fctr&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 0 Clone_1 52 1425.6 11.4 1.4 16.5 1.3 17.8
+## 2 0 Clone_2 52 1425.6 10.2 1.4 15.9 1.4 16.6
+## 3 0 Clone_3 52 1425.6 10.7 1.6 15.0 1.3 16.1
+## 4 0 E_benthamii 52 1425.6 9.0 2.7 9.8 2.3 13.0
+## 5 0 E_botryoides 52 1425.6 9.1 4.3 10.8 3.4 15.3
+## 6 0 E_camaldulensis 52 1425.6 8.3 2.9 8.3 2.3 11.8
+## 7 0 E_citriodora 52 1425.6 8.0 3.5 8.3 2.8 12.0
+## 8 0 E_cloeziana 52 928.8 7.5 2.5 7.0 2.0 9.6
+## 9 0 E_deanei 52 1425.6 10.6 2.9 11.3 1.8 13.4
+## 10 0 E_dunnii 52 1425.6 6.7 3.7 6.1 2.4 10.3
+## # ... with 128 more rows, and 7 more variables: N_fuste &lt;int&gt;, Sobr &lt;dbl&gt;,
+## # G &lt;dbl&gt;, V &lt;int&gt;, IMA &lt;dbl&gt;, B &lt;int&gt;, Idade &lt;dbl&gt;</code></pre>
 <p>
 Se fizermos a seguinte pergunta: qual gráfico podemos utilizar para
 mostrar o crescimento da altura dominantes dos materiais? Penso que a
@@ -115,8 +134,10 @@ representam uma escala comparativa, este atributo fica comprometido.
 </p>
 <p>
 Caso tenha alguma dúvida ou sugestão sobre o post, fique à vontade para
-fazer um comentário ou me contactar por Email.
+fazer um comentário ou me contatar por E-mail.
 </p>
 <pre class="r"><code>devtools::session_info()</code></pre>
-<pre><code>## setting value ## version R version 3.3.3 (2017-03-06) ## system x86_64, mingw32 ## ui RTerm ## language (EN) ## collate Portuguese_Brazil.1252 ## tz America/Sao_Paulo ## date 2017-04-08 ## ## package * version date source ## assertthat 0.1 2013-12-06 CRAN (R 3.3.2) ## backports 1.0.5 2017-01-18 CRAN (R 3.3.2) ## blogdown 0.0.25 2017-03-23 Github (rstudio/blogdown@1c10d16) ## bookdown 0.3.14 2017-03-23 Github (rstudio/bookdown@f427fdf) ## colorspace 1.3-2 2016-12-14 CRAN (R 3.3.2) ## curl 2.3 2016-11-24 CRAN (R 3.3.2) ## DBI 0.5-1 2016-09-10 CRAN (R 3.3.2) ## devtools 1.12.0 2016-06-24 CRAN (R 3.3.3) ## digest 0.6.12 2017-01-27 CRAN (R 3.3.2) ## dplyr * 0.5.0 2016-06-24 CRAN (R 3.3.2) ## evaluate 0.10 2016-10-11 CRAN (R 3.3.3) ## ggplot2 * 2.2.1 2016-12-30 CRAN (R 3.3.2) ## ggthemes * 3.4.0 2017-02-19 CRAN (R 3.3.3) ## gridExtra 2.2.1 2016-02-29 CRAN (R 3.3.3) ## gtable 0.2.0 2016-02-26 CRAN (R 3.3.2) ## highr 0.6 2016-05-09 CRAN (R 3.3.3) ## htmltools 0.3.5 2016-03-21 CRAN (R 3.3.3) ## knitr 1.15.1 2016-11-22 CRAN (R 3.3.3) ## labeling 0.3 2014-08-23 CRAN (R 3.3.2) ## lazyeval 0.2.0 2016-06-12 CRAN (R 3.3.2) ## magrittr 1.5 2014-11-22 CRAN (R 3.3.2) ## memoise 1.0.0 2016-01-29 CRAN (R 3.3.3) ## munsell 0.4.3 2016-02-13 CRAN (R 3.3.2) ## pacman * 0.4.1 2016-03-30 CRAN (R 3.3.3) ## plyr 1.8.4 2016-06-08 CRAN (R 3.3.2) ## R6 2.2.0 2016-10-05 CRAN (R 3.3.2) ## Rcpp 0.12.9 2017-01-14 CRAN (R 3.3.2) ## readr * 1.0.0 2016-08-03 CRAN (R 3.3.2) ## rmarkdown 1.3 2016-12-21 CRAN (R 3.3.3) ## rprojroot 1.2 2017-01-16 CRAN (R 3.3.3) ## scales 0.4.1 2016-11-09 CRAN (R 3.3.2) ## stringi 1.1.2 2016-10-01 CRAN (R 3.3.2) ## stringr 1.2.0 2017-02-18 CRAN (R 3.3.2) ## tibble 1.2 2016-08-26 CRAN (R 3.3.2) ## viridis * 0.3.4 2016-03-12 CRAN (R 3.3.3) ## withr 1.0.2 2016-06-20 CRAN (R 3.3.3) ## yaml 2.1.14 2016-11-12 CRAN (R 3.3.3)</code></pre>
+<pre><code>## setting value ## version R version 3.3.3 (2017-03-06)
+## system x86_64, mingw32 ## ui RTerm ## language (EN) ## collate Portuguese_Brazil.1252 ## tz America/Sao_Paulo ## date 2017-10-14 ## ## package * version date source ## assertthat 0.2.0 2017-04-11 CRAN (R 3.3.3) ## backports 1.1.1 2017-09-25 CRAN (R 3.3.3) ## base * 3.3.3 2017-03-06 local ## bindr 0.1 2016-11-13 CRAN (R 3.3.3) ## bindrcpp * 0.2 2017-06-17 CRAN (R 3.3.3) ## blogdown 0.1 2017-08-22 CRAN (R 3.3.3) ## bookdown 0.5 2017-08-20 CRAN (R 3.3.3) ## colorspace 1.3-2 2016-12-14 CRAN (R 3.3.2) ## curl 2.8.1 2017-07-21 CRAN (R 3.3.3) ## datasets * 3.3.3 2017-03-06 local ## devtools 1.13.3 2017-08-02 CRAN (R 3.3.3) ## digest 0.6.12 2017-01-27 CRAN (R 3.3.2) ## dplyr * 0.7.4 2017-09-28 CRAN (R 3.3.3) ## evaluate 0.10.1 2017-06-24 CRAN (R 3.3.3) ## ggplot2 * 2.2.1.9000 2017-07-15 Github (tidyverse/ggplot2@45853c7)
+## ggthemes * 3.4.0 2017-02-19 CRAN (R 3.3.3) ## glue 1.1.1 2017-06-21 CRAN (R 3.3.3) ## graphics * 3.3.3 2017-03-06 local ## grDevices * 3.3.3 2017-03-06 local ## grid 3.3.3 2017-03-06 local ## gridExtra 2.3 2017-09-09 CRAN (R 3.3.3) ## gtable 0.2.0 2016-02-26 CRAN (R 3.3.2) ## highr 0.6 2016-05-09 CRAN (R 3.3.3) ## hms 0.3 2016-11-22 CRAN (R 3.3.2) ## htmltools 0.3.6 2017-04-28 CRAN (R 3.3.3) ## knitr 1.17 2017-08-10 CRAN (R 3.3.3) ## labeling 0.3 2014-08-23 CRAN (R 3.3.2) ## lazyeval 0.2.0 2016-06-12 CRAN (R 3.3.2) ## magrittr 1.5 2014-11-22 CRAN (R 3.3.2) ## memoise 1.1.0 2017-04-21 CRAN (R 3.3.3) ## methods * 3.3.3 2017-03-06 local ## munsell 0.4.3 2016-02-13 CRAN (R 3.3.2) ## pacman * 0.4.6 2017-05-14 CRAN (R 3.3.3) ## pkgconfig 2.0.1 2017-03-21 CRAN (R 3.3.3) ## plyr 1.8.4 2016-06-08 CRAN (R 3.3.2) ## R6 2.2.2 2017-06-17 CRAN (R 3.3.3) ## Rcpp 0.12.13 2017-09-28 CRAN (R 3.3.3) ## readr * 1.1.1 2017-05-16 CRAN (R 3.3.3) ## rlang 0.1.2 2017-08-09 CRAN (R 3.3.3) ## rmarkdown 1.6 2017-06-15 CRAN (R 3.3.3) ## rprojroot 1.2 2017-01-16 CRAN (R 3.3.3) ## scales 0.5.0 2017-08-24 CRAN (R 3.3.3) ## stats * 3.3.3 2017-03-06 local ## stringi 1.1.5 2017-04-07 CRAN (R 3.3.3) ## stringr 1.2.0 2017-02-18 CRAN (R 3.3.2) ## tibble 1.3.4 2017-08-22 CRAN (R 3.3.3) ## tools 3.3.3 2017-03-06 local ## utils * 3.3.3 2017-03-06 local ## viridis * 0.4.0 2017-03-27 CRAN (R 3.3.3) ## viridisLite * 0.2.0 2017-03-24 CRAN (R 3.3.3) ## withr 2.0.0 2017-07-28 CRAN (R 3.3.3) ## yaml 2.1.14 2016-11-12 CRAN (R 3.3.3)</code></pre>
 

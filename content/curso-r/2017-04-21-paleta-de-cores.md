@@ -32,9 +32,8 @@ do tipo <code>raster</code> e depois simplesmente usando a função
 <code>plot</code>.
 </p>
 <pre class="r"><code>plot(as.raster(img))</code></pre>
-<p>
-<img src="http://curso-r.com/blog/2017-04-21-paleta-de-cores_files/figure-html/unnamed-chunk-3-1.png" width="1536">
-</p>
+<img src="http://curso-r.com/blog/img/david-bowie.jpg" alt="">
+
 <p>
 O problema de obter a paleta de cores de uma imagem pode ser formulado
 como um problema de clusterização: “obter grupos de individuos que
@@ -70,22 +69,16 @@ obter isso com algumas manipulações usando o <code>dplyr</code>.
 </p>
 <pre class="r"><code>library(tibble)
 library(dplyr)
-## ## Attaching package: &apos;dplyr&apos;
-## The following objects are masked from &apos;package:stats&apos;:
-## ## filter, lag
-## The following objects are masked from &apos;package:base&apos;:
-## ## intersect, setdiff, setequal, union
 img_df &lt;- tibble( r = img_matrix[,1], g = img_matrix[,2], b = img_matrix[,3], cluster = km$cluster )
-centroides &lt;- img_df %&gt;% group_by(cluster) %&gt;% summarise_all(mean) centroides
-## # A tibble: 6 x 4
+centroides &lt;- img_df %&gt;% group_by(cluster) %&gt;% summarise_all(mean)</code></pre>
+<pre class="r"><code>centroides
 ## cluster r g b
-## &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 1 0.6239192 0.28335790 0.1897367
-## 2 2 0.8857289 0.77915257 0.6688482
-## 3 3 0.7195362 0.54881786 0.4098359
-## 4 4 0.0996826 0.04366903 0.2398452
-## 5 5 0.2721465 0.36412137 0.4901613
-## 6 6 0.3789830 0.11857741 0.1558412</code></pre>
+## 1 1 0.2212872 0.27343576 0.4408807
+## 2 2 0.5005334 0.18317885 0.1587987
+## 3 3 0.8768478 0.76214788 0.6453526
+## 4 4 0.7016480 0.46726975 0.3238780
+## 5 5 0.3541833 0.46237840 0.5494459
+## 6 6 0.1242676 0.04329523 0.2157608</code></pre>
 <p>
 Também transformamos uma cor r, g e b em uma representação hexadecimal.
 Assim conseguimos um vetor de caracteres que representa a a paleta de
@@ -93,7 +86,7 @@ cores.
 </p>
 <pre class="r"><code>centroides &lt;- centroides %&gt;% mutate(cor = rgb(r, g, b))
 centroides$cor
-## [1] &quot;#9F4830&quot; &quot;#E2C7AB&quot; &quot;#B78C69&quot; &quot;#190B3D&quot; &quot;#455D7D&quot; &quot;#611E28&quot;</code></pre>
+## [1] &quot;#384670&quot; &quot;#802F28&quot; &quot;#E0C2A5&quot; &quot;#B37753&quot; &quot;#5A768C&quot; &quot;#200B37&quot;</code></pre>
 <p>
 Para exibir a paleta vamos usar a seguinte função que foi copiada e
 levemente modificada
@@ -103,7 +96,7 @@ levemente modificada
 }
 exibir(sort(centroides$cor))</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-04-21-paleta-de-cores_files/figure-html/unnamed-chunk-8-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-04-21-paleta-de-cores_files/figure-html/exibir-1.png" width="672">
 </p>
 <p>
 Assim obtivemos uma paleta de cores da imagem que mostramos
@@ -120,13 +113,12 @@ de cores.
 </p>
 <pre class="r"><code>moonrise &lt;- readJPEG(&quot;img/moonrise-kingdom.jpg&quot;)
 plot(as.raster(moonrise))</code></pre>
+<img src="http://curso-r.com/blog/img/moonrise-kingdom.jpg" alt="">
+
+<pre class="r"><code>paleta &lt;- criar_paleta(moonrise, 6)</code></pre>
+<pre class="r"><code>exibir(paleta)</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-04-21-paleta-de-cores_files/figure-html/unnamed-chunk-10-1.png" width="1536">
-</p>
-<pre class="r"><code>paleta &lt;- criar_paleta(moonrise, 6)
-exibir(paleta)</code></pre>
-<p>
-<img src="http://curso-r.com/blog/2017-04-21-paleta-de-cores_files/figure-html/unnamed-chunk-11-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-04-21-paleta-de-cores_files/figure-html/paleta2-1.png" width="672">
 </p>
 <p>
 É isso. Se você gostou, tente fazer com outras imagens e compartilhe com

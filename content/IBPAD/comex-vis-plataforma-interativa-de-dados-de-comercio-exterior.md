@@ -2,14 +2,14 @@
 title = "Comex Vis: plataforma interativa de dados de comércio exterior"
 date = "2016-08-31 00:44:30"
 categories = ["IBPAD"]
-original_url = "http://www.ibpad.com.br/blog/analise-de-dados/comex-vis-plataforma-interativa-de-dados-de-comercio-exterior/"
+original_url = "https://www.ibpad.com.br/blog/analise-de-dados/comex-vis-plataforma-interativa-de-dados-de-comercio-exterior/"
 +++
 
 <p>
  
 </p>
 <figure id="attachment_1244" style="width: 300px" class="wp-caption alignleft">
-<img class="wp-image-1244 size-medium" src="https://i2.wp.com/blogantigo.ibpad.com.br/wp-content/uploads/2016/08/Serie-histórica-Importações-e-Exportações-brasileiras-300x225.png?resize=300%2C225" alt="Serie histórica Importações e Exportações brasileiras" data-recalc-dims="1" />
+<img class="wp-image-1244 size-medium" src="https://blogantigo.ibpad.com.br/wp-content/uploads/2016/08/Serie-hist%C3%B3rica-Importa%C3%A7%C3%B5es-e-Exporta%C3%A7%C3%B5es-brasileiras-300x225.png" alt="Serie histórica Importações e Exportações brasileiras" width="300" height="225">
 <figcaption class="wp-caption-text">
 Série histórica da balança comercial brasileira
 </figcaption>
@@ -23,12 +23,12 @@ o<a href="http://www.mdic.gov.br/comercio-exterior/estatisticas-de-comercio-exte
 Comex Vis</a>, uma ferramenta de visualização de dados interativa criada
 pela Secretaria de Comércio Exterior do Ministério do Desenvolvimento,
 Indústria e Comércio. A ferramenta possui a série histórica de dados de
-comércio exterior desde 1997 do Brasil.<br /> O projeto foi
-completamente desenvolvido com plataformas livres e gratuitas, como o R
-e o D3Plus. O pacote HTMLWidgets foi utilizado para integrar o R e o
-D3Plus.<br /> A ferramenta apresenta os dados de uma forma muito
-maleável, lhe dando acesso às estatísticas de comércio por blocos,
-continentes, países específicos, ou no Brasil em geral.
+comércio exterior desde 1997 do Brasil.<br> O projeto foi completamente
+desenvolvido com plataformas livres e gratuitas, como o R e o D3Plus. O
+pacote HTMLWidgets foi utilizado para integrar o R e o D3Plus.<br> A
+ferramenta apresenta os dados de uma forma muito maleável, lhe dando
+acesso às estatísticas de comércio por blocos, continentes, países
+específicos, ou no Brasil em geral.
 </p>
 <p>
 Ambos os gráficos a seguir foram tirados da ferramenta, o primeiro
@@ -40,7 +40,7 @@ sintética e celulose, e o cinza escuro representa produtos
 manufaturados, que vão de plataformas de perfuração a inseticidas.
 </p>
 <p>
-<img class="size-medium wp-image-1249 aligncenter" src="https://i0.wp.com/ibpad.com.br/wp-content/uploads/2016/08/ComexVis-300x122.png?resize=300%2C122" alt="ComexVis" data-recalc-dims="1" />
+<img class="size-medium wp-image-1249 aligncenter" src="https://ibpad.com.br/wp-content/uploads/2016/08/ComexVis-300x122.png" alt="ComexVis" width="300" height="122">
 </p>
 <p>
 Como nós somos bem curiosos, mandamos um e-mail com algumas perguntas
@@ -71,7 +71,7 @@ DEAEX/SECEX. Inicialmente, dois servidores começaram os experimentos e
 evoluíram até o formato de produto. Atualmente estamos organizando
 workshops interno para reforçar a equipe e nivelar o conhecimento, assim
 teremos mais fôlego para evoluir o projeto de forma rápida e
-sustentável.<br /> A equipe envolvida tem formação, em sua maioria, na
+sustentável.<br> A equipe envolvida tem formação, em sua maioria, na
 área de economia, sendo que um dos envolvidos possui formação em ciência
 da computação.
 </p>
@@ -83,12 +83,12 @@ da computação.
 produtos, buscávamos uma ferramenta para apoiar nossas análises
 estatística e o R foi uma escolha natural, considerando o perfil e
 conhecimento prévio do nossa equipe. Também começamos a usar o R como
-ferramenta para estruturar rotinas, criar relatórios e gráficos.<br />
+ferramenta para estruturar rotinas, criar relatórios e gráficos.<br>
 Este processo nos levou a necessidade de reformulação de algumas
 publicações e produtos do nosso portal. Por conta da “integrabilidade”
 com o R, nos deparamos com o D3Plus, fizemos alguns experimentos e
 gostamos muito dos resultados. Além do mais, trata-se de um pacote
-gratuito, simples de usar e gera visualizações muito atrativas.<br /> A
+gratuito, simples de usar e gera visualizações muito atrativas.<br> A
 integração do R com o D3Plus foi feita usando o pacote htmlwidgets e o
 produto final gerado com RMarkdown.
 </p>
@@ -104,11 +104,5 @@ usuários das estatísticas de comércio exterior.
 </p>
 <p>
  
-</p>
-<p>
-O post
-<a rel="nofollow" href="http://www.ibpad.com.br/blog/analise-de-dados/comex-vis-plataforma-interativa-de-dados-de-comercio-exterior/">Comex
-Vis: plataforma interativa de dados de comércio exterior</a> apareceu
-primeiro em <a rel="nofollow" href="http://www.ibpad.com.br">IBPAD</a>.
 </p>
 

@@ -24,7 +24,7 @@ Unidos e Noruega
 </li>
 </ul>
 <figure class="highlight">
-<pre><code class="language-r"><span class="n">library</span><span class="p">(</span><span class="n">WDI</span><span class="p">)</span><span class="w"> </span><span class="c1"># baixar os dados do World Bank
+<pre><code class="language-r"><span class="n">library</span><span class="p">(</span><span class="n">WDI</span><span class="p">)</span><span class="w"> </span><span class="c1"># baixar os dados do World Bank</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">formattable</span><span class="p">)</span></code></pre>
 </figure>
@@ -52,12 +52,9 @@ Portanto, o código do indicador de inflação é “FP.CPI.TOTL.ZG”. Repeti o
 mesmo para outros indicadores que escolhi para esta análise:
 </p>
 <figure class="highlight">
-<pre><code class="language-r"><span class="c1"># lista de indicadores para baixar:
-</span><span class="n">lista_indicadores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">&quot;FP.CPI.TOTL.ZG&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># infla&#xE7;&#xE3;o (%)
-</span><span class="w"> </span><span class="s2">&quot;NY.GDP.PCAP.CD&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Pib per capita (USD)
-</span><span class="w"> </span><span class="s2">&quot;NY.GDP.MKTP.KD.ZG&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># crescimento do PIB anual (%),
-</span><span class="w"> </span><span class="s2">&quot;SL.UEM.TOTL.ZS&quot;</span><span class="w"> </span><span class="c1"># Desemprego (%)
-</span><span class="p">)</span><span class="w"> </span><span class="c1"># Usei 2014 como ano de refer&#xEA;ncia pois os resultados de alguns indicadores de 2015 ainda n&#xE3;o foram disponibilizados
+<pre><code class="language-r"><span class="c1"># lista de indicadores para baixar:</span><span class="w">
+</span><span class="n">lista_indicadores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">&quot;FP.CPI.TOTL.ZG&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># infla&#xE7;&#xE3;o (%)</span><span class="w"> </span><span class="s2">&quot;NY.GDP.PCAP.CD&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># Pib per capita (USD)</span><span class="w"> </span><span class="s2">&quot;NY.GDP.MKTP.KD.ZG&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># crescimento do PIB anual (%),</span><span class="w"> </span><span class="s2">&quot;SL.UEM.TOTL.ZS&quot;</span><span class="w"> </span><span class="c1"># Desemprego (%)</span><span class="w">
+</span><span class="p">)</span><span class="w"> </span><span class="c1"># Usei 2014 como ano de refer&#xEA;ncia pois os resultados de alguns indicadores de 2015 ainda n&#xE3;o foram disponibilizados</span><span class="w">
 </span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">WDI</span><span class="p">(</span><span class="n">indicator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lista_indicadores</span><span class="p">,</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;all&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2014</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2014</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
 </span><span class="n">str</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></code></pre>
 </figure>
@@ -85,7 +82,7 @@ Latina, etc. Por isso, removi as unidades agregadas:
 </p>
 <figure class="highlight">
 <pre><code class="language-r"><span class="n">df</span><span class="o">$</span><span class="n">region</span><span class="w"> </span><span class="o">%&lt;&gt;%</span><span class="w"> </span><span class="n">as.character</span><span class="w">
-</span><span class="c1"># remover agregados
+</span><span class="c1"># remover agregados</span><span class="w">
 </span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">region</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">&quot;Aggregates&quot;</span><span class="p">)</span></code></pre>
 </figure>
 <p>
@@ -154,7 +151,7 @@ de média 0:
 </p>
 <figure class="highlight">
 <pre><code class="language-r"><span class="n">df2_escala</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scale</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span><span class="w">
-</span><span class="c1"># Conferindo o output para o Brasil
+</span><span class="c1"># Conferindo o output para o Brasil</span><span class="w">
 </span><span class="n">df2_escala</span><span class="p">[</span><span class="s2">&quot;Brazil&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">]</span></code></pre>
 </figure>
 <figure class="highlight">
@@ -178,7 +175,7 @@ Para determinar o número de clusteres pelo primeiro método, observe o
 gráfico abaixo:
 </p>
 <figure class="highlight">
-<pre><code class="language-r"><span class="c1"># referencia: http://www.statmethods.net/advstats/cluster.html
+<pre><code class="language-r"><span class="c1"># referencia: http://www.statmethods.net/advstats/cluster.html</span><span class="w">
 </span><span class="n">wss</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">nrow</span><span class="p">(</span><span class="n">df2_escala</span><span class="p">)</span><span class="m">-1</span><span class="p">)</span><span class="o">*</span><span class="nf">sum</span><span class="p">(</span><span class="n">apply</span><span class="p">(</span><span class="n">df2_escala</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="n">var</span><span class="p">))</span><span class="w">
 </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">15</span><span class="p">)</span><span class="w"> </span><span class="n">wss</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">kmeans</span><span class="p">(</span><span class="n">df2_escala</span><span class="p">,</span><span class="w"> </span><span class="n">centers</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="o">$</span><span class="n">withinss</span><span class="p">)</span><span class="w">
 </span><span class="n">plot</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">wss</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="o">=</span><span class="s2">&quot;N&#xFA;mero of Clusters&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="s2">&quot;Soma dos quadrados dentro dos clusteres&quot;</span><span class="p">)</span><span class="w"> </span></code></pre>
@@ -234,14 +231,14 @@ Brasil com o resto do mundo:
 </p>
 <figure class="highlight">
 <pre><code class="language-r"><span class="n">mat_brasil</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df2_escala</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dist</span><span class="p">(</span><span class="n">diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">upper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.matrix</span><span class="w">
-</span><span class="c1"># 5 pa&#xED;ses com menor dissimilaridade
+</span><span class="c1"># 5 pa&#xED;ses com menor dissimilaridade</span><span class="w">
 </span><span class="n">mat_brasil</span><span class="p">[,</span><span class="w"> </span><span class="s2">&quot;Brazil&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">sort</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="m">6</span><span class="p">)</span></code></pre>
 </figure>
 <figure class="highlight">
 <pre><code class="language-text">## Brazil Russian Federation Equatorial Guinea ## 0.0000000 0.4703667 0.5118298 ## Gambia, The Trinidad and Tobago Chile ## 0.5927519 0.7035814 0.8109536</code></pre>
 </figure>
 <figure class="highlight">
-<pre><code class="language-r"><span class="c1"># 5 pa&#xED;ses com MAIOR dissimilaridade
+<pre><code class="language-r"><span class="c1"># 5 pa&#xED;ses com MAIOR dissimilaridade</span><span class="w">
 </span><span class="n">mat_brasil</span><span class="p">[,</span><span class="w"> </span><span class="s2">&quot;Brazil&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">sort</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">tail</span><span class="p">(</span><span class="m">5</span><span class="p">)</span></code></pre>
 </figure>
 <figure class="highlight">
@@ -260,14 +257,13 @@ Brincadeiras a parte, já podemos pular para a parte de criar os
 segmentos:
 </p>
 <figure class="highlight">
-<pre><code class="language-r"><span class="c1"># fixar uma seed para garantir a reproducibilidade da an&#xE1;lise:
-</span><span class="n">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span><span class="w"> </span><span class="c1"># criar os clusteres
+<pre><code class="language-r"><span class="c1"># fixar uma seed para garantir a reproducibilidade da an&#xE1;lise:</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span><span class="w"> </span><span class="c1"># criar os clusteres</span><span class="w">
 </span><span class="n">lista_clusteres</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">kmeans</span><span class="p">(</span><span class="n">df2_escala</span><span class="p">,</span><span class="w"> </span><span class="n">centers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="o">$</span><span class="n">cluster</span></code></pre>
 </figure>
 <figure class="highlight">
-<pre><code class="language-r"><span class="c1"># fun&#xE7;&#xE3;o customizada para calcular a m&#xE9;dia dos indicadores para cada cluster
-</span><span class="n">cluster.summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">groups</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">aggregate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">groups</span><span class="p">),</span><span class="w"> </span><span class="n">mean</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="o">$</span><span class="n">qtd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">groups</span><span class="p">))</span><span class="w"> </span><span class="c1"># colocar coluna de quantidade na segunda posi&#xE7;&#xE3;o
-</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)]</span><span class="w"> </span><span class="nf">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+<pre><code class="language-r"><span class="c1"># fun&#xE7;&#xE3;o customizada para calcular a m&#xE9;dia dos indicadores para cada cluster</span><span class="w">
+</span><span class="n">cluster.summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">groups</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">aggregate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">groups</span><span class="p">),</span><span class="w"> </span><span class="n">mean</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="o">$</span><span class="n">qtd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">groups</span><span class="p">))</span><span class="w"> </span><span class="c1"># colocar coluna de quantidade na segunda posi&#xE7;&#xE3;o</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)]</span><span class="w"> </span><span class="nf">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
 </span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="n">tabela</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cluster.summary</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span><span class="w"> </span><span class="n">lista_clusteres</span><span class="p">))</span></code></pre>
 </figure>
 <figure class="highlight">

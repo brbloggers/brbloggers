@@ -2,11 +2,11 @@
 title = "Entre categorizar e classificar: aprendizados para o monitoramento de mídias sociais"
 date = "2017-02-02 12:49:14"
 categories = ["IBPAD"]
-original_url = "http://www.ibpad.com.br/blog/entre-categorizar-e-classificar-aprendizados-para-o-monitoramento-de-midias-sociais/"
+original_url = "https://www.ibpad.com.br/blog/entre-categorizar-e-classificar-aprendizados-para-o-monitoramento-de-midias-sociais/"
 +++
 
 <p>
-<a href="http://www.ibpad.com.br/publicacoes/livro/monitoramento-e-pesquisa-em-midias-sociais-metodologias-aplicacoes-e-inovacoes/"><img class="size-full alignright" src="https://i0.wp.com/ibpad.com.br/wp-content/uploads/2016/11/Livro-Monitoramento-e-Pesquisa-em-Midias-Sociais-320px-208x300.jpg?resize=208%2C300" width="208" height="300" /></a>Tem
+<a href="https://www.ibpad.com.br/publicacoes/livro/monitoramento-e-pesquisa-em-midias-sociais-metodologias-aplicacoes-e-inovacoes/"><img class="size-full alignright" src="https://i0.wp.com/ibpad.com.br/wp-content/uploads/2016/11/Livro-Monitoramento-e-Pesquisa-em-Midias-Sociais-320px-208x300.jpg?resize=208%2C300" width="208" height="300"></a>Tem
 sido registrado nos últimos anos, conforme a pesquisa
 <a href="http://www.slideshare.net/AnaClaudiaZandavalle/pesquisa-o-profissional-de-inteligncia-de-mdias-sociais-no-brasil-2016-verso-completa">“O
 profissional de inteligência de mídias sociais no Brasil”</a>, uma
@@ -16,10 +16,10 @@ contexto são as de Ciência da Computação e Sistemas de Informação, cuja
 relação com o campo comunicacional se dá justamente pelo interesse de
 conhecimento na tríade sujeito-canal-mensagem. E foi de olho nessa
 tendência que o primeiro livro do IBPAD,
-<strong><a href="http://www.ibpad.com.br/publicacoes/livro/monitoramento-e-pesquisa-em-midias-sociais-metodologias-aplicacoes-e-inovacoes/">Monitoramento
+<strong><a href="https://www.ibpad.com.br/publicacoes/livro/monitoramento-e-pesquisa-em-midias-sociais-metodologias-aplicacoes-e-inovacoes/">Monitoramento
 e Pesquisa em Mídias Sociais: metodologias, aplicações e
 inovações</a></strong>, trouxe um capítulo de
-<a href="http://ronaldfar.wordpress.com">Ronaldo Araújo</a>, doutor em
+<a href="https://ronaldfar.wordpress.com">Ronaldo Araújo</a>, doutor em
 Ciência da Informação, e <a href="http://indexadora.com">Dora
 Steimer</a>, especialista em gestão da informação digital, para falar
 sobre como os aprendizados anteriores às mídias sociais podem
@@ -39,7 +39,7 @@ profissionais de monitoramento dos tempos atuais não é recente, mas vem
 se aprimorando em áreas de estudos informacionais há muito tempo.
 </p>
 <p>
-<img data-attachment-id="4040" data-permalink="http://www.ibpad.com.br/blog/entre-categorizar-e-classificar-aprendizados-para-o-monitoramento-de-midias-sociais/attachment/tabelta-index/" data-orig-file="https://i2.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/tabelta-index.png?fit=482%2C195" data-orig-size="482,195" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="tabelta-index" data-image-description="" data-medium-file="https://i2.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/tabelta-index.png?fit=260%2C105" data-large-file="https://i2.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/tabelta-index.png?fit=482%2C195" class="aligncenter size-full wp-image-4040" src="https://i2.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/tabelta-index.png?resize=482%2C195" alt="" srcset="https://i2.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/tabelta-index.png?w=482 482w, https://i2.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/tabelta-index.png?resize=260%2C105 260w, https://i2.wp.com/www.ibpad.com.br/wp-content/uploads/2017/01/tabelta-index.png?resize=100%2C40 100w" sizes="(max-width: 482px) 100vw, 482px" data-recalc-dims="1" />
+<img class="aligncenter size-full wp-image-4040" src="https://www.ibpad.com.br/wp-content/uploads/2017/01/tabelta-index.png" alt="" width="482" height="195" srcset="https://www.ibpad.com.br/wp-content/uploads/2017/01/tabelta-index.png 482w, https://www.ibpad.com.br/wp-content/uploads/2017/01/tabelta-index-260x105.png 260w, https://www.ibpad.com.br/wp-content/uploads/2017/01/tabelta-index-100x40.png 100w" sizes="(max-width: 482px) 100vw, 482px">
 </p>
 <p>
 Os autores ainda têm a preocupação de apresentar – a partir de
@@ -87,15 +87,7 @@ que estudam sobre internet no Brasil nos últimos anos.
 </p>
 <p>
 Baixe já o livro em nossa seção de
-<a href="http://www.ibpad.com.br/o-que-fazemos/publicacoes/">Publicações</a> para ficar
+<a href="https://www.ibpad.com.br/o-que-fazemos/publicacoes/">Publicações</a> para ficar
 por dentro do debate!
-</p>
-
-<p>
-O post
-<a rel="nofollow" href="http://www.ibpad.com.br/blog/entre-categorizar-e-classificar-aprendizados-para-o-monitoramento-de-midias-sociais/">Entre
-categorizar e classificar: aprendizados para o monitoramento de mídias
-sociais</a> apareceu primeiro em
-<a rel="nofollow" href="http://www.ibpad.com.br">IBPAD</a>.
 </p>
 

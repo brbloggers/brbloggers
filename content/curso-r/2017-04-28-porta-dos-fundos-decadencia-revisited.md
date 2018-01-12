@@ -82,9 +82,6 @@ o que realmente me motivou a escrever esse texto.
 </p>
 <pre class="r"><code>dados %&gt;% mutate(views = map(videos_stats, .f = &apos;viewCount&apos;)) %&gt;% unnest(views) %&gt;% mutate(views = as.numeric(views), publishedAt = as_date(publishedAt)) %&gt;% ggplot(aes(x = publishedAt, y = views)) + geom_line() + labs(x = &quot;Data de publica&#xE7;&#xE3;o&quot;, y = &quot;Visualiza&#xE7;&#xF5;es&quot;) + theme_bw()</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-04-28-porta-dos-fundos-decadencia-revisited_files/figure-html/unnamed-chunk-9-1.png" width="672">
-</p>
-<p>
 O número de visualizações está em uma queda contínua, isso quer dizer
 que o porta dos fundos está recebendo menos <em>views</em>? Depende de
 como você interpreta esse dado. A resposta será “sim” se você assumir
@@ -134,9 +131,6 @@ publicação.
 </p>
 <pre class="r"><code>dados %&gt;% mutate(views = map(videos_stats, .f = &apos;viewCount&apos;)) %&gt;% unnest(views) %&gt;% mutate(views = as.numeric(views), publishedAt = as_date(publishedAt), idade = as.numeric(Sys.Date() - publishedAt)) %&gt;% filter(publishedAt &lt; as.Date(&quot;2017-01-01&quot;)) %&gt;% ggplot(aes(x = publishedAt, y = (views)/idade)) + geom_line() + labs(x = &quot;Data de publica&#xE7;&#xE3;o&quot;, y = &quot;Visualiza&#xE7;&#xF5;es/Idade&quot;) + theme_bw() + geom_smooth(alpha = 0)</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-04-28-porta-dos-fundos-decadencia-revisited_files/figure-html/unnamed-chunk-10-1.png" width="672">
-</p>
-<p>
 O gráfico acima suporta parcialmente a nossa teoria: a estabilidade na
 razão entre o número de visualizações e a idade não seria identificada a
 menos que todos os vídeos antigos do Porta estivessem sujeitos à mesma
@@ -169,9 +163,6 @@ grande nos vídeos do PDF: eles devem ter uma média de 26 likes por cada
 dislike, o que significa que o vídeo médio do PDF tem 96% de likes.
 </p>
 <pre class="r"><code>dados %&gt;% mutate(likes = map(videos_stats, .f = &apos;likeCount&apos;), dislikes = map(videos_stats, .f = &apos;dislikeCount&apos;)) %&gt;% unnest(likes, dislikes) %&gt;% mutate(likes = as.numeric(likes), dislikes = as.numeric(dislikes), publishedAt = as_date(publishedAt), prop = likes/dislikes) %&gt;% ggplot(aes(x = publishedAt)) + geom_line(aes(y = prop)) + labs(x = &quot;Data de publica&#xE7;&#xE3;o&quot;, y = &quot;Likes/Dislikes&quot;) + theme_bw()</code></pre>
-<p>
-<img src="http://curso-r.com/blog/2017-04-28-porta-dos-fundos-decadencia-revisited_files/figure-html/unnamed-chunk-11-1.png" width="672">
-</p>
 <p>
 A despeito disso, também é verdade que existe uma classe de vídeos do
 PDF que é fuzilada pelo público. Pra se ter uma ideia, um vídeo de 2016,

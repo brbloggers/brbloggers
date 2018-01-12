@@ -43,13 +43,13 @@ suas dependências.
 Os pacotes usados neste post são:
 </p>
 <figure class="highlight">
-<pre><code class="language-r"><span class="c1">#library(installr)
-</span><span class="n">suppressMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">))</span><span class="w"> </span><span class="c1"># Usado para agregar os dados em pacotes
-</span><span class="n">suppressMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">))</span><span class="w"> </span><span class="c1"># Usado para plotar o grafo criado pelo miniCRAN
+<pre><code class="language-r"><span class="c1">#library(installr)</span><span class="w">
+</span><span class="n">suppressMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">))</span><span class="w"> </span><span class="c1"># Usado para agregar os dados em pacotes</span><span class="w">
+</span><span class="n">suppressMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">))</span><span class="w"> </span><span class="c1"># Usado para plotar o grafo criado pelo miniCRAN</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">miniCRAN</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w"> </span><span class="n">library</span><span class="p">(</span><span class="n">ggthemes</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">feather</span><span class="p">)</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">Usado</span><span class="w"> </span><span class="n">para</span><span class="w"> </span><span class="n">carregar</span><span class="w"> </span><span class="n">arquivos</span></code></pre>
+</span><span class="n">library</span><span class="p">(</span><span class="n">feather</span><span class="p">)</span><span class="w"> </span><span class="c1"># Usado para carregar arquivos</span></code></pre>
 </figure>
 <p>
 As linhas abaixo mostram como eu baixei os logs da mirror do RStudio do
@@ -63,18 +63,12 @@ partir dele.
 <figure class="highlight">
 <pre><code class="language-r"><span class="n">temp_dir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">download_RStudio_CRAN_data</span><span class="p">(</span><span class="n">START</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&apos;2016-04-24&apos;</span><span class="p">,</span><span class="n">END</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&apos;2016-05-24&apos;</span><span class="p">,</span><span class="w"> </span><span class="n">log_folder</span><span class="o">=</span><span class="s2">&quot;/home/sillas/R/data&quot;</span><span class="p">)</span><span class="w">
 </span><span class="n">df_cran</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_RStudio_CRAN_data</span><span class="p">(</span><span class="s2">&quot;/home/sillas/R/data&quot;</span><span class="p">)</span><span class="w">
-</span><span class="c1">#save(df_cran, file = &quot;/home/sillas/R/data/df_cran.Rdata&quot;)
-#load(&quot;/home/sillas/R/data/df_cran.Rdata&quot;)
-</span><span class="w">
-</span><span class="c1"># Agregar logs por pacote:
-</span><span class="w">
-</span><span class="c1"># df_pkgs &lt;- df_cran %&gt;%
-# group_by(package) %&gt;%
-# summarise(downloads = n()) %&gt;%
-# arrange(desc(downloads)) %&gt;%
-# mutate(downloads_acum = cumsum(downloads))
-</span><span class="w">
-</span><span class="err">#</span><span class="n">rm</span><span class="p">(</span><span class="n">df_cran</span><span class="p">)</span></code></pre>
+</span><span class="c1">#save(df_cran, file = &quot;/home/sillas/R/data/df_cran.Rdata&quot;)</span><span class="w">
+</span><span class="c1">#load(&quot;/home/sillas/R/data/df_cran.Rdata&quot;)</span><span class="w"> </span><span class="c1"># Agregar logs por pacote:</span><span class="w"> </span><span class="c1"># df_pkgs &lt;- df_cran %&gt;%</span><span class="w">
+</span><span class="c1"># group_by(package) %&gt;%</span><span class="w">
+</span><span class="c1"># summarise(downloads = n()) %&gt;%</span><span class="w">
+</span><span class="c1"># arrange(desc(downloads)) %&gt;%</span><span class="w">
+</span><span class="c1"># mutate(downloads_acum = cumsum(downloads))</span><span class="w"> </span><span class="c1">#rm(df_cran)</span></code></pre>
 </figure>
 <p>
 Para não ter de carregar o objeto
@@ -87,7 +81,7 @@ os processos de escrita e leitura de arquivos no R
 rápidas</a>.
 </p>
 <figure class="highlight">
-<pre><code class="language-r"><span class="c1">#write_feather(df_pkgs, &quot;df_pkgs.feather&quot;)
+<pre><code class="language-r"><span class="c1">#write_feather(df_pkgs, &quot;df_pkgs.feather&quot;)</span><span class="w">
 </span><span class="n">df_pkgs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_feather</span><span class="p">(</span><span class="s2">&quot;/home/sillas/R/Projetos/PaixaoPorDados/sillasgonzaga.github.io/data/df_pkgs.feather&quot;</span><span class="p">)</span><span class="w">
 </span><span class="n">print</span><span class="p">(</span><span class="n">df_pkgs</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">)</span></code></pre>
 </figure>
@@ -211,9 +205,7 @@ pelo pacote <code class="highlighter-rouge">igraph</code>.
 <pre><code class="language-r"><span class="n">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span><span class="w">
 </span><span class="n">list_pkgs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_pkgs_pareto</span><span class="o">$</span><span class="n">package</span><span class="w">
 </span><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeDepGraph</span><span class="p">(</span><span class="n">list_pkgs</span><span class="p">)</span><span class="w"> </span><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)))</span><span class="w">
-</span><span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">vertex.size</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># m&#xE9;todo plot.pkgDepGraph
-</span><span class="w">
-</span><span class="n">plot.igraph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span></code></pre>
+</span><span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">vertex.size</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="o">=</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># m&#xE9;todo plot.pkgDepGraph</span><span class="w"> </span><span class="n">plot.igraph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span></code></pre>
 </figure>
 <p>
 <img src="http://sillasgonzaga.github.io/figs/metaanalise_1/unnamed-chunk-8-1.png" alt="center">

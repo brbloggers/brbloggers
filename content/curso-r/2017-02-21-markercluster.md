@@ -172,6 +172,11 @@ Antônio do Içá - AM, CEP 69680-000Santo Antônio do Içá - AM
                 <code>markerCluster</code> faz nesse caso.
                 </p>
                 <pre class="r"><code>library(dplyr)
+                ## ## Attaching package: &apos;dplyr&apos;
+                ## The following objects are masked from &apos;package:stats&apos;:
+                ## ## filter, lag
+                ## The following objects are masked from &apos;package:base&apos;:
+                ## ## intersect, setdiff, setequal, union
                 library(leaflet)
                 dados_aj_lab %&gt;% leaflet() %&gt;% addTiles() %&gt;% addMarkers(lng = ~long, lat = ~lat, popup = ~lab, clusterOptions = markerClusterOptions())</code></pre>
                 <div class="figure">

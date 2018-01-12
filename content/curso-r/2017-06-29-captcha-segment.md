@@ -5,6 +5,7 @@ categories = ["curso-r"]
 original_url = "http://curso-r.com/blog/2017/07/22/2017-06-29-captcha-segment/"
 +++
 
+<div id="post-content">
 <p>
 Nesse post vamos discutir um pouco sobre modelar CAPTCHAs. Vou assumir
 que você já viu o post de introdução e o post sobre download, leitura e
@@ -54,7 +55,7 @@ Visualizando a imagem:
 </p>
 <pre class="r"><code>&quot;img/captcha705f7bad4a3d.jpeg&quot; %&gt;% read_captcha() %&gt;% plot()</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/unnamed-chunk-4-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/plotimg1-1.png" width="672">
 </p>
 <p>
 Infelizmente, segmentar a imagem nos lugares corretos é
@@ -65,7 +66,7 @@ corte fixado das letras:
 <pre class="r"><code>arq_captcha %&gt;% read_captcha() %&gt;% plot()
 abline(v = 30 + 15 * 0:5, col = &apos;red&apos;)</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/unnamed-chunk-5-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/imglines-1.png" width="672">
 </p>
 <p>
 Podemos também limitar os eixos <code>x</code> (tirar os espaços vazios
@@ -76,7 +77,7 @@ abline(v = 15 * 1:5, col = &apos;red&apos;)
 abline(v = 15 * c(0, 6), col = &apos;black&apos;)
 abline(h = c(0, 21), col = &apos;blue&apos;)</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/unnamed-chunk-6-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/imglines2-1.png" width="672">
 </p>
 <p>
 Agora temos uma imagem de tamanho dimensões <code>21x15</code> por
@@ -148,9 +149,35 @@ a imagem.
 </p>
 <pre class="r"><code>d_test %&gt;% mutate(pred = predict(model, newdata = .)) %&gt;% count(y, pred) %&gt;% spread(pred, n, fill = &apos;.&apos;) %&gt;% remove_rownames() %&gt;% knitr::kable(caption = &apos;Tabela de acertos e erros.&apos;)</code></pre>
 <table>
-<caption>
-<span id="tab:errosTRT">Table 1: </span>Tabela de acertos e erros.
-</caption>
+<colgroup>
+<col width="5%">
+<col width="6%">
+<col width="6%">
+<col width="6%">
+<col width="5%">
+<col width="6%">
+<col width="6%">
+<col width="6%">
+<col width="5%">
+<col width="5%">
+<col width="6%">
+<col width="6%">
+<col width="6%">
+<col width="6%">
+<col width="6%">
+<col width="6%">
+<col width="6%">
+<col width="6%">
+<col width="6%">
+<col width="5%">
+<col width="6%">
+<col width="6%">
+<col width="5%">
+<col width="5%">
+<col width="6%">
+<col width="6%">
+<col width="6%">
+</colgroup>
 <thead>
 </thead>
 <tbody>
@@ -2314,6 +2341,7 @@ y
 </tr>
 </tbody>
 </table>
+<div id="nem-tudo-sao-rosas" class="section level2">
 <p>
 O resultado para o CAPTCHA do TRT é bastante satisfatório, mas
 infelizmente não generaliza para outros CAPTCHAs. Tome por exemplo o
@@ -2322,20 +2350,53 @@ muda significativamente de imagem para imagem, e assim fica difícil
 cortar em pedaços.
 </p>
 <p>
-<img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/unnamed-chunk-12-1.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/unnamed-chunk-12-2.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/unnamed-chunk-12-3.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/unnamed-chunk-12-4.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/unnamed-chunk-12-5.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/unnamed-chunk-12-6.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/unnamed-chunk-12-7.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/unnamed-chunk-12-8.png" width="12%">
+<img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/generalize-1.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/generalize-2.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/generalize-3.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/generalize-4.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/generalize-5.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/generalize-6.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/generalize-7.png" width="12%"><img src="http://curso-r.com/blog/2017-06-29-captcha-segment_files/figure-html/generalize-8.png" width="12%">
 </p>
 <p>
 O mesmo modelo aplicado ao CAPTCHA da Receita possui acerto de 78.8% do
 caractere, o que equivale a apenas 23.8% de acerto para toda a imagem.
-Veja os resultados na Tabela
-<a href="http://curso-r.com/blog/2017/07/22/2017-06-29-captcha-segment/#tab:errosReceita">2</a>
+Veja os resultados na tabela abaixo.
 </p>
 <pre class="r"><code>model &lt;- randomForest(y ~ . - captcha_id, data = d_train) </code></pre>
 <table>
-<caption>
-<span id="tab:errosReceita">Table 2: </span>Tabela de acertos e erros
-para o CAPTCHA da Receita.
-</caption>
+<colgroup>
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="6%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="6%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+</colgroup>
 <thead>
 </thead>
 <tbody>
@@ -6203,7 +6264,7 @@ Nos próximos posts, vamos mostrar como resolver o CAPTCHA da Receita com
 maior acurácia utilizando técnicas de Deep Learning que consideram a
 etapa de segmentação dentro da modelagem.
 </p>
-
+</div>
 <ul>
 <li>
 Não dá para considerar todas as combinações de valores de um CAPTCHA
@@ -6232,4 +6293,6 @@ segmentação dentro da modelagem.
 <p>
 É isso. Happy coding ;)
 </p>
+
+</div>
 

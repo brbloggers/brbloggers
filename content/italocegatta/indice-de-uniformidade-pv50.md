@@ -37,34 +37,56 @@ ordenadas (da menor para a maior).
 Primeiro vamos entender os cálculos do índice, considerando apenas 10
 árvores hipotéticas com 0,1 metros cúbicos de volume.
 </p>
-<pre class="r"><code># carrega os pacotes necess&#xE1;rios if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;) pacman::p_load(readr, dplyr, ggplot2, forcats)</code></pre>
-<pre class="r"><code># exemplo com n&#xFA;mero par arv10 &lt;- rep(0.1, 10) str(arv10)</code></pre>
+<pre class="r"><code># carrega os pacotes necess&#xE1;rios
+if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;)
+pacman::p_load(readr, dplyr, ggplot2, forcats)</code></pre>
+<pre class="r"><code># exemplo com n&#xFA;mero par
+arv10 &lt;- rep(0.1, 10)
+str(arv10)</code></pre>
 <pre><code>## num [1:10] 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1</code></pre>
 <p>
 Este é o referencial teórico de uniformidade, todas as árvores do mesmo
 tamanho. Sem precisar fazer conta, sabemos que o volume das 50% menores
 árvores é igual a 50% do volume total, o que equivale a um PV50 = 50.
 </p>
-<pre class="r"><code># identifica a metade do numero de &#xE1;rvores metade &lt;- length(arv10)/2 metade</code></pre>
+<pre class="r"><code># identifica a metade do numero de &#xE1;rvores
+metade &lt;- length(arv10)/2
+metade</code></pre>
 <pre><code>## [1] 5</code></pre>
-<pre class="r"><code># soma todas as &#xE1;rvores soma_todas &lt;- sum(arv10, na.rm = TRUE) soma_todas</code></pre>
+<pre class="r"><code># soma todas as &#xE1;rvores
+soma_todas &lt;- sum(arv10, na.rm = TRUE)
+soma_todas</code></pre>
 <pre><code>## [1] 1</code></pre>
-<pre class="r"><code># soma o valor de metade das &#xE1;rvores em ordem crescente soma_metade &lt;- sum(sort(arv10)[1:metade], na.rm = TRUE) soma_metade</code></pre>
+<pre class="r"><code># soma o valor de metade das &#xE1;rvores em ordem crescente
+soma_metade &lt;- sum(sort(arv10)[1:metade], na.rm = TRUE)
+soma_metade</code></pre>
 <pre><code>## [1] 0.5</code></pre>
-<pre class="r"><code># calcula o PV50 PV50 &lt;- soma_metade / soma_todas * 100 PV50</code></pre>
+<pre class="r"><code># calcula o PV50
+PV50 &lt;- soma_metade / soma_todas * 100
+PV50</code></pre>
 <pre><code>## [1] 50</code></pre>
 <p>
 Agora vamos simular 11 árvores com o mesmo volume, veja o que acontece.
 </p>
-<pre class="r"><code># exemplo com n&#xFA;mero impar arv11 &lt;- rep(0.1, 11) str(arv11)</code></pre>
+<pre class="r"><code># exemplo com n&#xFA;mero impar
+arv11 &lt;- rep(0.1, 11)
+str(arv11)</code></pre>
 <pre><code>## num [1:11] 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 ...</code></pre>
-<pre class="r"><code># metade do numero de &#xE1;rvores metade &lt;- length(arv11)/2 metade</code></pre>
+<pre class="r"><code># metade do numero de &#xE1;rvores
+metade &lt;- length(arv11)/2
+metade</code></pre>
 <pre><code>## [1] 5.5</code></pre>
-<pre class="r"><code># soma todas as &#xE1;rvores soma_todas &lt;- sum(arv11, na.rm = TRUE) soma_todas</code></pre>
+<pre class="r"><code># soma todas as &#xE1;rvores
+soma_todas &lt;- sum(arv11, na.rm = TRUE)
+soma_todas</code></pre>
 <pre><code>## [1] 1.1</code></pre>
-<pre class="r"><code># soma o valor de metade das &#xE1;rvores em ordem crescente soma_metade &lt;- sum(sort(arv11)[1:metade], na.rm = TRUE) soma_metade</code></pre>
+<pre class="r"><code># soma o valor de metade das &#xE1;rvores em ordem crescente
+soma_metade &lt;- sum(sort(arv11)[1:metade], na.rm = TRUE)
+soma_metade</code></pre>
 <pre><code>## [1] 0.5</code></pre>
-<pre class="r"><code># calcula o PV50 PV50 &lt;- soma_metade / soma_todas * 100 PV50</code></pre>
+<pre class="r"><code># calcula o PV50
+PV50 &lt;- soma_metade / soma_todas * 100
+PV50</code></pre>
 <pre><code>## [1] 45.45455</code></pre>
 <p>
 O resultado deveria ser 50, mas como o número de árvores é impar, o R
@@ -74,11 +96,17 @@ soma das 50% menores árvores de uma forma diferente. Primeiro calculamos
 a soma acumulada e depois extraímos a média (semelhante ao modo de se
 calcular uma mediana).
 </p>
-<pre class="r"><code># vetor de soma acumulada soma_acumulada &lt;- cumsum(sort(arv11)) soma_acumulada</code></pre>
+<pre class="r"><code># vetor de soma acumulada
+soma_acumulada &lt;- cumsum(sort(arv11))
+soma_acumulada</code></pre>
 <pre><code>## [1] 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1</code></pre>
-<pre class="r"><code># soma a metade do vetor de soma acumulada soma_metade &lt;- mean(soma_acumulada[metade + 0L:1L], na.rm = TRUE) soma_metade</code></pre>
+<pre class="r"><code># soma a metade do vetor de soma acumulada
+soma_metade &lt;- mean(soma_acumulada[metade + 0L:1L], na.rm = TRUE)
+soma_metade</code></pre>
 <pre><code>## [1] 0.55</code></pre>
-<pre class="r"><code># calcula o PV50 PV50 &lt;- soma_metade / soma_todas * 100 PV50</code></pre>
+<pre class="r"><code># calcula o PV50
+PV50 &lt;- soma_metade / soma_todas * 100
+PV50</code></pre>
 <pre><code>## [1] 50</code></pre>
 <p>
 Agora que a questão do número de árvores foi superada, podemos incluir
@@ -86,34 +114,59 @@ Agora que a questão do número de árvores foi superada, podemos incluir
 Veja que o resultado não está consistente pois a
 <code>soma\_acumulada</code> ignorou as árvores mortas.
 </p>
-<pre class="r"><code># exemplo com valores perdidos arv11_na &lt;- rep(0.1, 11) arv11_na[c(3,4)] &lt;- NA str(arv11_na)</code></pre>
+<pre class="r"><code># exemplo com valores perdidos
+arv11_na &lt;- rep(0.1, 11)
+arv11_na[c(3,4)] &lt;- NA
+str(arv11_na)</code></pre>
 <pre><code>## num [1:11] 0.1 0.1 NA NA 0.1 0.1 0.1 0.1 0.1 0.1 ...</code></pre>
-<pre class="r"><code># metade do numero de &#xE1;rvores metade &lt;- length(arv11_na)/2 metade</code></pre>
+<pre class="r"><code># metade do numero de &#xE1;rvores
+metade &lt;- length(arv11_na)/2
+metade</code></pre>
 <pre><code>## [1] 5.5</code></pre>
-<pre class="r"><code># soma todas as &#xE1;rvores soma_todas &lt;- sum(arv11_na, na.rm = TRUE) soma_todas</code></pre>
+<pre class="r"><code># soma todas as &#xE1;rvores
+soma_todas &lt;- sum(arv11_na, na.rm = TRUE)
+soma_todas</code></pre>
 <pre><code>## [1] 0.9</code></pre>
-<pre class="r"><code># vetor de soma acumulada soma_acumulada &lt;- cumsum(sort(arv11_na)) soma_acumulada</code></pre>
+<pre class="r"><code># vetor de soma acumulada
+soma_acumulada &lt;- cumsum(sort(arv11_na))
+soma_acumulada</code></pre>
 <pre><code>## [1] 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9</code></pre>
-<pre class="r"><code># soma a metade do vetor de soma acumulada soma_metade &lt;- mean(soma_acumulada[metade + 0L:1L], na.rm = TRUE) soma_metade</code></pre>
+<pre class="r"><code># soma a metade do vetor de soma acumulada
+soma_metade &lt;- mean(soma_acumulada[metade + 0L:1L], na.rm = TRUE)
+soma_metade</code></pre>
 <pre><code>## [1] 0.55</code></pre>
-<pre class="r"><code># calcula o PV50 PV50 &lt;- soma_metade / soma_todas * 100 PV50</code></pre>
+<pre class="r"><code># calcula o PV50
+PV50 &lt;- soma_metade / soma_todas * 100
+PV50</code></pre>
 <pre><code>## [1] 61.11111</code></pre>
 <p>
 Para corrigir este o erro, temos de incluir manualmente as árvores
 mortas na sequência. Veja que agora o resultado está de acordo com o
 esperado.
 </p>
-<pre class="r"><code># vetor de valores perdidos mortas &lt;- arv11_na[is.na(arv11_na)] mortas</code></pre>
+<pre class="r"><code># vetor de valores perdidos
+mortas &lt;- arv11_na[is.na(arv11_na)]
+mortas</code></pre>
 <pre><code>## [1] NA NA</code></pre>
-<pre class="r"><code># metade do numero de &#xE1;rvores metade &lt;- length(arv11_na)/2 metade</code></pre>
+<pre class="r"><code># metade do numero de &#xE1;rvores
+metade &lt;- length(arv11_na)/2
+metade</code></pre>
 <pre><code>## [1] 5.5</code></pre>
-<pre class="r"><code># soma todas as &#xE1;rvores soma_todas &lt;- sum(arv11_na, na.rm = TRUE) soma_todas</code></pre>
+<pre class="r"><code># soma todas as &#xE1;rvores
+soma_todas &lt;- sum(arv11_na, na.rm = TRUE)
+soma_todas</code></pre>
 <pre><code>## [1] 0.9</code></pre>
-<pre class="r"><code># vetor de soma acumulada com valores perdidos soma_acumulada &lt;- c(mortas, cumsum(sort(arv11_na))) soma_acumulada</code></pre>
+<pre class="r"><code># vetor de soma acumulada com valores perdidos
+soma_acumulada &lt;- c(mortas, cumsum(sort(arv11_na)))
+soma_acumulada</code></pre>
 <pre><code>## [1] NA NA 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9</code></pre>
-<pre class="r"><code># soma a metade do vetor de soma acumulada soma_metade &lt;- mean(soma_acumulada[metade + 0L:1L], na.rm = TRUE) soma_metade</code></pre>
+<pre class="r"><code># soma a metade do vetor de soma acumulada
+soma_metade &lt;- mean(soma_acumulada[metade + 0L:1L], na.rm = TRUE)
+soma_metade</code></pre>
 <pre><code>## [1] 0.35</code></pre>
-<pre class="r"><code># calcula o PV50 PV50 &lt;- soma_metade / soma_todas * 100 PV50</code></pre>
+<pre class="r"><code># calcula o PV50
+PV50 &lt;- soma_metade / soma_todas * 100
+PV50</code></pre>
 <pre><code>## [1] 38.88889</code></pre>
 <p>
 Agora eu vou dar aquele passo mágico dos livros de matemática e física,
@@ -121,24 +174,31 @@ em que o autor diz “é fácil notar que o resultado leva a …” e apresentar
 uma função que lida com as questões que mostramos acima e retorna o PV50
 do nosso conjunto de dados de forma correta.
 </p>
-<pre class="r"><code>pv50 &lt;- function(x) { mortas &lt;- x[is.na(x)] metade &lt;- length(x)/2 soma_todas &lt;- sum(x, na.rm = TRUE) soma_acumulada &lt;- c(mortas, cumsum(sort(x))) if (metade%%2L == 1L) soma_metade &lt;- mean(soma_acumulada[metade], na.rm = TRUE) else soma_metade &lt;- mean(soma_acumulada[metade + 0L:1L], na.rm = TRUE) z &lt;- soma_metade / soma_todas * 100 return(z) }</code></pre>
+<pre class="r"><code>pv50 &lt;- function(x) { mortas &lt;- x[is.na(x)] metade &lt;- length(x)/2 soma_todas &lt;- sum(x, na.rm = TRUE) soma_acumulada &lt;- c(mortas, cumsum(sort(x))) if (metade%%2L == 1L) soma_metade &lt;- mean(soma_acumulada[metade], na.rm = TRUE) else soma_metade &lt;- mean(soma_acumulada[metade + 0L:1L], na.rm = TRUE) z &lt;- soma_metade / soma_todas * 100 return(z)
+}</code></pre>
 <p>
 Podemos rapidamente verificar se os resultados estão consistentes
 fazendo alguns testes.
 </p>
-<pre class="r"><code>a &lt;- rep(10, 10) str(a)</code></pre>
+<pre class="r"><code>a &lt;- rep(10, 10)
+str(a)</code></pre>
 <pre><code>## num [1:10] 10 10 10 10 10 10 10 10 10 10</code></pre>
 <pre class="r"><code>pv50(a) # Ok!</code></pre>
 <pre><code>## [1] 50</code></pre>
-<pre class="r"><code>a1 &lt;- rep(10 ,11) str(a1)</code></pre>
+<pre class="r"><code>a1 &lt;- rep(10 ,11)
+str(a1)</code></pre>
 <pre><code>## num [1:11] 10 10 10 10 10 10 10 10 10 10 ...</code></pre>
 <pre class="r"><code>pv50(a1) # Ok!</code></pre>
 <pre><code>## [1] 50</code></pre>
-<pre class="r"><code>b &lt;- a b[c(3, 7)] &lt;- NA str(b)</code></pre>
+<pre class="r"><code>b &lt;- a
+b[c(3, 7)] &lt;- NA
+str(b)</code></pre>
 <pre><code>## num [1:10] 10 10 NA 10 10 10 NA 10 10 10</code></pre>
 <pre class="r"><code>pv50(b) # Ok!</code></pre>
 <pre><code>## [1] 37.5</code></pre>
-<pre class="r"><code>b1 &lt;- a1 b1[c(3, 7)] &lt;- NA str(b1)</code></pre>
+<pre class="r"><code>b1 &lt;- a1
+b1[c(3, 7)] &lt;- NA
+str(b1)</code></pre>
 <pre><code>## num [1:11] 10 10 NA 10 10 10 NA 10 10 10 ...</code></pre>
 <pre class="r"><code>pv50(b1) # Ok!</code></pre>
 <pre><code>## [1] 38.88889</code></pre>
@@ -151,15 +211,48 @@ TUME</a>, referente ao <a href="http://www.projetotume.com/tume134">TUME
 134</a> plantado em Piracicaba-SP. O volume individual foi calculado
 arbitrariamente utilizando o fator de forma 0,5.
 </p>
-<pre class="r"><code># importa o arquivo tume_55.csv dados &lt;- read_csv2( &quot;https://github.com/italocegatta/italocegatta.github.io_source/raw/master/content/dados/tume_55.csv&quot; ) glimpse(dados)</code></pre>
-<pre><code>## Observations: 1,222 ## Variables: 7 ## $ Esp &lt;chr&gt; &quot;E_camaldulensis&quot;, &quot;E_camaldulensis&quot;, &quot;E_camaldulensis... ## $ I_meses &lt;int&gt; 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34... ## $ Parc_m2 &lt;int&gt; 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288,... ## $ N_arv &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,... ## $ DAP_cm &lt;dbl&gt; 5.411268, 12.254931, 3.978874, 6.429860, 9.676621, 5.6... ## $ H_m &lt;dbl&gt; 7.651490, 11.424046, 5.909205, 8.572873, 10.498957, 7.... ## $ Vol &lt;dbl&gt; 0.008798406, 0.067375427, 0.003673747, 0.013918399, 0....</code></pre>
+<pre class="r"><code># importa o arquivo tume_55.csv
+dados &lt;- read_csv2( &quot;https://github.com/italocegatta/italocegatta.github.io_source/raw/master/content/dados/tume_55.csv&quot;
+) glimpse(dados)</code></pre>
+<pre><code>## Observations: 1,222
+## Variables: 7
+## $ Esp &lt;chr&gt; &quot;E_camaldulensis&quot;, &quot;E_camaldulensis&quot;, &quot;E_camaldulensis...
+## $ I_meses &lt;int&gt; 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34...
+## $ Parc_m2 &lt;int&gt; 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288,...
+## $ N_arv &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,...
+## $ DAP_cm &lt;dbl&gt; 5.411268, 12.254931, 3.978874, 6.429860, 9.676621, 5.6...
+## $ H_m &lt;dbl&gt; 7.651490, 11.424046, 5.909205, 8.572873, 10.498957, 7....
+## $ Vol &lt;dbl&gt; 0.008798406, 0.067375427, 0.003673747, 0.013918399, 0....</code></pre>
 <p>
 Iremos calcular o PV50 e o volume por hectare para cada fator
 <code>Esp</code> e <code>I\_meses</code> e em seguida ordenar as
 espécies pelo PV50.
 </p>
-<pre class="r"><code># agrupa os dados em fun&#xE7;&#xE3;o de esp&#xE9;cie e idade para # calcular o pv50 e o volume dados_pv50 &lt;- dados %&gt;% group_by(Esp, I_meses) %&gt;% summarise( Parc_m2 = mean( Parc_m2), PV50 = pv50(Vol), Vol_ha = sum(Vol, na.rm = TRUE) * (10000/Parc_m2) ) %&gt;% ungroup() %&gt;% # ordena o fator de esp&#xE9;cies de forma decrescente em fun&#xE7;&#xE3;o do pv50 mutate(Esp = fct_reorder(Esp, -PV50)) dados_pv50</code></pre>
-<pre><code>## # A tibble: 20 &#xD7; 5 ## Esp I_meses Parc_m2 PV50 Vol_ha ## &lt;fctr&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; ## 1 E_camaldulensis 34 288 21.36325 47.50044 ## 2 E_camaldulensis 46 288 14.26669 79.09417 ## 3 E_camaldulensis 60 600 13.18344 110.06612 ## 4 E_camaldulensis 85 288 12.70684 203.98374 ## 5 E_citriodora 34 288 17.84086 46.56646 ## 6 E_citriodora 46 288 16.43760 84.96252 ## 7 E_citriodora 60 600 12.53474 97.00958 ## 8 E_citriodora 85 288 12.73166 205.04360 ## 9 E_dunnii 34 288 28.58694 103.36725 ## 10 E_dunnii 46 288 29.21288 160.54057 ## 11 E_dunnii 60 600 27.46026 198.47239 ## 12 E_dunnii 85 288 26.39616 349.63571 ## 13 E_paniculata 34 288 27.36895 46.43145 ## 14 E_paniculata 46 288 24.13274 84.42312 ## 15 E_paniculata 60 600 19.63065 114.81369 ## 16 E_paniculata 85 288 18.21965 194.87958 ## 17 E_urophylla_grandis 34 288 26.25100 85.67855 ## 18 E_urophylla_grandis 46 288 24.20636 157.30295 ## 19 E_urophylla_grandis 60 600 20.33734 217.30209 ## 20 E_urophylla_grandis 85 288 17.89856 277.37748</code></pre>
+<pre class="r"><code># agrupa os dados em fun&#xE7;&#xE3;o de esp&#xE9;cie e idade para # calcular o pv50 e o volume
+dados_pv50 &lt;- dados %&gt;% group_by(Esp, I_meses) %&gt;% summarise( Parc_m2 = mean( Parc_m2), PV50 = pv50(Vol), Vol_ha = sum(Vol, na.rm = TRUE) * (10000/Parc_m2) ) %&gt;% ungroup() %&gt;% # ordena o fator de esp&#xE9;cies de forma decrescente em fun&#xE7;&#xE3;o do pv50 mutate(Esp = fct_reorder(Esp, -PV50)) dados_pv50</code></pre>
+<pre><code>## # A tibble: 20 x 5
+## Esp I_meses Parc_m2 PV50 Vol_ha
+## &lt;fctr&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 E_camaldulensis 34 288 21.36325 47.50044
+## 2 E_camaldulensis 46 288 14.26669 79.09417
+## 3 E_camaldulensis 60 600 13.18344 110.06612
+## 4 E_camaldulensis 85 288 12.70684 203.98374
+## 5 E_citriodora 34 288 17.84086 46.56646
+## 6 E_citriodora 46 288 16.43760 84.96252
+## 7 E_citriodora 60 600 12.53474 97.00958
+## 8 E_citriodora 85 288 12.73166 205.04360
+## 9 E_dunnii 34 288 28.58694 103.36725
+## 10 E_dunnii 46 288 29.21288 160.54057
+## 11 E_dunnii 60 600 27.46026 198.47239
+## 12 E_dunnii 85 288 26.39616 349.63571
+## 13 E_paniculata 34 288 27.36895 46.43145
+## 14 E_paniculata 46 288 24.13274 84.42312
+## 15 E_paniculata 60 600 19.63065 114.81369
+## 16 E_paniculata 85 288 18.21965 194.87958
+## 17 E_urophylla_grandis 34 288 26.25100 85.67855
+## 18 E_urophylla_grandis 46 288 24.20636 157.30295
+## 19 E_urophylla_grandis 60 600 20.33734 217.30209
+## 20 E_urophylla_grandis 85 288 17.89856 277.37748</code></pre>
 <p>
 Para entendermos os dados, vamos primeiro ver o crescimento em volume de
 cada espécies em função do tempo (Figura
@@ -235,10 +328,12 @@ PV50 no tamanho do ponto.
 
 <p>
 Caso tenha alguma dúvida ou sugestão sobre o post, fique à vontade para
-fazer um comentário ou me contactar por Email.
+fazer um comentário ou me contatar por E-mail.
 </p>
 <pre class="r"><code>devtools::session_info()</code></pre>
-<pre><code>## setting value ## version R version 3.3.3 (2017-03-06) ## system x86_64, mingw32 ## ui RTerm ## language (EN) ## collate Portuguese_Brazil.1252 ## tz America/Sao_Paulo ## date 2017-04-30 ## ## package * version date source ## assertthat 0.2.0 2017-04-11 CRAN (R 3.3.3) ## backports 1.0.5 2017-01-18 CRAN (R 3.3.2) ## blogdown 0.0.25 2017-03-23 Github (rstudio/blogdown@1c10d16) ## bookdown 0.3.14 2017-03-23 Github (rstudio/bookdown@f427fdf) ## colorspace 1.3-2 2016-12-14 CRAN (R 3.3.2) ## curl 2.6 2017-04-27 CRAN (R 3.3.3) ## DBI 0.6-1 2017-04-01 CRAN (R 3.3.3) ## devtools 1.12.0 2016-06-24 CRAN (R 3.3.3) ## digest 0.6.12 2017-01-27 CRAN (R 3.3.2) ## dplyr * 0.5.0 2016-06-24 CRAN (R 3.3.2) ## evaluate 0.10 2016-10-11 CRAN (R 3.3.3) ## forcats * 0.2.0 2017-01-23 CRAN (R 3.3.2) ## ggplot2 * 2.2.1 2016-12-30 CRAN (R 3.3.2) ## gtable 0.2.0 2016-02-26 CRAN (R 3.3.2) ## highr 0.6 2016-05-09 CRAN (R 3.3.3) ## hms 0.3 2016-11-22 CRAN (R 3.3.2) ## htmltools 0.3.6 2017-04-28 CRAN (R 3.3.3) ## knitr 1.15.1 2016-11-22 CRAN (R 3.3.3) ## labeling 0.3 2014-08-23 CRAN (R 3.3.2) ## lazyeval 0.2.0 2016-06-12 CRAN (R 3.3.2) ## magrittr 1.5 2014-11-22 CRAN (R 3.3.2) ## memoise 1.1.0 2017-04-21 CRAN (R 3.3.3) ## munsell 0.4.3 2016-02-13 CRAN (R 3.3.2) ## pacman * 0.4.1 2016-03-30 CRAN (R 3.3.3) ## plyr 1.8.4 2016-06-08 CRAN (R 3.3.2) ## R6 2.2.0 2016-10-05 CRAN (R 3.3.2) ## RColorBrewer 1.1-2 2014-12-07 CRAN (R 3.3.2) ## Rcpp 0.12.10 2017-03-19 CRAN (R 3.3.3) ## readr * 1.1.0 2017-03-22 CRAN (R 3.3.3) ## rmarkdown 1.5 2017-04-26 CRAN (R 3.3.3) ## rprojroot 1.2 2017-01-16 CRAN (R 3.3.3) ## scales 0.4.1 2016-11-09 CRAN (R 3.3.2) ## stringi 1.1.5 2017-04-07 CRAN (R 3.3.3) ## stringr 1.2.0 2017-02-18 CRAN (R 3.3.2) ## tibble 1.3.0 2017-04-01 CRAN (R 3.3.3) ## withr 1.0.2 2016-06-20 CRAN (R 3.3.3) ## yaml 2.1.14 2016-11-12 CRAN (R 3.3.3)</code></pre>
+<pre><code>## setting value ## version R version 3.3.3 (2017-03-06)
+## system x86_64, mingw32 ## ui RTerm ## language (EN) ## collate Portuguese_Brazil.1252 ## tz America/Sao_Paulo ## date 2017-10-14 ## ## package * version date source ## assertthat 0.2.0 2017-04-11 CRAN (R 3.3.3) ## backports 1.1.1 2017-09-25 CRAN (R 3.3.3) ## base * 3.3.3 2017-03-06 local ## bindr 0.1 2016-11-13 CRAN (R 3.3.3) ## bindrcpp * 0.2 2017-06-17 CRAN (R 3.3.3) ## blogdown 0.1 2017-08-22 CRAN (R 3.3.3) ## bookdown 0.5 2017-08-20 CRAN (R 3.3.3) ## colorspace 1.3-2 2016-12-14 CRAN (R 3.3.2) ## curl 2.8.1 2017-07-21 CRAN (R 3.3.3) ## datasets * 3.3.3 2017-03-06 local ## devtools 1.13.3 2017-08-02 CRAN (R 3.3.3) ## digest 0.6.12 2017-01-27 CRAN (R 3.3.2) ## dplyr * 0.7.4 2017-09-28 CRAN (R 3.3.3) ## evaluate 0.10.1 2017-06-24 CRAN (R 3.3.3) ## forcats * 0.2.0 2017-01-23 CRAN (R 3.3.2) ## ggplot2 * 2.2.1.9000 2017-07-15 Github (tidyverse/ggplot2@45853c7)
+## glue 1.1.1 2017-06-21 CRAN (R 3.3.3) ## graphics * 3.3.3 2017-03-06 local ## grDevices * 3.3.3 2017-03-06 local ## grid 3.3.3 2017-03-06 local ## gtable 0.2.0 2016-02-26 CRAN (R 3.3.2) ## highr 0.6 2016-05-09 CRAN (R 3.3.3) ## hms 0.3 2016-11-22 CRAN (R 3.3.2) ## htmltools 0.3.6 2017-04-28 CRAN (R 3.3.3) ## knitr 1.17 2017-08-10 CRAN (R 3.3.3) ## labeling 0.3 2014-08-23 CRAN (R 3.3.2) ## lazyeval 0.2.0 2016-06-12 CRAN (R 3.3.2) ## magrittr 1.5 2014-11-22 CRAN (R 3.3.2) ## memoise 1.1.0 2017-04-21 CRAN (R 3.3.3) ## methods * 3.3.3 2017-03-06 local ## munsell 0.4.3 2016-02-13 CRAN (R 3.3.2) ## pacman * 0.4.6 2017-05-14 CRAN (R 3.3.3) ## pkgconfig 2.0.1 2017-03-21 CRAN (R 3.3.3) ## plyr 1.8.4 2016-06-08 CRAN (R 3.3.2) ## R6 2.2.2 2017-06-17 CRAN (R 3.3.3) ## RColorBrewer 1.1-2 2014-12-07 CRAN (R 3.3.2) ## Rcpp 0.12.13 2017-09-28 CRAN (R 3.3.3) ## readr * 1.1.1 2017-05-16 CRAN (R 3.3.3) ## rlang 0.1.2 2017-08-09 CRAN (R 3.3.3) ## rmarkdown 1.6 2017-06-15 CRAN (R 3.3.3) ## rprojroot 1.2 2017-01-16 CRAN (R 3.3.3) ## scales 0.5.0 2017-08-24 CRAN (R 3.3.3) ## stats * 3.3.3 2017-03-06 local ## stringi 1.1.5 2017-04-07 CRAN (R 3.3.3) ## stringr 1.2.0 2017-02-18 CRAN (R 3.3.2) ## tibble 1.3.4 2017-08-22 CRAN (R 3.3.3) ## tools 3.3.3 2017-03-06 local ## utils * 3.3.3 2017-03-06 local ## withr 2.0.0 2017-07-28 CRAN (R 3.3.3) ## yaml 2.1.14 2016-11-12 CRAN (R 3.3.3)</code></pre>
 <p>
 Hakamada, Rodrigo Eiji. 2012. “Uso do inventário florestal como
 ferramenta de monitoramento da qualidade silvicultura em povoamentos

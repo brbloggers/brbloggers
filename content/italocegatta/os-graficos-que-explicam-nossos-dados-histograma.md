@@ -16,9 +16,24 @@ objetivo aqui é apresentar algumas particularidades da construção de
 gráficos de barras no R e facilitar a vida de quem quer abandonar os
 gráficos do Excel.
 </p>
-<pre class="r"><code>if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;) pacman::p_load(readr, dplyr, ggplot2, ggthemes)</code></pre>
-<pre class="r"><code>dados &lt;- read_csv2( &quot;https://raw.githubusercontent.com/italocegatta/italocegatta.github.io_source/master/content/dados/base_amazonia.csv&quot; ) dados</code></pre>
-<pre><code>## # A tibble: 276 &#xD7; 7 ## Especie Nome_cientifico Comercial DAP HCom ## &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; ## 1 NAO IDENTIFICADA Nao Identificada Nao 20 10 ## 2 EMBIRA Lecythidaceae Nao 34 13 ## 3 NAO IDENTIFICADA Nao Identificada Nao 18 6 ## 4 SUCUPIRA Leguminosae-Papilionoideae Nao 18 7 ## 5 CANELA Lauraceae Nao 24 10 ## 6 TACHI Lecythidaceae Sim 21 10 ## 7 ENVIRA CAJU Annonaceae Nao 20 11 ## 8 JUTAI Leguminosae-Caesalpinioideae Nao 38 13 ## 9 CATUABA Vochysiaceae Sim 57 13 ## 10 NAO IDENTIFICADA Nao Identificada Nao 22 7 ## # ... with 266 more rows, and 2 more variables: Volume &lt;dbl&gt;, QF &lt;int&gt;</code></pre>
+<pre class="r"><code>if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;)
+pacman::p_load(readr, dplyr, ggplot2, ggthemes)</code></pre>
+<pre class="r"><code>dados &lt;- read_csv2( &quot;https://raw.githubusercontent.com/italocegatta/italocegatta.github.io_source/master/content/dados/base_amazonia.csv&quot;
+) dados</code></pre>
+<pre><code>## # A tibble: 276 x 7
+## Especie Nome_cientifico Comercial DAP HCom
+## &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;
+## 1 NAO IDENTIFICADA Nao Identificada Nao 20 10
+## 2 EMBIRA Lecythidaceae Nao 34 13
+## 3 NAO IDENTIFICADA Nao Identificada Nao 18 6
+## 4 SUCUPIRA Leguminosae-Papilionoideae Nao 18 7
+## 5 CANELA Lauraceae Nao 24 10
+## 6 TACHI Lecythidaceae Sim 21 10
+## 7 ENVIRA CAJU Annonaceae Nao 20 11
+## 8 JUTAI Leguminosae-Caesalpinioideae Nao 38 13
+## 9 CATUABA Vochysiaceae Sim 57 13
+## 10 NAO IDENTIFICADA Nao Identificada Nao 22 7
+## # ... with 266 more rows, and 2 more variables: Volume &lt;dbl&gt;, QF &lt;int&gt;</code></pre>
 <p>
 Primeiro vamos ver qual a distribuição dos indivíduos em classes de
 diâmetro. A Figura
@@ -80,8 +95,10 @@ diâmetro maior que 50 cm.
 
 <p>
 Caso tenha alguma dúvida ou sugestão sobre o post, fique à vontade para
-fazer um comentário ou me contactar por Email.
+fazer um comentário ou me contatar por E-mail.
 </p>
 <pre class="r"><code>devtools::session_info()</code></pre>
-<pre><code>## setting value ## version R version 3.3.3 (2017-03-06) ## system x86_64, mingw32 ## ui RTerm ## language (EN) ## collate Portuguese_Brazil.1252 ## tz America/Sao_Paulo ## date 2017-04-08 ## ## package * version date source ## assertthat 0.1 2013-12-06 CRAN (R 3.3.2) ## backports 1.0.5 2017-01-18 CRAN (R 3.3.2) ## blogdown 0.0.25 2017-03-23 Github (rstudio/blogdown@1c10d16) ## bookdown 0.3.14 2017-03-23 Github (rstudio/bookdown@f427fdf) ## colorspace 1.3-2 2016-12-14 CRAN (R 3.3.2) ## curl 2.3 2016-11-24 CRAN (R 3.3.2) ## DBI 0.5-1 2016-09-10 CRAN (R 3.3.2) ## devtools 1.12.0 2016-06-24 CRAN (R 3.3.3) ## digest 0.6.12 2017-01-27 CRAN (R 3.3.2) ## dplyr * 0.5.0 2016-06-24 CRAN (R 3.3.2) ## evaluate 0.10 2016-10-11 CRAN (R 3.3.3) ## ggplot2 * 2.2.1 2016-12-30 CRAN (R 3.3.2) ## ggthemes * 3.4.0 2017-02-19 CRAN (R 3.3.3) ## gtable 0.2.0 2016-02-26 CRAN (R 3.3.2) ## highr 0.6 2016-05-09 CRAN (R 3.3.3) ## htmltools 0.3.5 2016-03-21 CRAN (R 3.3.3) ## knitr 1.15.1 2016-11-22 CRAN (R 3.3.3) ## labeling 0.3 2014-08-23 CRAN (R 3.3.2) ## lazyeval 0.2.0 2016-06-12 CRAN (R 3.3.2) ## magrittr 1.5 2014-11-22 CRAN (R 3.3.2) ## memoise 1.0.0 2016-01-29 CRAN (R 3.3.3) ## munsell 0.4.3 2016-02-13 CRAN (R 3.3.2) ## pacman * 0.4.1 2016-03-30 CRAN (R 3.3.3) ## plyr 1.8.4 2016-06-08 CRAN (R 3.3.2) ## R6 2.2.0 2016-10-05 CRAN (R 3.3.2) ## Rcpp 0.12.9 2017-01-14 CRAN (R 3.3.2) ## readr * 1.0.0 2016-08-03 CRAN (R 3.3.2) ## rmarkdown 1.3 2016-12-21 CRAN (R 3.3.3) ## rprojroot 1.2 2017-01-16 CRAN (R 3.3.3) ## scales 0.4.1 2016-11-09 CRAN (R 3.3.2) ## stringi 1.1.2 2016-10-01 CRAN (R 3.3.2) ## stringr 1.2.0 2017-02-18 CRAN (R 3.3.2) ## tibble 1.2 2016-08-26 CRAN (R 3.3.2) ## withr 1.0.2 2016-06-20 CRAN (R 3.3.3) ## yaml 2.1.14 2016-11-12 CRAN (R 3.3.3)</code></pre>
+<pre><code>## setting value ## version R version 3.3.3 (2017-03-06)
+## system x86_64, mingw32 ## ui RTerm ## language (EN) ## collate Portuguese_Brazil.1252 ## tz America/Sao_Paulo ## date 2017-10-14 ## ## package * version date source ## assertthat 0.2.0 2017-04-11 CRAN (R 3.3.3) ## backports 1.1.1 2017-09-25 CRAN (R 3.3.3) ## base * 3.3.3 2017-03-06 local ## bindr 0.1 2016-11-13 CRAN (R 3.3.3) ## bindrcpp 0.2 2017-06-17 CRAN (R 3.3.3) ## blogdown 0.1 2017-08-22 CRAN (R 3.3.3) ## bookdown 0.5 2017-08-20 CRAN (R 3.3.3) ## colorspace 1.3-2 2016-12-14 CRAN (R 3.3.2) ## curl 2.8.1 2017-07-21 CRAN (R 3.3.3) ## datasets * 3.3.3 2017-03-06 local ## devtools 1.13.3 2017-08-02 CRAN (R 3.3.3) ## digest 0.6.12 2017-01-27 CRAN (R 3.3.2) ## dplyr * 0.7.4 2017-09-28 CRAN (R 3.3.3) ## evaluate 0.10.1 2017-06-24 CRAN (R 3.3.3) ## ggplot2 * 2.2.1.9000 2017-07-15 Github (tidyverse/ggplot2@45853c7)
+## ggthemes * 3.4.0 2017-02-19 CRAN (R 3.3.3) ## glue 1.1.1 2017-06-21 CRAN (R 3.3.3) ## graphics * 3.3.3 2017-03-06 local ## grDevices * 3.3.3 2017-03-06 local ## grid 3.3.3 2017-03-06 local ## gtable 0.2.0 2016-02-26 CRAN (R 3.3.2) ## highr 0.6 2016-05-09 CRAN (R 3.3.3) ## hms 0.3 2016-11-22 CRAN (R 3.3.2) ## htmltools 0.3.6 2017-04-28 CRAN (R 3.3.3) ## knitr 1.17 2017-08-10 CRAN (R 3.3.3) ## labeling 0.3 2014-08-23 CRAN (R 3.3.2) ## lazyeval 0.2.0 2016-06-12 CRAN (R 3.3.2) ## magrittr 1.5 2014-11-22 CRAN (R 3.3.2) ## memoise 1.1.0 2017-04-21 CRAN (R 3.3.3) ## methods * 3.3.3 2017-03-06 local ## munsell 0.4.3 2016-02-13 CRAN (R 3.3.2) ## pacman * 0.4.6 2017-05-14 CRAN (R 3.3.3) ## pkgconfig 2.0.1 2017-03-21 CRAN (R 3.3.3) ## plyr 1.8.4 2016-06-08 CRAN (R 3.3.2) ## R6 2.2.2 2017-06-17 CRAN (R 3.3.3) ## Rcpp 0.12.13 2017-09-28 CRAN (R 3.3.3) ## readr * 1.1.1 2017-05-16 CRAN (R 3.3.3) ## rlang 0.1.2 2017-08-09 CRAN (R 3.3.3) ## rmarkdown 1.6 2017-06-15 CRAN (R 3.3.3) ## rprojroot 1.2 2017-01-16 CRAN (R 3.3.3) ## scales 0.5.0 2017-08-24 CRAN (R 3.3.3) ## stats * 3.3.3 2017-03-06 local ## stringi 1.1.5 2017-04-07 CRAN (R 3.3.3) ## stringr 1.2.0 2017-02-18 CRAN (R 3.3.2) ## tibble 1.3.4 2017-08-22 CRAN (R 3.3.3) ## tools 3.3.3 2017-03-06 local ## utils * 3.3.3 2017-03-06 local ## withr 2.0.0 2017-07-28 CRAN (R 3.3.3) ## yaml 2.1.14 2016-11-12 CRAN (R 3.3.3)</code></pre>
 

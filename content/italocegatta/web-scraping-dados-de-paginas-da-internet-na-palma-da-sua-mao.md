@@ -9,9 +9,10 @@ original_url = "https://italocegatta.github.io/web-scraping-dados-de-paginas-da-
 Você já precisou copiar na mão uma informação de texto, valor ou tabela
 de uma pagina web? Pelo menos no meu trabalho isto é muito comum. Por
 mais que os dados estejam lá site, eles nunca estão disponíveis todos
-juntos e no formato que queremos, parece que sacanagem. Diante disto, o
-objetivo deste post é mostrar como podemos utilizar o R para coletar
-dados de uma página web e esquecer o famooooso <em>ctrl+c/ctrl+v</em>.
+juntos e no formato que queremos, parece que é de sacanagem. Diante
+disto, o objetivo deste post é mostrar como podemos utilizar o R para
+coletar dados de uma página web e esquecer o famooooso
+<em>ctrl+c/ctrl+v</em>.
 </p>
 <p>
 Vamos exemplificar o post utilizando o site do IBGE para saber quantos
@@ -80,33 +81,33 @@ navegador, ver que esse link está na posição 68 da lista/tablela nomeada
 como <code>table.temas</code>.
 </p>
 <pre class="r"><code>posfixo_lenha &lt;- map( pg_estados, ~html_node(.x, &quot;table.temas&quot;) %&gt;% html_children() %&gt;% &apos;[&apos;(68) %&gt;% html_node(&quot;a&quot;) %&gt;% html_attr(&quot;href&quot;) ) %&gt;% flatten_chr() posfixo_lenha</code></pre>
-<pre><code>## [1] &quot;temas.php?sigla=ro&amp;tema=extracaovegetal2015&quot;
-## [2] &quot;temas.php?sigla=ac&amp;tema=extracaovegetal2015&quot;
-## [3] &quot;temas.php?sigla=am&amp;tema=extracaovegetal2015&quot;
-## [4] &quot;temas.php?sigla=rr&amp;tema=extracaovegetal2015&quot;
-## [5] &quot;temas.php?sigla=pa&amp;tema=extracaovegetal2015&quot;
-## [6] &quot;temas.php?sigla=ap&amp;tema=extracaovegetal2015&quot;
-## [7] &quot;temas.php?sigla=to&amp;tema=extracaovegetal2015&quot;
-## [8] &quot;temas.php?sigla=ma&amp;tema=extracaovegetal2015&quot;
-## [9] &quot;temas.php?sigla=pi&amp;tema=extracaovegetal2015&quot;
-## [10] &quot;temas.php?sigla=ce&amp;tema=extracaovegetal2015&quot;
-## [11] &quot;temas.php?sigla=rn&amp;tema=extracaovegetal2015&quot;
-## [12] &quot;temas.php?sigla=pb&amp;tema=extracaovegetal2015&quot;
-## [13] &quot;temas.php?sigla=pe&amp;tema=extracaovegetal2015&quot;
-## [14] &quot;temas.php?sigla=al&amp;tema=extracaovegetal2015&quot;
-## [15] &quot;temas.php?sigla=se&amp;tema=extracaovegetal2015&quot;
-## [16] &quot;temas.php?sigla=ba&amp;tema=extracaovegetal2015&quot;
-## [17] &quot;temas.php?sigla=mg&amp;tema=extracaovegetal2015&quot;
-## [18] &quot;temas.php?sigla=es&amp;tema=extracaovegetal2015&quot;
-## [19] &quot;temas.php?sigla=rj&amp;tema=extracaovegetal2015&quot;
-## [20] &quot;temas.php?sigla=sp&amp;tema=extracaovegetal2015&quot;
-## [21] &quot;temas.php?sigla=pr&amp;tema=extracaovegetal2015&quot;
-## [22] &quot;temas.php?sigla=sc&amp;tema=extracaovegetal2015&quot;
-## [23] &quot;temas.php?sigla=rs&amp;tema=extracaovegetal2015&quot;
-## [24] &quot;temas.php?sigla=ms&amp;tema=extracaovegetal2015&quot;
-## [25] &quot;temas.php?sigla=mt&amp;tema=extracaovegetal2015&quot;
-## [26] &quot;temas.php?sigla=go&amp;tema=extracaovegetal2015&quot;
-## [27] &quot;temas.php?sigla=df&amp;tema=extracaovegetal2015&quot;</code></pre>
+<pre><code>## [1] &quot;temas.php?sigla=ro&amp;tema=lavouratemporaria2016&quot;
+## [2] &quot;temas.php?sigla=ac&amp;tema=lavouratemporaria2016&quot;
+## [3] &quot;temas.php?sigla=am&amp;tema=lavouratemporaria2016&quot;
+## [4] &quot;temas.php?sigla=rr&amp;tema=lavouratemporaria2016&quot;
+## [5] &quot;temas.php?sigla=pa&amp;tema=lavouratemporaria2016&quot;
+## [6] &quot;temas.php?sigla=ap&amp;tema=lavouratemporaria2016&quot;
+## [7] &quot;temas.php?sigla=to&amp;tema=lavouratemporaria2016&quot;
+## [8] &quot;temas.php?sigla=ma&amp;tema=lavouratemporaria2016&quot;
+## [9] &quot;temas.php?sigla=pi&amp;tema=lavouratemporaria2016&quot;
+## [10] &quot;temas.php?sigla=ce&amp;tema=lavouratemporaria2016&quot;
+## [11] &quot;temas.php?sigla=rn&amp;tema=lavouratemporaria2016&quot;
+## [12] &quot;temas.php?sigla=pb&amp;tema=lavouratemporaria2016&quot;
+## [13] &quot;temas.php?sigla=pe&amp;tema=lavouratemporaria2016&quot;
+## [14] &quot;temas.php?sigla=al&amp;tema=lavouratemporaria2016&quot;
+## [15] &quot;temas.php?sigla=se&amp;tema=lavouratemporaria2016&quot;
+## [16] &quot;temas.php?sigla=ba&amp;tema=lavouratemporaria2016&quot;
+## [17] &quot;temas.php?sigla=mg&amp;tema=lavouratemporaria2016&quot;
+## [18] &quot;temas.php?sigla=es&amp;tema=lavouratemporaria2016&quot;
+## [19] &quot;temas.php?sigla=rj&amp;tema=lavouratemporaria2016&quot;
+## [20] &quot;temas.php?sigla=sp&amp;tema=lavouratemporaria2016&quot;
+## [21] &quot;temas.php?sigla=pr&amp;tema=lavouratemporaria2016&quot;
+## [22] &quot;temas.php?sigla=sc&amp;tema=lavouratemporaria2016&quot;
+## [23] &quot;temas.php?sigla=rs&amp;tema=lavouratemporaria2016&quot;
+## [24] &quot;temas.php?sigla=ms&amp;tema=lavouratemporaria2016&quot;
+## [25] &quot;temas.php?sigla=mt&amp;tema=lavouratemporaria2016&quot;
+## [26] &quot;temas.php?sigla=go&amp;tema=lavouratemporaria2016&quot;
+## [27] &quot;temas.php?sigla=df&amp;tema=lavouratemporaria2016&quot;</code></pre>
 <p>
 Aqui, mais uma vez, será preciso juntar o <em>link</em> específico de
 cada estado com a url da página raiz.
@@ -129,20 +130,20 @@ precisar desse código específico, mas o ponto está na capacidade de
 escrever seu próprio código e não precisar fazer o trabalho manual.
 </p>
 <pre class="r"><code>tabelas &lt;- map( set_names(pg_lenha, lista_estados), ~html_node(.x, &quot;table#tabela_temas&quot;) %&gt;% html_table() %&gt;% as_tibble() %&gt;% rename(produto = X1, valor = X2, unidade = X3) ) qnt &lt;- map_df( tabelas, ~filter(.x, str_detect(produto, c(&quot;Lenha de eucalipto&quot;, &quot;quantidade&quot;))) %&gt;% &apos;[[&apos;(&quot;valor&quot;) ) %&gt;% gather(estado, volume) %&gt;% mutate(volume = as.numeric(str_replace_all(volume, &quot;\\.&quot;, &quot;&quot;))) qnt </code></pre>
-<pre><code>## # A tibble: 27 x 2
+<pre><code>## # A tibble: 405 x 2
 ## estado volume
 ## &lt;chr&gt; &lt;dbl&gt;
-## 1 Rond&#xF4;nia 690
-## 2 Acre NA
-## 3 Amazonas NA
-## 4 Roraima NA
-## 5 Par&#xE1; NA
-## 6 Amap&#xE1; NA
-## 7 Tocantins 2300
-## 8 Maranh&#xE3;o 195428
-## 9 Piau&#xED; 188724
-## 10 Cear&#xE1; NA
-## # ... with 17 more rows</code></pre>
+## 1 Rond&#xF4;nia 1456
+## 2 Rond&#xF4;nia 55
+## 3 Rond&#xF4;nia NA
+## 4 Rond&#xF4;nia NA
+## 5 Rond&#xF4;nia NA
+## 6 Rond&#xF4;nia NA
+## 7 Rond&#xF4;nia NA
+## 8 Rond&#xF4;nia NA
+## 9 Rond&#xF4;nia NA
+## 10 Rond&#xF4;nia NA
+## # ... with 395 more rows</code></pre>
 <p>
 De certa forma já resolvemos o problema, a quantidade de lenha de
 eucalipto produzida em cada estado no ano de 2015 já está em nossas
@@ -157,10 +158,10 @@ pacote para manupulação de objetos espaciais no R.
 </p>
 <p>
 Caso tenha alguma dúvida ou sugestão sobre o post, fique à vontade para
-fazer um comentário ou me contactar por Email.
+fazer um comentário ou me contatar por E-mail.
 </p>
 <pre class="r"><code>devtools::session_info()</code></pre>
 <pre><code>## setting value ## version R version 3.3.3 (2017-03-06)
-## system x86_64, mingw32 ## ui RTerm ## language (EN) ## collate Portuguese_Brazil.1252 ## tz America/Sao_Paulo ## date 2017-07-08 ## ## package * version date source ## assertthat 0.2.0 2017-04-11 CRAN (R 3.3.3) ## backports 1.1.0 2017-05-22 CRAN (R 3.3.3) ## base * 3.3.3 2017-03-06 local ## bindr 0.1 2016-11-13 CRAN (R 3.3.3) ## bindrcpp * 0.2 2017-06-17 CRAN (R 3.3.3) ## blogdown 0.0.25 2017-03-23 Github (rstudio/blogdown@1c10d16) ## bookdown 0.4 2017-05-20 CRAN (R 3.3.3) ## brmap * 0.0.2 2017-07-07 local ## colorspace 1.3-2 2016-12-14 CRAN (R 3.3.2) ## curl 2.7 2017-06-26 CRAN (R 3.3.3) ## datasets * 3.3.3 2017-03-06 local ## DBI 0.7 2017-06-18 CRAN (R 3.3.3) ## devtools 1.13.2 2017-06-02 CRAN (R 3.3.3) ## digest 0.6.12 2017-01-27 CRAN (R 3.3.2) ## dplyr * 0.7.1 2017-06-22 CRAN (R 3.3.3) ## evaluate 0.10 2016-10-11 CRAN (R 3.3.3) ## ggplot2 * 2.2.1.9000 2017-06-16 Github (tidyverse/ggplot2@398fc07)
-## glue 1.1.1 2017-06-21 CRAN (R 3.3.3) ## graphics * 3.3.3 2017-03-06 local ## grDevices * 3.3.3 2017-03-06 local ## grid 3.3.3 2017-03-06 local ## gridExtra 2.2.1 2016-02-29 CRAN (R 3.3.3) ## gtable 0.2.0 2016-02-26 CRAN (R 3.3.2) ## highr 0.6 2016-05-09 CRAN (R 3.3.3) ## htmltools 0.3.6 2017-04-28 CRAN (R 3.3.3) ## httr 1.2.1 2016-07-03 CRAN (R 3.3.2) ## knitr 1.16 2017-05-18 CRAN (R 3.3.3) ## labeling 0.3 2014-08-23 CRAN (R 3.3.2) ## lazyeval 0.2.0 2016-06-12 CRAN (R 3.3.2) ## magrittr 1.5 2014-11-22 CRAN (R 3.3.2) ## memoise 1.1.0 2017-04-21 CRAN (R 3.3.3) ## methods 3.3.3 2017-03-06 local ## munsell 0.4.3 2016-02-13 CRAN (R 3.3.2) ## pacman * 0.4.6 2017-05-14 CRAN (R 3.3.3) ## pkgconfig 2.0.1 2017-03-21 CRAN (R 3.3.3) ## plyr 1.8.4 2016-06-08 CRAN (R 3.3.2) ## purrr * 0.2.2.2 2017-05-11 CRAN (R 3.3.3) ## R6 2.2.2 2017-06-17 CRAN (R 3.3.3) ## Rcpp 0.12.11 2017-05-22 CRAN (R 3.3.3) ## rlang 0.1.1 2017-05-18 CRAN (R 3.3.3) ## rmarkdown 1.6 2017-06-15 CRAN (R 3.3.3) ## rprojroot 1.2 2017-01-16 CRAN (R 3.3.3) ## rvest * 0.3.2 2016-06-17 CRAN (R 3.3.2) ## scales * 0.4.1 2016-11-09 CRAN (R 3.3.2) ## selectr 0.3-1 2016-12-19 CRAN (R 3.3.2) ## sf * 0.5-1 2017-06-23 CRAN (R 3.3.3) ## stats * 3.3.3 2017-03-06 local ## stringi 1.1.5 2017-04-07 CRAN (R 3.3.3) ## stringr * 1.2.0 2017-02-18 CRAN (R 3.3.2) ## tibble 1.3.3 2017-05-28 CRAN (R 3.3.3) ## tidyr * 0.6.3 2017-05-15 CRAN (R 3.3.3) ## tools 3.3.3 2017-03-06 local ## udunits2 0.13 2016-11-17 CRAN (R 3.3.2) ## units 0.4-5 2017-06-15 CRAN (R 3.3.3) ## utils * 3.3.3 2017-03-06 local ## viridis * 0.4.0 2017-03-27 CRAN (R 3.3.3) ## viridisLite * 0.2.0 2017-03-24 CRAN (R 3.3.3) ## withr 1.0.2 2016-06-20 CRAN (R 3.3.3) ## XML 3.98-1.9 2017-06-19 CRAN (R 3.3.3) ## xml2 * 1.1.1 2017-01-24 CRAN (R 3.3.2) ## yaml 2.1.14 2016-11-12 CRAN (R 3.3.3)</code></pre>
+## system x86_64, mingw32 ## ui RTerm ## language (EN) ## collate Portuguese_Brazil.1252 ## tz America/Sao_Paulo ## date 2017-10-14 ## ## package * version date source ## assertthat 0.2.0 2017-04-11 CRAN (R 3.3.3) ## backports 1.1.1 2017-09-25 CRAN (R 3.3.3) ## base * 3.3.3 2017-03-06 local ## bindr 0.1 2016-11-13 CRAN (R 3.3.3) ## bindrcpp * 0.2 2017-06-17 CRAN (R 3.3.3) ## blogdown 0.1 2017-08-22 CRAN (R 3.3.3) ## bookdown 0.5 2017-08-20 CRAN (R 3.3.3) ## brmap * 0.0.2 2017-08-17 local ## colorspace 1.3-2 2016-12-14 CRAN (R 3.3.2) ## curl 2.8.1 2017-07-21 CRAN (R 3.3.3) ## datasets * 3.3.3 2017-03-06 local ## DBI 0.7 2017-06-18 CRAN (R 3.3.3) ## devtools 1.13.3 2017-08-02 CRAN (R 3.3.3) ## digest 0.6.12 2017-01-27 CRAN (R 3.3.2) ## dplyr * 0.7.4 2017-09-28 CRAN (R 3.3.3) ## evaluate 0.10.1 2017-06-24 CRAN (R 3.3.3) ## ggplot2 * 2.2.1.9000 2017-07-15 Github (tidyverse/ggplot2@45853c7)
+## glue 1.1.1 2017-06-21 CRAN (R 3.3.3) ## graphics * 3.3.3 2017-03-06 local ## grDevices * 3.3.3 2017-03-06 local ## grid 3.3.3 2017-03-06 local ## gridExtra 2.3 2017-09-09 CRAN (R 3.3.3) ## gtable 0.2.0 2016-02-26 CRAN (R 3.3.2) ## highr 0.6 2016-05-09 CRAN (R 3.3.3) ## htmltools 0.3.6 2017-04-28 CRAN (R 3.3.3) ## httr 1.3.1 2017-08-20 CRAN (R 3.3.3) ## knitr 1.17 2017-08-10 CRAN (R 3.3.3) ## labeling 0.3 2014-08-23 CRAN (R 3.3.2) ## lazyeval 0.2.0 2016-06-12 CRAN (R 3.3.2) ## magrittr 1.5 2014-11-22 CRAN (R 3.3.2) ## memoise 1.1.0 2017-04-21 CRAN (R 3.3.3) ## methods * 3.3.3 2017-03-06 local ## munsell 0.4.3 2016-02-13 CRAN (R 3.3.2) ## pacman * 0.4.6 2017-05-14 CRAN (R 3.3.3) ## pkgconfig 2.0.1 2017-03-21 CRAN (R 3.3.3) ## plyr 1.8.4 2016-06-08 CRAN (R 3.3.2) ## purrr * 0.2.3 2017-08-02 CRAN (R 3.3.3) ## R6 2.2.2 2017-06-17 CRAN (R 3.3.3) ## Rcpp 0.12.13 2017-09-28 CRAN (R 3.3.3) ## rlang 0.1.2 2017-08-09 CRAN (R 3.3.3) ## rmarkdown 1.6 2017-06-15 CRAN (R 3.3.3) ## rprojroot 1.2 2017-01-16 CRAN (R 3.3.3) ## rvest * 0.3.2 2016-06-17 CRAN (R 3.3.2) ## scales * 0.5.0 2017-08-24 CRAN (R 3.3.3) ## selectr 0.3-1 2016-12-19 CRAN (R 3.3.2) ## sf * 0.5-4 2017-08-28 CRAN (R 3.3.3) ## stats * 3.3.3 2017-03-06 local ## stringi 1.1.5 2017-04-07 CRAN (R 3.3.3) ## stringr * 1.2.0 2017-02-18 CRAN (R 3.3.2) ## tibble 1.3.4 2017-08-22 CRAN (R 3.3.3) ## tidyr * 0.7.1 2017-09-01 CRAN (R 3.3.3) ## tools 3.3.3 2017-03-06 local ## udunits2 0.13 2016-11-17 CRAN (R 3.3.2) ## units 0.4-6 2017-08-27 CRAN (R 3.3.3) ## utils * 3.3.3 2017-03-06 local ## viridis * 0.4.0 2017-03-27 CRAN (R 3.3.3) ## viridisLite * 0.2.0 2017-03-24 CRAN (R 3.3.3) ## withr 2.0.0 2017-07-28 CRAN (R 3.3.3) ## XML 3.98-1.9 2017-06-19 CRAN (R 3.3.3) ## xml2 * 1.1.1 2017-01-24 CRAN (R 3.3.2) ## yaml 2.1.14 2016-11-12 CRAN (R 3.3.3)</code></pre>
 

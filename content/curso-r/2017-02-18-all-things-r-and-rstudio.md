@@ -12,6 +12,9 @@ conferência sobre R promovida pela Rstudio. A conferência parece ter
 sido bem animada! Teve até um passeio para o parque do Harry Potter na
 Florida, e surgiram memes como a imagem abaixo.
 </p>
+<pre><code>## Linking to ImageMagick 6.8.9.9
+## Enabled features: cairo, fontconfig, freetype, fftw, lcms, pango, rsvg, x11
+## Disabled features: ghostscript, webp</code></pre>
 <p>
 <img src="http://curso-r.com/blog/2017-02-18-all-things-r-and-rstudio_files/figure-html/hadley-1.png" width="672">
 </p>

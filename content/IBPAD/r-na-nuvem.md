@@ -2,7 +2,7 @@
 title = "R na Nuvem!"
 date = "2017-04-28 01:48:04"
 categories = ["IBPAD"]
-original_url = "http://www.ibpad.com.br/blog/r-na-nuvem/"
+original_url = "https://www.ibpad.com.br/blog/analise-de-dados/r-na-nuvem/"
 +++
 
 <p>
@@ -17,7 +17,7 @@ nós vamos focar na Amazon Web Services (AWS), um dos serviços mais
 populares da área. Você pode ler os
 <a href="https://aws.amazon.com/blogs/big-data/running-r-on-aws/">guias</a>
 no website do AWS, ou usar pacotes do R mesmo (do projeto
-<a href="http://cloudyr.github.io/">cloudyR</a>), ou usar uma Amazon
+<a href="https://cloudyr.github.io/">cloudyR</a>), ou usar uma Amazon
 Machine Image (AMI), que cria uma máquina virtual no EC2, o <em>Amazon
 Elastic Compute Cloud</em>. A terceira é uma ótima opção para R, dado
 que <a href="http://www.louisaslett.com/">Louis Aslett</a> tem criado
@@ -31,24 +31,24 @@ No lado direito, tem uma lista de regiões e tipos de instâncias. Eu usei
 a de ‘US East, Virginia’; tentei a de São Paulo mas não funcionou.
 </p>
 <p>
-<img data-attachment-id="4890" data-permalink="http://www.ibpad.com.br/blog/r-na-nuvem/attachment/louis/" data-orig-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/louis.png?fit=505%2C573" data-orig-size="505,573" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="louis" data-image-description="" data-medium-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/louis.png?fit=260%2C295" data-large-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/louis.png?fit=505%2C573" class="alignnone size-medium wp-image-4890" src="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/louis.png?resize=260%2C295" alt="" srcset="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/louis.png?resize=260%2C295 260w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/louis.png?resize=88%2C100 88w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/louis.png?resize=80%2C90 80w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/louis.png?w=505 505w" sizes="(max-width: 260px) 100vw, 260px" data-recalc-dims="1" />
+<img class="alignnone size-medium wp-image-4890" src="https://www.ibpad.com.br/wp-content/uploads/2017/03/louis-260x295.png" alt="" width="260" height="295" srcset="https://www.ibpad.com.br/wp-content/uploads/2017/03/louis-260x295.png 260w, https://www.ibpad.com.br/wp-content/uploads/2017/03/louis-88x100.png 88w, https://www.ibpad.com.br/wp-content/uploads/2017/03/louis-80x90.png 80w, https://www.ibpad.com.br/wp-content/uploads/2017/03/louis.png 505w" sizes="(max-width: 260px) 100vw, 260px">
 </p>
 <p>
 Ao clicar, você vai acessar a uma serie de guias no site da AWS para
 iniciar a sua máquina virtual com uma lista de opções.
 </p>
 <p>
-<img data-attachment-id="4893" data-permalink="http://www.ibpad.com.br/blog/r-na-nuvem/attachment/sec_group/" data-orig-file="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/sec_group.png?fit=671%2C63" data-orig-size="671,63" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="sec_group" data-image-description="" data-medium-file="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/sec_group.png?fit=260%2C24" data-large-file="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/sec_group.png?fit=671%2C63" class="alignnone size-medium wp-image-4893" src="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/sec_group.png?resize=260%2C24" alt="" srcset="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/sec_group.png?resize=260%2C24 260w, https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/sec_group.png?resize=100%2C9 100w, https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/sec_group.png?w=671 671w" sizes="(max-width: 260px) 100vw, 260px" data-recalc-dims="1" />
+<img class="alignnone size-medium wp-image-4893" src="https://www.ibpad.com.br/wp-content/uploads/2017/03/sec_group-260x24.png" alt="" width="260" height="24" srcset="https://www.ibpad.com.br/wp-content/uploads/2017/03/sec_group-260x24.png 260w, https://www.ibpad.com.br/wp-content/uploads/2017/03/sec_group-100x9.png 100w, https://www.ibpad.com.br/wp-content/uploads/2017/03/sec_group.png 671w" sizes="(max-width: 260px) 100vw, 260px">
 </p>
 <p>
 Nessa lista, você pode escolher o tipo de instância — pode escolher uma
 máquina de memória maior etc. Umas são pagas, e outras são de graça. Uma
 opção que é importante é a segurança (‘Security Groups’). Aqui, temos
 que criar um novo grupo de segurança para usar RStudio diretamente
-do<br /> browser.
+do<br> browser.
 </p>
 <p>
-<img data-attachment-id="4894" data-permalink="http://www.ibpad.com.br/blog/r-na-nuvem/attachment/tcp/" data-orig-file="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/tcp.png?fit=1253%2C259" data-orig-size="1253,259" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="tcp" data-image-description="" data-medium-file="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/tcp.png?fit=260%2C54" data-large-file="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/tcp.png?fit=900%2C186" class="alignnone size-medium wp-image-4894" src="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/tcp.png?resize=260%2C54" alt="" srcset="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/tcp.png?resize=260%2C54 260w, https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/tcp.png?resize=768%2C159 768w, https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/tcp.png?resize=1024%2C212 1024w, https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/tcp.png?resize=100%2C21 100w, https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/tcp.png?w=1253 1253w" sizes="(max-width: 260px) 100vw, 260px" data-recalc-dims="1" />
+<img class="alignnone size-medium wp-image-4894" src="https://www.ibpad.com.br/wp-content/uploads/2017/03/tcp-260x54.png" alt="" width="260" height="54" srcset="https://www.ibpad.com.br/wp-content/uploads/2017/03/tcp-260x54.png 260w, https://www.ibpad.com.br/wp-content/uploads/2017/03/tcp-768x159.png 768w, https://www.ibpad.com.br/wp-content/uploads/2017/03/tcp-1024x212.png 1024w, https://www.ibpad.com.br/wp-content/uploads/2017/03/tcp-100x21.png 100w, https://www.ibpad.com.br/wp-content/uploads/2017/03/tcp.png 1253w" sizes="(max-width: 260px) 100vw, 260px">
 </p>
 <p>
 Você pode chamar o grupo ‘Rstudio’. Da lista drop-down, selecione
@@ -56,7 +56,7 @@ Você pode chamar o grupo ‘Rstudio’. Da lista drop-down, selecione
 como 0-80. Depois pode clicar em ‘Launch’.
 </p>
 <p>
-<img data-attachment-id="4892" data-permalink="http://www.ibpad.com.br/blog/r-na-nuvem/attachment/keys/" data-orig-file="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/keys.png?fit=695%2C373" data-orig-size="695,373" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="keys" data-image-description="" data-medium-file="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/keys.png?fit=260%2C140" data-large-file="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/keys.png?fit=695%2C373" class="alignnone size-medium wp-image-4892" src="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/keys.png?resize=260%2C140" alt="" srcset="https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/keys.png?resize=260%2C140 260w, https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/keys.png?resize=100%2C54 100w, https://i1.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/keys.png?w=695 695w" sizes="(max-width: 260px) 100vw, 260px" data-recalc-dims="1" />
+<img class="alignnone size-medium wp-image-4892" src="https://www.ibpad.com.br/wp-content/uploads/2017/03/keys-260x140.png" alt="" width="260" height="140" srcset="https://www.ibpad.com.br/wp-content/uploads/2017/03/keys-260x140.png 260w, https://www.ibpad.com.br/wp-content/uploads/2017/03/keys-100x54.png 100w, https://www.ibpad.com.br/wp-content/uploads/2017/03/keys.png 695w" sizes="(max-width: 260px) 100vw, 260px">
 </p>
 <p>
 O AWS vai te perguntar sobre key pairs. Não é necessário para usar
@@ -75,7 +75,7 @@ a senha é ‘rstudio’ também (você pode mudar depois). Vai abrir o Rstudio
 no seu browser, rodando dos servidores do Amazon!
 </p>
 <p>
-<img data-attachment-id="4891" data-permalink="http://www.ibpad.com.br/blog/r-na-nuvem/attachment/rstudio/" data-orig-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio.png?fit=1262%2C660" data-orig-size="1262,660" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Rstudio" data-image-description="" data-medium-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio.png?fit=260%2C136" data-large-file="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio.png?fit=900%2C471" class="alignnone size-medium wp-image-4891" src="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio.png?resize=260%2C136" alt="" srcset="https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio.png?resize=260%2C136 260w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio.png?resize=768%2C402 768w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio.png?resize=1024%2C536 1024w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio.png?resize=100%2C52 100w, https://i0.wp.com/www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio.png?w=1262 1262w" sizes="(max-width: 260px) 100vw, 260px" data-recalc-dims="1" />
+<img class="alignnone size-medium wp-image-4891" src="https://www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio-260x136.png" alt="" width="260" height="136" srcset="https://www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio-260x136.png 260w, https://www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio-768x402.png 768w, https://www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio-1024x536.png 1024w, https://www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio-100x52.png 100w, https://www.ibpad.com.br/wp-content/uploads/2017/03/Rstudio.png 1262w" sizes="(max-width: 260px) 100vw, 260px">
 </p>
 <p>
 No <code>Welcome.R</code>, o script que vai abrir nessa página, tem umas
@@ -86,18 +86,68 @@ script (em inglês). É simples: carrega o pacote e usar a função
 (“rstudio”) e para uma nova. Daí clica no <code>Edit</code> no RStudio,
 e <code>Clear Console</code> (ou <code>Cntrl + L</code>).
 </p>
-<pre class="crayon-plain-tag">library('RStudioAMI')
+<span class="crayon-title"></span>
+
+<textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+library('RStudioAMI')
 
 passwd()
 
-# Current password (rstudio if not changed yet):</pre>
+Current password (rstudio if not changed yet):
+==============================================
+
+</textarea>
+
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+</td>
+<td class="crayon-code">
+ 
+
+ 
+
+<span class="crayon-e">library</span><span
+class="crayon-sy">(</span><span
+class="crayon-s">'RStudioAMI'</span><span class="crayon-sy">)</span>
+
+ 
+
+<span class="crayon-e">passwd</span><span
+class="crayon-sy">(</span><span class="crayon-sy">)</span>
+
+ 
+
+<span class="crayon-p">\# Current password (rstudio if not changed yet):
+</span>
+
+ 
+
+ 
+
+</td>
+</tr>
+</table>
+
 <p>
 Agora você está pronto para fazer análise no R na nuvem!
-</p>
-<p>
-O post
-<a rel="nofollow" href="http://www.ibpad.com.br/blog/r-na-nuvem/">R na
-Nuvem!</a> apareceu primeiro em
-<a rel="nofollow" href="http://www.ibpad.com.br">IBPAD</a>.
 </p>
 

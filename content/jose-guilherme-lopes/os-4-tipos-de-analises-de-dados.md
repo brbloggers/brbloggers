@@ -5,7 +5,6 @@ categories = ["jose-guilherme-lopes"]
 original_url = "http://joseguilhermelopes.com.br/os-4-tipos-de-analises-de-dados/"
 +++
 
-<div>
 <p id="primary" class="content-area">
 <main id="main" class="site-main">
 <article id="post-398" class="post-398 post type-post status-publish format-standard has-post-thumbnail hentry category-data-science">
@@ -139,31 +138,4 @@ levando a avançar e/ou retroceder para uma nova análise e
 assim <em>torturar os dados</em> para que eles falem cada vez mais.
 </p>
 <nav class="navigation post-navigation"> </nav>
-
-<p class="col-md-4">
-<aside id="secondary" class="widget-area">
-<section id="blog-way-author-7" class="widget blog_way_widget_author">
-</section>
-<section id="media_video-3" class="widget widget_media_video">
-<div class="jetpack-video-wrapper">
-<div class="wp-video">
-<video class="wp-video-shortcode" id="video-398-1">
-<source src="https://youtu.be/nFko3JZIV5Y?_=1">
-<a href="https://youtu.be/nFko3JZIV5Y">https://youtu.be/nFko3JZIV5Y</a></video>
-</div>
-</div>
-</section>
-<section id="easy_facebook_page_plugin-5" class="widget widget_easy_facebook_page_plugin">
-<img class="efbl-loader" src="http://joseguilhermelopes.com.br/wp-content/plugins/easy-facebook-likebox/public/assets/images/loader.gif">
-
-</section>
-<section id="twitter_timeline-3" class="widget widget_twitter_timeline">
-<a class="twitter-timeline" href="https://twitter.com/lopesjguilherme">Meus
-Tuítes</a>
-</section>
-<section id="search-2" class="widget widget_search">
-</section>
-</aside>
-</p>
-</div>
 

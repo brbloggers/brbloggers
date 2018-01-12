@@ -114,7 +114,7 @@ caso, mas sim de uma cola:
 <p>
 Para fins ilustrativos, veja o texto escrito abaixo:
 </p>
-<pre><code># Mat&#xE9;ria Importante ## Aula de hoje Com Markdown podemos criar
+<pre class="markdown"><code># Mat&#xE9;ria Importante ## Aula de hoje Com Markdown podemos criar
 - *Uma lista*
 - `Com itens`
 - **Em diversas**
@@ -126,6 +126,7 @@ $X_{ab} = 1$ se e somente se $a$ e $b$ s&#xE3;o comparados na linha 4. Algo bem 
 <p>
 Esse é o seu resultado quando renderizado pelo MMP:
 </p>
+<img src="http://ctlente.com/note-taking/atom.png" alt="">
 
 <p>
 Se você quiser maximizar a velocidade com que você faz as anotações,

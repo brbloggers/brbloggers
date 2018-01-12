@@ -147,7 +147,8 @@ Eu pesquisei por “pronto socorro” porque a pesquisa hospitais também
 resulta em hospitais veterinários. Um desafio para quem for reproduzir a
 análise: coletar apenas a geolocalização de hospitais públicos.
 </p>
-<pre class="r"><code>df_places %&gt;% dplyr::filter(place == &quot;pronto socorro&quot;) %&gt;% leaflet %&gt;% addTiles() %&gt;% addCircles(lng = ~long, lat = ~lat, weight = 5, radius = 1000, color = &quot;blue&quot;, fillOpacity = 0.5)</code></pre>
+<pre class="r"><code>library(leaflet)
+df_places %&gt;% dplyr::filter(place == &quot;pronto socorro&quot;) %&gt;% leaflet %&gt;% addTiles() %&gt;% addCircles(lng = ~long, lat = ~lat, weight = 5, radius = 1000, color = &quot;blue&quot;, fillOpacity = 0.5)</code></pre>
 
 <pre class="r"><code>df_places %&gt;% dplyr::filter(place == &quot;delegacia&quot;) %&gt;% leaflet %&gt;% addTiles() %&gt;% addCircles(lng = ~long, lat = ~lat, weight = 5, radius = 1000, color = &quot;blue&quot;, fillOpacity = 0.5)</code></pre>
 

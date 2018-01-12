@@ -25,6 +25,9 @@ deixar a análise o menos subjetiva possível, escolhi imagens de cenas
 emblemáticas e dos principais personagens. Abaixo as imagens que peguei
 de cada filme.
 </p>
+<pre><code>## Linking to ImageMagick 6.8.9.9
+## Enabled features: cairo, fontconfig, freetype, fftw, lcms, pango, rsvg, x11
+## Disabled features: ghostscript, webp</code></pre>
 <p>
 <img src="http://curso-r.com/blog/2017-05-01-as-paletas-de-cores-da-marvel-vs-dc_files/figure-html/unnamed-chunk-1-1.png" width="768">
 </p>

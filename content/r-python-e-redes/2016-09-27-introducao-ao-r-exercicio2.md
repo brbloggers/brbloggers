@@ -37,8 +37,8 @@ pacote específico já que o arquivo é do SPSS (.sav). Depois disso:
             <p>
             1.  Agora, com um comando, execute um teste estatístico para
                 verificar se as médias da renda mensal do trabalho
-                principal entre homens e mulheres são
-                estatisticamente diferentes. Interprete o resultado.
+                principal entre homens e mulheres são estatisticamente
+                diferentes. Interprete o resultado.
                 </p>
                 <h3 id="enade">
                 Enade
@@ -47,8 +47,8 @@ pacote específico já que o arquivo é do SPSS (.sav). Depois disso:
                 Agora, abra o banco de dados do Enade 2014.
                 </p>
                 <p>
-                1.  Tire um histograma da nota geral dos alunos no
-                    Enade (nt\_ger).
+                1.  Tire um histograma da nota geral dos alunos no Enade
+                    (nt\_ger).
                     </p>
                     <p>
                     1.  Agora tire um histograma da nota geral dos
@@ -72,8 +72,8 @@ pacote específico já que o arquivo é do SPSS (.sav). Depois disso:
                             1.  Vamos investigar se os alunos que
                                 entraram nas faculdades via ações
                                 afirmativas tem desempenho no Enade
-                                diferente dos que não entraram por
-                                esse mecanismo. Para isso precisamos
+                                diferente dos que não entraram por esse
+                                mecanismo. Para isso precisamos
                                 recodificar a variável <strong>Entrou
                                 por ação afirmativa</strong> (qe\_i15)
                                 para uma variável binária. Use o
@@ -88,18 +88,18 @@ pacote específico já que o arquivo é do SPSS (.sav). Depois disso:
                                 estatístico usar. Comente o resultado.
                                 </p>
                                 <p>
-                                1.  Vamos montar um modelo de
-                                    regressão linear. O seu objetivo é
-                                    modelizar o desempenho do aluno
-                                    (medido pela sua nota geral) como
-                                    função da cor, do sexo e da
-                                    escolarização da mãe (qe\_i5). Não
-                                    se esqueça de recodificar a variável
-                                    sexo renomeando a categoria
+                                1.  Vamos montar um modelo de regressão
+                                    linear. O seu objetivo é modelizar o
+                                    desempenho do aluno (medido pela sua
+                                    nota geral) como função da cor, do
+                                    sexo e da escolarização da mãe
+                                    (qe\_i5). Não se esqueça de
+                                    recodificar a variável sexo
+                                    renomeando a categoria
                                     <strong>N</strong> para NA. Você já
                                     sabe como fazer isso. Após estimar o
-                                    modelo, apresente os resultados
-                                    e interprete.
+                                    modelo, apresente os resultados e
+                                    interprete.
                                     </p>
                                     <h2 id="divirta-se">
                                     Divirta-se!

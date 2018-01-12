@@ -224,7 +224,7 @@ quase independentemente da forma que ele estiver escrito. Primeiramente
 eu faço uma pequena limpeza em <code>trades$country\_name</code>, mas
 depois é simple assim:
 </p>
-<pre><code># Pegar o regex de cada pa&#xED;s
+<pre class="r"><code># Pegar o regex de cada pa&#xED;s
 regex &lt;- countrycode::countrycode_data$country.name.en.regex
 # Pegar a correspond&#xEA;ncia entre os pa&#xED;ses de &apos;totals&apos; e
 # &apos;capitals&apos;
@@ -253,7 +253,7 @@ duas pontas, mas vamos excluir essa coluna quando passarmos a tabela
 para a função que gerará o globo). É assim que eu criei
 <code>arcs</code>:
 </p>
-<pre><code># Criar origem e destino dos arcos (origem &#xE9; sempre T&#xF3;quio)
+<pre class="r"><code># Criar origem e destino dos arcos (origem &#xE9; sempre T&#xF3;quio)
 arcs &lt;- geo_trades %&gt;% cbind( origin_lat = 35.68, origin_long = 139.69 ) %&gt;% select(-country_name) %&gt;% transmute( origin_lat = origin_lat, origin_long = origin_long, dest_lat = lat, dest_long = long, value = value )</code></pre>
 <p>
 E agora o grand finale: essa é a função que usamos para gerar o globo 😁
@@ -261,7 +261,7 @@ Se você olhar com cuidado para a imagem abaixo, é possível ver que a
 grossura de cada linha representa o volume monetário total das trocas
 comerciais entre o Japão e cada país.
 </p>
-<pre><code># Pegar a imagem do globo
+<pre class="r"><code># Pegar a imagem do globo
 earth &lt;- system.file(&quot;images/world.jpg&quot;, package = &quot;threejs&quot;)
 # Criar globo
 globejs( img = earth, lat = arcs$dest_lat, long = arcs$dest_long, arcs = arcs[, 1:4], arcsOpacity = 0.6, arcsHeight = 0.8, arcsLwd = arcs$value, arcsColor = &quot;green&quot;, atmosphere = TRUE, height = 800, width = 800, bg = &quot;white&quot;, value = 4

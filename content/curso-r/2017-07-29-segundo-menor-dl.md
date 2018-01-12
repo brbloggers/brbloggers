@@ -118,6 +118,6 @@ está pior do que a curva do <code>keras</code>.
 </p>
 <pre class="r"><code>df %&gt;% select(x, y_2) %&gt;% mutate(x_cat = cut_number(x, n = 50)) %&gt;% group_by(x_cat) %&gt;% summarise(p = mean(y_2), x = mean(x), keras = logistic(-1.006567 + 1.981977 * tanh(-1.058052 + 2.012015 * x)), glm = logistic(-1.6698641 + 0.3043212*x + 2.0936353 * tanh(x)), n = n()) %&gt;% mutate(logit_p = logit(p)) %&gt;% gather(Modelo, estimativa, keras, glm) %&gt;% ggplot() + geom_point(aes(x = x_cat, y = p)) + geom_line(aes(x = x_cat, y = estimativa, colour = Modelo, group = Modelo)) + theme_minimal() + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) + labs(x = &quot;x&quot;, colour = &quot;resposta&quot;)</code></pre>
 <p>
-<img src="http://curso-r.com/blog/2017-07-29-segundo-menor-dl_files/figure-html/unnamed-chunk-14-1.png" width="672">
+<img src="http://curso-r.com/blog/2017-07-29-segundo-menor-dl_files/figure-html/unnamed-chunk-15-1.png" width="672">
 </p>
 
