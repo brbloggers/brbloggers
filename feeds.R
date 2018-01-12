@@ -16,7 +16,8 @@ feeds <- list(
   "mind-and-iron"              = `mind-and-iron`,
   "NMEC"                       = `NMEC`,
   "paixao-por-dados"           = `paixao-por-dados`,
-  "r-python-e-redes"           = `r-python-e-redes`
+  "r-python-e-redes"           = `r-python-e-redes`,
+  "felippe-gomes"              = `felippe-gomes`
 )
 
 
