@@ -1,7 +1,7 @@
 +++
 title = "Criando relatórios com template tufle "
 date = "2017-12-14"
-categories = ["felippe-gomes"]
+categories = ["fellipe-gomes"]
 original_url = "https://gomesfellipe.github.io/post/2017-12-14-criando-relat%C3%B3rios-com-template-tufle/criando-relat%C3%B3rios-com-template-tufle/"
 +++
 

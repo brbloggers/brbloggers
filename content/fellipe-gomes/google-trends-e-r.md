@@ -1,7 +1,7 @@
 +++
 title = "Séries temporais com Google Trends e R"
 date = "2017-12-12"
-categories = ["felippe-gomes"]
+categories = ["fellipe-gomes"]
 original_url = "https://gomesfellipe.github.io/post/2017-12-12-google-trends-e-r/google-trends-e-r/"
 +++
 

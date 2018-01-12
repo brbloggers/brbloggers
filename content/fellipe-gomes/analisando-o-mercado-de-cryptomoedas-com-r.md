@@ -1,7 +1,7 @@
 +++
 title = "Analisando o mercado de cryptomoedas com R"
 date = "2017-12-04"
-categories = ["felippe-gomes"]
+categories = ["fellipe-gomes"]
 original_url = "https://gomesfellipe.github.io/post/analisando-o-mercado-de-cryptomoedas-com-r/"
 +++
 

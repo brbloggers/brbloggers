@@ -1,7 +1,7 @@
 +++
 title = "Análise Multivariada com R"
 date = "2018-01-04"
-categories = ["felippe-gomes"]
+categories = ["fellipe-gomes"]
 original_url = "https://gomesfellipe.github.io/post/2018-01-01-analise-multivariada-em-r/an%C3%A1lise-multivariada-em-r/"
 +++
 

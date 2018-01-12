@@ -1,7 +1,7 @@
 +++
 title = "Tipos de Correlacoes"
 date = "2017-12-01"
-categories = ["felippe-gomes"]
+categories = ["fellipe-gomes"]
 original_url = "https://gomesfellipe.github.io/post/tipos-de-correlacoes/"
 +++
 

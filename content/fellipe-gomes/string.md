@@ -1,7 +1,7 @@
 +++
 title = "Manipulação de Strings e Text Mining"
 date = "2017-12-17"
-categories = ["felippe-gomes"]
+categories = ["fellipe-gomes"]
 original_url = "https://gomesfellipe.github.io/post/2017-12-17-string/string/"
 +++
 

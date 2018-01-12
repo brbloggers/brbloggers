@@ -1,5 +1,5 @@
-`felippe-gomes` <- list(
-  nome = "Felippe Gomes",
+`fellipe-gomes` <- list(
+  nome = "Fellipe Gomes",
   url = "https://gomesfellipe.github.io",
   
   lista = function(){

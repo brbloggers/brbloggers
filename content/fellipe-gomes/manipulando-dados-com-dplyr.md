@@ -1,7 +1,7 @@
 +++
 title = "Manipulando dados com dplyr"
 date = "2017-12-07"
-categories = ["felippe-gomes"]
+categories = ["fellipe-gomes"]
 original_url = "https://gomesfellipe.github.io/post/2017-12-07-manipulando-dados-com-dplyr/manipulando-dados-com-dplyr/"
 +++
 

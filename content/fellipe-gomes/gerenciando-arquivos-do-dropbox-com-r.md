@@ -1,7 +1,7 @@
 +++
 title = "Gerenciando arquivos do Dropbox com R"
 date = "2017-12-04"
-categories = ["felippe-gomes"]
+categories = ["fellipe-gomes"]
 original_url = "https://gomesfellipe.github.io/post/gerenciando-arquivos-do-dropbox-com-r/gerenciando-arquivos-do-dropbox-com-r/"
 +++
 

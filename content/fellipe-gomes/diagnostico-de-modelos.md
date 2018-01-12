@@ -1,7 +1,7 @@
 +++
 title = "Pacotes do R para avaliar o ajuste de modelos"
 date = "2017-12-24"
-categories = ["felippe-gomes"]
+categories = ["fellipe-gomes"]
 original_url = "https://gomesfellipe.github.io/post/2017-12-24-diagnostico-de-modelo/diagnostico-de-modelos/"
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "Tipos de relações entre variáveis"
 date = "2017-12-02"
-categories = ["felippe-gomes"]
+categories = ["fellipe-gomes"]
 original_url = "https://gomesfellipe.github.io/post/tipos-de-relacoes-entre-variaveis/"
 +++
 

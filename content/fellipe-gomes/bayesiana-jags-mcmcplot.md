@@ -1,7 +1,7 @@
 +++
 title = "Ajustando Modelos Bayesianos com JAGS"
 date = "2017-12-18"
-categories = ["felippe-gomes"]
+categories = ["fellipe-gomes"]
 original_url = "https://gomesfellipe.github.io/post/2017-12-18-bayesiana-jags-mcmcplot/bayesiana-jags-mcmcplot/"
 +++
 
