@@ -55,7 +55,8 @@ new_posts <- feeds %>%
     post_fun = map(feeds[blog], ~.x$post),
     item_content = map2_chr(post_fun, item_link, ~.x(.y))
   ) %>%
-  select(-post_fun, -fname)
+  select(-post_fun, -fname) %>%
+  filter(!is.na(item_content))
 
 
 # Write feeds to directory ------------------------------------------------
