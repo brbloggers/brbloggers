@@ -18,8 +18,8 @@ source("R/utils.R", local = TRUE)
 
 # Iniciar o processamento ---------------------------------------------
 message(sprintf("[%s]: Starting update",lubridate::now()))
-#Sys.setenv(MERCURY_KEY = secure::decrypt("MERCURY_KEY")$key)
-Sys.setenv(MERCURY_KEY = "IB8ejktBd84R2NXpAomsn30bR7MMMel5j2K3UKus")
+Sys.setenv(MERCURY_KEY = secure::decrypt("MERCURY_KEY")$key)
+
 
 # Preparar pastas para salvar posts ---------------------------------------
 
