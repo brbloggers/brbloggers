@@ -27,7 +27,8 @@ fix_file_name <- function(dir, item_link, feed_link){
     str_extract("/[^/]+$") %>%
     str_replace_all("%", "-") %>%
     str_replace_all("[\\(\\)]", "") %>%
-    str_replace_all("^/", "")
+    str_replace_all("^/", "")  %>%
+    str_replace_all("=", "-")
   
   sprintf(
     "content/%s/%s", 
