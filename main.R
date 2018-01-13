@@ -77,7 +77,11 @@ if(nrow(new_posts) > 0){
       
       # convert file to markdown
       if(rmarkdown::pandoc_available(error = FALSE)){
-        rmarkdown::render(sprintf("%s.html", file_name), rmarkdown::md_document())
+        rmarkdown::render(
+          sprintf("%s.html", file_name), 
+          rmarkdown::md_document(),
+          output_file = sprintf("%s.md", file_name)
+          )
         
         # add the header and rewrite
         md_file <- read_file(sprintf("%s.md", file_name)) 
