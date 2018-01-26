@@ -79,8 +79,7 @@ if(nrow(new_posts) > 0){
       if(rmarkdown::pandoc_available(error = FALSE)){
         rmarkdown::render(
           sprintf("%s.html", file_name), 
-          rmarkdown::md_document(),
-          output_file = sprintf("%s.md", file_name)
+          rmarkdown::md_document()
           )
         
         # add the header and rewrite

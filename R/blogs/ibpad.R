@@ -17,7 +17,7 @@ ibpad <- list(
       item_title = map_chr(id_items, ~unlist(x$channel[[.x]]$title)),
       item_date_published = map_chr(id_items, ~unlist(x$channel[[.x]]$pubDate)),
       item_link = map_chr(id_items, ~unlist(x$channel[[.x]]$link))
-    )
+    ) 
     
     df$item_date_published <- lubridate::dmy_hms(df$item_date_published)
     
