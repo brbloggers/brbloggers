@@ -19,6 +19,8 @@ files &lt;- parallel::mcmapply( download_wiki_, links, SIMPLIFY = TRUE, mc.cores
 </div>
 <div id="scrapers-distribuidos" class="section level2"> <p>Para o nosso <em>grand finale</em> temos um pequeno salto de dificuldade. Agora que somos capazes de usar todo o potencial do nosso computador, a &#xFA;nica forma de fazer scraping mais r&#xE1;pido &#xE9; usando <strong>mais</strong> computadores.</p>
 <p>Isso parece loucura, mas usando m&#xE1;quinas virtuais da <a href="https://aws.amazon.com/pt/ec2/">Amazon</a> ou da <a href="https://cloud.google.com/compute/">Google</a> essa &#xE9; na verdade uma tarefa bastante simples! Podemos criar algumas inst&#xE2;ncias virtuais e enviar os links para que elas os baixem, distribuindo o download entre v&#xE1;rias m&#xE1;quinas.</p>
+<div class="figure">
+<img src="http://ctlente.com/distributed-scraper/scheme.png" alt=""> </div>
 <p>Para permitir que uma m&#xE1;quina virtual receba o comando de download, criei um pequeno servidor HTTP em cada uma, assim elas ficar&#xE3;o esperando por uma chamada POST contendo os URLs a serem baixados.</p>
 <pre class="python"><code># Trecho do c&#xF3;digo em python do servidor que lida com POSTs
 def do_POST(self): content_length = int(self.headers[&apos;Content-Length&apos;]) post_data = self.rfile.read(content_length) call([&quot;Rscript&quot;, &quot;~/script.R&quot;, post_data])</code></pre>
