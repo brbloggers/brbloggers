@@ -1,0 +1,33 @@
+<div><p class="text-muted text-uppercase mb-small text-right"> Por <a href="http://curso-r.com/author/caio">Caio</a> 18/02/2018 </p><div id="post-content"> <p><em>Web scraping</em> (ou raspagem web) n&#xE3;o &#xE9; nada mais que o ato de coletar dados da internet. Hoje em dia &#xE9; muito comum termos acesso r&#xE1;pido e f&#xE1;cil a qualquer conjunto de informa&#xE7;&#xF5;es pela web, mas raramente esses dados est&#xE3;o estruturados e em uma forma de f&#xE1;cil obten&#xE7;&#xE3;o pelo usu&#xE1;rio.</p>
+<p>Isso faz com que precisemos aprender a coletar esses dados por conta pr&#xF3;pria. Neste post vou descrever o <strong>fluxo do web scraping</strong>, um passo a passo para explicar aos iniciantes como funciona a cria&#xE7;&#xE3;o de um raspador.</p>
+<div id="o-fluxo" class="section level2"> <p>Caso voc&#xEA; j&#xE1; tenha visto o <a href="http://r4ds.had.co.nz/introduction.html">fluxo da ci&#xEA;ncia de dados</a> descrito por Hadley Wickham, o fluxo do web scraping vai ser bastante simples de entender. Todos os itens a seguir v&#xE3;o se basear neste diagrama:</p>
+<div class="figure">
+<img src="http://curso-r.com/blog/2018-02-18-fluxo-scraping/cycle.png"> </div>
+<p>Cada verbo indica um fase do processo de raspar dados da internet. A caixa azulada no meio do diagrama denominada <strong>reprodu&#xE7;&#xE3;o</strong> indica um procedimento iterativo que devemos repetir at&#xE9; que a coleta funcione, mas, de resto, o fluxo &#xE9; um processo linear.</p>
+<p>Nas pr&#xF3;ximas se&#xE7;&#xF5;es, vamos explorar um exemplo bem simples para entender como esses passos se dariam no mundo real: extrair os t&#xED;tulos de artigos da Wikip&#xE9;dia.</p>
+<div id="identificar" class="section level3"> <p>O primeiro passo do fluxo se chama <strong>identificar</strong> porque nele identificamos a informa&#xE7;&#xE3;o que vamos coletar. Aqui precisamos entender bem qual &#xE9; a estrutura das p&#xE1;ginas que queremos raspar e tra&#xE7;ar um plano para extrair tudo que precisamos.</p>
+<p>No nosso exemplo, precisar&#xED;amos entrar em algumas p&#xE1;ginas da Wikip&#xE9;dia para entender se os t&#xED;tulos se comportam da mesma forma em todas. Como a Wikip&#xE9;dia &#xE9; um site organizado, todos os t&#xED;tulos s&#xE3;o criados da mesma forma em absolutamente todos os artigos.</p>
+<div class="figure">
+<img src="http://curso-r.com/blog/2018-02-18-fluxo-scraping/title.gif"> </div>
+</div> <div id="replicar" class="section level3"> <p>Se tiv&#xE9;ssemos que fazer v&#xE1;rias requests HTTP para chegar at&#xE9; a informa&#xE7;&#xE3;o que queremos, seria aqui em que tentar&#xED;amos <strong>replicar</strong> essas chamadas. Neste passo &#xE9; importante compreender absolutamente tudo que a p&#xE1;gina est&#xE1; fazendo para trazer o conte&#xFA;do at&#xE9; voc&#xEA;, ent&#xE3;o &#xE9; necess&#xE1;rio analisar o seu <em>networking</em> a fim de entender tais requests e seus respectivos queries.</p>
+<p>No nosso caso, basta fazer uma chamada GET para obter a p&#xE1;gina do artigo desejado. Tamb&#xE9;m se faz necess&#xE1;rio salvar a p&#xE1;gina localmente para que possamos dar continuidade ao fluxo.</p>
+<pre class="r"><code>url &lt;- &quot;https://en.wikipedia.org/wiki/R_(programming_language)&quot;
+httr::GET(url, httr::write_disk(&quot;~/Desktop/wiki.html&quot;))</code></pre>
+</div>
+<div id="parsear" class="section level3"> <p>O anglicismo <strong>parsear</strong> vem do verbo <em>to parse</em>, que quer dizer algo como analisar ou estudar, mas que, no contexto do web scraping, significa extrair os dados desejados de um arquivo HTML.</p>
+<p>Aqui vamos usar a informa&#xE7;&#xE3;o obtida no passo 2 para retirar do arquivo que chamei de <code>wiki.html</code> o t&#xED;tulo do artigo.</p>
+<pre class="r"><code>&quot;~/Desktop/wiki.html&quot; %&gt;% xml2::read_html() %&gt;% rvest::html_node(xpath = &quot;//*[@id=&apos;firstHeading&apos;]&quot;) %&gt;% rvest::html_text()
+#&gt; [1] &quot;R (programming language)&quot;</code></pre>
+</div>
+<div id="validar" class="section level3"> <p>Se tivermos feito tudo certo at&#xE9; agora, <strong>validar</strong> os resultados ser&#xE1; uma tarefa simples. Precisamos apenas reproduzir o procedimento descrito at&#xE9; agora para algumas outras p&#xE1;ginas de modo verificar se estamos de fato extraindo corretamente tudo o que queremos.</p>
+<p>Caso encontremos algo de errado precisamos voltar ao passo 3, tentar replicar corretamente o comportamento do site e parsear os dados certos nas p&#xE1;ginas.</p>
+</div>
+<div id="iterar" class="section level3"> <p>O &#xFA;ltimo passo consiste em colocar o nosso scraper em produ&#xE7;&#xE3;o. Aqui, ele j&#xE1; deve estar funcionando corretamente para todos os casos desejados e estar pronto para raspar todos os dados dos quais precisamos.</p>
+<p>Na maior parte dos casos isso consiste em encapsular o scraper em uma fun&#xE7;&#xE3;o que recebe uma s&#xE9;rie de links e aplica o mesmo procedimento em cada um. Se quisermos aumentar a efici&#xEA;ncia desse processo, podemos <a href="http://curso-r.com/blog/2018/02/17/2018-02-17-scraper-distribuido/">paralelizar ou distribuir</a> o nosso raspador.</p>
+<pre class="r"><code>scraper &lt;- function(url, path) { httr::GET(url, httr::write_disk(path)) path %&gt;% xml2::read_html() %&gt;% rvest::html_node(xpath = &quot;//*[@id=&apos;firstHeading&apos;]&quot;) %&gt;% rvest::html_text()
+} purrr::map2_chr(links, paths, scraper)</code></pre>
+</div>
+</div>
+<div id="conclusao" class="section level2"> <p>Fazer um scraper n&#xE3;o &#xE9; uma tarefa f&#xE1;cil, mas, se toda vez seguirmos um m&#xE9;todo consistente e robusto, podemos melhorar um pouco o nosso trabalho. O fluxo do web scraping tenta ser este m&#xE9;todo, englobando em passos simples e razoavelmente bem definidos essa arte que &#xE9; fazer raspadores web.</p>
+<p>Caso voc&#xEA; tenha se interessado pelo conte&#xFA;do abordado nesse post, eu e o pessoal da Curso-R vamos dar no dia 10/03/2018 um workshop em S&#xE3;o Paulos sobre web scraping com R. L&#xE1; voc&#xEA; vai ter a oportunidade de aprender em muitos mais detalhes como s&#xE3;o, no mundo real, os 6 passos do web scraping al&#xE9;m de v&#xE1;rias dicas de como tornar seus scrapers ainda melhores.</p>
+</div> </div></div>
