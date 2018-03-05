@@ -8,7 +8,7 @@
 <p>Para este tutorial, usaremos estes pacotes:</p>
 <!-- Crayon Syntax Highlighter v_2.7.2_beta -->
 
-		<div id="crayon-5a9c888f8e9bf953203058" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-5a9c8f9734919081137086" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;">
 <span class="crayon-title"></span>
@@ -33,31 +33,31 @@ library(ggrepel) # para plotar o nome das principais acoes</textarea></div>
 				<table class="crayon-table"><tr class="crayon-row">
 <td class="crayon-nums " data-settings="show">
 					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;">
-<div class="crayon-num" data-line="crayon-5a9c888f8e9bf953203058-1">1</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9bf953203058-2">2</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9bf953203058-3">3</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9bf953203058-4">4</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9bf953203058-5">5</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9bf953203058-6">6</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734919081137086-1">1</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734919081137086-2">2</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734919081137086-3">3</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734919081137086-4">4</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734919081137086-5">5</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734919081137086-6">6</div>
 </div>
 				</td>
 						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;">
-<div class="crayon-line" id="crayon-5a9c888f8e9bf953203058-1">
+<div class="crayon-line" id="crayon-5a9c8f9734919081137086-1">
 <span class="crayon-e">library</span><span class="crayon-sy">(</span><span class="crayon-v">rvest</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-p"># web scraping</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9bf953203058-2">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734919081137086-2">
 <span class="crayon-e">library</span><span class="crayon-sy">(</span><span class="crayon-v">tidyverse</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-p"># suite de pacotes</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9bf953203058-3">
+<div class="crayon-line" id="crayon-5a9c8f9734919081137086-3">
 <span class="crayon-e">library</span><span class="crayon-sy">(</span><span class="crayon-v">magrittr</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-p"># pipe = S2</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9bf953203058-4">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734919081137086-4">
 <span class="crayon-e">library</span><span class="crayon-sy">(</span><span class="crayon-v">stringr</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-p"># manipulacao de texto</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9bf953203058-5">
+<div class="crayon-line" id="crayon-5a9c8f9734919081137086-5">
 <span class="crayon-e">library</span><span class="crayon-sy">(</span><span class="crayon-v">ggthemes</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-p"># usaremos para fazer graficos parecidos com o da The Economist</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9bf953203058-6">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734919081137086-6">
 <span class="crayon-e">library</span><span class="crayon-sy">(</span><span class="crayon-v">ggrepel</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-p"># para plotar o nome das principais acoes</span>
 </div>
 </div></td>
@@ -70,7 +70,7 @@ library(ggrepel) # para plotar o nome das principais acoes</textarea></div>
 <p>Primeiramente, vamos construir um vetor com todas as páginas das ações.No momento deste post, eram 17:</p>
 <!-- Crayon Syntax Highlighter v_2.7.2_beta -->
 
-		<div id="crayon-5a9c888f8e9c6404285088" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-5a9c8f9734921544199289" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;">
 <span class="crayon-title"></span>
@@ -89,9 +89,9 @@ url.exame 1:17)</textarea></div>
 			<div class="crayon-main" style="">
 				<table class="crayon-table"><tr class="crayon-row">
 <td class="crayon-nums " data-settings="show">
-					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5a9c888f8e9c6404285088-1">1</div></div>
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5a9c8f9734921544199289-1">1</div></div>
 				</td>
-						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5a9c888f8e9c6404285088-1">
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5a9c8f9734921544199289-1">
 <span class="crayon-v">url</span><span class="crayon-sy">.</span><span class="crayon-i">exame</span><span class="crayon-h"> </span><span class="crayon-cn">1</span><span class="crayon-o">:</span><span class="crayon-cn">17</span><span class="crayon-sy">)</span>
 </div></div></td>
 					</tr></table>
@@ -101,7 +101,7 @@ url.exame 1:17)</textarea></div>
 <p>Sobre cada página criada no comando acima, será executada a função criada abaixo para extrair a tabela que precisamos:</p>
 <!-- Crayon Syntax Highlighter v_2.7.2_beta -->
 
-		<div id="crayon-5a9c888f8e9c8244129112" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-5a9c8f9734924415445849" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;">
 <span class="crayon-title"></span>
@@ -128,39 +128,39 @@ as.data.frame()
 				<table class="crayon-table"><tr class="crayon-row">
 <td class="crayon-nums " data-settings="show">
 					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;">
-<div class="crayon-num" data-line="crayon-5a9c888f8e9c8244129112-1">1</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9c8244129112-2">2</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9c8244129112-3">3</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9c8244129112-4">4</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9c8244129112-5">5</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9c8244129112-6">6</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9c8244129112-7">7</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9c8244129112-8">8</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734924415445849-1">1</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734924415445849-2">2</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734924415445849-3">3</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734924415445849-4">4</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734924415445849-5">5</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734924415445849-6">6</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734924415445849-7">7</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734924415445849-8">8</div>
 </div>
 				</td>
 						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;">
-<div class="crayon-line" id="crayon-5a9c888f8e9c8244129112-1">
+<div class="crayon-line" id="crayon-5a9c8f9734924415445849-1">
 <span class="crayon-v">extrair</span><span class="crayon-sy">.</span><span class="crayon-v">tabela</span><span class="crayon-h"> </span><span class="crayon-o">%</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9c8244129112-2">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734924415445849-2">
 <span class="crayon-e">read_html</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-p"># le codigo fonte da pagina</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9c8244129112-3">
+<div class="crayon-line" id="crayon-5a9c8f9734924415445849-3">
 <span class="crayon-e">html_table</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-p"># extrai tabelas da pagina</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9c8244129112-4">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734924415445849-4">
 <span class="crayon-sy">.</span><span class="crayon-sy">[</span><span class="crayon-sy">[</span><span class="crayon-cn">2</span><span class="crayon-sy">]</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-p"># por tentativa e erro, das tabelas retornadas, a que queremos é a segunda</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9c8244129112-5">
+<div class="crayon-line" id="crayon-5a9c8f9734924415445849-5">
 <span class="crayon-e">select</span><span class="crayon-sy">(</span><span class="crayon-cn">1</span><span class="crayon-o">:</span><span class="crayon-cn">3</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-p"># apenas as tres primeiras colunas sao usadas</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9c8244129112-6">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734924415445849-6">
 <span class="crayon-e">set_names</span><span class="crayon-sy">(</span><span class="crayon-e">c</span><span class="crayon-sy">(</span><span class="crayon-s">"acao"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"preco_reais"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"variacao"</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-p"># renomeia colunas</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9c8244129112-7">
+<div class="crayon-line" id="crayon-5a9c8f9734924415445849-7">
 <span class="crayon-st">as</span><span class="crayon-sy">.</span><span class="crayon-v">data</span><span class="crayon-sy">.</span><span class="crayon-e">frame</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9c8244129112-8"><span class="crayon-sy">}</span></div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734924415445849-8"><span class="crayon-sy">}</span></div>
 </div></td>
 					</tr></table>
 </div>
@@ -169,7 +169,7 @@ as.data.frame()
 <p></p>
 <!-- Crayon Syntax Highlighter v_2.7.2_beta -->
 
-		<div id="crayon-5a9c888f8e9cb712387333" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-5a9c8f9734926115368174" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;">
 <span class="crayon-title"></span>
@@ -203,52 +203,52 @@ str(df.acoes)
 				<table class="crayon-table"><tr class="crayon-row">
 <td class="crayon-nums " data-settings="show">
 					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;">
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cb712387333-1">1</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cb712387333-2">2</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cb712387333-3">3</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cb712387333-4">4</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cb712387333-5">5</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cb712387333-6">6</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cb712387333-7">7</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cb712387333-8">8</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cb712387333-9">9</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cb712387333-10">10</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cb712387333-11">11</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cb712387333-12">12</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cb712387333-13">13</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cb712387333-14">14</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cb712387333-15">15</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734926115368174-1">1</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734926115368174-2">2</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734926115368174-3">3</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734926115368174-4">4</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734926115368174-5">5</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734926115368174-6">6</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734926115368174-7">7</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734926115368174-8">8</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734926115368174-9">9</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734926115368174-10">10</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734926115368174-11">11</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734926115368174-12">12</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734926115368174-13">13</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734926115368174-14">14</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734926115368174-15">15</div>
 </div>
 				</td>
 						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;">
-<div class="crayon-line" id="crayon-5a9c888f8e9cb712387333-1">
+<div class="crayon-line" id="crayon-5a9c8f9734926115368174-1">
 <span class="crayon-v">lista</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-e">map</span><span class="crayon-sy">(</span><span class="crayon-v">extrair</span><span class="crayon-sy">.</span><span class="crayon-v">tabela</span><span class="crayon-sy">)</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cb712387333-2"><span class="crayon-p"># checando se deu certo</span></div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cb712387333-3">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734926115368174-2"><span class="crayon-p"># checando se deu certo</span></div>
+<div class="crayon-line" id="crayon-5a9c8f9734926115368174-3">
 <span class="crayon-v">lista</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-e">map_lgl</span><span class="crayon-sy">(</span><span class="crayon-st">is</span><span class="crayon-sy">.</span><span class="crayon-v">data</span><span class="crayon-sy">.</span><span class="crayon-v">frame</span><span class="crayon-sy">)</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cb712387333-4"> </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cb712387333-5"><span class="crayon-p">## [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cb712387333-6"><span class="crayon-p">## [15] TRUE TRUE TRUE</span></div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cb712387333-7"><span class="crayon-p"># transformar os 17 dataframes em um so</span></div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cb712387333-8">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734926115368174-4"> </div>
+<div class="crayon-line" id="crayon-5a9c8f9734926115368174-5"><span class="crayon-p">## [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734926115368174-6"><span class="crayon-p">## [15] TRUE TRUE TRUE</span></div>
+<div class="crayon-line" id="crayon-5a9c8f9734926115368174-7"><span class="crayon-p"># transformar os 17 dataframes em um so</span></div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734926115368174-8">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-e">bind_rows</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cb712387333-9"><span class="crayon-p"># checando o arquivo</span></div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cb712387333-10">
+<div class="crayon-line" id="crayon-5a9c8f9734926115368174-9"><span class="crayon-p"># checando o arquivo</span></div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734926115368174-10">
 <span class="crayon-e">str</span><span class="crayon-sy">(</span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-sy">)</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cb712387333-11"> </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cb712387333-12"><span class="crayon-p">## 'data.frame': 489 obs. of 3 variables:</span></div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cb712387333-13"><span class="crayon-p">## $ acao : chr "ABCB4\n ABC Brasil PN" "ABEV3\n Ambev S.A" "AEFI11\n FII AESAPAR CI" "AELP3\n AES Elpa ON" ...</span></div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cb712387333-14"><span class="crayon-p">## $ preco_reais: chr "16,31" "19,39" "146,25" "6,07" ...</span></div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cb712387333-15"><span class="crayon-p">## $ variacao : chr "-0,49" "0,21" "-1,18" "-0,16" ...</span></div>
+<div class="crayon-line" id="crayon-5a9c8f9734926115368174-11"> </div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734926115368174-12"><span class="crayon-p">## 'data.frame': 489 obs. of 3 variables:</span></div>
+<div class="crayon-line" id="crayon-5a9c8f9734926115368174-13"><span class="crayon-p">## $ acao : chr "ABCB4\n ABC Brasil PN" "ABEV3\n Ambev S.A" "AEFI11\n FII AESAPAR CI" "AELP3\n AES Elpa ON" ...</span></div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734926115368174-14"><span class="crayon-p">## $ preco_reais: chr "16,31" "19,39" "146,25" "6,07" ...</span></div>
+<div class="crayon-line" id="crayon-5a9c8f9734926115368174-15"><span class="crayon-p">## $ variacao : chr "-0,49" "0,21" "-1,18" "-0,16" ...</span></div>
 </div></td>
 					</tr></table>
 </div>
 		</div>
-<!-- [Format Time: 0.0007 seconds] -->
+<!-- [Format Time: 0.0006 seconds] -->
 <p> </p>
 <h3>Limpeza dos dados</h3>
 <p>Como visto, os dados precisam passar por uma certa limpeza:<br>
@@ -259,7 +259,7 @@ As duas outras colunas precisam ser convertidas para numéricas.</p>
 <p></p>
 <!-- Crayon Syntax Highlighter v_2.7.2_beta -->
 
-		<div id="crayon-5a9c888f8e9cd485633487" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-5a9c8f9734928443888913" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;">
 <span class="crayon-title"></span>
@@ -280,15 +280,15 @@ df.acoes$nome_empresa %&amp;lt;&amp;gt;% str_trim()</textarea></div>
 				<table class="crayon-table"><tr class="crayon-row">
 <td class="crayon-nums " data-settings="show">
 					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;">
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cd485633487-1">1</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cd485633487-2">2</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734928443888913-1">1</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734928443888913-2">2</div>
 </div>
 				</td>
 						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;">
-<div class="crayon-line" id="crayon-5a9c888f8e9cd485633487-1">
+<div class="crayon-line" id="crayon-5a9c8f9734928443888913-1">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-e">separate</span><span class="crayon-sy">(</span><span class="crayon-v">acao</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-e">c</span><span class="crayon-sy">(</span><span class="crayon-s">"codigo_acao"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"nome_empresa"</span><span class="crayon-sy">)</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"[\n]"</span><span class="crayon-sy">)</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cd485633487-2">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734928443888913-2">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-sy">$</span><span class="crayon-v">nome_empresa</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-e">str_trim</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span>
 </div>
 </div></td>
@@ -301,7 +301,7 @@ df.acoes$nome_empresa %&amp;lt;&amp;gt;% str_trim()</textarea></div>
 <p></p>
 <!-- Crayon Syntax Highlighter v_2.7.2_beta -->
 
-		<div id="crayon-5a9c888f8e9cf335004713" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-5a9c8f973492b895030272" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;">
 <span class="crayon-title"></span>
@@ -335,65 +335,65 @@ str(df.acoes)
 				<table class="crayon-table"><tr class="crayon-row">
 <td class="crayon-nums " data-settings="show">
 					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;">
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cf335004713-1">1</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cf335004713-2">2</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cf335004713-3">3</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cf335004713-4">4</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cf335004713-5">5</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cf335004713-6">6</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cf335004713-7">7</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cf335004713-8">8</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cf335004713-9">9</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cf335004713-10">10</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cf335004713-11">11</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cf335004713-12">12</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cf335004713-13">13</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9cf335004713-14">14</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9cf335004713-15">15</div>
+<div class="crayon-num" data-line="crayon-5a9c8f973492b895030272-1">1</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f973492b895030272-2">2</div>
+<div class="crayon-num" data-line="crayon-5a9c8f973492b895030272-3">3</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f973492b895030272-4">4</div>
+<div class="crayon-num" data-line="crayon-5a9c8f973492b895030272-5">5</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f973492b895030272-6">6</div>
+<div class="crayon-num" data-line="crayon-5a9c8f973492b895030272-7">7</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f973492b895030272-8">8</div>
+<div class="crayon-num" data-line="crayon-5a9c8f973492b895030272-9">9</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f973492b895030272-10">10</div>
+<div class="crayon-num" data-line="crayon-5a9c8f973492b895030272-11">11</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f973492b895030272-12">12</div>
+<div class="crayon-num" data-line="crayon-5a9c8f973492b895030272-13">13</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f973492b895030272-14">14</div>
+<div class="crayon-num" data-line="crayon-5a9c8f973492b895030272-15">15</div>
 </div>
 				</td>
 						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;">
-<div class="crayon-line" id="crayon-5a9c888f8e9cf335004713-1">
+<div class="crayon-line" id="crayon-5a9c8f973492b895030272-1">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-sy">$</span><span class="crayon-v">preco_reais</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-e">str_replace</span><span class="crayon-sy">(</span><span class="crayon-s">"\\."</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">""</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-p"># remover pontos (ex.:1.004,15)</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cf335004713-2">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f973492b895030272-2">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-sy">$</span><span class="crayon-v">preco_reais</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-e">str_replace</span><span class="crayon-sy">(</span><span class="crayon-s">","</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"."</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-p"># remover pontos (ex.:1.004,15)</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cf335004713-3">
+<div class="crayon-line" id="crayon-5a9c8f973492b895030272-3">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-sy">$</span><span class="crayon-v">preco_reais</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-st">as</span><span class="crayon-sy">.</span><span class="crayon-e">numeric</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cf335004713-4">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f973492b895030272-4">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-sy">$</span><span class="crayon-v">variacao</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-e">str_replace</span><span class="crayon-sy">(</span><span class="crayon-s">"\\."</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">""</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-p"># remover pontos (ex.:1.004,15)</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cf335004713-5">
+<div class="crayon-line" id="crayon-5a9c8f973492b895030272-5">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-sy">$</span><span class="crayon-v">variacao</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-e">str_replace</span><span class="crayon-sy">(</span><span class="crayon-s">","</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"."</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-p"># remover pontos (ex.:1.004,15)</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cf335004713-6">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f973492b895030272-6">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-sy">$</span><span class="crayon-v">variacao</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-st">as</span><span class="crayon-sy">.</span><span class="crayon-e">numeric</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cf335004713-7"> </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cf335004713-8">
+<div class="crayon-line" id="crayon-5a9c8f973492b895030272-7"> </div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f973492b895030272-8">
 <span class="crayon-e">str</span><span class="crayon-sy">(</span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-sy">)</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cf335004713-9"> </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cf335004713-10"><span class="crayon-p">## 'data.frame': 489 obs. of 4 variables:</span></div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cf335004713-11"><span class="crayon-p">## $ codigo_acao : chr "ABCB4" "ABEV3" "AEFI11" "AELP3" ...</span></div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cf335004713-12"><span class="crayon-p">## $ nome_empresa: chr "ABC Brasil PN" "Ambev S.A" "FII AESAPAR CI" "AES Elpa ON" ...</span></div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cf335004713-13"><span class="crayon-p">## $ preco_reais : num 16.31 19.39 146.25 6.07 4.9 ...</span></div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9cf335004713-14"><span class="crayon-p">## $ variacao : num -0.49 0.21 -1.18 -0.16 0 -6.57 0.08 0 0 0 ...</span></div>
-<div class="crayon-line" id="crayon-5a9c888f8e9cf335004713-15"> </div>
+<div class="crayon-line" id="crayon-5a9c8f973492b895030272-9"> </div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f973492b895030272-10"><span class="crayon-p">## 'data.frame': 489 obs. of 4 variables:</span></div>
+<div class="crayon-line" id="crayon-5a9c8f973492b895030272-11"><span class="crayon-p">## $ codigo_acao : chr "ABCB4" "ABEV3" "AEFI11" "AELP3" ...</span></div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f973492b895030272-12"><span class="crayon-p">## $ nome_empresa: chr "ABC Brasil PN" "Ambev S.A" "FII AESAPAR CI" "AES Elpa ON" ...</span></div>
+<div class="crayon-line" id="crayon-5a9c8f973492b895030272-13"><span class="crayon-p">## $ preco_reais : num 16.31 19.39 146.25 6.07 4.9 ...</span></div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f973492b895030272-14"><span class="crayon-p">## $ variacao : num -0.49 0.21 -1.18 -0.16 0 -6.57 0.08 0 0 0 ...</span></div>
+<div class="crayon-line" id="crayon-5a9c8f973492b895030272-15"> </div>
 </div></td>
 					</tr></table>
 </div>
 		</div>
-<!-- [Format Time: 0.0013 seconds] -->
+<!-- [Format Time: 0.0012 seconds] -->
 <p> </p>
 <h3>Análise e apresentação dos dados</h3>
 <p>Agora já estamos prontos para partir para a análise.</p>
 <p>Primeiramente, qual a distribuição da variação dos preços das ações?</p>
 <!-- Crayon Syntax Highlighter v_2.7.2_beta -->
 
-		<div id="crayon-5a9c888f8e9d1749008994" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-5a9c8f973492d587243703" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;">
 <span class="crayon-title"></span>
@@ -416,23 +416,23 @@ theme_economist()</textarea></div>
 				<table class="crayon-table"><tr class="crayon-row">
 <td class="crayon-nums " data-settings="show">
 					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;">
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d1749008994-1">1</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d1749008994-2">2</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d1749008994-3">3</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d1749008994-4">4</div>
+<div class="crayon-num" data-line="crayon-5a9c8f973492d587243703-1">1</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f973492d587243703-2">2</div>
+<div class="crayon-num" data-line="crayon-5a9c8f973492d587243703-3">3</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f973492d587243703-4">4</div>
 </div>
 				</td>
 						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;">
-<div class="crayon-line" id="crayon-5a9c888f8e9d1749008994-1">
+<div class="crayon-line" id="crayon-5a9c8f973492d587243703-1">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d1749008994-2">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f973492d587243703-2">
 <span class="crayon-e">ggplot</span><span class="crayon-sy">(</span><span class="crayon-e">aes</span><span class="crayon-sy">(</span><span class="crayon-v">x</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">variacao</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">+</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d1749008994-3">
+<div class="crayon-line" id="crayon-5a9c8f973492d587243703-3">
 <span class="crayon-e">geom_histogram</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">+</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d1749008994-4">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f973492d587243703-4">
 <span class="crayon-e">theme_economist</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span>
 </div>
 </div></td>
@@ -457,7 +457,7 @@ theme_economist()</textarea></div>
 <p>Vamos analisar quais foram as ações que mais variaram no dia de hoje:</p>
 <!-- Crayon Syntax Highlighter v_2.7.2_beta -->
 
-		<div id="crayon-5a9c888f8e9d3688653896" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-5a9c8f9734930728173364" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;">
 <span class="crayon-title"></span>
@@ -500,93 +500,93 @@ df.destaque %&amp;gt;% knitr::kable()
 				<table class="crayon-table"><tr class="crayon-row">
 <td class="crayon-nums " data-settings="show">
 					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;">
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d3688653896-1">1</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d3688653896-2">2</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d3688653896-3">3</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d3688653896-4">4</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d3688653896-5">5</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d3688653896-6">6</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d3688653896-7">7</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d3688653896-8">8</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d3688653896-9">9</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d3688653896-10">10</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d3688653896-11">11</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d3688653896-12">12</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d3688653896-13">13</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d3688653896-14">14</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d3688653896-15">15</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d3688653896-16">16</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d3688653896-17">17</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d3688653896-18">18</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d3688653896-19">19</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d3688653896-20">20</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d3688653896-21">21</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d3688653896-22">22</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d3688653896-23">23</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d3688653896-24">24</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734930728173364-1">1</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734930728173364-2">2</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734930728173364-3">3</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734930728173364-4">4</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734930728173364-5">5</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734930728173364-6">6</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734930728173364-7">7</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734930728173364-8">8</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734930728173364-9">9</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734930728173364-10">10</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734930728173364-11">11</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734930728173364-12">12</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734930728173364-13">13</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734930728173364-14">14</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734930728173364-15">15</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734930728173364-16">16</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734930728173364-17">17</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734930728173364-18">18</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734930728173364-19">19</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734930728173364-20">20</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734930728173364-21">21</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734930728173364-22">22</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734930728173364-23">23</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734930728173364-24">24</div>
 </div>
 				</td>
 						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;">
-<div class="crayon-line" id="crayon-5a9c888f8e9d3688653896-1"><span class="crayon-p"># maiores subidas e quedas:</span></div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d3688653896-2">
+<div class="crayon-line" id="crayon-5a9c8f9734930728173364-1"><span class="crayon-p"># maiores subidas e quedas:</span></div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734930728173364-2">
 <span class="crayon-v">limite_inferior</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-v">sort</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-e">head</span><span class="crayon-sy">(</span><span class="crayon-cn">5</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-sy">.</span><span class="crayon-sy">[</span><span class="crayon-cn">5</span><span class="crayon-sy">]</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d3688653896-3">
+<div class="crayon-line" id="crayon-5a9c8f9734930728173364-3">
 <span class="crayon-v">limite_superior</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-v">sort</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-e">tail</span><span class="crayon-sy">(</span><span class="crayon-cn">5</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-sy">.</span><span class="crayon-sy">[</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d3688653896-4"> </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d3688653896-5">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734930728173364-4"> </div>
+<div class="crayon-line" id="crayon-5a9c8f9734930728173364-5">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">destaque</span><span class="crayon-h"> </span><span class="crayon-o">%</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d3688653896-6">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734930728173364-6">
 <span class="crayon-e">filter</span><span class="crayon-sy">(</span><span class="crayon-v">variacao</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">limite_inferior</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">variacao</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">limite_superior</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d3688653896-7">
+<div class="crayon-line" id="crayon-5a9c8f9734930728173364-7">
 <span class="crayon-e">arrange</span><span class="crayon-sy">(</span><span class="crayon-e">desc</span><span class="crayon-sy">(</span><span class="crayon-v">variacao</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d3688653896-8"> </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d3688653896-9">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734930728173364-8"> </div>
+<div class="crayon-line" id="crayon-5a9c8f9734930728173364-9">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">destaque</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span><span class="crayon-h"> </span><span class="crayon-v">knitr</span><span class="crayon-o">::</span><span class="crayon-e">kable</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d3688653896-10"> </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d3688653896-11"> </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d3688653896-12">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734930728173364-10"> </div>
+<div class="crayon-line" id="crayon-5a9c8f9734930728173364-11"> </div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734930728173364-12">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">codigo</span><span class="crayon-sy">\</span><span class="crayon-v">_acao</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">nome</span><span class="crayon-sy">\</span><span class="crayon-v">_empresa</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">preco</span><span class="crayon-sy">\</span><span class="crayon-v">_reais</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">variacao</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d3688653896-13">
+<div class="crayon-line" id="crayon-5a9c8f9734930728173364-13">
 <span class="crayon-o">|</span><span class="crayon-o">:</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">-</span><span class="crayon-o">|</span><span class="crayon-o">:</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">-</span><span class="crayon-o">|</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">-</span><span class="crayon-o">:</span><span class="crayon-o">|</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">-</span><span class="crayon-o">:</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d3688653896-14">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734930728173364-14">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">ELPL3</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-e">AES </span><span class="crayon-e">Eletropaulo </span><span class="crayon-v">ON</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">17.58</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">19.59</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d3688653896-15">
+<div class="crayon-line" id="crayon-5a9c8f9734930728173364-15">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">CTSA4</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-e">Santanense </span><span class="crayon-v">PN</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">2.93</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">13.13</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d3688653896-16">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734930728173364-16">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">USIM6</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-e">Usiminas </span><span class="crayon-v">PNB</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">5.80</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">10.06</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d3688653896-17">
+<div class="crayon-line" id="crayon-5a9c8f9734930728173364-17">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">DTCY3</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-e">Dtcom </span><span class="crayon-v">ON</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">3.74</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">9.68</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d3688653896-18">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734930728173364-18">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">LLIS3</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-e">Restoque </span><span class="crayon-v">ON</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">40.00</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">8.11</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d3688653896-19">
+<div class="crayon-line" id="crayon-5a9c8f9734930728173364-19">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">PLAS3</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-e">Plascar </span><span class="crayon-v">ON</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">4.10</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-cn">7.87</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d3688653896-20">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734930728173364-20">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">SPRI3</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-e">Springer </span><span class="crayon-v">ON</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">9.39</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-cn">8.83</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d3688653896-21">
+<div class="crayon-line" id="crayon-5a9c8f9734930728173364-21">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">CEPE6</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-e">Celpe </span><span class="crayon-v">PNB</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">15.91</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-cn">9.09</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d3688653896-22">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734930728173364-22">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">TXRX4</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-i">T</span>ê<span class="crayon-e">xteis </span><span class="crayon-e">Renaux </span><span class="crayon-v">PN</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">2.40</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-cn">9.77</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d3688653896-23">
+<div class="crayon-line" id="crayon-5a9c8f9734930728173364-23">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">OGSA3</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-e">NOVA </span><span class="crayon-v">ON</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">1.80</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-cn">15.89</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d3688653896-24"> </div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734930728173364-24"> </div>
 </div></td>
 					</tr></table>
 </div>
@@ -596,7 +596,7 @@ df.destaque %&amp;gt;% knitr::kable()
 <p>Uma boa maneira de resumir o dia de hoje seria em um gráfico que correlaciona o preço da ação com sua variação, destacando o TOP 10 acima:</p>
 <!-- Crayon Syntax Highlighter v_2.7.2_beta -->
 
-		<div id="crayon-5a9c888f8e9d6635256657" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-5a9c8f9734932149200261" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;">
 <span class="crayon-title"></span>
@@ -623,39 +623,39 @@ caption = "Blog do IBPAD - Sillas Gonzaga")</textarea></div>
 				<table class="crayon-table"><tr class="crayon-row">
 <td class="crayon-nums " data-settings="show">
 					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;">
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d6635256657-1">1</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d6635256657-2">2</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d6635256657-3">3</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d6635256657-4">4</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d6635256657-5">5</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d6635256657-6">6</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d6635256657-7">7</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d6635256657-8">8</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734932149200261-1">1</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734932149200261-2">2</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734932149200261-3">3</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734932149200261-4">4</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734932149200261-5">5</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734932149200261-6">6</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734932149200261-7">7</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734932149200261-8">8</div>
 </div>
 				</td>
 						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;">
-<div class="crayon-line" id="crayon-5a9c888f8e9d6635256657-1">
+<div class="crayon-line" id="crayon-5a9c8f9734932149200261-1">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d6635256657-2">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734932149200261-2">
 <span class="crayon-e">ggplot</span><span class="crayon-sy">(</span><span class="crayon-e">aes</span><span class="crayon-sy">(</span><span class="crayon-v">x</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">variacao</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">preco_reais</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">+</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d6635256657-3">
+<div class="crayon-line" id="crayon-5a9c8f9734932149200261-3">
 <span class="crayon-e">geom_point</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">+</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d6635256657-4">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734932149200261-4">
 <span class="crayon-e">geom_text_repel</span><span class="crayon-sy">(</span><span class="crayon-v">data</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">destaque</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-e">aes</span><span class="crayon-sy">(</span><span class="crayon-v">label</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">codigo_acao</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">+</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d6635256657-5">
+<div class="crayon-line" id="crayon-5a9c8f9734932149200261-5">
 <span class="crayon-e">theme_economist</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">+</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d6635256657-6">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734932149200261-6">
 <span class="crayon-e">labs</span><span class="crayon-sy">(</span><span class="crayon-v">x</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"Variação (%)"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"Preço (R$)"</span><span class="crayon-sy">,</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d6635256657-7">
+<div class="crayon-line" id="crayon-5a9c8f9734932149200261-7">
 <span class="crayon-v">title</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"Painel de resumo diário da Bovespa"</span><span class="crayon-sy">,</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d6635256657-8">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734932149200261-8">
 <span class="crayon-v">caption</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"Blog do IBPAD - Sillas Gonzaga"</span><span class="crayon-sy">)</span>
 </div>
 </div></td>
@@ -679,7 +679,7 @@ caption = "Blog do IBPAD - Sillas Gonzaga")</textarea></div>
 			<p>No código acima, o pacote <code>ggrepel</code> foi usado para plotar os nomes das ações de destaque, garantindo que eles não se cruzassem. Um outlier prejudicou a visualização:</p>
 <!-- Crayon Syntax Highlighter v_2.7.2_beta -->
 
-		<div id="crayon-5a9c888f8e9d8538725632" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		<div id="crayon-5a9c8f9734934781803633" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
 		
 			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;">
 <span class="crayon-title"></span>
@@ -707,39 +707,39 @@ knitr::kable()
 				<table class="crayon-table"><tr class="crayon-row">
 <td class="crayon-nums " data-settings="show">
 					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;">
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d8538725632-1">1</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d8538725632-2">2</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d8538725632-3">3</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d8538725632-4">4</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d8538725632-5">5</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d8538725632-6">6</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d8538725632-7">7</div>
-<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c888f8e9d8538725632-8">8</div>
-<div class="crayon-num" data-line="crayon-5a9c888f8e9d8538725632-9">9</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734934781803633-1">1</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734934781803633-2">2</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734934781803633-3">3</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734934781803633-4">4</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734934781803633-5">5</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734934781803633-6">6</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734934781803633-7">7</div>
+<div class="crayon-num crayon-striped-num" data-line="crayon-5a9c8f9734934781803633-8">8</div>
+<div class="crayon-num" data-line="crayon-5a9c8f9734934781803633-9">9</div>
 </div>
 				</td>
 						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;">
-<div class="crayon-line" id="crayon-5a9c888f8e9d8538725632-1">
+<div class="crayon-line" id="crayon-5a9c8f9734934781803633-1">
 <span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">acoes</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d8538725632-2">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734934781803633-2">
 <span class="crayon-e">filter</span><span class="crayon-sy">(</span><span class="crayon-v">preco_reais</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-cn">40000</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">%</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-o">%</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d8538725632-3">
+<div class="crayon-line" id="crayon-5a9c8f9734934781803633-3">
 <span class="crayon-v">knitr</span><span class="crayon-o">::</span><span class="crayon-e">kable</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d8538725632-4"> </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d8538725632-5"> </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d8538725632-6">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734934781803633-4"> </div>
+<div class="crayon-line" id="crayon-5a9c8f9734934781803633-5"> </div>
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734934781803633-6">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">codigo</span><span class="crayon-sy">\</span><span class="crayon-v">_acao</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">nome</span><span class="crayon-sy">\</span><span class="crayon-v">_empresa</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">preco</span><span class="crayon-sy">\</span><span class="crayon-v">_reais</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">variacao</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d8538725632-7">
+<div class="crayon-line" id="crayon-5a9c8f9734934781803633-7">
 <span class="crayon-o">|</span><span class="crayon-o">:</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">-</span><span class="crayon-o">|</span><span class="crayon-o">:</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">|</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">-</span><span class="crayon-o">:</span><span class="crayon-o">|</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">--</span><span class="crayon-o">-</span><span class="crayon-o">:</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line crayon-striped-line" id="crayon-5a9c888f8e9d8538725632-8">
+<div class="crayon-line crayon-striped-line" id="crayon-5a9c8f9734934781803633-8">
 <span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-v">PPAR3</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-e">Polpar </span><span class="crayon-v">ON</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">50000</span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-o">|</span>
 </div>
-<div class="crayon-line" id="crayon-5a9c888f8e9d8538725632-9"> </div>
+<div class="crayon-line" id="crayon-5a9c8f9734934781803633-9"> </div>
 </div></td>
 					</tr></table>
 </div>
