@@ -4,13 +4,15 @@
 <section id="instalacao" class="level3"> <p>Para seguir o tutorial voc&#xEA; precisa instalar o <a href="https://zeit.co/now">now</a> e criar uma conta. Siga <a href="https://zeit.co/download">este link</a> para instala&#xE7;&#xE3;o e configura&#xE7;&#xE3;o do <a href="https://zeit.co/now">now</a>.</p>
 </section>
 <section id="estrutura-do-projeto" class="level3"> <p><a href="https://github.com/curso-r/shiny-now">Esse reposit&#xF3;rio</a> cont&#xE9;m um exemplo simples funcionando do que iremos detalhar agora. Crie uma pasta no seu computador ou um projeto no RStudio com a seguinte estrutura:</p>
-<pre><code>-- app/
--- -- app.R
--- Dockerfile</code></pre>
+<pre><code>.
+&#x251C;&#x2500;&#x2500; Dockerfile
+&#x251C;&#x2500;&#x2500; app
+&#x2502; &#x2514;&#x2500;&#x2500; app.R
+&#x251C;&#x2500;&#x2500; app.R
+&#x2514;&#x2500;&#x2500; shiny-now.Rproj</code></pre>
 </section>
 <section id="dockerfile" class="level3"> <p><code>Dockerfile</code> &#xE9; um arquivo de texto vazio por enquanto. Dentro da pasta <code>app</code> coloque o seu app shiny. No meu exemplo coloquei um shiny com apenas umarquivo <code>app.R</code>, mas nada impede voc&#xEA; de colocar um shiny com a estrtura mais comum (um arquivo <code>ui.R</code> e um arquivo <code>server.R</code>).</p>
-</section>
-<section id="dockerfile-1" class="level3"> <p><code>Dockerfile</code>s podem ser referenciados a outras imagens docker. Existe uma imagem chamada <a href="https://hub.docker.com/r/rocker/shiny/">rocker/shiny</a> que j&#xE1; deixa quase tudo preparado para hospedar um app shiny, por isso em nosso Dockerfile vamos incluir a linha:</p>
+<p><code>Dockerfile</code>s podem ser referenciados a outras imagens docker. Existe uma imagem chamada <a href="https://hub.docker.com/r/rocker/shiny/">rocker/shiny</a> que j&#xE1; deixa quase tudo preparado para hospedar um app shiny, por isso em nosso Dockerfile vamos incluir a linha:</p>
 <pre><code>FROM rocker/shiny</code></pre>
 <p>Em seguida vamos indicar as instru&#xE7;&#xF5;es para instala&#xE7;&#xE3;o dos pacotes do R que s&#xE3;o usados no shiny. No meu caso, como o app n&#xE3;o faz praticamente nada, s&#xF3; usei o pacote <code>shinydashboard</code> por isso a pr&#xF3;xima linha do meu <code>Dockerfile</code> &#xE9; apenas:</p>
 <pre><code>RUN R -e &quot;install.packages(c(&apos;shinydashboard&apos;), repos=&apos;https://cran.rstudio.com/&apos;)&quot;</code></pre>
