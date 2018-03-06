@@ -51,7 +51,7 @@ Sending build context to Docker daemon 6.656 kBkB
 &gt; [2018-03-05T20:48:12.780] [WARN] shiny-server - Running as root unnecessarily is a security risk! You could be running more securely as non-root.
 &gt; [2018-03-05T20:48:12.788] [INFO] shiny-server - Starting listener on 0.0.0.0:3838
 &gt; Deployment complete!</code></pre>
-<p>Na sexta linha dessa mensagem, temos o endere&#xE7;o do nosso aplicativo. Por enquanto, o <a href="https://zeit.co/now">now</a> colocou um endere&#xE7;o para testes, mas tudo isso &#xE9; configur&#xE1;vel. Basta abrir essa url no navegador e ver o aplciativo funcionando.</p>
+<p>Na sexta linha dessa mensagem, temos o endere&#xE7;o do nosso aplicativo. Basta abrir essa url no navegador e ver o aplicativo funcionando. Por enquanto, o <a href="https://zeit.co/now">now</a> colocou um endere&#xE7;o para testes, mas tudo isso &#xE9; configur&#xE1;vel.</p>
 <p>Para mudar a url do seu app voc&#xEA; vai precisar usar o comando <code>now alias</code>. A documenta&#xE7;&#xE3;o desse comando &#xE9; muito boa e vai ser melhor do que qualquer coisa que eu escrever aqui. V&#xE1; para <a href="https://zeit.co/docs/features/aliases">este link</a>!</p>
 </section>
 <section id="conclusao" class="level3"> <p>O <a href="https://zeit.co/now">now</a> &#xE9; um servi&#xE7;o gratuito que permite a hospedagem de containers <a href="https://www.docker.com/">Docker</a>. Neste post configuramos um Dockerfile para instalar hospedar um app shiny e usando o comando <code>now</code> rapidamente enviamos o nosso aplicativo para o now e iniciamos a hospedagem.</p>
