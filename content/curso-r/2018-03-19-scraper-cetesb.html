@@ -42,18 +42,16 @@ my_cookie &lt;- cookies(res)$value %&gt;% purrr::set_names(cookies(res)$name)</c
 <pre class="r"><code>url &lt;- &quot;http://qualar.cetesb.sp.gov.br/qualar/exportaDados.do&quot; res &lt;- POST( url, query = list(method = &quot;pesquisar&quot;), body = list( irede = &quot;A&quot;, dataInicialStr = &quot;04/03/2018&quot;, dataFinalStr = &quot;05/03/2018&quot;, cDadosInvalidos = &quot;on&quot;, iTipoDado = &quot;P&quot;, estacaoVO.nestcaMonto = &quot;72&quot;, parametroVO.nparmt = &quot;63&quot; ), encode = &quot;form&quot;, set_cookies(my_cookie)
 )</code></pre>
 <p>Observe que, apesar de na pesquisa conseguirmos selecionar o nome da esta&#xE7;&#xE3;o e do par&#xE2;metro, a requisi&#xE7;&#xE3;o envia ids num&#xE9;ricos. No Qualar, eu encontrei apenas os ids das esta&#xE7;&#xF5;es, mas os valores de ambos os par&#xE2;metros podem ser encontrados inspecionando o html da p&#xE1;gina. Para facilitar a nossa vida, eu salvei esses valores nos arquivos <code>station_ids.csv</code> e <code>param_ids.csv</code>, que podem ser baixados pelo <a href="https://github.com/williamorim/Rpollution-blog/tree/master/content/blog/data">reposit&#xF3;rio do blog no Github</a>.</p>
-<pre class="r"><code>readr::read_csv(&quot;data/station_ids.csv&quot;)</code></pre>
-<pre class="r"><code>readr::read_csv(&quot;data/param_ids.csv&quot;)</code></pre>
 <p>Para finalizar, precisamos ler o resultado da nossa requisi&#xE7;&#xE3;o e transformar a tabela existe no html em um data frame.</p>
 <pre class="r"><code>content(res) %&gt;% rvest::html_table(fill = TRUE) %&gt;% extract2(2)</code></pre>
 </div>
 <div id="passo-4" class="section level2"> <p>Agora, vamos transformar nosso c&#xF3;digo numa fun&#xE7;&#xE3;o para poder repetir o processo v&#xE1;rias vezes para diversos par&#xE2;metros.</p>
 <pre class="r"><code>scraper_CETESB &lt;- function(station, parameter, start, end, type = &quot;P&quot;, login, password, invalidData = &quot;on&quot;, network = &quot;A&quot;) { res &lt;- GET(&quot;http://qualar.cetesb.sp.gov.br/qualar/home.do&quot;) my_cookie &lt;- cookies(res)$value %&gt;% purrr::set_names(cookies(res)$name) url &lt;- &quot;http://qualar.cetesb.sp.gov.br/qualar/autenticador&quot; res &lt;- POST( url, body = list( cetesb_login = login, cetesb_password = password, enviar = &quot;OK&quot; ), encode = &quot;form&quot;, set_cookies(my_cookie) ) url &lt;- &quot;http://qualar.cetesb.sp.gov.br/qualar/exportaDados.do&quot; res &lt;- POST( url, query = list(method = &quot;pesquisar&quot;), body = list( irede = network, dataInicialStr = start, dataFinalStr = end, cDadosInvalidos = invalidData, iTipoDado = type, estacaoVO.nestcaMonto = station, parametroVO.nparmt = parameter ), encode = &quot;form&quot;, set_cookies(my_cookie) ) content(res) %&gt;% rvest::html_table(fill = TRUE) %&gt;% extract2(2) }</code></pre>
-<p>Assim, basta rodar a fun&#xE7;&#xE3;o abaixo com o seu login e senha para obter em alguns segundos uma tabela estruturada com os dados solicitados.</p>
+<p>Assim, basta rodar a fun&#xE7;&#xE3;o abaixo com o seu login e senha para obter em alguns segundos uma tabela com os dados solicitados. Veja um exemplo:</p>
 <pre class="r"><code>dados_cetesb &lt;- scraper_CETESB(station = &quot;72&quot;, parameter = &quot;63&quot;, start = &quot;04/03/2018&quot;, end = &quot;05/03/2018&quot;, type = &quot;P&quot;, login = &quot;thewilliam89@gmail.com&quot;, password = &quot;wouldy0ukindly?&quot;, invalidData = &quot;on&quot;, network = &quot;A&quot;)</code></pre>
-<p>Agora s&#xF3; precisamos tirar colunas vazias e corrigir o nome das colunas.</p>
+<p>Precisamos apenas tirar as colunas vazias e corrigir o nome das colunas.</p>
 <pre class="r"><code>dados_cetesb &lt;- dados_cetesb %&gt;% janitor::remove_empty_cols() col_names &lt;- as.character(dados_cetesb[1,]) dados_cetesb &lt;- dados_cetesb %&gt;% magrittr::set_colnames(col_names) %&gt;% dplyr::slice(-1)</code></pre>
-<p>Eis os dados que quer&#xED;amos:</p>
+<p>Assim obtemos os dados que quer&#xED;amos:</p>
 <pre class="r"><code>dados_cetesb %&gt;% dplyr::select(`Nome Esta&#xE7;&#xE3;o`:`M&#xE9;dia Hor&#xE1;ria`) %&gt;% head %&gt;% knitr::kable()</code></pre>
 <table>
 <thead> </thead>
