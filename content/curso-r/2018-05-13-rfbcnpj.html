@@ -1,5 +1,6 @@
-<div><p>S&#xE3;o duas tabelas separadas por UF: i) <code>empresas</code>, contendo informa&#xE7;&#xF5;es de CNPJ e nome da empresa e ii) <code>socios</code>, contendo quadro de s&#xF3;cios. Essa base de dados &#xE9; atualizada pela pr&#xF3;pria RFB e n&#xE3;o fa&#xE7;o ideia de quando ser&#xE1; atualizada novamente.</p><p>Como os arquivos s&#xE3;o do tipo <a href="https://readr.tidyverse.org/reference/read_fwf.html">fixed width</a>, algumas pessoas podem ter dificuldade para ler e empilhar os arquivos no R. Esse pacote facilita as opera&#xE7;&#xF5;es de download e leitura.</p><div id="instalacao" class="section level2"> <p>Voc&#xEA; pode instalar o pacote <code>rfbCNPJ</code> do CRAN rodando</p>
-<pre class="r"><code>install.packages(&quot;rfbCNPJ&quot;)</code></pre>
+<div><p>S&#xE3;o duas tabelas, separadas por UF: i) <code>empresas</code>, contendo informa&#xE7;&#xF5;es de CNPJ e nome da empresa e ii) <code>socios</code>, contendo quadro de s&#xF3;cios. Essa base de dados &#xE9; atualizada pela pr&#xF3;pria RFB e eu n&#xE3;o fa&#xE7;o ideia de quando ser&#xE1; atualizada novamente.</p><p>Como os arquivos s&#xE3;o do tipo <a href="https://readr.tidyverse.org/reference/read_fwf.html">fixed width</a>, algumas pessoas podem ter dificuldade para ler e empilhar os arquivos no R. Esse pacote facilita as opera&#xE7;&#xF5;es de download e leitura.</p><div id="instalacao" class="section level2"> <p>Voc&#xEA; pode instalar o pacote <code>rfbCNPJ</code> do CRAN rodando</p>
+<pre class="r"><code># ainda n&#xE3;o foi aprovado no CRAN...
+install.packages(&quot;rfbCNPJ&quot;)</code></pre>
 <p>Voc&#xEA; tamb&#xE9;m pode baixar diretamente do GitHub rodando:</p>
 <pre class="r"><code># install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;jtrecenti/rfbCNPJ&quot;)</code></pre>
@@ -8,7 +9,7 @@ devtools::install_github(&quot;jtrecenti/rfbCNPJ&quot;)</code></pre>
 </div><div id="parse" class="section level2"> <p>A partir de uma pasta contendo os arquivos txt, voc&#xEA; pode carregar as bases de dados rodando <code>rfb_read()</code> com os caminhos dos arquivos ou <code>rfb_read_dir()</code> diretamente para ler todos os arquivos da pasta. Certifique-se de que a pasta que cont&#xE9;m os arquivos a serem lidos cont&#xE9;m apenas os arquivos baixados em <code>.txt</code>.</p>
 <pre class="r"><code>path &lt;- &quot;caminho/da/pasta&quot;
 all_files &lt;- fs::dir_ls(path) dados &lt;- rfb_read(all_files)
-dados &lt;- rfb_read_fir(path) # equivalente</code></pre>
+dados &lt;- rfb_read_dir(path) # equivalente</code></pre>
 </div><div id="carregando-dados" class="section level2"> <p>Os dados s&#xE3;o carregados numa tabela complexa com duas <em>list-columns</em>.</p>
 <pre class="r"><code>library(tibble)
 print(dados, n = 27)</code></pre>
@@ -18,13 +19,13 @@ print(dados, n = 27)</code></pre>
 20 D71214RN.txt &lt;tibble [80,562 &#xD7; 3]&gt; &lt;tibble [150,411 &#xD7; 6]&gt; 21 D71214RO.txt &lt;tibble [62,385 &#xD7; 3]&gt; &lt;tibble [109,774 &#xD7; 6]&gt; 22 D71214RR.txt &lt;tibble [11,908 &#xD7; 3]&gt; &lt;tibble [21,737 &#xD7; 6]&gt; 23 D71214RS.txt &lt;tibble [670,093 &#xD7; 3]&gt; &lt;tibble [1,350,159 &#xD7; 6]&gt;
 24 D71214SC.txt &lt;tibble [498,511 &#xD7; 3]&gt; &lt;tibble [974,351 &#xD7; 6]&gt; 25 D71214SE.txt &lt;tibble [63,303 &#xD7; 3]&gt; &lt;tibble [114,081 &#xD7; 6]&gt; 26 D71214SP.txt &lt;tibble [2,730,412 &#xD7; 3]&gt; &lt;tibble [5,585,988 &#xD7; 6]&gt;
 27 D71214TO.txt &lt;tibble [51,629 &#xD7; 3]&gt; &lt;tibble [89,911 &#xD7; 6]&gt;</code></pre>
-<p>A primeira coluna complexa mostra dados das empresas, e a segunda mostra dados dos s&#xF3;cios. Para carregar uma dessas listas, use <code>tidyr::unnest()</code>.</p>
-<p>Empresas: (nesse caso, <code>dados</code> representa a base completa da receita).</p>
+<p>A primeira coluna complexa mostra dados das empresas, e a segunda mostra dados dos s&#xF3;cios. Para carregar uma dessas listas, use <code>tidyr::unnest()</code>, como veremos abaixo.</p>
+<p><strong>Empresas</strong>:</p>
 <pre class="r"><code>library(magrittr) empresas &lt;- dados %&gt;% dplyr::select(file, empresa) %&gt;% tidyr::unnest(empresa) empresas</code></pre>
 <pre><code># A tibble: 9,048,917 x 4 file tipo cnpj nome_empresarial &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; 1 D71214AC.txt 01 07398403000180 BOI GORDO AGROPECUARIA COMERCIO E R&#x2026; 2 D71214AC.txt 01 03173169000131 CONSELHO ESCOLAR BOM JESUS 3 D71214AC.txt 01 07399184000153 D &amp; A SOLUCOES INFORMATICA LTDA - ME 4 D71214AC.txt 01 07399188000131 SOCIEDADE AGRICOLA POERINHA 5 D71214AC.txt 01 03300047000169 ASSOCIACAO MAO AMIGA DE PRODUTORES &#x2026; 6 D71214AC.txt 01 04940648000107 ASSOCIACAO DOS PRODUTORES RURAIS E &#x2026; 7 D71214AC.txt 01 04940653000101 CONSELHO ESCOLAR POLO HORTIGRANJEIRO 8 D71214AC.txt 01 04940654000156 CONSELHO ESCOLAR CENTRO EDUCACIONAL&#x2026; 9 D71214AC.txt 01 03301098000105 ASSOCIACAO AGROEXTRATIVISTA SANTOS &#x2026;
 10 D71214AC.txt 01 01653480000152 DENEVS - TERCEIRIZACAO LTDA # ... with 9,048,907 more rows
 </code></pre>
-<p>S&#xF3;cios:</p>
+<p><strong>S&#xF3;cios:</strong></p>
 <pre class="r"><code>socios &lt;- dados %&gt;% dplyr::select(file, socio) %&gt;% tidyr::unnest(socio) socios</code></pre>
 <pre><code># A tibble: 17,780,860 x 7 file tipo cnpj indicador_cpf_c&#x2026; cpf_cnpj_socio qualificacao nome &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; 1 D7121&#x2026; 02 0739&#x2026; 2 NA 49 SELMA&#x2026; 2 D7121&#x2026; 02 0739&#x2026; 2 NA 22 MARCE&#x2026; 3 D7121&#x2026; 02 0317&#x2026; 2 NA 16 MARIA&#x2026; 4 D7121&#x2026; 02 0739&#x2026; 2 NA 49 DILSO&#x2026; 5 D7121&#x2026; 02 0739&#x2026; 2 NA 22 ANGEL&#x2026; 6 D7121&#x2026; 02 0739&#x2026; 2 NA 16 RAIMU&#x2026; 7 D7121&#x2026; 02 0330&#x2026; 2 NA 16 MOISE&#x2026; 8 D7121&#x2026; 02 0494&#x2026; 2 NA 16 RAIMU&#x2026; 9 D7121&#x2026; 02 0494&#x2026; 2 NA 16 MARIA&#x2026;
 10 D7121&#x2026; 02 0494&#x2026; 2 NA 16 EUCLI&#x2026;
@@ -35,7 +36,7 @@ print(dados, n = 27)</code></pre>
 <pre><code># A tibble: 40 x 2 qualificacao qualificacao_nm &lt;chr&gt; &lt;chr&gt; 1 05 Administrador 2 08 Conselheiro de Administra&#xE7;&#xE3;o 3 10 Diretor 4 16 Presidente 5 17 Procurador 6 20 Sociedade Consorciada 7 21 Sociedade Filiada 8 22 S&#xF3;cio 9 23 S&#xF3;cio Capitalista 10 24 S&#xF3;cio Comanditado # ... with 30 more rows</code></pre>
 <p>Para juntar com a base de dados dos s&#xF3;cios, basta dar <code>dplyr::inner_join()</code>!</p>
 </div><div id="download-de-arquivos-binarios" class="section level2"> <p>Voc&#xEA; pode carregar os arquivos bin&#xE1;rios (em <code>.rds</code>) diretamente da web usando a fun&#xE7;&#xE3;o <code>rfb_import()</code>. Essa fun&#xE7;&#xE3;o baixa os arquivos bin&#xE1;rios diretamente do <a href="https://www.dropbox.com/sh/tneczglkt11co0b/AABuRuJR02w2QcUbuhSl1XvLa?dl=0">Dropbox</a>. Voc&#xEA; pode baixar usando o par&#xE2;metro <code>type=</code>, com as op&#xE7;&#xF5;es &#x201C;all&#x201D; (<code>tibble</code> complexa com <em>list-columns</em>), &#x201C;empresas&#x201D; (<code>tibble</code> retangular) e &#x201C;socios&#x201D; (<code>tibble</code> retangular).</p>
-<pre class="r"><code>empresas &lt;- rfb_import(&quot;empresas&quot;)</code></pre>
+<pre class="r"><code>empresas &lt;- rfb_import(&quot;empresas&quot;, path = &quot;.&quot;)</code></pre>
 <p>Voc&#xEA; tamb&#xE9;m pode baixar os dados dos arquivos bin&#xE1;rios em <code>.rds</code> desses links com arquivos armazenados diretamente no dropbox:</p>
 <ul>
 <li><a href="https://www.dropbox.com/s/js3lvm0ogpxcjch/rfb.rds?dl=1">rfb (list-column)</a></li>
