@@ -1,0 +1,164 @@
+<body> <textarea id="source">
+class: center, middle, inverse, title-slide # R DAY 2018: ESTRUTURAS DE DADOS DISTRIBU&#xCD;DAS EM R
+### Caio Lente (ctlente &lt;span class=&quot;citation&quot;&gt;@curso-r.com&lt;/span&gt;)
+### 2018-05-22 --- # &#xCD;ndice O que veremos hoje: - Estruturas de Dados Distribu&#xED;das - Motiva&#xE7;&#xE3;o - Vis&#xE3;o Geral - O Pacote `ddR` - Implementa&#xE7;&#xE3;o - Vantagens e Desvantagens - Trabalhos Futuros - Rcpp e Companhia - ALTREP ---
+class: inverse, center, middle
+# Estruturas de Dados Distribu&#xED;das ---
+# Uma Breve Introdu&#xE7;&#xE3;o Apesar das melhoras significativas nas t&#xE9;cnicas de fabrica&#xE7;&#xE3;o de
+microprocessadores, ao redor dos anos 1980 o limite f&#xED;sico dos seus componentes
+passou a ser um motivo de preocupa&#xE7;&#xE3;o. Tomemos por exemplo o *clock* de um processador, a velocidade com que as
+instru&#xE7;&#xF5;es s&#xE3;o interpretadas (em ciclos por segundo): - Se a luz no v&#xE1;cuo se propaga a aproximadamente 3x10&lt;sup&gt;8&lt;/sup&gt;m/s ...
+- E a mem&#xF3;ria do seu computador estiver a apenas 5cm da CPU, ent&#xE3;o ...
+- O tempo de ida e volta da mem&#xF3;ria &#xE9; 1.7x10&lt;sup&gt;-10&lt;/sup&gt;s, limitando o *clock*
+a no m&#xE1;ximo 6Ghz Por causa disso, ao longo dos anos 1980 e 1990, passou-se a investir pesadamente
+em tecnologias *multithread* e *multicore*. Com esses avan&#xE7;os, cada n&#xFA;cleo passa a poder processar mais de um fluxo de
+instru&#xE7;&#xF5;es ao mesmo tempo e cada processador passa a ter mais de um n&#xFA;cleo
+na sua placa. ---
+# Um Mar De Op&#xE7;&#xF5;es N&#xE3;o &#xE9; trivial fazer algoritmos e estruturas de dados tirarem vantagem desse
+novo tipo de infraestrutura. Problemas como condi&#xE7;&#xF5;es de corrida
+(*race conditions*), *deadlocks*, inani&#xE7;&#xE3;o (*starvation*) s&#xE3;o o pavor de
+muitos alunos de gradua&#xE7;&#xE3;o em computa&#xE7;&#xE3;o hoje em dia... Como se j&#xE1; n&#xE3;o bastasse a dificuldade de lidar com arquiteturas *multicore*
+e *multithread*, hoje em dia temos visto a ascens&#xE3;o dos *clusters*: s&#xE9;ries
+de computadores conectados que trabalham em conjunto. Diversas bibliotecas tentam auxiliar o programador a aproveitar todas essas
+tecnologias e, ao mesmo tempo, abstrair um pouco da complexidade de
+programar aplica&#xE7;&#xF5;es concorrentes. - Solu&#xE7;&#xF5;es como `OpenMP` e `OpenACC` permitem a paraleliza&#xE7;&#xE3;o de c&#xF3;digo com
+diretivas de compila&#xE7;&#xE3;o
+- O `Spark` por outro lado, &#xE9; um *frarmework* que
+facilita a distribui&#xE7;&#xE3;o de conjuntos de dados ao longo de *clusters* de
+computadores. O problema &#xE9; que **&#xE9; muito dif&#xED;cil sair do b&#xE1;sico**. ---
+# A Linguagem R O R foi, desde a sua concep&#xE7;&#xE3;o, desenvolvido para funcionar com apenas um
+um thread. Isso &#xE9; uma limita&#xE7;&#xE3;o muito grande considerando que praticamente
+todos os computadores (e celulares!) hoje em dia funcionam em arquiteturas
+*multithread*/*multicore*. Ao longo do tempo foram aparecendo diversas formas diferentes de trazer para
+o R as inova&#xE7;&#xF5;es do processamento paralelo (a _Task View_ do CRAN sobre
+computa&#xE7;&#xE3;o de alta performance lista um total de **noventa e seis** pacotes),
+mas a verdade &#xE9; que pouqu&#xED;ssimos deles fornecem abstra&#xE7;&#xF5;es consistentes e
+transparentes ao programador. Sem entender de programa&#xE7;&#xE3;o concorrente, podemos ficar surpresos ao ver o
+resultado do *benchmark* a seguir: ```r
+#&gt; Unit: microseconds
+#&gt; expr min mean max neval
+#&gt; mcmapply(print, 1:10) 9166.336 16356.564 25367.051 100
+#&gt; print(1:10) 86.541 2072.888 9121.152 100
+``` ---
+# Um Programador Desavisado &lt;img src=&quot;static/cores.jpeg&quot; width=&quot;568&quot; /&gt; ---
+# Estruturas De Dados Estruturas de dados concorrentes ou compartilhadas (CDSs) s&#xE3;o aquelas que
+residem em mem&#xF3;ria compartilhada e podem ser acessadas por mais de um *thread*
+ao mesmo tempo, permitindo ganho consider&#xE1;vel de performance. Se pudermos distribuir essas estruturas ao longo de m&#xFA;ltiplas m&#xE1;quinas, teremos
+o que &#xE9; chamado de uma estrutura de dados distribu&#xED;da (DDS) e o ganho de
+performance ser&#xE1; maior ainda. N&#xE3;o por coincid&#xEA;ncia, a paraleliza&#xE7;&#xE3;o de uma analise de dados quase sempre
+envolver&#xE1; a paraleliza&#xE7;&#xE3;o dos acessos a uma estrutura de dados. Para tarefas &quot;padr&#xE3;o&quot; de tratamento de dados ou *machine learning* podemos usar
+o j&#xE1; citado `Spark` (ainda mais quando em combina&#xE7;&#xE3;o com o `h2o`), que tem a
+sua pr&#xF3;pria implementa&#xE7;&#xE3;o de DDSs: os *Resilient Distributed Datasets* (RDDs). Mas o que fazer quando voc&#xEA; quiser escrever o seu pr&#xF3;prio algoritmo ou operar
+em algo que n&#xE3;o seja um `data.frame`? ---
+class: inverse, center, middle
+# O Pacote ddR ---
+# Um Primeiro Exemplo O objetivo desse pacote &#xE9; ajudar qualquer programador de R a usar estruturas
+de dados distribu&#xED;das e concorrentes. Para criar uma, basta usar as fun&#xE7;&#xF5;es
+designadas (`as.darray()`, `as.dframe()` ou `as.dlist()`); o objeto retornado
+&#xE9; uma abstra&#xE7;&#xE3;o da estrada particionada. ```r
+library(ddR) l &lt;- list(1, 2, 3)
+as.dlist(l, nparts = 3)
+#&gt; ddR Distributed Object
+#&gt; Type: dlist
+#&gt; # of partitions: 3
+#&gt; Partitions per
+#&gt; dimension: 3x1
+#&gt; Partition sizes: [1], [1], [1]
+#&gt; Length: 3
+#&gt; Backend: fork
+``` ---
+# Backends O pacote funciona com diversos *backends*, que permitem que um mesmo c&#xF3;digo
+possa ser interpretado de forma concorrente ou distribu&#xED;da. Por padr&#xE3;o o
+*backend* &#xE9; o `fork`, mas com uma s&#xF3; linha podemos usar o `parallel` ou o
+`distributedR`. ```r
+useBackend(&quot;parallel&quot;) l &lt;- list(1, 2, 3)
+as.dlist(l, nparts = 3)
+#&gt; ddR Distributed Object
+#&gt; Type: dlist
+#&gt; # of partitions: 3
+#&gt; Partitions per
+#&gt; dimension: 3x1
+#&gt; Partition sizes: [1], [1], [1]
+#&gt; Length: 3
+#&gt; Backend: parallel
+``` ---
+# Dmapply A grande vantagem do `ddR` &#xE9; permitir que o programador aplique uma fun&#xE7;&#xE3;o
+qualquer do R, em paralelo, a cada parti&#xE7;&#xE3;o do objeto. Isso &#xE9; feito atrav&#xE9;s
+da fun&#xE7;&#xE3;o `dmapply()`, cuja interface &#xE9; id&#xEA;ntica &#xE0; da fun&#xE7;&#xE3;o `mapply()` mas
+com a vantagem de ser concorrente ou distribu&#xED;da (a depender do *backend*). ```r
+f &lt;- function(x) { x + 1 }
+out &lt;- dmapply(f, as.dlist(l, nparts = 3)) collect(out)
+#&gt; [[1]]
+#&gt; [1] 2
+#&gt;
+#&gt; [[2]]
+#&gt; [1] 3
+#&gt;
+#&gt; [[3]]
+#&gt; [1] 4
+``` ---
+# Caso De Uso Esse tipo de abstra&#xE7;&#xE3;o &#xE9; interessante quando quisermos escrever um algoritmo
+customizado em paralelo, que dependa de estruturas de dados. Essa &#xE9; a vantagem
+do `ddR` em rela&#xE7;&#xE3;o a outros *frameworks* como `Spark` e similares: a liberdade
+que o programador tem para se adaptar a cada cen&#xE1;rio. ```r
+df &lt;- data.frame(1:4, 5:8, 9:12)
+out &lt;- dmapply(mean, as.dlist(df, nparts = 3)) collect(out)
+#&gt; $X1.4
+#&gt; [1] 2.5
+#&gt;
+#&gt; $X5.8
+#&gt; [1] 6.5
+#&gt;
+#&gt; $X9.12
+#&gt; [1] 10.5
+``` ---
+# O Que Estamos Tentando Evitar Com esse tipo de abstra&#xE7;&#xE3;o voc&#xEA; n&#xE3;o precisa se preocupar com os costumeiros
+problemas do gerenciamento de threads. &lt;img src=&quot;static/dogs.jpeg&quot; width=&quot;1143&quot; /&gt; ---
+# Nem Tudo S&#xE3;o Flores No geral existem duas limita&#xE7;&#xF5;es para o uso do `ddR`:
+- Ele funciona bem com os problemas ditos vergonhosamente paraleliz&#xE1;veis. Se
+voc&#xEA; depender do gerenciamento granular de *threads*, esse pacote n&#xE3;o o ajudar&#xE1;.
+- A efici&#xEA;ncia dos algoritmos que v&#xEA;m pr&#xE9;-prontos para o `ddR` s&#xE3;o inferiores
+aos dos seus equivalentes no `Spark` por exemplo. A vantagem est&#xE1; na
+transpar&#xEA;ncia da abstra&#xE7;&#xE3;o. ```r
+microbenchmark( a = randomForest(medv ~ ., MASS::Boston), b = drandomForest(medv ~ ., MASS::Boston, nExecutor = 4), times = 20) #&gt; Unit: milliseconds
+#&gt; expr min median max neval
+#&gt; a 594.8163 621.4649 899.2687 20
+#&gt; b 291.7429 309.5159 584.8597 20
+``` ---
+class: inverse, center, middle
+# Trabalhos Futuros ---
+# Novos Algoritmos Como descrito na se&#xE7;&#xE3;o passada, o `ddR` j&#xE1; tem um punhado de algoritmos
+pr&#xE9;-prontos. Eles est&#xE3;o dispon&#xED;veis nos seguintes pacotes: `randomForest.ddR`,
+`pagerank.ddR`, `kmeans.ddR` e `glm.ddR`. No meu trabalho de conclus&#xE3;o de curso, me propus a implementar mais dois
+algoritmos usando as estruturas de dados distribu&#xED;das fornecidas pelo pacote:
+`prcomp.ddR` e `gam.ddR`. O primeiro destes est&#xE1; j&#xE1; foi implementado e est&#xE1; sendo otimizado. A sua
+realiza&#xE7;&#xE3;o foi baseada no artigo *Principal Component Analysis for Dimension Reduction in Massive Distributed Data Sets*
+por Qu et al., onde os autores descrevem um processo para a constru&#xE7;&#xE3;o dos
+componentes principais atrav&#xE9;s da estima&#xE7;&#xE3;o da matriz de vari&#xE2;ncia-covari&#xE2;ncia.
+Essa estima&#xE7;&#xE3;o &#xE9; constru&#xED;da a partir de c&#xE1;lculos realizados separadamente nas
+parti&#xE7;&#xF5;es horizontais da tabela. `$$n\mathbf{S} = \sum_{i=1}^s \mathbf{U}_i \mathbf{\Lambda}_i^2\mathbf{U}_i^T + \sum_{i=1}^s n_i (\bar{\mathbf{x}}_i - \bar{\mathbf{x}}) (\bar{\mathbf{x}}_i - \bar{\mathbf{x}})^T$$` ---
+# C++ Os desenvolvedores originais do pacote fizeram toda a sua infraestrutura em R.
+Isso n&#xE3;o necessariamente &#xE9; um problema, pois fornece maior compatibilidade com
+a pr&#xF3;pria linguagem, mas tamb&#xE9;m reduz a performance da biblioteca como um todo. Usando ferramentas como o `Rcpp`, o `RcppParallel` e o `RcppArmadillo` &#xE9;
+poss&#xED;vel otimizar o comportamento das fun&#xE7;&#xF5;es do `ddR`, diminuindo o *overhead*
+de uma s&#xE9;rie de opera&#xE7;&#xF5;es. ```r
+microbenchmark::microbenchmark( otimizado = as_darray(matriz_1000_50, c(1, 50)), original = as.darray(matriz_1000_50, c(1, 50)))
+#&gt; Unit: microseconds
+#&gt; expr min median max neval
+#&gt; otimizado 513.973 953.1695 8477.453 100
+#&gt; original 204338.956 242818.3535 1492324.670 100
+``` No exemplo acima vemos que o processo de distribui&#xE7;&#xE3;o otimizado chega a ser
+~250 vezes mais r&#xE1;pido do que o original. ---
+# ALTREP `ALTREP` &#xE9; um *branch* do reposit&#xF3;rio svn do R que fornece um *framework*
+experimental para o desenvolvimento de representa&#xE7;&#xF5;es alternativas para
+objetos b&#xE1;sicos do R. Esse tipo de representa&#xE7;&#xE3;o permite, por exemplo, o
+c&#xE1;lculo instant&#xE2;neo da mediana de um vetor que tenha sido previamente ordenado. Essas representa&#xE7;&#xF5;es carregam com sigo metadados sobre a estrutura e tamb&#xE9;m
+instru&#xE7;&#xF5;es para como devem ser aplicadas algumas fun&#xE7;&#xF5;es do `base`. A `ALTVEC`
+(a representa&#xE7;&#xE3;o alternativa de vetores) j&#xE1; passou a ser suportada no R 3.5
+lan&#xE7;ado em 23/04/2018 e traz consigo os benef&#xED;cios da aloca&#xE7;&#xE3;o &quot;pregui&#xE7;osa&quot;. Se este *framework* come&#xE7;ar a ser adotado no R padr&#xE3;o, ser&#xE1; poss&#xED;vel criar
+representa&#xE7;&#xF5;es alternativas para listas e matrizes que por padr&#xE3;o j&#xE1; sejam
+distribu&#xED;das! Assim teremos uma abstra&#xE7;&#xE3;o completamente transparente ao usu&#xE1;rio
+que poder&#xE1;, por tr&#xE1;s dos panos, otimizar computa&#xE7;&#xF5;es que sejam identificadas
+como vergonhosamente paralelas. Mas isso &#xE9; uma conversa para outra hora... ---
+class: inverse, center, middle
+# Obrigado ctlente@curso-r.com ctlente.com github.com/ctlente </textarea> </body>
