@@ -4,9 +4,15 @@ install.packages(&quot;rfbCNPJ&quot;)</code></pre>
 <p>Voc&#xEA; tamb&#xE9;m pode baixar diretamente do GitHub rodando:</p>
 <pre class="r"><code># install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;jtrecenti/rfbCNPJ&quot;)</code></pre>
-</div><div id="download-de-arquivos-brutos" class="section level2"> <p>Voc&#xEA; pode baixar o arquivo <code>.txt</code> bruto de cada UF usando o comando <code>rfb_download()</code>. Por padr&#xE3;o, temos <code>ufs = NULL</code>, que baixar&#xE1; os arquivos de todas as UFs. Esses arquivos somam aproximadamente 4.8 GB em disco.</p>
+</div><div id="download-de-arquivos-brutos" class="section level2"> <p>Voc&#xEA; pode baixar o arquivo <code>.txt</code> bruto de cada UF usando o comando
+<code>rfb_download()</code>. Por padr&#xE3;o, temos <code>ufs = NULL</code>, que baixar&#xE1; os arquivos
+de todas as UFs. Esses arquivos somam aproximadamente 4.8 GB em disco.</p>
 <pre class="r"><code>rfb_download(ufs = c(&quot;AC&quot;, &quot;RR&quot;), path = &quot;caminho/da/pasta&quot;)</code></pre>
-</div><div id="parse" class="section level2"> <p>A partir de uma pasta contendo os arquivos txt, voc&#xEA; pode carregar as bases de dados rodando <code>rfb_read()</code> com os caminhos dos arquivos ou <code>rfb_read_dir()</code> diretamente para ler todos os arquivos da pasta. Certifique-se de que a pasta que cont&#xE9;m os arquivos a serem lidos cont&#xE9;m apenas os arquivos baixados em <code>.txt</code>.</p>
+</div><div id="parse" class="section level2"> <p>A partir de uma pasta contendo os arquivos txt, voc&#xEA; pode carregar as bases
+de dados rodando <code>rfb_read()</code> com os caminhos dos arquivos ou <code>rfb_read_dir()</code>
+diretamente para ler todos os arquivos da pasta. Certifique-se de que a pasta
+que cont&#xE9;m os arquivos a serem lidos cont&#xE9;m apenas os arquivos baixados
+em <code>.txt</code>.</p>
 <pre class="r"><code>path &lt;- &quot;caminho/da/pasta&quot;
 all_files &lt;- fs::dir_ls(path) dados &lt;- rfb_read(all_files)
 dados &lt;- rfb_read_dir(path) # equivalente</code></pre>
@@ -35,9 +41,13 @@ print(dados, n = 27)</code></pre>
 <pre class="r"><code>data(qualificacao, package = &quot;rfbCNPJ&quot;) qualificacao</code></pre>
 <pre><code># A tibble: 40 x 2 qualificacao qualificacao_nm &lt;chr&gt; &lt;chr&gt; 1 05 Administrador 2 08 Conselheiro de Administra&#xE7;&#xE3;o 3 10 Diretor 4 16 Presidente 5 17 Procurador 6 20 Sociedade Consorciada 7 21 Sociedade Filiada 8 22 S&#xF3;cio 9 23 S&#xF3;cio Capitalista 10 24 S&#xF3;cio Comanditado # ... with 30 more rows</code></pre>
 <p>Para juntar com a base de dados dos s&#xF3;cios, basta dar <code>dplyr::inner_join()</code>!</p>
-</div><div id="download-de-arquivos-binarios" class="section level2"> <p>Voc&#xEA; pode carregar os arquivos bin&#xE1;rios (em <code>.rds</code>) diretamente da web usando a fun&#xE7;&#xE3;o <code>rfb_import()</code>. Essa fun&#xE7;&#xE3;o baixa os arquivos bin&#xE1;rios diretamente do <a href="https://www.dropbox.com/sh/tneczglkt11co0b/AABuRuJR02w2QcUbuhSl1XvLa?dl=0">Dropbox</a>. Voc&#xEA; pode baixar usando o par&#xE2;metro <code>type=</code>, com as op&#xE7;&#xF5;es &#x201C;all&#x201D; (<code>tibble</code> complexa com <em>list-columns</em>), &#x201C;empresas&#x201D; (<code>tibble</code> retangular) e &#x201C;socios&#x201D; (<code>tibble</code> retangular).</p>
+</div><div id="download-de-arquivos-binarios" class="section level2"> <p>Voc&#xEA; pode carregar os arquivos bin&#xE1;rios (em <code>.rds</code>) diretamente da web usando a fun&#xE7;&#xE3;o <code>rfb_import()</code>. Essa fun&#xE7;&#xE3;o baixa os arquivos bin&#xE1;rios diretamente do
+<a href="https://www.dropbox.com/sh/tneczglkt11co0b/AABuRuJR02w2QcUbuhSl1XvLa?dl=0">Dropbox</a>. Voc&#xEA; pode baixar usando o par&#xE2;metro <code>type=</code>, com as op&#xE7;&#xF5;es &#x201C;all&#x201D;
+(<code>tibble</code> complexa com <em>list-columns</em>), &#x201C;empresas&#x201D; (<code>tibble</code> retangular) e
+&#x201C;socios&#x201D; (<code>tibble</code> retangular).</p>
 <pre class="r"><code>empresas &lt;- rfb_import(&quot;empresas&quot;, path = &quot;.&quot;)</code></pre>
-<p>Voc&#xEA; tamb&#xE9;m pode baixar os dados dos arquivos bin&#xE1;rios em <code>.rds</code> desses links com arquivos armazenados diretamente no dropbox:</p>
+<p>Voc&#xEA; tamb&#xE9;m pode baixar os dados dos arquivos bin&#xE1;rios em <code>.rds</code> desses links
+com arquivos armazenados diretamente no dropbox:</p>
 <ul>
 <li><a href="https://www.dropbox.com/s/js3lvm0ogpxcjch/rfb.rds?dl=1">rfb (list-column)</a></li>
 <li><a href="https://www.dropbox.com/s/9h06mn9rzml4d2h/rfb_empresas.rds?dl=1">empresas</a></li>
