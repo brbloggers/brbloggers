@@ -1,0 +1,94 @@
+<div><p>Al&#xE9;m de ser s&#xF3;cio-fundador da <a href="http://curso-r.com/blog/2018/05/30/2018-05-30-pesqele/rseis.com.br">R6</a> consultoria, a <em>holding</em> que controla a <a href="http://curso-r.com/blog/2018/05/30/2018-05-30-pesqele/curso-r.com">Curso-R.com</a>, tamb&#xE9;m estou presidente do <a href="http://conre3.org.br/portal">Conselho Regional de Estat&#xED;stica - 3a Regi&#xE3;o</a>. Uma de nossas incumb&#xEA;ncias como conselheiros &#xE9; encontrar formas de monitorar e fiscalizar as pesquisas eleitorais.</p><p>Nesse ano eleitoral, por conta da pluralidade de candidatos e grande fragmenta&#xE7;&#xE3;o do cen&#xE1;rio pol&#xED;tico, a preocupa&#xE7;&#xE3;o com as pesquisas eleitorais &#xE9; ainda maior. O cen&#xE1;rio incerto gera pesquisas com resultados incertos. Isso &#xE9; um prato cheio para oportunistas que desejam influenciar a opini&#xE3;o p&#xFA;blica atrav&#xE9;s de pesquisas forjadas.</p><p>Por isso, &#xE9; nossa obriga&#xE7;&#xE3;o como cidad&#xE3;os e cidad&#xE3;s acompanhar e monitorar as pesquisas eleitorais registradas, detectando e apontando o dedo para poss&#xED;veis fraudes. Esse post busca ajudar a popula&#xE7;&#xE3;o nesse sentido.</p><div id="o-sistema-pesqele" class="section level1"> <p>O <a href="http://inter01.tse.jus.br/pesqele-publico/">pesqEle</a> &#xE9; o reposit&#xF3;rio oficial de pesquisas eleitorais disponibilizado pelo Tribunal Superior Eleitoral (TSE). L&#xE1; podemos encontrar diversas informa&#xE7;&#xF5;es sobre as pesquisas registradas. D&#xE1; at&#xE9; para ver os question&#xE1;rios aplicados e a metodologia de coleta.</p>
+<p>Infelizmente, o formul&#xE1;rio de cadastro do pesqEle &#xE9; problem&#xE1;tico, permitindo a entrada de dados sem padroniza&#xE7;&#xE3;o. Isso atrapalha bastante na hora de organizar os dados e fazer an&#xE1;lises.</p>
+<p>Outro problema do pesqEle &#xE9; que ele &#xE9; pouco divulgado. Essa base de dados tem informa&#xE7;&#xF5;es important&#xED;ssimas que deveriam ser usadas pelas associa&#xE7;&#xF5;es, conselhos e m&#xED;dia para monitorar as pesquisas, mas o foco &#xE9; sempre nos resultado que s&#xE3;o apresentados, e n&#xE3;o na metodologia empregada para realiza&#xE7;&#xE3;o dos levantamentos.</p>
+<p>Como bom estat&#xED;stico que sou e faxineiro de dados, me senti obrigado a divulgar esses dados de uma forma razo&#xE1;vel. Veja como abaixos</p>
+</div><div id="o-pacote-pesqele" class="section level1"> <p>O site do pesqEle n&#xE3;o disponibiliza API para acesso aos dados e seria muito complicado pedir atualiza&#xE7;&#xF5;es de dados via LAI. Por isso, foi criamos um raspador para obter os dados automaticamente. O pacote <a href="https://github.com/conre3/pesqEle"><code>pesqEle</code></a> &#xE9; o resultado desse esfor&#xE7;o.</p>
+<p>O pacote exporta apenas uma fun&#xE7;&#xE3;o, <code>pe_2018()</code>, usada para download e arruma&#xE7;&#xE3;o dos dados do <code>pesqEle</code>. Ela faz o download de todas as pesquisas de 2018 por raspagem de dados. Por padr&#xE3;o, os arquivos HTML s&#xE3;o armazenados na pasta <code>data-raw/html_2018</code>, mas &#xE9; poss&#xED;vel alterar essa pasta pelo par&#xE2;metro <code>path=</code>. Exemplo:</p>
+<pre class="r"><code>pe &lt;- pe_2018(&quot;pasta&quot;)
+dplyr::glimpse(pe)</code></pre>
+<pre><code>Observations: 186
+Variables: 24
+$ id_seq &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
+$ id_pesq &lt;chr&gt; &quot;MA-05302/2018&quot;, &quot;DF-03958/2018&quot;, &quot;DF-06553/2...
+$ info_uf &lt;chr&gt; &quot;MA&quot;, &quot;DF&quot;, &quot;DF&quot;, &quot;PI&quot;, &quot;PI&quot;, &quot;SP&quot;, &quot;SP&quot;, &quot;PI...
+$ info_election &lt;chr&gt; &quot;Elei&#xE7;&#xF5;es Gerais 2018&quot;, &quot;Elei&#xE7;&#xF5;es Gerais 2018...
+$ info_position &lt;chr&gt; &quot;&quot;, &quot;Deputado Distrital&quot;, &quot;Deputado Federal&quot;,...
+$ comp_nm &lt;chr&gt; &quot;M R BORGES SERVICOS / MBO PUBLICIDADE, MARKE...
+$ comp_cnpj &lt;chr&gt; &quot;00905916000190&quot;, &quot;00850844000121&quot;, &quot;00850844...
+$ comp_contract_same &lt;chr&gt; &quot;Sim&quot;, &quot;Sim&quot;, &quot;Sim&quot;, &quot;N&#xE3;o&quot;, &quot;N&#xE3;o&quot;, &quot;N&#xE3;o&quot;, &quot;N&#xE3;...
+$ stat_id &lt;chr&gt; &quot;1791&quot;, &quot;CONRE 1a. Regi&#xE3;o No. 9403&quot;, &quot;CONRE 1...
+$ stat_nm &lt;chr&gt; &quot;ANTONIO CARLOS RODRIGUES BARBOSA&quot;, &quot;LUCIANA ...
+$ pesq_n &lt;dbl&gt; 10973, 3200, 3200, 320, 320, 601, 601, 320, 8...
+$ pesq_val &lt;dbl&gt; 15700, 32000, 32000, 3000, 3000, 6000, 0, 300...
+$ pesq_contractors &lt;chr&gt; &quot;CNPJ: 00905916000190 - M R BORGES SERVICOS&quot;,...
+$ pesq_origin &lt;chr&gt; &quot;Vazio&quot;, &quot;Vazio&quot;, &quot;Vazio&quot;, &quot;Recursos proprios...
+$ pesq_same &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FAL...
+$ dt_reg &lt;date&gt; 2018-05-12, 2018-03-26, 2018-03-26, 2018-02-...
+$ dt_pub &lt;date&gt; 2018-05-18, 2018-04-01, 2018-04-01, 2018-02-...
+$ dt_start &lt;date&gt; 2018-03-26, 2018-03-21, 2018-03-21, 2018-02-...
+$ dt_end &lt;date&gt; 2018-05-04, 2018-03-30, 2018-03-30, 2018-02-...
+$ txt_verif &lt;chr&gt; &quot;Sistema interno de controle e verifica&#xE7;&#xE3;o, c...
+$ txt_method &lt;chr&gt; &quot;METODOLOGIA: A pesquisa foi realizada median...
+$ txt_about &lt;chr&gt; &quot;Trata-se de uma amostra n&#xE3;o aleat&#xF3;ria por co...
+$ txt_plan &lt;chr&gt; &quot;. PLANO AMOSTRAL E INTERVALOS DE CONFIAN&#xC7;A: ...
+$ stat_unique &lt;chr&gt; &quot;1791_A535&quot;, &quot;9403_L252&quot;, &quot;9403_L252&quot;, &quot;5102_...</code></pre>
+<p>Ao rodar pela primeira vez, provavelmente o download demorar&#xE1; por volta de 15-20 minutos, dependendo da conex&#xE3;o com a internet. Nas pr&#xF3;ximas vezes o download &#xE9; mais r&#xE1;pido pois o programa n&#xE3;o baixa pesquisas j&#xE1; armazenadas em arquivos HTML.</p>
+<p>Se n&#xE3;o quiser rodar a fun&#xE7;&#xE3;o <code>pe_2018()</code>, armazenamos os dados no objeto <code>pesqEle::pesqEle_2018</code>. Esse objeto &#xE9; uma <code>data.frame()</code> com as mesmas colunas resultantes de <code>pe_2018()</code>. Essas vari&#xE1;veis s&#xE3;o</p>
+<ul>
+<li>Identificadores:
+<ul>
+<li><code>id_seq</code>: ID sequencial</li>
+<li><code>id_pesq</code>: ID de registro da pesquisa</li>
+</ul></li>
+<li>Informa&#xE7;&#xF5;es da elei&#xE7;&#xE3;o
+<ul>
+<li><code>info_uf</code>: Unidade Federativa indicando abrang&#xEA;ncia da pesquisa (&#x201C;BR&#x201D; = Brasil)</li>
+<li><code>info_election</code>: Elei&#xE7;&#xE3;o (no caso, sempre 2018)</li>
+<li><code>info_position</code>: Cargo eleitoral</li>
+</ul></li>
+<li>Informa&#xE7;&#xF5;es da empresa
+<ul>
+<li><code>comp_nm</code>: Nome da empresa que realizou a pesquisa</li>
+<li><code>comp_cnpj</code>: CNPJ da empresa que realizou a pesquisa</li>
+<li><code>comp_contract_same</code>: Contratante &#xE9; a pr&#xF3;pria empresa?</li>
+</ul></li>
+<li>Informa&#xE7;&#xF5;es do estat&#xED;stico respons&#xE1;vel
+<ul>
+<li><code>stat_id</code>: ID do estat&#xED;stico</li>
+<li><code>stat_nm</code></li>
+<li><code>stat_unique</code>: C&#xF3;digo &#xFA;nico do estat&#xED;stico. Os nomes dos estat&#xED;sticos estavam escritos de formas diferentes, ent&#xE3;o arrumamos utilizando o pacote <code>SoundexBR</code> e outras heur&#xED;sticas. Nada garante que o pacote contenha mais erros nos nomes.</li>
+</ul></li>
+<li>Informa&#xE7;&#xF5;es sobre a pesquisa
+<ul>
+<li><code>pesq_n</code>: Tamanho da amostra.</li>
+<li><code>pesq_val</code>: Custo da pesquisa informado no registro.</li>
+<li><code>pesq_contractors</code>: Empresas que contrataram a pesquisa.</li>
+<li><code>pesq_origin</code>: Origem dos recursos da pesquisa.</li>
+<li><code>pesq_same</code>: Indica se o contratante da pesquisa &#xE9; a pr&#xF3;pria empresa e a pesquisa foi realizada com recursos pr&#xF3;prios (em 2018 n&#xE3;o tem nenhuma).</li>
+</ul></li>
+<li>Datas
+<ul>
+<li><code>dt_reg</code>: Data de registro da pesquisa.</li>
+<li><code>dt_pub</code>: Data de publica&#xE7;&#xE3;o da pesquisa.</li>
+<li><code>dt_start</code>: Data de in&#xED;cio da pesquisa.</li>
+<li><code>dt_end</code>: Data de t&#xE9;rmino da pesquisa.</li>
+</ul></li>
+<li>Informa&#xE7;&#xF5;es adicionais (texto)
+<ul>
+<li><code>txt_verif</code>, <code>txt_method</code>, <code>txt_about</code>, <code>txt_plan</code>: informa&#xE7;&#xF5;es adicionais da pesquisa, geralmente em texto, sobre metodologia, aplica&#xE7;&#xE3;o e outros detalhes.</li>
+</ul></li>
+</ul>
+<p>A base passou por uma s&#xE9;rie de limpezas para ficar minimamente utiliz&#xE1;vel. Essas faxinas incluem arruma&#xE7;&#xE3;o de nomes dos estat&#xED;sticos, empresas e UFs.</p>
+</div><div id="shiny-app" class="section level1"> <p>N&#xE3;o podemos ficar s&#xF3; nas tabelinhas, n&#xE9;?</p>
+<p>Tamb&#xE9;m fizemos um app para visualizar os dados e levantar algumas estat&#xED;sticas b&#xE1;sicas. O <a href="">William</a> &#xE9; o ser maravilhoso e iluminado por tr&#xE1;s desse app, que ficou realmente lindo.</p>
+<p>Ap&#xF3;s instalar o pacote, voc&#xEA; pode abrir o app do <code>pesqEle</code> localmente rodando</p>
+<pre class="r"><code>shiny::runApp(system.file(&quot;app&quot;, package = &quot;pesqEle&quot;))</code></pre>
+<p>Para rodar o app, al&#xE9;m dos pacotes do <code>tidyverse</code> e <code>shiny</code>, voc&#xEA; precisar&#xE1; instalar os pacotes <code>shinydashboard</code>, <code>highcharter</code>, <code>shinyBS</code> e <code>shinyjs</code>. Todos eles est&#xE3;o no CRAN e podem ser instalados via <code>install.packages()</code>.</p>
+<p>Tamb&#xE9;m disponibilizamos o app nos servidores do CONRE-3. Voc&#xEA; pode acessar diretamente aqui:</p>
+<div>
+<p><a href="http://pesqele.conre3.org.br/app">http://pesqele.conre3.org.br/app</a></p>
+</div>
+<p>Coloquei o app dentro de um <code>iframe</code> para acesso direto:</p> </div><div id="desenvolvendo-o-pesqele" class="section level1"> <p>Se voc&#xEA; tem interesse em baixar os dados de outras formas e aplicar outras regras para arruma&#xE7;&#xE3;o, voc&#xEA; pode! No entanto, para isso ter&#xE1; de trabalhar com as fun&#xE7;&#xF5;es n&#xE3;o documentadas do <code>pesqEle</code>. O pacote est&#xE1; longe de seu estado ideal.</p>
+<p>Caso essa parte do pacote se torne realmente &#xFA;til no futuro, pretendo deixar essas fun&#xE7;&#xF5;es exportadas e documentadas. Para isso, no entanto, precisarei de muito apoio da comunidade.</p>
+<p>Por enquanto, recomendo que voc&#xEA; d&#xEA; uma fu&#xE7;ada no <a href="https://github.com/conre3/pesqEle">reposit&#xF3;rio do pacote no github</a> e adicione <a href="https://github.com/conre3/pesqEle/issues">issues</a>.</p>
+</div></div>
