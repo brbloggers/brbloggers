@@ -1,0 +1,37 @@
+<div id="post-content"> <p>Hoje nosso amigo <a href="https://www.facebook.com/marcio.chiara">Marcio Chiara</a> nos procurou pedindo ajuda pois n&#xE3;o estava conseguindo fazer o pacote <a href="https://github.com/pablobarbera/Rfacebook">Rfacebook</a> funcionar. O problema estava logo no come&#xE7;o: a autentica&#xE7;&#xE3;o com a API do Facebook.</p>
+<div id="o-procedimento" class="section level3"> <p>O procedimento b&#xE1;sico para autenticar no Facebook usando o pacote <code>Rfacebook</code> consiste em tr&#xEA;s passos:</p>
+<ol>
+<li>Crie um aplicativo no <a href="https://developers.facebook.com/apps/">facebook developers</a>:
+<ul>
+<li>O aplicativo deve ser do tipo &#x201C;Login do Facebook&#x201D;</li>
+<li>Depois de clicar em &#x201C;Configurar&#x201D;, seleccione a plataforma &#x201C;web&#x201D;</li>
+</ul></li>
+<li>No menu da esquerda, clique em Configura&#xE7;&#xF5;es e obtenha o ID do Aplicativo e a Chave Secreta do Aplicativo.
+<ul>
+<li>Guarde nos objetos <code>client_id</code> e <code>client_secret</code>. Exemplo:</li>
+</ul></li>
+<li><code>Rodar Rfacebook::fbOAuth()</code>.</li>
+</ol>
+<p>Exemplo (n&#xE3;o rode):</p>
+<pre class="r"><code>client_id &lt;- &quot;274017323361669&quot;
+client_secret &lt;- &quot;6ced33b11f41944e5a960f74c475a5fe&quot;
+Rfacebook::fbOAuth(client_id, client_secret)</code></pre>
+</div>
+<div id="o-erro" class="section level3"> <p>O erro aparece ao rodar</p>
+<pre class="r"><code>Rfacebook::fbOAuth(client_id, client_secret, extended_permissions = TRUE)</code></pre>
+<p>A op&#xE7;&#xE3;o <code>extended_permissions</code> serve para dar acesso &#xE0; algumas op&#xE7;&#xF5;es adicionais como anivers&#xE1;rio, cidade de nascimento, etc. O erro que aparece &#xE9; esse aqui:</p>
+<p><img src="http://curso-r.com/img/blog/rfacebook/Erro.png"></p>
+<p>Como somos pessoas espertinhas, o que fizemos? Abrimos os links que o Facebook sugeriu? Re-estudamos toda a API do Facebook? N&#xE3;o! Apenas lemos e interpretamos o erro. A API estava recusando acesso &#xE0;s op&#xE7;&#xF5;es <code>user_relationships</code> e <code>publish_actions</code>, que s&#xE3;o requeridas por meio da fun&#xE7;&#xE3;o <code>Rfacebook::fbOAuth()</code>. Aha!</p>
+<p>Depois de estudar um pouquinho, notamos que a API do Facebook <a href="https://developers.facebook.com/docs/graph-api/changelog/breaking-changes/">mudou recentemente</a>. Isso ocorreu por conta de altera&#xE7;&#xF5;es na pol&#xED;tica de privacidade do Facebook, que &#xE9; sempre algo pol&#xEA;mico. Hoje em dia n&#xE3;o &#xE9; mais poss&#xED;vel autorizar aplicativos para terem acesso &#xE0; rede de relacionamentos e a&#xE7;&#xF5;es do usu&#xE1;rio.</p>
+<p>O problema &#xE9; que infelizmente o mantenedor do <code>Rfacebook</code> parou de atualizar o pacote:</p> <p><img src="http://curso-r.com/img/blog/rfacebook/app.png"></p> <p>Ent&#xE3;o, o que fazer? Quando temos uma ferramenta que n&#xE3;o funciona mais ou que est&#xE1; obsoleta, podemos i) jogar fora e fazer outra do zero ou ii) tentar arrum&#xE1;-la para ficar top novamente.</p>
+<p>Por sorte, o R &#xE9; open-source e permite que (ii) seja feito sem maiores esfor&#xE7;os. De fato, basta mudar <strong>uma linha</strong> de c&#xF3;digo para que tudo volte a funcionar como antes. Basta mudar o objeto <code>scope</code> de</p>
+<pre class="r"><code>scope &lt;- c(&quot;user_birthday&quot;, &quot;user_hometown&quot;, &quot;user_location&quot;, &quot;user_relationships&quot;, &quot;publish_actions&quot;, &quot;user_status&quot;, &quot;user_likes&quot;)</code></pre>
+<p>para</p>
+<pre class="r"><code>scope &lt;- c(&quot;user_birthday&quot;, &quot;user_hometown&quot;, &quot;user_location&quot;, &quot;user_status&quot;, &quot;user_likes&quot;)</code></pre>
+</div>
+<div id="a-solucao" class="section level3"> <p>Com base nessas altera&#xE7;&#xF5;es, a <a href="http://brunaw.com/">Bruna</a> sugere a utiliza&#xE7;&#xE3;o da fun&#xE7;&#xE3;o modificada abaixo:</p>
+<pre class="r"><code>new_fbOAuth &lt;- function (app_id, app_secret, extended_permissions = FALSE, legacy_permissions = FALSE, scope = NULL) { facebook &lt;- oauth_endpoint(authorize = &quot;https://www.facebook.com/dialog/oauth&quot;, access = &quot;https://graph.facebook.com/oauth/access_token&quot;) myapp &lt;- oauth_app(&quot;facebook&quot;, app_id, app_secret) if (is.null(scope)) { if (extended_permissions == TRUE) { # as altera&#xE7;&#xF5;es significativas est&#xE3;o aqui &gt;&gt;&gt; scope &lt;- c(&quot;user_birthday&quot;, &quot;user_hometown&quot;, &quot;user_location&quot;, # &quot;user_relationships&quot;, &quot;publish_actions&quot;, &quot;user_status&quot;, &quot;user_likes&quot;) } else { scope &lt;- c(&quot;public_profile&quot;, &quot;user_friends&quot;) } if (legacy_permissions == TRUE) { scope &lt;- c(scope, &quot;read_stream&quot;) } } if (packageVersion(&quot;httr&quot;) &lt; &quot;1.2&quot;) { stop(&quot;Rfacebook requires httr version 1.2.0 or greater&quot;) } if (packageVersion(&quot;httr&quot;) &lt;= &quot;0.2&quot;) { facebook_token &lt;- oauth2.0_token(facebook, myapp, scope = scope) fb_oauth &lt;- sign_oauth2.0(facebook_token$access_token) if (GET(&quot;https://graph.facebook.com/me&quot;, config = fb_oauth)$status == 200) { message(&quot;Authentication successful.&quot;) } } if (packageVersion(&quot;httr&quot;) &gt; &quot;0.2&quot; &amp; packageVersion(&quot;httr&quot;) &lt;= &quot;0.6.1&quot;) { fb_oauth &lt;- oauth2.0_token(facebook, myapp, scope = scope, cache = FALSE) if (GET(&quot;https://graph.facebook.com/me&quot;, config(token = fb_oauth))$status == 200) { message(&quot;Authentication successful.&quot;) } } if (packageVersion(&quot;httr&quot;) &gt; &quot;0.6.1&quot; &amp; packageVersion(&quot;httr&quot;) &lt; &quot;1.2&quot;) { Sys.setenv(HTTR_SERVER_PORT = &quot;1410/&quot;) fb_oauth &lt;- oauth2.0_token(facebook, myapp, scope = scope, cache = FALSE) if (GET(&quot;https://graph.facebook.com/me&quot;, config(token = fb_oauth))$status == 200) { message(&quot;Authentication successful.&quot;) } } if (packageVersion(&quot;httr&quot;) &gt;= &quot;1.2&quot;) { fb_oauth &lt;- oauth2.0_token(facebook, myapp, scope = scope, cache = FALSE) if (GET(&quot;https://graph.facebook.com/me&quot;, config(token = fb_oauth))$status == 200) { message(&quot;Authentication successful.&quot;) } } error &lt;- tryCatch(callAPI(&quot;https://graph.facebook.com/pablobarbera&quot;, fb_oauth), error = function(e) e) if (inherits(error, &quot;error&quot;)) { class(fb_oauth)[4] &lt;- &quot;v2&quot; } if (!inherits(error, &quot;error&quot;)) { class(fb_oauth)[4] &lt;- &quot;v1&quot; } return(fb_oauth)
+}</code></pre>
+<p>&#xC9; isso. Happy coding ;)</p>
+<p><strong>Nota</strong>: Se voc&#xEA; j&#xE1; tinha um app criado no Facebook antes da mudan&#xE7;a de pol&#xED;tica de privacidade, o ideal &#xE9; que ele passe pelo <a href="https://developers.facebook.com/docs/pages/"><em>App Review</em></a>, como sugerido no pr&#xF3;prio pacote do <code>Rfacebook</code>.</p>
+</div> </div>
