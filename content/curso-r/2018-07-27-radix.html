@@ -1,0 +1,28 @@
+<div class="col-md-9" id="blog-post"> <p class="text-muted text-uppercase mb-small text-right"> Por <a href="http://curso-r.com/author/daniel">Daniel</a> 27/07/2018 </p> <div id="post-content"> <p>O <a href="https://radixpub.github.io/radix-r/">radix</a> &#xE9; um formato do <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> para publica&#xE7;&#xF5;es t&#xE9;cnicas e ci&#xEA;nt&#xED;ficas. Esse template tem entre suas vantagens:</p>
+<ul>
+<li>Uma fonte boa para leitura.</li>
+<li>Aceita LaTeX, cita&#xE7;&#xF5;es e footnotes.</li>
+<li>Permite posicionar as figuras de forma bastante flex&#xED;vel.</li>
+<li><a href="https://radixpub.github.io/radix-r/">etc.</a></li>
+</ul>
+<p>O template baseado no formato usado no <a href="https://distill.pub/"><em>Distill Research Journal</em></a> que &#xE9; uma revista cient&#xED;fica dedicada a artigos cient&#xED;ficos que explicam de forma clara e din&#xE2;mica conceitos relacionados &#xE0; Machine Learning.</p>
+<p>Para come&#xE7;ar a usar o <a href="https://radixpub.github.io/radix-r/">radix</a> voc&#xEA; precisa instalar o pacote <code>radix</code> que por enquanto s&#xF3; est&#xE1; dispon&#xED;vel pelo Github:</p>
+<pre class="r"><code>devtools::install_github(&quot;rstudio/radix&quot;)</code></pre>
+<p>Em seguida basta criar um novo RMarkdown e adicionar o seguinte no cabe&#xE7;alho de metadados:</p>
+<pre><code>---
+title: &quot;Radix for R Markdown&quot;
+description: | Scientific and technical writing, native to the web
+date: May 4, 2018
+author: - name: &quot;JJ Allaire&quot; url: https://github.com/jjallaire affiliation: RStudio affiliation_url: https://www.rstudio.com - name: &quot;Rich Iannone&quot; url: https://github.com/rich-iannone affiliation: RStudio affiliation_url: https://www.rstudio.com - name: &quot;Yihui Xie&quot; url: https://github.com/yihui affiliation: RStudio affiliation_url: https://www.rstudio.com
+bibliography: biblio.bib
+output: radix::radix_article
+---</code></pre>
+<p><img src="http://curso-r.com/img/blog/radix/radix.png"></p>
+<p>Al&#xE9;m disso, e talvez o mais legal do radix &#xE9; que ele permite que voc&#xEA; crie <a href="https://radixpub.github.io/radix-r/website.html">sites</a> e <a href="https://radixpub.github.io/radix-r/blog.html">blogs</a> com conjuntos de artigos. N&#xE3;o vamos falar sobre isso nesse post mas, voc&#xEA; pode ler mais na <a href="https://radixpub.github.io/radix-r/">documenta&#xE7;&#xE3;o do pacote</a>.</p>
+<p>Alguns exemplos de sites que j&#xE1; est&#xE3;o feitos nesse formato s&#xE3;o:</p>
+<ul>
+<li><a href="http://blogs.rstudio.com/tensorflow/">Blog do Tensorflow para R</a></li>
+<li><a href="https://beta.rstudioconnect.com/content/3776/">Reproducible Finance</a></li>
+<li><a href="http://r-music.rbind.io/">R-Music</a></li>
+</ul>
+<p>E a&#xED;, o que acharam?</p> </div> </div>
