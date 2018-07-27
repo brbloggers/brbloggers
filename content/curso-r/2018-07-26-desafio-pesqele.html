@@ -1,0 +1,15 @@
+<div class="col-md-9" id="blog-post"> <p class="text-muted text-uppercase mb-small text-right"> Por <a href="http://curso-r.com/author/curso-r">Curso-R</a> , <a href="http://curso-r.com/author/bruna-wundervald">Bruna Wundervald</a> 26/07/2018 </p> <div id="post-content"> <p>Bem vindos &#xE0; primeira edi&#xE7;&#xE3;o do <a href="http://curso-r.com/desafio-dados/">Desafio de Dados</a>.</p>
+<p>O pesqEle &#xE9; o reposit&#xF3;rio oficial de pesquisas eleitorais disponibilizado pelo Tribunal Superior Eleitoral (TSE). L&#xE1; podemos encontrar diversas informa&#xE7;&#xF5;es sobre as pesquisas registradas. D&#xE1; at&#xE9; para ver os question&#xE1;rios aplicados e a metodologia de coleta.</p>
+<p>O CONRE3 fez um <a href="https://github.com/conre3/pesqEle">pacote para o R</a> que permite acessar esses dados de forma mais organizada. Leia mais sobre o pacote neste <a href="http://curso-r.com/blog/2018/05/30/2018-05-30-pesqele/">post do blog</a>.</p>
+<p>Junto com o pacote, o CONRE3 fez tamb&#xE9;m um aplicativo em shiny, dispon&#xED;vel <a href="http://curso-r.com/blog/2018/07/26/2018-07-26-desafio-pesqele/pesqele.conre3.org.br/app">neste link</a>.</p>
+<p>A ideia dessa primeira edi&#xE7;&#xE3;o do Desafio de Dados &#xE9; replicar o mapa da p&#xE1;gina inicial do aplicativo que mostra a distribui&#xE7;&#xE3;o de pesquisas eleitorais por estado do Brasil.</p>
+<p><img src="http://curso-r.com/img/desafio-dados/1-pesqele.png"></p>
+<p>Os dados podem ser obtidos rodando o trecho de c&#xF3;digo abaixo:</p>
+<pre><code># devtools::install_github(&quot;conre3/pesqEle&quot;) # instala&#xE7;&#xE3;o do pacote;
+library(pesqEle)
+pe &lt;- pe_2018()
+dplyr::glimpse(pe)</code></pre>
+<p>O shapefile do mapa est&#xE1; dispon&#xED;vel no pacote <code>ufshapes</code>:</p>
+<pre><code># devtools::install_github(&apos;jtrecenti/ufshape&apos;) # instala&#xE7;&#xE3;o do pacote;
+df_uf &lt;- ufshape::df_uf</code></pre>
+<p><strong>Links sugeridos</strong>:</p> <p>O post ser&#xE1; publicado no dia 09-08-18.</p> </div> </div>
